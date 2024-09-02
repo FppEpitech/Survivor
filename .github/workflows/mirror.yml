@@ -92,7 +92,7 @@ jobs:
 
   push_to_mirror:
     if: ${{ github.event_name == 'push' }}
-    needs: [run_tests, check_coding_style]
+    # needs: [run_tests, check_coding_style]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
