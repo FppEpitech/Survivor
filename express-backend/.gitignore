@@ -1,4 +1,4 @@
 /node_modules
 
 # express-backend
-express-backend/.env
+/.env
