@@ -21,7 +21,7 @@
     "bulma": "^1.0.2",
     "echarts": "^5.5.1",
     "jquery": "^3.7.1",
-    "ngx-echarts": "^16.0.0",
+    "ngx-echarts": "^16.2.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
