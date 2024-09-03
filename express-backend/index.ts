@@ -1,9 +1,10 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
-import { PrismaClient } from '@prisma/client';
+import {PrismaClient} from '@prisma/client';
 import tipsRouter from './routes/tips';
 import customersRouter from './routes/customers';
 import employeesRouter from './routes/employees';
+import encountersRouter from './routes/encounters';
 import eventsRouter from './routes/events';
 
 
@@ -17,6 +18,7 @@ const prisma = new PrismaClient();
 app.use('/tips', tipsRouter);
 app.use('/customers', customersRouter);
 app.use('/employees', employeesRouter);
+app.use('/encounters', encountersRouter);
 app.use('/events', eventsRouter);
 
 app.get('/', (req: Request, res: Response) => {
@@ -28,9 +30,7 @@ app.listen(port, () => {
 });
 
 async function main() {
-    const allTips = await prisma.tip.findMany();
-
-    console.log('All Tips:', allTips);
+    console.log('Hello the server is actually running');
 }
 
 main()
