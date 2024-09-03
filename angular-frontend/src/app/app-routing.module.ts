@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LoginComponent } from './login/login.component';
-import {  ClientProfileComponent } from './client-profile/client-profile.component';
+import { LoginComponent } from './pages/login/login.component';
+import {  ClientProfileComponent } from './pages/client-profile/client-profile.component';
 import { LoggedGuard } from './guards/logged.guard';
 // import {  StatisticsComponent } from './statistics/statistics.component';
 // import {  AccountManagementComponent } from './account-management/account-management.component';

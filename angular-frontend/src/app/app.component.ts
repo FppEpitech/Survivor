@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from './service/auth.service';
+import { TipsService } from './service/tips.service';
+import { Tip } from './service/tips.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -7,21 +9,24 @@ import { AuthService } from './service/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-frontend';
+    title = 'angular-frontend';
 
+    tips: Tip[] = [];
+    selectedTip?: Tip;
 
-  data: any;
-  constructor(private api: AuthService) {}
+    constructor(private tipsService: TipsService, private http: HttpClient) {
+        // this.http.get("/api/tips").subscribe((data) => {
+        //     console.log(data);
+        // })
+    };
 
-  ngOnInit() {
-    this.api.getData("jeanne.martin@soul-connection.fr", "naouLeA82oeirn").subscribe(
-      (response) => {
-        this.data = response.token;
-        console.log("yaaaaaaa");
-      },
-      (error) => {
-        console.log('Error:', error);
-      }
-    );
-  };
+    ngOnInit(): void {
+        this.tipsService.getTips().subscribe(
+            (data) => {
+                this.tips = data
+                console.log(this.tips[0].id)
+            },
+            (error) => console.error('Error fetching tips', error)
+        );
+    }
 }
