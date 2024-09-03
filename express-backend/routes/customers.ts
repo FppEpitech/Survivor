@@ -19,7 +19,7 @@ router.get('/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
 
   try {
-    const customer = await prisma.customer.findUnique({where: {id }});
+    const customer = await prisma.customer.findUnique({where: {id}});
 
     if (customer) {
       res.status(200).json(customer);
@@ -37,7 +37,7 @@ router.post('/', async (req: Request, res: Response) => {
     name,
     surname,
     birth_date,
-    gender = "Not specified",
+    gender,
     description,
     astrological_sign = "Unknown",
   } = req.body;
@@ -68,7 +68,7 @@ router.put('/:id', async (req: Request, res: Response) => {
     name,
     surname,
     birth_date,
-    gender = "Not specified",
+    gender,
     description,
     astrological_sign = "Unknown",
   } = req.body;
@@ -97,7 +97,7 @@ router.delete('/:id', async (req: Request, res: Response) => {
 
   try {
     await prisma.customer.delete({where: {id}});
-    res.status(200).json({message: 'Customer deleted successfully'});
+    res.status(204).send();
   } catch (error) {
     res.status(500).json({error: 'Error deleting customer'});
   }

@@ -29,7 +29,7 @@ model Customer {
   name              String
   surname           String
   birth_date        String
-  gender            String @default("Not specified")
+  gender            String
   description       String
   astrological_sign String @default("Not specified")
 }
