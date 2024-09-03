@@ -9,7 +9,7 @@ router.use(express.json());
 router.get('/', async (req: Request, res: Response) => {
   try {
     const tips = await prisma.tip.findMany();
-    res.json(tips);
+    res.status(200).json(tips);
   } catch (error) {
     res.status(500).json({error: 'Error retrieving tips'});
   }
@@ -19,10 +19,10 @@ router.get('/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
 
   try {
-    const tip = await prisma.tip.findUnique({where: {id }});
+    const tip = await prisma.tip.findUnique({where: {id}});
 
     if (tip) {
-      res.json(tip);
+      res.status(200).json(tip);
     } else {
       res.status(404).json({error: 'Tip not found'});
     }
@@ -51,7 +51,7 @@ router.put('/:id', async (req: Request, res: Response) => {
       where: {id},
       data: {title, tip}
     });
-    res.json(updatedTip);
+    res.status(200).json(updatedTip);
   } catch (error) {
     res.status(500).json({error: 'Error updating tip'});
   }

@@ -31,7 +31,7 @@ model Customer {
   birth_date        String
   gender            String
   description       String
-  astrological_sign String
+  astrological_sign String @default("Not specified")
 }
 
 model Employee {

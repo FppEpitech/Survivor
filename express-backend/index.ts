@@ -4,9 +4,11 @@ dotenv.config();
 
 import { PrismaClient } from '@prisma/client';
 import tipsRouter from './routes/tips';
+<<<<<<< HEAD
 import loginRouter from './routes/login';
 import isLoggedIn from './middlewares/isLoggedIn'
-
+import customersRouter from './routes/customers';
+import employeesRouter from './routes/employees';
 
 const app = express();
 const port = 3001;
@@ -14,11 +16,14 @@ const port = 3001;
 app.use(express.json());
 app.use(loginRouter)
 
-app.get('/', isLoggedIn, (req: Request, res: Response) => {
+app.use('/tips', tipsRouter);
+app.use('/customers', customersRouter);
+app.use('/employees', employeesRouter);
+app.use('/tips', tipsRouter);
+
+app.get('/', (req: Request, res: Response) => {
     res.send('Hello, World!');
 });
-
-app.use('/tips', tipsRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
