@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TipsService } from './service/tips.service';
-import { Tip } from './service/tips.service';
+import { TipsService } from './service/tips/tips.service';
+import { Tip } from './service/tips/tips.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
