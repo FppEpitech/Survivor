@@ -18,7 +18,6 @@ loginRouter.post('/login', async (req: Request, res: Response) => {
         });
         if (!user) {
             let existsOnLegacyToken = await accountExistsLegacy(email, password);
-            console.log(existsOnLegacyToken)
             if (existsOnLegacyToken != undefined) {
                 let legacyUser : Employee = await getLegacyProfile(existsOnLegacyToken)
                 if (!legacyUser) return res.status(400).json({ msg: "Bad parameters" });
@@ -52,7 +51,7 @@ loginRouter.post('/login', async (req: Request, res: Response) => {
             return res.status(409).json({ msg: "Invalid Credentials" });
         }
     } catch (error) {
-        return res.status(500).json({ msg: "Internal Server Error"});
+        return res.status(500).json({ msg: `Internal Server Error ${error}`});
     }
 });
 

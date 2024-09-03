@@ -4,7 +4,6 @@ dotenv.config();
 
 import { PrismaClient } from '@prisma/client';
 import tipsRouter from './routes/tips';
-<<<<<<< HEAD
 import loginRouter from './routes/login';
 import isLoggedIn from './middlewares/isLoggedIn'
 import customersRouter from './routes/customers';
