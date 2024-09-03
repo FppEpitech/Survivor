@@ -2,14 +2,10 @@ import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { PrismaClient } from '@prisma/client';
 import tipsRouter from './routes/tips';
 import loginRouter from './routes/login';
-import isLoggedIn from './middlewares/isLoggedIn'
 import customersRouter from './routes/customers';
 import employeesRouter from './routes/employees';
-import authenticateToken from './middlewares/isLoggedIn';
-import isManager from './middlewares/isManager';
 
 const app = express();
 const port = 3001;
