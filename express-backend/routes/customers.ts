@@ -39,7 +39,7 @@ router.post('/', async (req: Request, res: Response) => {
     birth_date,
     gender,
     description,
-    astrological_sign = "Unknown",
+    astrological_sign,
   } = req.body;
 
   try {

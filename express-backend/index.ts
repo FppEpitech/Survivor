@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client';
 import tipsRouter from './routes/tips';
 import customersRouter from './routes/customers';
 import employeesRouter from './routes/employees';
+import eventsRouter from './routes/events';
 
 
 const app = express();
@@ -16,6 +17,7 @@ const prisma = new PrismaClient();
 app.use('/tips', tipsRouter);
 app.use('/customers', customersRouter);
 app.use('/employees', employeesRouter);
+app.use('/events', eventsRouter);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello, World!');
