@@ -1,13 +1,19 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
+import tipsRouter from './routes/tips';
+import customersRouter from './routes/customers';
+
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 dotenv.config();
 
 const prisma = new PrismaClient();
+
+app.use('/tips', tipsRouter);
+app.use('/customers', customersRouter);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello, World!');
@@ -16,7 +22,6 @@ app.get('/', (req: Request, res: Response) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
-
 
 async function main() {
     const allTips = await prisma.tip.findMany();
