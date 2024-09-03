@@ -2,3 +2,5 @@
 
 # express-backend
 /.env
+
+*.png

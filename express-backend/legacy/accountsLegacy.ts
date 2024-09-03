@@ -1,3 +1,7 @@
+let fs = require('fs')
+import path from 'path'
+import { v4 } from 'uuid'
+
 async function accountExistsLegacy(email : string, password : string) {
     try {
         const response = await fetch(`${process.env.SOULCONNECTION_PROD_API_URL}/api/employees/login`, {
@@ -36,6 +40,8 @@ async function getLegacyProfile(access_token: string) {
         });
         if (response.ok) {
             const data = await response.json();
+            const legacyImage = await getMyLegacyImage(access_token, data.id)
+            data.image_url = legacyImage;
             return data;
         } else {
             return undefined;
@@ -45,6 +51,40 @@ async function getLegacyProfile(access_token: string) {
         return undefined;
     }
 }
+
+
+async function getMyLegacyImage(access_token: string, id : number) {
+    try {
+        const response = await fetch(`${process.env.SOULCONNECTION_PROD_API_URL}/api/employees/${id}/image`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'X-Group-Authorization': process.env.GROUP_AUTHO as string,
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${access_token}`,
+            },
+        });
+        if (response.ok) {
+            const arrayBuffer = await response.arrayBuffer();
+            const buffer = Buffer.from(arrayBuffer);
+            const fileName = `${await v4()}.png`
+            const filePath = await path.join(__dirname, "..", 'assets', fileName);
+            fs.writeFileSync(filePath, buffer);
+            return `assets/${fileName}`
+        } else {
+            return undefined;
+        }
+    } catch (error) {
+        console.log(error)
+        return undefined;
+    }
+}
+
+async function main() {
+    let token = await accountExistsLegacy("jeanne.martin@soul-connection.fr","naouLeA82oeirn");
+    console.log(await getLegacyProfile(token));
+}
+main();
 
 export {
     accountExistsLegacy,

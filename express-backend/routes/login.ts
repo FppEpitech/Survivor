@@ -28,6 +28,7 @@ const createUserFromLegacyData = async (legacyUser: Employee, password: string) 
             gender: legacyUser.gender,
             work: legacyUser.work,
             hashed_password: hashedPassword,
+            image_url: legacyUser.image_url,
         },
     });
     if (!employee)

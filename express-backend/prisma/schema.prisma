@@ -44,6 +44,7 @@ model Employee {
   gender            String
   work              String
   hashed_password   String
+  image_url         String
 }
 
 model Encounter {
