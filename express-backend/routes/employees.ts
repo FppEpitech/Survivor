@@ -37,7 +37,7 @@ router.post('/', async (req: Request, res: Response) => {
     name,
     surname,
     birth_date,
-    gender = "Not specified",
+    gender,
     work,
     hashed_password,
   } = req.body;
