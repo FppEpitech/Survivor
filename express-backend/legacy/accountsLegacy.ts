@@ -80,12 +80,6 @@ async function getMyLegacyImage(access_token: string, id : number) {
     }
 }
 
-async function main() {
-    let token = await accountExistsLegacy("jeanne.martin@soul-connection.fr","naouLeA82oeirn");
-    console.log(await getLegacyProfile(token));
-}
-main();
-
 export {
     accountExistsLegacy,
     getLegacyProfile

@@ -3,10 +3,13 @@ import dotenv from 'dotenv';
 import path from 'path'
 dotenv.config();
 
+import {PrismaClient} from '@prisma/client';
 import tipsRouter from './routes/tips';
 import loginRouter from './routes/login';
 import customersRouter from './routes/customers';
 import employeesRouter from './routes/employees';
+import encountersRouter from './routes/encounters';
+import eventsRouter from './routes/events';
 
 const app = express();
 const port = 3001;
@@ -19,6 +22,8 @@ app.use('/tips', tipsRouter);
 app.use('/customers', customersRouter);
 app.use('/employees', employeesRouter);
 app.use('/tips', tipsRouter);
+app.use('/encounters', encountersRouter);
+app.use('/events', eventsRouter);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello, World!');
