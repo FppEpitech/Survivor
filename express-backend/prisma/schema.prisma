@@ -25,7 +25,7 @@ model Tip {
 model Customer {
   old_id            Int
   id                Int    @id @default(autoincrement())
-  email             String
+  email             String @unique
   name              String
   surname           String
   birth_date        String
@@ -37,7 +37,7 @@ model Customer {
 model Employee {
   old_id            Int
   id                Int    @id @default(autoincrement())
-  email             String
+  email             String @unique
   name              String
   surname           String
   birth_date        String
