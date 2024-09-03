@@ -68,3 +68,18 @@ model Event {
   employee_id         Int
   location_name       String
 }
+
+model PaymentHistory {
+  old_id              Int
+  id                  Int    @id @default(autoincrement())
+  date                String
+  payment_method      String
+  amount              Int
+  comment             String
+}
+
+model Clothe {
+  old_id              Int
+  id                  Int    @id @default(autoincrement())
+  type                String
+}

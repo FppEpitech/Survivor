@@ -1,5 +1,6 @@
 -- CreateTable
 CREATE TABLE "Tip" (
+    "old_id" INTEGER NOT NULL,
     "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "tip" TEXT NOT NULL,
@@ -9,6 +10,7 @@ CREATE TABLE "Tip" (
 
 -- CreateTable
 CREATE TABLE "Customer" (
+    "old_id" INTEGER NOT NULL,
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
     "name" TEXT NOT NULL,
@@ -23,6 +25,7 @@ CREATE TABLE "Customer" (
 
 -- CreateTable
 CREATE TABLE "Employee" (
+    "old_id" INTEGER NOT NULL,
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
     "name" TEXT NOT NULL,
@@ -37,6 +40,7 @@ CREATE TABLE "Employee" (
 
 -- CreateTable
 CREATE TABLE "Encounter" (
+    "old_id" INTEGER NOT NULL,
     "id" SERIAL NOT NULL,
     "customer_id" INTEGER NOT NULL,
     "date" TEXT NOT NULL,
@@ -49,6 +53,7 @@ CREATE TABLE "Encounter" (
 
 -- CreateTable
 CREATE TABLE "Event" (
+    "old_id" INTEGER NOT NULL,
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "date" TEXT NOT NULL,
@@ -60,4 +65,25 @@ CREATE TABLE "Event" (
     "location_name" TEXT NOT NULL,
 
     CONSTRAINT "Event_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "PaymentHistory" (
+    "old_id" INTEGER NOT NULL,
+    "id" SERIAL NOT NULL,
+    "date" TEXT NOT NULL,
+    "payment_method" TEXT NOT NULL,
+    "amount" INTEGER NOT NULL,
+    "comment" TEXT NOT NULL,
+
+    CONSTRAINT "PaymentHistory_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Clothe" (
+    "old_id" INTEGER NOT NULL,
+    "id" SERIAL NOT NULL,
+    "type" TEXT NOT NULL,
+
+    CONSTRAINT "Clothe_pkey" PRIMARY KEY ("id")
 );
