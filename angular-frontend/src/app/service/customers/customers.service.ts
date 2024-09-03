@@ -17,7 +17,7 @@ export interface Customer {
   providedIn: 'root'
 })
 export class CustomersService {
-  private apiUrl = 'api/customers'; // Base URL for your API
+  private apiUrl = 'api/customers';
 
   constructor(private http: HttpClient) {}
 

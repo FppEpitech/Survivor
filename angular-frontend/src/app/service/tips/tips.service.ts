@@ -12,7 +12,7 @@ export interface Tip {
   providedIn: 'root'
 })
 export class TipsService {
-  private apiUrl = 'api/tips'; // Base URL for your API
+  private apiUrl = 'api/tips';
 
   constructor(private http: HttpClient) {}
 
