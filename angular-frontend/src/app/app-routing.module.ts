@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { LoginComponent } from './login/login.component';
 import {  ClientProfileComponent } from './client-profile/client-profile.component';
 // import {  StatisticsComponent } from './statistics/statistics.component';
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 
 const routes: Routes = [
+    { path: 'login', component: LoginComponent},
     { path: 'client-profile', component: ClientProfileComponent },
     // { path: 'account-management', component: AccountManagementComponent },
     // { path: 'statistics', component: StatisticsComponent }
