@@ -16,12 +16,14 @@ datasource db {
 // Models
 
 model Tip {
-  id    Int    @id @default(autoincrement())
-  title String
-  tip   String
+  old_id Int
+  id     Int    @id @default(autoincrement())
+  title  String
+  tip    String
 }
 
 model Customer {
+  old_id            Int
   id                Int    @id @default(autoincrement())
   email             String
   name              String
@@ -33,6 +35,7 @@ model Customer {
 }
 
 model Employee {
+  old_id            Int
   id                Int    @id @default(autoincrement())
   email             String
   name              String
@@ -44,6 +47,7 @@ model Employee {
 }
 
 model Encounter {
+  old_id            Int
   id                Int    @id @default(autoincrement())
   customer_id       Int
   date              String
@@ -53,6 +57,7 @@ model Encounter {
 }
 
 model Event {
+  old_id              Int
   id                  Int    @id @default(autoincrement())
   name                String
   date                String
