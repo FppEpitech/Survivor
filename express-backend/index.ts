@@ -19,9 +19,9 @@ app.listen(port, () => {
 
 
 async function main() {
-  // Exemple de requête avec Prisma
-  const allUsers = await prisma.user.findMany();
-  console.log(allUsers);
+    const allTips = await prisma.tip.findMany();
+
+    console.log('All Tips:', allTips);
 }
 
 main()
