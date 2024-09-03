@@ -23,7 +23,7 @@ async function accountExistsLegacy(email : string, password : string) {
     }
 }
 
-async function getLegacyProf    ile(access_token: string) {
+async function getLegacyProfile(access_token: string) {
     try {
         const response = await fetch(`${process.env.SOULCONNECTION_PROD_API_URL}/api/employees/me`, {
             method: 'GET',
