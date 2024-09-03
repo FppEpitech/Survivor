@@ -1,0 +1,90 @@
+.profile-card, .description-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card {
+    .card-image {
+      background-color: #f5f5f5;
+      padding: 20px;
+      border-bottom: 1px solid #ddd;
+
+      .image {
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+    }
+
+    .card-content {
+      background-color: #fff;
+      padding: 20px;
+
+      .title {
+        margin-bottom: 10px;
+        color: #363636;
+      }
+
+      .subtitle {
+        margin-bottom: 5px;
+        color: #606c76;
+
+        i {
+          margin-right: 5px;
+          color: #00d1b2;
+        }
+      }
+    }
+}
+
+.description-card {
+    .card-content {
+      background-color: #fff;
+      padding: 20px;
+
+      .title {
+        color: #363636;
+        margin-bottom: 15px;
+      }
+
+      .content {
+        color: #4a4a4a;
+        line-height: 1.6;
+      }
+    }
+}
+
+.payment-card {
+    .card-content {
+      background-color: #fff;
+      padding: 20px;
+
+      .title {
+        color: #363636;
+        margin-bottom: 15px;
+      }
+
+      .content {
+        color: #4a4a4a;
+        line-height: 1.6;
+      }
+    }
+}
+
+.appointment-card {
+    .card-content {
+      background-color: #fff;
+      padding: 20px;
+
+      .title {
+        color: #363636;
+        margin-bottom: 15px;
+      }
+
+      .content {
+        color: #4a4a4a;
+        line-height: 1.6;
+      }
+    }
+}
