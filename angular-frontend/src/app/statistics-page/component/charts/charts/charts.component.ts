@@ -48,7 +48,7 @@ interface SeriesItem {
 export class Charts implements OnInit {
   // Définir les types appropriés
   data: DataPoint[] = [
-    { legend: "Marketing", dataPoints: [10, 15, 8, 22] },
+    { legend: "Nombre de RDV", dataPoints: [10, 15, 8, 22] },
   ];
 
   series: SeriesItem[] = [];
