@@ -15,9 +15,9 @@ const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [LoggedGuard]},
     { path: 'login', component: LoginComponent},
     { path: 'client-profile', component: ClientProfileComponent, canActivate: [LoggedGuard] },
-    { path: 'statistics', component: StatisticsPageComponent },
-    { path: 'wardrobe', component: WardrobeComponent },
     { path: 'astrological-compatibility', component: AstrologicalCompatibilityComponent, canActivate: [LoggedGuard]},
+    { path: 'statistics', component: StatisticsPageComponent, canActivate: [LoggedGuard] },
+    { path: 'wardrobe', component: WardrobeComponent, canActivate: [LoggedGuard] },
     { path: 'tips', component: TipsComponent, canActivate: [LoggedGuard] },
     { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] }
 ];
