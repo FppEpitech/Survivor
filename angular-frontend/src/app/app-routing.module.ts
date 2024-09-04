@@ -7,6 +7,7 @@ import { ClientProfileComponent } from './pages/client-profile/client-profile.co
 import { LoggedGuard } from './guards/logged.guard';
 import { WardrobeComponent } from './pages/wardrobe/wardrobe.component';
 import { StatisticsPageComponent } from './pages/statistics/statistics.component';
+import { AstrologicalCompatibilityComponent } from './pages/astrological-compatibility/astrological-compatibility.component';
 import { TipsComponent } from './pages/tips/tips.component';
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 
@@ -14,9 +15,9 @@ const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [LoggedGuard]},
     { path: 'login', component: LoginComponent},
     { path: 'client-profile', component: ClientProfileComponent, canActivate: [LoggedGuard] },
-    // { path: 'account-management', component: AccountManagementComponent },
-    { path: 'statistics', component: StatisticsPageComponent },
-    { path: 'wardrobe', component: WardrobeComponent },
+    { path: 'astrological-compatibility', component: AstrologicalCompatibilityComponent, canActivate: [LoggedGuard]},
+    { path: 'statistics', component: StatisticsPageComponent, canActivate: [LoggedGuard] },
+    { path: 'wardrobe', component: WardrobeComponent, canActivate: [LoggedGuard] },
     { path: 'tips', component: TipsComponent, canActivate: [LoggedGuard] },
     { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] }
 ];

@@ -15,6 +15,7 @@ import { WardrobeComponent } from './pages/wardrobe/wardrobe.component';
 import { CoachesComponent } from './pages/coaches/coaches.component';
 import { TipsComponent } from './pages/tips/tips.component';
 import { EventsComponent } from './pages/events/events.component';
+import { AstrologicalCompatibilityComponent } from './pages/astrological-compatibility/astrological-compatibility.component';
 import { FormsModule } from '@angular/forms';
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 // import {  StatisticsComponent } from './statistics/statistics.component';
@@ -28,6 +29,7 @@ import { FormsModule } from '@angular/forms';
     CoachesComponent,
     TipsComponent,
     EventsComponent,
+    AstrologicalCompatibilityComponent,
     LoginComponent
   ],
   imports: [
