@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './pages/login/login.component';
-import {  ClientProfileComponent } from './pages/client-profile/client-profile.component';
+import { ClientProfileComponent } from './pages/client-profile/client-profile.component';
 import { LoggedGuard } from './guards/logged.guard';
 import { WardrobeComponent } from './pages/wardrobe/wardrobe.component';
 import { StatisticsPageComponent } from './pages/statistics/statistics.component';
@@ -16,6 +16,7 @@ const routes: Routes = [
     // { path: 'account-management', component: AccountManagementComponent },
     { path: 'statistics', component: StatisticsPageComponent },
     { path: 'wardrobe', component: WardrobeComponent },
+    { path: 'home', component: HomeComponent}
 ];
 
 @NgModule({
