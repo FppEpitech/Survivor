@@ -10,6 +10,10 @@ import { TokenInterceptor } from './service/token-interceptor/token-interceptor.
 import { TipsService } from './service/tips/tips.service';
 import { CustomersService } from './service/customers/customers.service';
 import { EmployeesService } from './service/employees/employees.service';
+import { HomeComponent } from './pages/home/home.component';
+import { CoachesComponent } from './pages/coaches/coaches.component';
+import { TipsComponent } from './pages/tips/tips.component';
+import { EventsComponent } from './pages/events/events.component';
 // import {  NavbarComponent } from './navbar/navbar.component';
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 // import {  StatisticsComponent } from './statistics/statistics.component';
@@ -18,7 +22,11 @@ import { EmployeesService } from './service/employees/employees.service';
   declarations: [
     AppComponent,
     ClientProfileComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    CoachesComponent,
+    TipsComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,
