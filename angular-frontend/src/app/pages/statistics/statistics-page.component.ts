@@ -6,8 +6,8 @@ import { Charts } from './component/charts/charts/charts.component';
   selector: 'app-statistics',
   standalone: true,
   imports: [CoachsComponent, Charts],
-  templateUrl: './statistics.component.html',
-  styleUrls: ['./statistics.component.scss']
+  templateUrl: './statistics-page.component.html',
+  styleUrls: ['./statistics-page.component.scss']
 })
 export class StatisticsPageComponent {
 

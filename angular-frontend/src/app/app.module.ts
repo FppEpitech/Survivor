@@ -11,6 +11,7 @@ import { TokenInterceptor } from './service/token-interceptor/token-interceptor.
 import { TipsService } from './service/tips/tips.service';
 import { CustomersService } from './service/customers/customers.service';
 import { EmployeesService } from './service/employees/employees.service';
+import { WardrobeComponent } from './pages/wardrobe/wardrobe.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CoachesComponent } from './pages/coaches/coaches.component';
 import { TipsComponent } from './pages/tips/tips.component';
@@ -24,6 +25,7 @@ import { EventsComponent } from './pages/events/events.component';
     ClientProfileComponent,
     NavbarComponent,
     LoginComponent,
+    WardrobeComponent,
     HomeComponent,
     CoachesComponent,
     TipsComponent,
