@@ -16,7 +16,7 @@ export class LoginComponent {
     constructor (private authService: AuthService) {}
 
     loginClick () {
-        this.authService.loginRequest(this.Email, this.Password);
+        this.authService.login(this.Email, this.Password);
         this.Password = '';
     }
 }

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,10 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-    private apiUrl = 'api/employees/login';
-    authState = false;
+    private apiUrl = 'api';
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private router : Router) { }
 
     // getData(email: string, password: string): Observable<any> {
     //     // return this.http.get<any>(this.apiUrl, {headers: myheader});
@@ -23,24 +23,26 @@ export class AuthService {
     //     return this.http.post(url, { email, password }, { headers });
     // }
 
-    loginRequest(email: string, password: string): Observable<any> {
-        return this.http.post(`${this.apiUrl}`, {email, password});
-    }
-
     login(email: string, password: string): void {
         if (email == '' || password == '')
             return;
-        this.loginRequest(email, password).subscribe(
-            (data) => {
+        this.http.post(`${this.apiUrl}/login`, {email, password}).subscribe(
+            (data : any) => {
                 console.log(data);
-                if (data != null) {
-                    localStorage.setItem("access_token", data);
+                if (data.token) {
+                    localStorage.setItem("token", data.token);
+                    this.router.navigate(["/"]);
                 } else {
                     console.error('Error empty access token');
                 }
             },
             (error) => {console.error('Error wrong login');}
         );
+    }
+
+    logout() {
+        localStorage.removeItem("token")
+        this.router.navigate(["/login"]);
     }
 
     // isAccessTokenInStorage () {
