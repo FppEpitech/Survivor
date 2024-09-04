@@ -12,7 +12,6 @@ import { TipsService } from './service/tips/tips.service';
 import { CustomersService } from './service/customers/customers.service';
 import { EmployeesService } from './service/employees/employees.service';
 import { WardrobeComponent } from './pages/wardrobe/wardrobe.component';
-import { HomeComponent } from './pages/home/home.component';
 import { CoachesComponent } from './pages/coaches/coaches.component';
 import { TipsComponent } from './pages/tips/tips.component';
 import { EventsComponent } from './pages/events/events.component';
@@ -26,7 +25,6 @@ import { FormsModule } from '@angular/forms';
     ClientProfileComponent,
     NavbarComponent,
     WardrobeComponent,
-    HomeComponent,
     CoachesComponent,
     TipsComponent,
     EventsComponent,
