@@ -35,6 +35,17 @@ const createUserFromLegacyData = async (legacyUser: Employee, password: string) 
     return employee
 };
 
+async function updateLastConnection(id : number) {
+        const updatedEmployee = await prisma.employee.update({
+          where: { id },
+          data: {
+            last_login: new Date(),
+          },
+        });
+        console.log(id)
+        return true;
+}
+
 loginRouter.post('/login', async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
@@ -60,6 +71,7 @@ loginRouter.post('/login', async (req: Request, res: Response) => {
         if (!isValidPassword && user == null)
             return res.status(409).json({ msg: "Invalid Credentials" });
         const token = generateToken(user.id);
+        await updateLastConnection(user.id)
         return res.status(200).json({ token: token });
     } catch (error) {
         return res.status(500).json({ msg: `Internal Server Error ${error}`});

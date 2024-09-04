@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Employee" ADD COLUMN     "last_clogin" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
