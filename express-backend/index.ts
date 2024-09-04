@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
-import path from 'path'
+import path from 'path';
 dotenv.config();
 
 import {PrismaClient} from '@prisma/client';
@@ -22,7 +22,6 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/tips', tipsRouter);
 app.use('/customers', customersRouter);
 app.use('/employees', employeesRouter);
-app.use('/tips', tipsRouter);
 app.use('/encounters', encountersRouter);
 app.use('/events', eventsRouter);
 app.use('/clothes', clothesRouter);

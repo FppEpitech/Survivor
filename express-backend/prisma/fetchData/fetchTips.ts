@@ -3,7 +3,7 @@ import {PrismaClient} from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-async function fetchDataAndStore() {
+async function fetchTips() {
     try {
         const response = await fetch(`${process.env.SOULCONNECTION_PROD_API_URL}/api/employees/login`, {
             method: 'POST',
@@ -38,12 +38,23 @@ async function fetchDataAndStore() {
 
         const tips = await tipsResponse.json();
 
-        // Parcourir les données et insérer les nouveaux éléments
-        for (const tip of tips) {
-            console.log(tip);
-            const existingTip = await prisma.tip.findUnique({
-                where: {id: tip.id},
+        for await (const tip of tips) {
+            const existingTip = await prisma.tip.findFirst({
+                where: {old_id: tip.id},
             });
+
+            if (!existingTip) {
+                await prisma.tip.create({
+                    data: {
+                        old_id: tip.id,
+                        title: tip.title,
+                        tip: tip.tip,
+                    },
+                });
+                console.log(`Tip with id ${tip.id} has been created with old_id.`);
+            } else {
+                console.log(`Tip with id ${tip.id} already exists with old_id ${existingTip.old_id}.`);
+            }
         }
         console.log('Data fetched and stored successfully.');
     } catch (error) {
@@ -51,6 +62,4 @@ async function fetchDataAndStore() {
     }
 }
 
-// Appel initial de la fonction
-fetchDataAndStore();
-
+export default fetchTips;
