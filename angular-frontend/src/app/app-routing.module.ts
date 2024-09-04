@@ -10,7 +10,7 @@ import { StatisticsPageComponent } from './pages/statistics/statistics.component
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent},
+    { path: '', component: HomeComponent, canActivate: [LoggedGuard]},
     { path: 'login', component: LoginComponent},
     { path: 'client-profile', component: ClientProfileComponent, canActivate: [LoggedGuard] },
     // { path: 'account-management', component: AccountManagementComponent },

@@ -9,19 +9,9 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
     private apiUrl = 'api';
+    authLogged = false;
 
     constructor(private http: HttpClient, private router : Router) { }
-
-    // getData(email: string, password: string): Observable<any> {
-    //     // return this.http.get<any>(this.apiUrl, {headers: myheader});
-
-    //     const url = `/api/employees/login`;
-    //     const headers = new HttpHeaders({
-    //     'X-Group-Authorization': this.groupToken
-    //     });
-
-    //     return this.http.post(url, { email, password }, { headers });
-    // }
 
     login(email: string, password: string): void {
         if (email == '' || password == '')
@@ -46,11 +36,24 @@ export class AuthService {
         this.router.navigate(["/login"]);
     }
 
-    // isAccessTokenInStorage () {
-
-    // }
-
-    // isTokenValid () {
-
-    // }
+    isLogged(): boolean {
+        const token = localStorage.getItem("token")
+        const dateString = localStorage.getItem("token_date")
+        if (!dateString) {
+          this.router.navigate(["/login"])
+          this.authLogged = false;
+          return false;
+        }
+        const date = parseInt(dateString,10)
+        const now = Date.now()
+        if ((now - date) > (24 * 60 * 60 * 1000)) {
+          this.router.navigate(["/login"])
+          localStorage.removeItem("token")
+          localStorage.removeItem("token_date")
+          this.authLogged = false;
+          return false;
+        }
+        this.authLogged = token != null;
+        return token != null
+    }
 }
