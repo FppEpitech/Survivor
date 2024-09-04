@@ -1,5 +1,5 @@
 <div class="columns is-gapless">
-    <div class="column is-one-fifth">
+    <div class="column is-one-fifth" *ngIf="this._auth.authLogged == true">
         <app-navbar></app-navbar>
     </div>
 

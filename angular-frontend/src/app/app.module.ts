@@ -17,6 +17,7 @@ import { CoachesComponent } from './pages/coaches/coaches.component';
 import { TipsComponent } from './pages/tips/tips.component';
 import { EventsComponent } from './pages/events/events.component';
 import { AstrologicalCompatibilityComponent } from './pages/astrological-compatibility/astrological-compatibility.component';
+import { FormsModule } from '@angular/forms';
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 // import {  StatisticsComponent } from './statistics/statistics.component';
 
@@ -25,18 +26,19 @@ import { AstrologicalCompatibilityComponent } from './pages/astrological-compati
     AppComponent,
     ClientProfileComponent,
     NavbarComponent,
-    LoginComponent,
     WardrobeComponent,
     HomeComponent,
     CoachesComponent,
     TipsComponent,
     EventsComponent,
-    AstrologicalCompatibilityComponent
+    AstrologicalCompatibilityComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     {
