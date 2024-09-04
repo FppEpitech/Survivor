@@ -18,7 +18,7 @@ import { EmployeesService } from './service/employees/employees.service';
   declarations: [
     AppComponent,
     ClientProfileComponent,
-    NavbarComponent
+    NavbarComponent,
     LoginComponent
   ],
   imports: [
