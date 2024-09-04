@@ -25,25 +25,26 @@ model Tip {
 model Customer {
   old_id            Int
   id                Int    @id @default(autoincrement())
-  email             String
+  email             String @unique
   name              String
   surname           String
   birth_date        String
   gender            String
   description       String
-  astrological_sign String @default("Not specified")
+  astrological_sign String
 }
 
 model Employee {
   old_id            Int
   id                Int    @id @default(autoincrement())
-  email             String
+  email             String @unique
   name              String
   surname           String
   birth_date        String
   gender            String
   work              String
   hashed_password   String
+  image_url         String
 }
 
 model Encounter {

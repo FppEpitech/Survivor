@@ -37,9 +37,10 @@ router.post('/', async (req: Request, res: Response) => {
     name,
     surname,
     birth_date,
-    gender = "Not specified",
+    gender,
     work,
     hashed_password,
+    image_url,
   } = req.body;
 
   try {
@@ -52,7 +53,8 @@ router.post('/', async (req: Request, res: Response) => {
         gender,
         work,
         hashed_password,
-        old_id:-1
+        old_id:-1,
+        image_url: image_url,
       },
     });
     res.status(201).json(newEmployee);
