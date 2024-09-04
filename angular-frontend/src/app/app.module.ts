@@ -10,6 +10,7 @@ import { TokenInterceptor } from './service/token-interceptor/token-interceptor.
 import { TipsService } from './service/tips/tips.service';
 import { CustomersService } from './service/customers/customers.service';
 import { EmployeesService } from './service/employees/employees.service';
+import { WardrobeComponent } from './wardrobe/wardrobe.component';
 // import {  NavbarComponent } from './navbar/navbar.component';
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 // import {  StatisticsComponent } from './statistics/statistics.component';
@@ -18,7 +19,8 @@ import { EmployeesService } from './service/employees/employees.service';
   declarations: [
     AppComponent,
     ClientProfileComponent,
-    LoginComponent
+    LoginComponent,
+    WardrobeComponent
   ],
   imports: [
     BrowserModule,
