@@ -1,0 +1,38 @@
+
+Copy code
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* Stack the content vertically */
+    justify-content: center; /* Center the content vertically */
+    align-items: center; /* Center the content horizontally */
+    height: 100vh; /* Ensure the container takes up the full height of the viewport */
+}
+
+.columns {
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    justify-content: center; /* Centers the content horizontally within each column */
+}
+
+.card-image {
+    padding: 20px;
+
+    .image {
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  }
+
+.dropdown-menu {
+    max-height: 200px; /* Set a maximum height for the dropdown */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
