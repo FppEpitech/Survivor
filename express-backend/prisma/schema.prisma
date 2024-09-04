@@ -33,6 +33,7 @@ model Customer {
   description       String
   astrological_sign String
   coach_id          Int
+  clothes           Json
 }
 
 model Employee {
@@ -46,6 +47,7 @@ model Employee {
   work              String
   hashed_password   String
   image_url         String
+  last_login       DateTime @default(now())
 }
 
 model Encounter {
