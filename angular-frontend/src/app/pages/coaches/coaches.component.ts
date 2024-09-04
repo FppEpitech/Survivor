@@ -1,3 +1,4 @@
+import { Customer, CustomersService } from 'src/app/service/customers/customers.service';
 import { Component } from '@angular/core';
 import { Employee, EmployeesService } from 'src/app/service/employees/employees.service';
 
@@ -7,9 +8,12 @@ import { Employee, EmployeesService } from 'src/app/service/employees/employees.
   styleUrls: ['./coaches.component.scss']
 })
 export class CoachesComponent {
-    employees: Employee[] = [];
+    indexEmployees = 0;
 
-    constructor (private employeesService: EmployeesService) {}
+    employees: Employee[] = [];
+    customers: Customer[] = [];
+
+    constructor (private employeesService: EmployeesService, private customersService: CustomersService) {}
 
     ngOnInit(): void {
         this.employeesService.getEmployees().subscribe(
@@ -17,6 +21,13 @@ export class CoachesComponent {
                 console.log(this.employees);
             },
             (error) => { console.error("Failed to load Employees list", error); }
+        );
+
+        this.customersService.getCustomers().subscribe(
+            (data) => { this.customers = data;
+                console.log(this.customers);
+            },
+            (error) => { console.error("Failed to load Customers list", error); }
         );
     }
 }

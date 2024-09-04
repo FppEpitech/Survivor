@@ -12,10 +12,10 @@
     </thead>
 
     <tbody>
-        <tr *ngFor="let a of [0,1,2,3,4,5,6,7]"> <!-- TODO: replace this list by employes list -->
-            <td>{{ a }}</td>
-            <td>Valgrind</td>
-            <td>14-11-2004</td>
+        <tr *ngFor="let coach of this.employees; let i = index"> <!-- TODO: replace this list by employes list -->
+            <td>{{ i + 1 }}</td>
+            <td>{{ coach.name }}</td>
+            <td>{{ coach.birth_date }}</td>
             <td><div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
                     <button class="button is-warning">
@@ -23,15 +23,15 @@
                     </button>
                 </div>
                 <div class="dropdown-menu" role="menu">
-                    <div class="dropdown-content p-3" *ngFor="let b of [0,1,2,3,4,5,6,7]"> <!-- TODO: replace this list by customers list -->
+                    <div class="dropdown-content p-3" *ngFor="let customer of this.customers"> <!-- TODO: replace this list by customers list -->
                         <label class="checkbox">
-                            <input type="checkbox"/>
-                            {{b}}
+                            <input type="checkbox" [checked]="customer.coach_id == coach.id"/>
+                            {{ customer.name }} {{ customer.surname }}
                         </label>
                     </div>
                 </div>
             </div></td>
-            <td>04-09-2024</td>
+            <td>TODO</td>
         </tr>
     </tbody>
 

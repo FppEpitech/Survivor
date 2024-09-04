@@ -11,6 +11,7 @@ export interface Customer {
   gender: string;
   description: string;
   astrological_sign: string;
+  coach_id: number;
 }
 
 @Injectable({
