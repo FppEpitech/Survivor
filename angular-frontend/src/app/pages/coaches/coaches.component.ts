@@ -8,10 +8,13 @@ import { Employee, EmployeesService } from 'src/app/service/employees/employees.
   styleUrls: ['./coaches.component.scss']
 })
 export class CoachesComponent {
-    indexEmployees = 0;
+    changesOccured = false;
+    isLoading = false;
 
     employees: Employee[] = [];
     customers: Customer[] = [];
+
+    customerToSave: { [id: number] : Customer; } = {};
 
     constructor (private employeesService: EmployeesService, private customersService: CustomersService) {}
 
@@ -29,5 +32,40 @@ export class CoachesComponent {
             },
             (error) => { console.error("Failed to load Customers list", error); }
         );
+    }
+
+    saveChanges() {
+        this.isLoading = true;
+        this.changesOccured = false;
+
+        for (let key in this.customerToSave) {
+            let customer = this.customerToSave[key];
+            this.customersService.updateCustomer(customer.id, customer).subscribe(
+                null,
+                (error) => { console.error("Failed to update customer", error); }
+            );
+        }
+
+        this.isLoading = false;
+    }
+
+    onCheckboxChange(event: Event, customer: Customer, idCoach: number) {
+        this.changesOccured = true;
+        const isChecked = (event.target as HTMLInputElement).checked;
+        if (isChecked) {
+            this.addCoach(customer, idCoach);
+        } else {
+            this.removeCoach(customer);
+        }
+    }
+
+    addCoach (customer: Customer, idCoach: number) {
+        customer.coach_id = idCoach;
+        this.customerToSave[customer.id] = customer;
+    }
+
+    removeCoach (customer: Customer) {
+        customer.coach_id = -1;
+        this.customerToSave[customer.id] = customer;
     }
 }
