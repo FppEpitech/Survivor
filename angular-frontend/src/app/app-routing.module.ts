@@ -1,3 +1,4 @@
+import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -8,6 +9,7 @@ import { StatisticsPageComponent } from './pages/statistics/statistics.component
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 
 const routes: Routes = [
+    { path: '', component: HomeComponent},
     { path: 'login', component: LoginComponent},
     { path: 'client-profile', component: ClientProfileComponent, canActivate: [LoggedGuard] },
     // { path: 'account-management', component: AccountManagementComponent },
