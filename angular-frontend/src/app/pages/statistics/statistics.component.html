@@ -4,10 +4,20 @@
     </div>
 
     <section class="columns mx-1 mt-3">
-        <app-coachs class="column"></app-coachs>
-        <app-coachs class="column"></app-coachs>
-        <app-coachs class="column"></app-coachs>
-        <app-coachs class="column"></app-coachs>
+        <div *ngFor="let employee of employees">
+            <a href="https://google.com">
+                <section class="is-outlined card-border p-3 has-text-centered is-hoverable">
+                    <div>
+                        <figure>
+                            <img src="https://via.placeholder.com/256" alt="User Photo" class="is-rounded">
+                        </figure>
+                    </div>
+                    <div class="container mt-4 mb-2 has-text-black">
+                        <p> <strong>Prénom / Nom </strong> : {{employee?.name}} {{employee?.surname}} </p>
+                    </div>
+                </section>
+            </a>
+        </div>
     </section>
 
     <stack-chart></stack-chart>
