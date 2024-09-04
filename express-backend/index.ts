@@ -26,7 +26,7 @@ app.use('/employees', employeesRouter);
 app.use('/encounters', encountersRouter);
 app.use('/events', eventsRouter);
 app.use('/clothes', clothesRouter);
-app.use('/compatibility', clothesRouter);
+app.use('/compatibility', compatibilityRouter);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello, World!');
