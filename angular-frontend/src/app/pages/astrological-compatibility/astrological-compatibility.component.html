@@ -1,1 +1,62 @@
-<p>astrological-compatibility works!</p>
+<div class="container">
+    <div class="has-text-centered">
+        <p class="title is-4">Astrological compatibility:</p>
+        <p class="content title is-1">100%</p>
+    </div>
+
+    <div class="columns is-centered m-6">
+        <div class="column">
+            <div class="card m-4">
+                <div class="card-content has-text-centered">
+                    <p class="title is-4">Kiki</p>
+                    <div class="card-image">
+                        <figure class="image is-256x256 is-inline-block">
+                            <img src="https://via.placeholder.com/256" alt="User Photo">
+                        </figure>
+                    </div>
+                    <div class="dropdown dropdownLeft" [class.is-active]="isLeftDropdownPressed">
+                        <div class="dropdown-trigger">
+                            <button class="button is-warning" aria-haspopup="true" aria-controls="dropdown-menu-left" (click)="toggleDropdown('left', $event)">
+                                <span>Click</span>
+                            </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu-left" role="menu">
+                            <div class="dropdown-content">
+                                <a class="dropdown-item" (click)="closeDropdown('left')">Item 1</a>
+                                <a class="dropdown-item" (click)="closeDropdown('left')">Item 2</a>
+                                <!-- More items -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card m-4">
+                <div class="card-content has-text-centered">
+                    <p class="title is-4">Axel</p>
+                    <div class="card-image">
+                        <figure class="image is-256x256 is-inline-block">
+                            <img src="https://via.placeholder.com/256" alt="User Photo">
+                        </figure>
+                    </div>
+                    <div class="dropdown dropdownRight" [class.is-active]="isRightDropdownPressed">
+                        <div class="dropdown-trigger">
+                            <button class="button is-warning" aria-haspopup="true" aria-controls="dropdown-menu-right" (click)="toggleDropdown('right', $event)">
+                                <span>Click</span>
+                            </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu-right" role="menu">
+                            <div class="dropdown-content">
+                                <a class="dropdown-item" (click)="closeDropdown('right')">Item A</a>
+                                <a class="dropdown-item" (click)="closeDropdown('right')">Item B</a>
+                                <!-- More items -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
