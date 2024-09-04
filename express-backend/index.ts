@@ -11,6 +11,7 @@ import employeesRouter from './routes/employees';
 import encountersRouter from './routes/encounters';
 import eventsRouter from './routes/events';
 import clothesRouter from './routes/clothes';
+import compatibilityRouter from './routes/compatibility';
 
 const app = express();
 const port = 3001;
@@ -25,6 +26,7 @@ app.use('/employees', employeesRouter);
 app.use('/encounters', encountersRouter);
 app.use('/events', eventsRouter);
 app.use('/clothes', clothesRouter);
+app.use('/compatibility', clothesRouter);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello, World!');
