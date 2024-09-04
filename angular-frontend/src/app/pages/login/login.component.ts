@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from 'src/app/service/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,10 @@ export class LoginComponent {
     Email = '';
     Password = '';
 
-    SendLogin() {
-        if (this.Email == '' || this.Password == '')
-            return;
-        console.log(this.Email);
-        console.log(this.Password);
+    constructor (private authService: AuthService) {}
+
+    loginClick () {
+        this.authService.loginRequest(this.Email, this.Password);
+        this.Password = '';
     }
 }
