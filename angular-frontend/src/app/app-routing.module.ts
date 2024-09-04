@@ -16,7 +16,7 @@ const routes: Routes = [
     // { path: 'account-management', component: AccountManagementComponent },
     { path: 'statistics', component: StatisticsPageComponent },
     { path: 'wardrobe', component: WardrobeComponent },
-    { path: 'home', component: HomeComponent}
+    { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] }
 ];
 
 @NgModule({
