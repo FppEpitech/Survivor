@@ -11,9 +11,9 @@
                         </figure>
                     </div>
                     <div class="card-content has-text-centered">
-                        <p class="title is-4">Valgrind el Montagnard</p>
-                        <p class="subtitle is-6"><i class="fas fa-map-marker-alt"></i> Chez ta mère</p>
-                        <p class="subtitle is-6"><i class="fas fa-phone"></i> (+33) 06 06 06 06 06</p>
+                        <p class="title is-4">{{ customer?.name }}</p>
+                        <p class="subtitle is-6"><i class="fas fa-map-marker-alt"></i>{{ customer?.email }}</p>
+                        <p class="subtitle is-6"><i class="fas fa-phone"></i>{{ customer?.birth_date }}</p>
                     </div>
                 </div>
             </div>
@@ -34,8 +34,8 @@
             <div class="column is-half">
                 <div class="card description-card">
                     <div class="card-content">
-                        <p class="title is-4">About Valgrind el Montagnard</p>
-                        <p class="content">Valgrind el Montagnard want to find love.</p>
+                        <p class="title is-4">About {{ customer?.name }}</p>
+                        <p class="content">{{ customer?.description }}</p>
                     </div>
                 </div>
             </div>
