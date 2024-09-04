@@ -104,4 +104,15 @@ router.delete('/:id', async (req: Request, res: Response) => {
   }
 });
 
+router.get('/customers/:id', async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+
+    try {
+      let customers = await prisma.customer.findMany({where: {coach_id: id}});
+      res.status(200).json(customers);
+    } catch (error) {
+      res.status(500).json({error: 'Error deleting employee'});
+    }
+})
+
 export default router;
