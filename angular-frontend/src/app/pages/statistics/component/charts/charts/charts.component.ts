@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, ElementRef } from '@angular/core';
+import { Employee } from 'src/app/service/employees/employees.service';
 import * as echarts from "echarts";
 import * as $ from 'jquery';
 
@@ -46,6 +47,8 @@ interface SeriesItem {
     }`]
 })
 export class Charts implements OnInit {
+  @Input() employees: Employee[] = [];
+  employee?: Employee;
   // Définir les types appropriés
   data: DataPoint[] = [
     { legend: "Nombre de RDV", dataPoints: [10, 15, 8, 22] },
