@@ -17,7 +17,7 @@ const routes: Routes = [
     // { path: 'account-management', component: AccountManagementComponent },
     { path: 'statistics', component: StatisticsPageComponent },
     { path: 'wardrobe', component: WardrobeComponent },
-    { path: 'tips', component: TipsComponent, canActivate: [LoggedGuard] }
+    { path: 'tips', component: TipsComponent, canActivate: [LoggedGuard] },
     { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] }
 ];
 
