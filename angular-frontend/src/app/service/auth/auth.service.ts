@@ -31,6 +31,7 @@ export class AuthService {
                 console.log(data);
                 if (data.token) {
                     localStorage.setItem("token", data.token);
+                    localStorage.setItem("token_date", Date.now().toString())
                     this.router.navigate(["/"]);
                 } else {
                     console.error('Error empty access token');
