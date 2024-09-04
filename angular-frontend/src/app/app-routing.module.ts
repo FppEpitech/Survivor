@@ -7,6 +7,7 @@ import {  ClientProfileComponent } from './pages/client-profile/client-profile.c
 import { LoggedGuard } from './guards/logged.guard';
 import { WardrobeComponent } from './pages/wardrobe/wardrobe.component';
 import { StatisticsPageComponent } from './pages/statistics/statistics.component';
+import { TipsComponent } from './pages/tips/tips.component';
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
     // { path: 'account-management', component: AccountManagementComponent },
     { path: 'statistics', component: StatisticsPageComponent },
     { path: 'wardrobe', component: WardrobeComponent },
+    { path: 'tips', component: TipsComponent, canActivate: [LoggedGuard] }
 ];
 
 @NgModule({
