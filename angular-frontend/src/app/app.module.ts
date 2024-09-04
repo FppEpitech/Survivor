@@ -16,6 +16,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { CoachesComponent } from './pages/coaches/coaches.component';
 import { TipsComponent } from './pages/tips/tips.component';
 import { EventsComponent } from './pages/events/events.component';
+import { FormsModule } from '@angular/forms';
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 // import {  StatisticsComponent } from './statistics/statistics.component';
 
@@ -24,17 +25,18 @@ import { EventsComponent } from './pages/events/events.component';
     AppComponent,
     ClientProfileComponent,
     NavbarComponent,
-    LoginComponent,
     WardrobeComponent,
     HomeComponent,
     CoachesComponent,
     TipsComponent,
-    EventsComponent
+    EventsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     {
