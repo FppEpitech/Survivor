@@ -1,22 +1,15 @@
-<nav class="navbar is-size-1 right-line">
-    <div>
-        <a class="navbar-item underline" href="#">
-            <span>Home</span>
-        </a>
-        <a class="navbar-item underline" href="#">
-            <span>Coaches</span>
-        </a>
-        <a class="navbar-item underline" href="/client-profile">
-            <span>Customers</span>
-        </a>
-        <a class="navbar-item underline" href="/statistics">
-            <span>Statistics</span>
-        </a>
-        <a class="navbar-item underline" href="#">
-            <span>Tips</span>
-        </a>
-        <a class="navbar-item underline" href="#">
-            <span>Events</span>
-        </a>
-    </div>
-</nav>
+<aside class="menu is-fullheight" *ngIf="this.width >= 800 || this.displayNav">
+  <ul class="menu-list">
+    <li><a *ngIf="this.displayNav && this.width < 800" class="button is-active" (click)="this.toggleNav()">X</a></li>
+    <li><a >Home</a></li>
+    <li><a>Coaches</a></li>
+    <li><a>Customers</a></li>
+    <li><a>Statistics</a></li>
+    <li><a>Tips</a></li>
+    <li><a>Events </a></li>
+  </ul>
+</aside>
+
+<div *ngIf="this.width < 800" class="nav-dropdown-button">
+  <button class="button is-primary close-nav" *ngIf="!this.displayNav" (click)="this.toggleNav()">\/</button>
+</div>
