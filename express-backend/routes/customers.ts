@@ -31,6 +31,30 @@ router.get('/:id', async (req: Request, res: Response) => {
   }
 });
 
+router.get('/:id/clothes', async (req: Request, res: Response) => {
+  const id = parseInt(req.params.id);
+
+  if (isNaN(id)) {
+    return res.status(400).json({ error: 'Invalid customer ID' });
+  }
+
+  try {
+    const customer = await prisma.customer.findUnique({
+      where: { id },
+    });
+
+    if (customer) {
+      console.log('Customer clothes:', customer.clothes);
+      res.status(200).json(customer.clothes);
+    } else {
+      res.status(404).json({ error: 'Customer not found' });
+    }
+  } catch (error) {
+    console.error('Error retrieving customer:', error);
+    res.status(500).json({ error: 'Error retrieving customer' });
+  }
+});
+
 router.post('/', async (req: Request, res: Response) => {
   const {
     email,
@@ -40,12 +64,13 @@ router.post('/', async (req: Request, res: Response) => {
     gender,
     description,
     astrological_sign,
-    coach_id
+    coach_id,
+    clothes
   } = req.body;
 
   try {
     const newCustomer = await prisma.customer.create({
-        data: {
+      data: {
         email,
         name,
         surname,
@@ -53,13 +78,16 @@ router.post('/', async (req: Request, res: Response) => {
         gender,
         description,
         astrological_sign,
-        old_id:-1,
+        old_id: -1,
         coach_id,
+        clothes: JSON.stringify(clothes),
       },
     });
+
     res.status(201).json(newCustomer);
   } catch (error) {
-    res.status(500).json({error: 'Error creating customer'});
+    console.error('Error creating customer:', error);
+    res.status(500).json({ error: 'Error creating customer' });
   }
 });
 
