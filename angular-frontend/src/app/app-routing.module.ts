@@ -15,7 +15,7 @@ const routes: Routes = [
     { path: 'client-profile', component: ClientProfileComponent, canActivate: [LoggedGuard] },
     { path: 'statistics', component: StatisticsPageComponent },
     { path: 'wardrobe', component: WardrobeComponent },
-    { path: 'astrological-compatibility', component: AstrologicalCompatibilityComponent }
+    { path: 'astrological-compatibility', component: AstrologicalCompatibilityComponent, canActivate: [LoggedGuard]}
 ];
 
 @NgModule({
