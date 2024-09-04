@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from './service/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +8,5 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AppComponent {
     title = 'angular-frontend';
+    constructor (public _auth: AuthService) {}
 }

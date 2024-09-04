@@ -11,7 +11,7 @@ router.get('/', async (req: Request, res: Response) => {
         const events = await prisma.event.findMany();
         res.status(200).json(events);
     } catch (error) {
-        res.status(500).json({ error: 'Error retrieving events' });
+        res.status(500).json({error: 'Error retrieving events'});
     }
 });
 
@@ -19,15 +19,15 @@ router.get('/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
 
     try {
-        const event = await prisma.event.findUnique({ where: { id } });
+        const event = await prisma.event.findUnique({where: {id}});
 
         if (event) {
         res.status(200).json(event);
         } else {
-        res.status(404).json({ error: 'Event not found' });
+        res.status(404).json({error: 'Event not found'});
         }
     } catch (error) {
-        res.status(500).json({ error: 'Error retrieving event' });
+        res.status(500).json({error: 'Error retrieving event'});
     }
 });
 
@@ -59,7 +59,7 @@ router.post('/', async (req: Request, res: Response) => {
       });
       res.status(201).json(newEvent);
     } catch (error) {
-      res.status(500).json({ error: 'Error creating event' });
+      res.status(500).json({error: 'Error creating event'});
     }
 });
 
@@ -93,7 +93,7 @@ router.put('/:id', async (req: Request, res: Response) => {
 
       res.status(200).json(updatedEvent);
     } catch (error) {
-      res.status(500).json({ error: 'Error updating event' });
+      res.status(500).json({error: 'Error updating event'});
     }
 });
 
@@ -101,10 +101,10 @@ router.delete('/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
 
     try {
-      await prisma.event.delete({ where: { id } });
+      await prisma.event.delete({where: {id}});
       res.status(204).send();
     } catch (error) {
-      res.status(500).json({ error: 'Error deleting event' });
+      res.status(500).json({error: 'Error deleting event'});
     }
 });
 

@@ -1,37 +1,15 @@
-<nav class="navbar is-info" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="."> <!-- TODO: change href to home page link-->
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Blue_yin_yang.svg/1024px-Blue_yin_yang.svg.png">
-        </a>
+<aside class="menu is-fullheight" *ngIf="this.width >= 800 || this.displayNav">
+  <ul class="menu-list">
+    <li><a *ngIf="this.displayNav && this.width < 800" class="button is-active" (click)="this.toggleNav()">X</a></li>
+    <li><a >Home</a></li>
+    <li><a>Coaches</a></li>
+    <li><a>Customers</a></li>
+    <li><a>Statistics</a></li>
+    <li><a>Tips</a></li>
+    <li><a>Events </a></li>
+  </ul>
+</aside>
 
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
-    </div>
-
-    <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-
-        <a class="navbar-item" href="."> <!-- TODO: change href to home page link-->
-            Home
-        </a>
-
-        <a class="navbar-item" href="."> <!-- TODO: change href to Statistics page link-->
-            Statistics
-        </a>
-
-        <a class="navbar-item" href="."> <!-- TODO: change href to Advices page link-->
-            Advices
-        </a>
-
-        <a class="navbar-item" href="."> <!-- TODO: change href to Events page link-->
-            Events
-        </a>
-
-    </div>
+<div *ngIf="this.width < 800" class="nav-dropdown-button">
+  <button class="button is-primary close-nav" *ngIf="!this.displayNav" (click)="this.toggleNav()">\/</button>
 </div>
-
-</nav>

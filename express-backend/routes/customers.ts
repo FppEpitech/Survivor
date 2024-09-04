@@ -40,6 +40,7 @@ router.post('/', async (req: Request, res: Response) => {
     gender,
     description,
     astrological_sign,
+    coach_id
   } = req.body;
 
   try {
@@ -52,7 +53,8 @@ router.post('/', async (req: Request, res: Response) => {
         gender,
         description,
         astrological_sign,
-        old_id:-1
+        old_id:-1,
+        coach_id,
       },
     });
     res.status(201).json(newCustomer);
@@ -71,6 +73,7 @@ router.put('/:id', async (req: Request, res: Response) => {
     gender,
     description,
     astrological_sign = "Unknown",
+    coach_id
   } = req.body;
 
   try {
@@ -84,6 +87,7 @@ router.put('/:id', async (req: Request, res: Response) => {
         gender,
         description,
         astrological_sign,
+        coach_id,
       },
     });
     res.status(200).json(updatedCustomer);

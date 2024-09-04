@@ -7,8 +7,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-statistics',
   standalone: true,
   imports: [Charts, CommonModule],
-  templateUrl: './statistics-page.component.html',
-  styleUrls: ['./statistics-page.component.scss']
+  templateUrl: './statistics.component.html',
+  styleUrls: ['./statistics.component.scss']
 })
 export class StatisticsPageComponent {
 
