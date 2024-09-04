@@ -6,29 +6,8 @@ import {v4 as uuidv4} from 'uuid';
 
 const prisma = new PrismaClient();
 
-async function fetchClothes() {
+async function fetchClothes(access_token : string) {
     try {
-        const response = await fetch(`${process.env.SOULCONNECTION_PROD_API_URL}/api/employees/login`, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'X-Group-Authorization': process.env.GROUP_AUTHO as string,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: process.env.API_EMAIL,
-                password: process.env.API_PASSWORD
-            })
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        const token = data.access_token;
-
-
         let id = 1;
         let moreClothes = true;
 
@@ -44,7 +23,7 @@ async function fetchClothes() {
                     headers: {
                         'Accept': 'image/png',
                         'X-Group-Authorization': process.env.GROUP_AUTHO as string,
-                        'Authorization': `Bearer ${token}`,
+                        'Authorization': `Bearer ${access_token}`,
                     },
                 });
 
