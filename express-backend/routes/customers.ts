@@ -27,6 +27,7 @@ router.get('/:id', async (req: Request, res: Response) => {
       res.status(404).json({error: 'Customer not found'});
     }
   } catch (error) {
+    console.error('Error retrieving customer:', error);
     res.status(500).json({error: 'Error retrieving customer'});
   }
 });

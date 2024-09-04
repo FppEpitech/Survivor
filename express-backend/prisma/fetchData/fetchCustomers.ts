@@ -53,32 +53,15 @@ async function fetchCustomers(access_token : string) {
                                 gender: customer.gender,
                                 description: customer.description,
                                 astrological_sign: customer.astrological_sign,
-                                coach_id: -1, // Ajustez selon vos besoins
-                                clothes: customersClothe, // Stockage JSON direct
+                                coach_id: -1,
+                                clothes: customersClothe,
                             },
                         });
-    
+
                         console.log(`Customer with id ${id} has been created.`);
                     } else {
                         throw new Error(`Invalid format for clothes data for customer ID ${id}`);
                     }
-
-                    // await prisma.customer.create({
-                    //     data: {
-                    //         old_id: customer.id,
-                    //         email: customer.email,
-                    //         name: customer.name,
-                    //         surname: customer.surname,
-                    //         birth_date: customer.birth_date,
-                    //         gender: customer.gender,
-                    //         description: customer.description,
-                    //         astrological_sign: customer.astrological_sign,
-                    //         coach_id: -1, // Assurez-vous que c'est un ID valide ou ajustez selon vos besoins
-                    //         clothes: customersClothe // Assurez-vous que ce champ est bien un tableau JSON ou adapté au modèle Prisma
-                    //     },
-                    // })
-
-
                 } else if (CustomersResponse.status === 404) {
                     moreCustomers = false;
                 } else {
