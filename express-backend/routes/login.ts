@@ -15,7 +15,6 @@ const generateToken = (userId: number) => {
 const createUserFromLegacyData = async (legacyUser: Employee, password: string) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     if (!hashedPassword) {
-        console.log("ah le batard")
         throw new Error("Failed hashing your password");
     }
     const employee = await prisma.employee.create({
