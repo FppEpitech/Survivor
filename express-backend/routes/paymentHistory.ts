@@ -37,6 +37,7 @@ router.post('/', async (req: Request, res: Response) => {
         payment_method,
         amount,
         comment,
+        customer_id
     } = req.body;
 
     try {
@@ -47,6 +48,7 @@ router.post('/', async (req: Request, res: Response) => {
             payment_method,
             amount,
             comment,
+            customer_id,
         },
       });
       res.status(201).json(newpaymentHistory);
@@ -62,6 +64,7 @@ router.put('/:id', async (req: Request, res: Response) => {
         payment_method,
         amount,
         comment,
+        customer_id,
     } = req.body;
 
     try {
@@ -72,6 +75,7 @@ router.put('/:id', async (req: Request, res: Response) => {
             payment_method,
             amount,
             comment,
+            customer_id,
         },
       });
 
@@ -89,6 +93,22 @@ router.delete('/:id', async (req: Request, res: Response) => {
       res.status(204).send();
     } catch (error) {
       res.status(500).json({error: 'Error deleting paymentHistory'});
+    }
+});
+
+router.get('/customer/:id', async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+
+    try {
+        const paymentHistory = await prisma.paymentHistory.findMany({where: {customer_id: id}});
+
+        if (paymentHistory) {
+        res.status(200).json(paymentHistory);
+        } else {
+        res.status(404).json({error: 'paymentHistory not found'});
+        }
+    } catch (error) {
+        res.status(500).json({error: 'Error retrieving paymentHistory'});
     }
 });
 
