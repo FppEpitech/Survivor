@@ -17,13 +17,13 @@ import { EmployeesService } from './service/employees/employees.service';
 @NgModule({
   declarations: [
     AppComponent,
-    ClientProfileComponent,
-    LoginComponent
+    ClientProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    LoginComponent
   ],
   providers: [
     {
