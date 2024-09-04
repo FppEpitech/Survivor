@@ -1,0 +1,38 @@
+.underline {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 20px; /* Espacement entre les divs enfants */
+}
+.underline::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 2%; /* Laisser un espace à gauche */
+    bottom: 0px; /* Positionner la barre sous la div enfant */
+    width: 95%; /* Largeur de la barre */
+    height: 2px; /* Épaisseur de la barre */
+    background-color: #000000; /* Couleur de la barre */
+}
+
+.right-line {
+    position: relative;
+    padding: 0px;
+    margin-bottom: 20px; /* Espacement entre les divs enfants */
+}
+.right-line::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 2.5%;
+    width: 2px;
+    height: 95%;
+    background-color: #000000;
+}
+
+.navbar {
+    top: 0px;
+    height: 100vh;
+    padding: 1% 1% 0 1%;
+    position: fixed;
+}
