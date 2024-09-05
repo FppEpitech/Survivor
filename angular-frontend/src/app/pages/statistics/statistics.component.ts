@@ -1,25 +1,47 @@
 import { Component } from '@angular/core';
 import { Employee, EmployeesService } from 'src/app/service/employees/employees.service';
-import { CommonModule } from '@angular/common';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { Customer } from 'src/app/service/customers/customers.service';
 
 @Component({
   selector: 'app-statistics',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './statistics.component.html',
-  styleUrls: ['./statistics.component.scss']
+  styleUrls: ['./statistics.component.scss'],
+  imports : [NgxChartsModule],
+  standalone: true
 })
 export class StatisticsPageComponent {
 
-  employees:Employee[] = [];
-  employee?: Employee;
+    employees:Employee[] = [];
+    customerResults : any = {}
 
-  constructor(private employeesService : EmployeesService) { }
 
-  ngOnInit(): void {
-    this.employeesService.getEmployees().subscribe(
-      (data) => {this.employees = data},
-      (error) => {console.error("Failed to load Employee list", error);});
-  }
 
+
+    constructor(private employeesService : EmployeesService) { }
+
+
+    userInfo(id : number) {
+        return [{ name: 'nb customers', value: 1 }, { name: 'nb meetings', value: 20 }];
+
+    }
+
+    ngOnInit(): void {
+        this.employeesService.getEmployees().subscribe(
+        (data) => {
+            this.employees = data;
+            for (let employee of data) {
+                this.employeesService.getCustomers(employee.id).subscribe(
+                    (data) => {
+                        console.log(employee.id)
+                        this.customerResults[employee.id] = data
+                    },
+                    (error) => {console.error("Failed to load Employee list", error);});
+            }
+
+        },
+        (error) => {console.error("Failed to load Employee list", error);});
+
+
+    }
 }

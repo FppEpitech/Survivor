@@ -19,6 +19,8 @@ import { AstrologicalCompatibilityComponent } from './pages/astrological-compati
 import { FormsModule } from '@angular/forms';
 import { SecurePipe } from './pipes/secure.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StatisticsPageComponent } from './pages/statistics/statistics.component';
+// import { NgxChartsModule } from 'ngx-charts';
 
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 // import {  StatisticsComponent } from './statistics/statistics.component';
@@ -41,7 +43,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {

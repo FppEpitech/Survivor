@@ -5,11 +5,11 @@
 
     <section class="mt-3">
         <div class="grid is-row-max-6">
-            <div *ngFor="let employee of employees" class="cell">
+            <div *ngFor="let employee of employees" class="card cell">
                 <section class="is-outlined card-border p-3 has-text-centered is-hoverable">
                     <div>
                         <figure>
-                            <img [src]="employee?. ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo" class="is-rounded">
+                            <!-- <img [src]="this.employee ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo" class="is-rounded"> -->
                         </figure>
                     </div>
                     <div class="container mt-4 mb-2 has-text-black">
@@ -20,3 +20,6 @@
         </div>
     </section>
 </section>
+
+<ngx-charts-bar-vertical [view]="[100,100]" [results]="userInfo(9)">
+</ngx-charts-bar-vertical>
