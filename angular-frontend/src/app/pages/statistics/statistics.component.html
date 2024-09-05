@@ -1,22 +1,22 @@
-<section>
+<section class="mr-8">
     <div class="container mt-5">
         <h1 class="title has-text-centered"> Statistics </h1>
     </div>
 
-    <section class="columns mx-1 mt-3">
-        <div *ngFor="let employee of employees">
-            <a href="https://google.com">
+    <section class="mt-3">
+        <div class="grid is-row-max-6">
+            <div *ngFor="let employee of employees" class="cell">
                 <section class="is-outlined card-border p-3 has-text-centered is-hoverable">
                     <div>
                         <figure>
-                            <img src="https://via.placeholder.com/256" alt="User Photo" class="is-rounded">
+                            <img [src]="employee?. ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo" class="is-rounded">
                         </figure>
                     </div>
                     <div class="container mt-4 mb-2 has-text-black">
                         <p> <strong>Prénom / Nom </strong> : {{employee?.name}} {{employee?.surname}} </p>
                     </div>
                 </section>
-            </a>
+            </div>
         </div>
     </section>
 
