@@ -1,1 +1,46 @@
-<p>coaches works!</p>
+<div class="columns">
+    <div class="column is-11">
+        <p class="title is-1">Coaches</p>
+    </div>
+    <div class="column m-3">
+        <button class="button is-danger" (click)="saveChanges()" [class.is-static]="!this.changesOccured" [class.is-loading]="this.isLoading">Save</button>
+    </div>
+</div>
+<hr>
+<table class="table is-fullwidth">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Birth Date</th>
+            <th>Customers</th>
+            <th>Last Connection</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let coach of this.employees; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ coach.name }}</td>
+            <td>{{ coach.birth_date }}</td>
+            <td><div class="dropdown is-hoverable">
+                <div class="dropdown-trigger">
+                    <button class="button is-warning">
+                        <span>Edit list...</span>
+                    </button>
+                </div>
+                <div class="dropdown-menu" role="menu">
+                    <div class="dropdown-content p-3" *ngFor="let customer of this.customers">
+                        <label class="checkbox">
+                            <input type="checkbox" [checked]="customer.coach_id == coach.id" (click)="onCheckboxChange($event, customer, coach.id)"/>
+                            {{ customer.name }} {{ customer.surname }}
+                        </label>
+                    </div>
+                </div>
+            </div></td>
+            <td>{{ coach.last_login.split('T')[0] }}</td>
+        </tr>
+    </tbody>
+
+</table>
+

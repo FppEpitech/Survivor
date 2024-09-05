@@ -11,6 +11,7 @@ import eventsRouter from './routes/events';
 import clothesRouter from './routes/clothes';
 import PaymentHistoryRouter from './routes/paymentHistory'
 import authenticateToken from './middlewares/isLoggedIn';
+import compatibilityRouter from './routes/compatibility';
 
 const app = express();
 const port = 3001;
@@ -28,6 +29,7 @@ app.use('/encounters', encountersRouter);
 app.use('/events', eventsRouter);
 app.use('/clothes', clothesRouter);
 app.use('/paymenthistory', PaymentHistoryRouter);
+app.use('/compatibility', compatibilityRouter);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello, World!');

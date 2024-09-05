@@ -9,12 +9,14 @@ import { WardrobeComponent } from './pages/wardrobe/wardrobe.component';
 import { StatisticsPageComponent } from './pages/statistics/statistics.component';
 import { AstrologicalCompatibilityComponent } from './pages/astrological-compatibility/astrological-compatibility.component';
 import { TipsComponent } from './pages/tips/tips.component';
+import { CoachesComponent } from './pages/coaches/coaches.component';
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [LoggedGuard]},
     { path: 'login', component: LoginComponent},
     { path: 'client-profile', component: ClientProfileComponent, canActivate: [LoggedGuard] },
+    { path: 'coaches', component: CoachesComponent, canActivate: [LoggedGuard] },
     { path: 'astrological-compatibility', component: AstrologicalCompatibilityComponent, canActivate: [LoggedGuard]},
     { path: 'statistics', component: StatisticsPageComponent, canActivate: [LoggedGuard] },
     { path: 'wardrobe', component: WardrobeComponent, canActivate: [LoggedGuard] },
