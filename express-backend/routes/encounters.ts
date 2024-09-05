@@ -29,6 +29,42 @@ router.get('/:id', async (req: Request, res: Response) => {
   }
 });
 
+router.get('/customer/:id', async (req: Request, res: Response) => {
+  const id = parseInt(req.params.id);
+
+  if (isNaN(id)) {
+    return res.status(400).json({ error: 'Invalid customer ID' });
+  }
+
+  try {
+    const encounters = await prisma.encounter.findMany({
+      where: {
+        customer_id: id,
+      },
+      select: {
+        id: true,
+        customer_id: true,
+        date: true,
+        rating: true,
+        comment: true,
+        source: true,
+      },
+      orderBy: {
+        date: 'desc',
+      },
+    });
+
+    if (encounters.length === 0) {
+      return res.status(404).json({ error: 'No encounters found for this customer' });
+    }
+
+    res.status(200).json(encounters);
+  } catch (error) {
+    console.error('Error retrieving encounters:', error);
+    res.status(500).json({ error: 'Error retrieving encounters' });
+  }
+});
+
 router.post('/', async (req: Request, res: Response) => {
   const {
     customer_id,
