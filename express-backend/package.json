@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install": "sudo npm install && npx prisma generate && npm install ts-node -g",
+    "fetch-legacy": "ts-node prisma/fetchData/fetchAndStoreData.ts",
+    "execute": "tsc && node dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +17,10 @@
     "@types/node": "^22.5.2",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
     "node-fetch": "^2.7.0",
     "ts-node": "^10.9.2",

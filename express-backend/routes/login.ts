@@ -35,14 +35,16 @@ const createNewUserLegacy = async (legacyUser: Employee, password: string) => {
     return employee
 };
 
-const updateHashedpwd = async (legacyUser: Employee, password: string) => {
+const updateHashedpwd = async (user: Employee | null, password: string) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     if (!hashedPassword) {
         throw new Error("Failed hashing your password");
     }
+    if (!user)
+        throw new Error("Asked to update non existing user at login.?");
     const employee = await prisma.employee.update({
         where: {
-            id: legacyUser.id
+            id: user.id
         },
         data: {
             hashed_password: hashedPassword,
@@ -60,7 +62,6 @@ async function updateLastConnection(id : number) {
             last_login: new Date(),
           },
         });
-        console.log(id)
         return true;
 }
 
@@ -80,7 +81,7 @@ loginRouter.post('/login', async (req: Request, res: Response) => {
                 let legacyUser : Employee = await getLegacyProfile(existsOnLegacyToken)
                 if (!legacyUser)
                     return res.status(400).json({ msg: "Failed to fetch the data." });
-                user = (!updateJustPassword) ? await createNewUserLegacy(legacyUser, req.body.password) : await updateHashedpwd(legacyUser, password);
+                user = (!updateJustPassword) ? await createNewUserLegacy(legacyUser, req.body.password) : await updateHashedpwd(user, password);
             } else {
                 return res.status(409).json({ msg: "Invalid Credentials" });
             }
