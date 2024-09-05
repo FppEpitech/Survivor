@@ -29,6 +29,23 @@ router.get('/:id', async (req: Request, res: Response) => {
   }
 });
 
+router.get('/:id/image', async (req: Request, res: Response) => {
+  const id = parseInt(req.params.id);
+
+  try {
+    const customer = await prisma.customer.findUnique({where: {id}});
+
+    if (customer) {
+      res.status(200).json(customer.image_url);
+    } else {
+      res.status(404).json({error: 'Customer not found'});
+    }
+  } catch (error) {
+    console.error('Error retrieving customer:', error);
+    res.status(500).json({error: 'Error retrieving customer'});
+  }
+});
+
 router.get('/:id/clothes', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
 
@@ -62,6 +79,7 @@ router.post('/', async (req: Request, res: Response) => {
     gender,
     description,
     astrological_sign,
+    image_url,
     coach_id,
     clothes
   } = req.body;
@@ -77,6 +95,7 @@ router.post('/', async (req: Request, res: Response) => {
         description,
         astrological_sign,
         old_id: -1,
+        image_url,
         coach_id,
         clothes: JSON.stringify(clothes),
       },
@@ -99,7 +118,8 @@ router.put('/:id', async (req: Request, res: Response) => {
     gender,
     description,
     astrological_sign = "Unknown",
-    coach_id
+    coach_id,
+    image_url
   } = req.body;
 
   try {
@@ -114,6 +134,7 @@ router.put('/:id', async (req: Request, res: Response) => {
         description,
         astrological_sign,
         coach_id,
+        image_url
       },
     });
     res.status(200).json(updatedCustomer);
