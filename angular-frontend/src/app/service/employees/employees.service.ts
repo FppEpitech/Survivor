@@ -3,13 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Employee {
-  id?: number;
+  id: number;
   email: string;
   name: string;
   surname: string;
   birth_date: string;
   gender: string;
   work: string;
+  last_login: string;
 }
 
 @Injectable({

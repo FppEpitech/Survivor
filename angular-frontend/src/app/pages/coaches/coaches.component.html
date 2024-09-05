@@ -1,4 +1,11 @@
-<p class="title is-1">Coaches</p>
+<div class="columns">
+    <div class="column is-11">
+        <p class="title is-1">Coaches</p>
+    </div>
+    <div class="column m-3">
+        <button class="button is-danger" (click)="saveChanges()" [class.is-static]="!this.changesOccured" [class.is-loading]="this.isLoading">Save</button>
+    </div>
+</div>
 <hr>
 <table class="table is-fullwidth">
     <thead>
@@ -12,10 +19,10 @@
     </thead>
 
     <tbody>
-        <tr *ngFor="let a of [0,1,2,3,4,5,6,7]"> <!-- TODO: replace this list by employes list -->
-            <td>{{ a }}</td>
-            <td>Valgrind</td>
-            <td>14-11-2004</td>
+        <tr *ngFor="let coach of this.employees; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ coach.name }}</td>
+            <td>{{ coach.birth_date }}</td>
             <td><div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
                     <button class="button is-warning">
@@ -23,16 +30,17 @@
                     </button>
                 </div>
                 <div class="dropdown-menu" role="menu">
-                    <div class="dropdown-content p-3" *ngFor="let b of [0,1,2,3,4,5,6,7]"> <!-- TODO: replace this list by customers list -->
+                    <div class="dropdown-content p-3" *ngFor="let customer of this.customers">
                         <label class="checkbox">
-                            <input type="checkbox"/>
-                            {{b}}
+                            <input type="checkbox" [checked]="customer.coach_id == coach.id" (click)="onCheckboxChange($event, customer, coach.id)"/>
+                            {{ customer.name }} {{ customer.surname }}
                         </label>
                     </div>
                 </div>
             </div></td>
-            <td>04-09-2024</td>
+            <td>{{ coach.last_login.split('T')[0] }}</td>
         </tr>
     </tbody>
 
 </table>
+
