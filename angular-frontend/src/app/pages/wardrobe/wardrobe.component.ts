@@ -42,18 +42,20 @@ export class WardrobeComponent {
   bottom_id: number[] = [];
   shoes_id: number[] = [];
 
+  customerSelected = false;
+
   constructor(private customerService : CustomersService, private employeeService : EmployeesService, private clotheService : ClothesService) { }
 
   ngOnInit(): void {
     this.employeeService.getMe().subscribe((employee) => {
       this.employeeService.getCustomers(employee.id).subscribe((customers) => {
         this.customers = customers;
-        this.getClothes();
       });
     });
   }
 
   updateCustomer(customer: Customer): void {
+    this.customerSelected = true;
     console.log("Customer selected: ", customer);
     this.customer = customer;
     this.getClothes();
@@ -117,6 +119,8 @@ export class WardrobeComponent {
   }
 
   nextHatCap(): void {
+    if (this.customerSelected === false)
+      return;
     if (this.index_hats_caps === this.hats_caps.length - 1) {
       this.index_hats_caps = 0;
     } else {
@@ -127,6 +131,8 @@ export class WardrobeComponent {
   }
 
   previousHatCap(): void {
+    if (this.customerSelected === false)
+      return;
     if (this.index_hats_caps === 0) {
       this.index_hats_caps = this.hats_caps.length - 1;
     } else {
@@ -137,6 +143,8 @@ export class WardrobeComponent {
   }
 
   nextTop(): void {
+    if (this.customerSelected === false)
+      return;
     if (this.index_tops === this.tops.length - 1) {
       this.index_tops = 0;
     } else {
@@ -147,6 +155,8 @@ export class WardrobeComponent {
   }
 
   previousTop(): void {
+    if (this.customerSelected === false)
+      return;
     if (this.index_tops === 0) {
       this.index_tops = this.tops.length - 1;
     } else {
@@ -157,6 +167,8 @@ export class WardrobeComponent {
   }
 
   nextBottom(): void {
+    if (this.customerSelected === false)
+      return;
     if (this.index_bottoms === this.bottoms.length - 1) {
       this.index_bottoms = 0;
     } else {
@@ -167,6 +179,8 @@ export class WardrobeComponent {
   }
 
   previousBottom(): void {
+    if (this.customerSelected === false)
+      return;
     if (this.index_bottoms === 0) {
       this.index_bottoms = this.bottoms.length - 1;
     } else {
@@ -177,6 +191,8 @@ export class WardrobeComponent {
   }
 
   nextShoes(): void {
+    if (this.customerSelected === false)
+      return;
     if (this.index_shoes === this.shoes_list.length - 1) {
       this.index_shoes = 0;
     } else {
@@ -187,6 +203,8 @@ export class WardrobeComponent {
   }
 
   previousShoes(): void {
+    if (this.customerSelected === false)
+      return;
     if (this.index_shoes === 0) {
       this.index_shoes = this.shoes_list.length - 1;
     } else {
@@ -197,6 +215,8 @@ export class WardrobeComponent {
   }
 
   randomOutfit(): void {
+    if (this.customerSelected === false)
+      return;
     this.index_hats_caps = Math.floor(Math.random() * this.hats_caps.length);
     this.index_tops = Math.floor(Math.random() * this.tops.length);
     this.index_bottoms = Math.floor(Math.random() * this.bottoms.length);
