@@ -6,8 +6,6 @@ export interface Encounter {
     customer_id: number;
     date: string;
     rating: number;
-    comment: string;
-    source: string;
 }
 
 @Injectable({

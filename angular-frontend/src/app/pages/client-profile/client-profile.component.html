@@ -1,55 +1,85 @@
-<section class="section">
-    <div class="container">
+<div class="column is-11">
+    <p class="title is-1">Customers</p>
+    <hr>
+</div>
 
-        <div class="columns is-centered">
-            <!-- Profile Card -->
-            <div class="column is-half">
-                <div class="card profile-card">
-                    <div class="card-image">
-                        <figure class="image is-256x256 is-inline-block">
-                            <img src="https://via.placeholder.com/256" alt="User Photo">
-                        </figure>
-                    </div>
-                    <div class="card-content has-text-centered">
-                        <p class="title is-4">{{ customer?.name }}</p>
-                        <p class="subtitle is-6"><i class="fas fa-map-marker-alt"></i>{{ customer?.email }}</p>
-                        <p class="subtitle is-6"><i class="fas fa-phone"></i>{{ customer?.birth_date }}</p>
-                    </div>
-                </div>
+<div class="columns">
+    <div class="column m-3 is-8">
+        <div class="dropdown is-hoverable">
+            <div class="dropdown-trigger">
+                <button class="button is-warning is-large">
+                    <span>Customer -</span>
+                </button>
             </div>
-
-            <!-- Payment Card -->
-            <div class="column is-two-thirds">
-                <div class="card payment-card">
-                    <div class="card-content">
-                        <p class="title is-4">Payment history</p>
-                        <p class="content">1K$</p>
-                    </div>
+            <div class="dropdown-menu" role="menu">
+                <div class="dropdown-content p-3" *ngFor="let customer of customers">
+                    <label class="radio">
+                        <input type="radio" name="customer2" (click)="onRadioChange(customer)"/>
+                        {{ customer.name }} {{ customer.surname }}
+                    </label>
                 </div>
             </div>
         </div>
-
-        <div class="columns is-centered">
-            <!-- Description Card -->
-            <div class="column is-half">
-                <div class="card description-card">
-                    <div class="card-content">
-                        <p class="title is-4">About {{ customer?.name }}</p>
-                        <p class="content">{{ customer?.description }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Appointment Card -->
-            <div class="column is-two-thirds">
-                <div class="card appointment-card">
-                    <div class="card-content">
-                        <p class="title is-4">Appointment</p>
-                        <p class="content">3 juillet</p>
-                    </div>
-                </div>
-            </div>
+        <p class="subtitle is-3 m-4">{{ this.customer?.name }} {{ this.customer?.surname }}</p>
+        <p class="subtitle is-5 m-4">{{ this.customer?.birth_date }}</p>
+        <p class="subtitle is-5 m-4">{{ this.customer?.description }}</p>
+        <div class="column ">
+            <hr>
         </div>
+    </div>
+    <div class="column">
+        <div class="card-image">
+            <!-- <figure class="image is-256x256 is-inline-block"> -->
+                <img src="{{ coach?.image_url }}" alt="User Photo">
+            <!-- </figure> -->
+        </div>
+    </div>
+</div>
+
+<div class="columns">
+    <div class="column is-5">
+
+        <table class="table is-fullwidth">
+            <thead>
+                <tr class="is-selected is-warning">
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let payment of this.payments">
+                    <td>{{ payment.date }}</td>
+                    <td>{{ payment.amount }}</td>
+                    <td>{{ payment.comment }}</td>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
-</section>
+    <div class="column is-1"></div>
+    <div class="column is-5">
+
+        <table class="table is-fullwidth">
+            <thead>
+                <tr class="is-selected is-warning">
+                    <th>Date</th>
+                    <th>Rating</th>
+                    <th>Report</th>
+                    <th>Source</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let coach of [1,2,3]">
+                    <td>{{ coach }}</td>
+                    <td>{{ coach }}</td>
+                    <td>{{ coach }}</td>
+                    <td>{{ coach }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
