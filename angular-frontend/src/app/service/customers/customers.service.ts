@@ -14,6 +14,11 @@ export interface Customer {
   coach_id: number;
 }
 
+export interface Clothes {
+  id: number;
+  type: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -53,5 +58,10 @@ export class CustomersService {
   // Delete a Customer by ID
   deleteCustomer(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  // Get all Clothes for a Customer by ID
+  getCustomerClothes(id: number): Observable<Clothes[]> {
+    return this.http.get<any>(`${this.apiUrl}/${id}/clothes`);
   }
 }
