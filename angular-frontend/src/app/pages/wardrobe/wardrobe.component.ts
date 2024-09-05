@@ -44,6 +44,8 @@ export class WardrobeComponent {
 
   customerSelected = false;
 
+  backupImageUrl = 'assets/placeholder-128.png';
+
   constructor(private customerService : CustomersService, private employeeService : EmployeesService, private clotheService : ClothesService) { }
 
   ngOnInit(): void {
@@ -232,4 +234,8 @@ export class WardrobeComponent {
     this.bottom_url = this.bottom?.type ? 'api/' + this.bottom.type! : '';
     this.shoes_url = this.shoes?.type ? 'api/' + this.shoes.type! : '';
   }
+
+  onImageError(event: any) {
+    event.target.src = this.backupImageUrl;
+}
 }

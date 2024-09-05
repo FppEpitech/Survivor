@@ -18,6 +18,8 @@ import { EventsComponent } from './pages/events/events.component';
 import { AstrologicalCompatibilityComponent } from './pages/astrological-compatibility/astrological-compatibility.component';
 import { FormsModule } from '@angular/forms';
 import { SecurePipe } from './pipes/secure.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 // import {  StatisticsComponent } from './statistics/statistics.component';
 
@@ -35,10 +37,11 @@ import { SecurePipe } from './pipes/secure.pipe';
     SecurePipe
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {

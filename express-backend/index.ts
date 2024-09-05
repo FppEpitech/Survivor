@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express';
 import path from 'path';
-
 import tipsRouter from './routes/tips';
 import loginRouter from './routes/login';
 import customersRouter from './routes/customers';
@@ -11,12 +10,16 @@ import clothesRouter from './routes/clothes';
 import PaymentHistoryRouter from './routes/paymentHistory'
 import authenticateToken from './middlewares/isLoggedIn';
 import compatibilityRouter from './routes/compatibility';
+require('dotenv').config();
 
 const app = express();
 const port = 3001;
 
 app.use(express.json());
 app.use(loginRouter)
+app.use(require('cors')());
+app.use(require('helmet')());
+
 
 app.use(authenticateToken); //now all routes are protected, user need to have a valid acc_token.
 
