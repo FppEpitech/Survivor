@@ -47,7 +47,6 @@ export class AstrologicalCompatibilityComponent {
         this.compatibilityService.getCompatibility(this.customerLeft.id, this.customerRight.id).subscribe(
             (data) => {
                 this.compatibility = data;
-                console.log(data);
                 this.compatibilityPercentage = this.compatibility.compatibilityScore;
             },
             (error) => { console.error("Failed to load compatility", error); }
