@@ -15,7 +15,7 @@
                     <p class="title is-5 m-4">{{ this.customerLeft?.astrological_sign || "Sign"}}</p>
                     <div class="card-image">
                         <figure class="image is-256x256 is-inline-block">
-                            <img src="https://via.placeholder.com/256" alt="User Photo">
+                            <img [src]="customerLeftImageUrl ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo" (error)="onImageError($event)">
                         </figure>
                     </div>
                     <div class="dropdown is-hoverable">
@@ -44,7 +44,7 @@
                     <p class="title is-5 m-4">{{ this.customerRight?.astrological_sign || "Sign"}}</p>
                     <div class="card-image">
                         <figure class="image is-256x256 is-inline-block">
-                            <img src="https://via.placeholder.com/256" alt="User Photo">
+                            <img [src]="customerRightImageUrl ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo" (error)="onImageError($event)">
                         </figure>
                     </div>
                     <div class="dropdown is-hoverable">
