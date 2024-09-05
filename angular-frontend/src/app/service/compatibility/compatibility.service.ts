@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface Compatibility {
-    sign_customer1: string;
-    sign_customer2: string;
-    compatibility: number;
+    customer1AstrologicalSign: string;
+    customer2AstrologicalSign: string;
+    compatibilityScore: number;
 }
 
 @Injectable({
