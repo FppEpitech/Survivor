@@ -179,7 +179,7 @@ export class WardrobeComponent {
       this.index_hats_caps++;
     }
     this.hat_cap = this.hats_caps.at(this.index_hats_caps);
-    this.hat_cap_url = this.hat_cap?.type ? 'http://localhost:3001/' + this.hat_cap.type! : '';
+    this.hat_cap_url = this.hat_cap?.type ? 'api/' + this.hat_cap.type! : '';
   }
 
   previousHatCap(): void {
@@ -189,7 +189,7 @@ export class WardrobeComponent {
       this.index_hats_caps--;
     }
     this.hat_cap = this.hats_caps.at(this.index_hats_caps);
-    this.hat_cap_url = this.hat_cap?.type ? 'http://localhost:3001/' + this.hat_cap.type! : '';
+    this.hat_cap_url = this.hat_cap?.type ? 'api/' + this.hat_cap.type! : '';
   }
 
   nextTop(): void {
@@ -199,7 +199,7 @@ export class WardrobeComponent {
       this.index_tops++;
     }
     this.top = this.tops.at(this.index_tops);
-    this.top_url = this.top?.type ? 'http://localhost:3001/' + this.top.type! : '';
+    this.top_url = this.top?.type ? 'api/' + this.top.type! : '';
   }
 
   previousTop(): void {
@@ -209,7 +209,7 @@ export class WardrobeComponent {
       this.index_tops--;
     }
     this.top = this.tops.at(this.index_tops);
-    this.top_url = this.top?.type ? 'http://localhost:3001/' + this.top.type! : '';
+    this.top_url = this.top?.type ? 'api/' + this.top.type! : '';
   }
 
   nextBottom(): void {
@@ -219,7 +219,7 @@ export class WardrobeComponent {
       this.index_bottoms++;
     }
     this.bottom = this.bottoms.at(this.index_bottoms);
-    this.bottom_url = this.bottom?.type ? 'http://localhost:3001/' + this.bottom.type! : '';
+    this.bottom_url = this.bottom?.type ? 'api/' + this.bottom.type! : '';
   }
 
   previousBottom(): void {
@@ -229,7 +229,7 @@ export class WardrobeComponent {
       this.index_bottoms--;
     }
     this.bottom = this.bottoms.at(this.index_bottoms);
-    this.bottom_url = this.bottom?.type ? 'http://localhost:3001/' + this.bottom.type! : '';
+    this.bottom_url = this.bottom?.type ? 'api/' + this.bottom.type! : '';
   }
 
   nextShoes(): void {
@@ -239,7 +239,7 @@ export class WardrobeComponent {
       this.index_shoes++;
     }
     this.shoes = this.shoes_list.at(this.index_shoes);
-    this.shoes_url = this.shoes?.type ? 'http://localhost:3001/' + this.shoes.type! : '';
+    this.shoes_url = this.shoes?.type ? 'api/' + this.shoes.type! : '';
   }
 
   previousShoes(): void {
@@ -249,7 +249,7 @@ export class WardrobeComponent {
       this.index_shoes--;
     }
     this.shoes = this.shoes_list.at(this.index_shoes);
-    this.shoes_url = this.shoes?.type ? 'http://localhost:3001/' + this.shoes.type! : '';
+    this.shoes_url = this.shoes?.type ? 'api/' + this.shoes.type! : '';
   }
 
   randomOutfit(): void {
@@ -263,9 +263,9 @@ export class WardrobeComponent {
     this.bottom = this.bottoms.at(this.index_bottoms);
     this.shoes = this.shoes_list.at(this.index_shoes);
 
-    this.hat_cap_url = this.hat_cap?.type ? 'http://localhost:3001/' + this.hat_cap.type! : '';
-    this.top_url = this.top?.type ? 'http://localhost:3001/' + this.top.type! : '';
-    this.bottom_url = this.bottom?.type ? 'http://localhost:3001/' + this.bottom.type! : '';
-    this.shoes_url = this.shoes?.type ? 'http://localhost:3001/' + this.shoes.type! : '';
+    this.hat_cap_url = this.hat_cap?.type ? 'api/' + this.hat_cap.type! : '';
+    this.top_url = this.top?.type ? 'api/' + this.top.type! : '';
+    this.bottom_url = this.bottom?.type ? 'api/' + this.bottom.type! : '';
+    this.shoes_url = this.shoes?.type ? 'api/' + this.shoes.type! : '';
   }
 }
