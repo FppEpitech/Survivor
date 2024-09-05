@@ -20,7 +20,7 @@ export class CoachesComponent {
 
     ngOnInit(): void {
         this.employeesService.getEmployees().subscribe(
-            (data) => { this.employees = data; },
+            (data) => { this.employees = data; console.log(this.employees)},
             (error) => { console.error("Failed to load Employees list", error); }
         );
 

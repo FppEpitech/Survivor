@@ -10,6 +10,7 @@ export interface Employee {
   birth_date: string;
   gender: string;
   work: string;
+  last_login: string;
 }
 
 @Injectable({
