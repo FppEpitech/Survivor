@@ -59,6 +59,7 @@ router.post('/', async (req: Request, res: Response) => {
     });
     res.status(201).json(newEmployee);
   } catch (error) {
+    console.log(error);
     res.status(500).json({error: 'Error creating employee'});
   }
 });

@@ -4,14 +4,12 @@ import { PrismaClient } from '@prisma/client';
 const router = Router();
 const prisma = new PrismaClient();
 
-// Définir un type pour la compatibilité
 type CompatibilityType = {
   [key: string]: {
     [key: string]: number;
   };
 };
 
-// Initialiser l'objet de compatibilité avec le type
 const compatibility: CompatibilityType = {
   Aries: { Taurus: 0.5, Gemini: 0.7, Cancer: 0.4, Leo: 0.8, Virgo: 0.6, Libra: 0.5, Scorpio: 0.4, Sagittarius: 0.9, Capricorn: 0.4, Aquarius: 0.7, Pisces: 0.3 },
   Taurus: { Aries: 0.5, Gemini: 0.6, Cancer: 0.8, Leo: 0.6, Virgo: 0.8, Libra: 0.7, Scorpio: 0.5, Sagittarius: 0.6, Capricorn: 0.7, Aquarius: 0.4, Pisces: 0.8 },
@@ -27,7 +25,6 @@ const compatibility: CompatibilityType = {
   Pisces: { Aries: 0.3, Taurus: 0.8, Gemini: 0.6, Cancer: 0.7, Leo: 0.4, Virgo: 0.5, Libra: 0.6, Scorpio: 0.9, Sagittarius: 0.6, Capricorn: 0.5, Aquarius: 0.4 }
 };
 
-// Route pour obtenir la compatibilité entre deux clients
 router.get('/:id1/:id2', async (req: Request, res: Response) => {
   const id1 = parseInt(req.params.id1);
   const id2 = parseInt(req.params.id2);
