@@ -14,8 +14,13 @@ export class AstrologicalCompatibilityComponent {
     customerLeft?: Customer;
     customerRight?: Customer;
 
+    customerLeftImageUrl?: string;
+    customerRightImageUrl?: string;
+
     compatibility?: Compatibility;
     compatibilityPercentage = 0;
+
+    backupImageUrl = 'assets/placeholder-128.png';
 
     constructor (private employeesService: EmployeesService, private compatibilityService: CompatibilityService) {}
 
@@ -36,8 +41,10 @@ export class AstrologicalCompatibilityComponent {
         this.compatibilityPercentage = 0;
         if (left) {
             this.customerLeft = customer;
+            this.customerLeftImageUrl = '/api/' + customer.image_url;
         } else {
             this.customerRight = customer;
+            this.customerRightImageUrl = '/api/' + customer.image_url;
         }
     }
 
@@ -51,5 +58,9 @@ export class AstrologicalCompatibilityComponent {
             },
             (error) => { console.error("Failed to load compatility", error); }
         );
+    }
+
+    onImageError(event: any) {
+        event.target.src = this.backupImageUrl;
     }
 }
