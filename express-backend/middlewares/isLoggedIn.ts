@@ -19,7 +19,6 @@ const authenticateToken = async (req: Request, res: Response, next: NextFunction
             if (!user)
                 return res.status(401).json({ msg: "Token is not valid" });
             (req as any).middlewareId = userId;
-            console.log(`i try to inject from middleware : ${userId}`)
             next();
         } catch (error) {
             return res.status(500).json({ msg: "Internal server error" });
