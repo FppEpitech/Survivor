@@ -5,11 +5,16 @@
 }
 
 .card-image {
-    padding: 20px;
+  padding: 20px;
 
-    .image {
-      border-radius: 50%;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
+  .image {
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 20px;
   }
+}
+
+.is-200x200 {
+  width: 200px;
+  height: 200px;
+}

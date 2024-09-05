@@ -15,8 +15,12 @@ export class ClientProfileComponent {
     customers : Customer[] = [];
     customer?: Customer;
 
+    customerImageUrl?: string;
+
     payments: PaymentHistory[] = [];
     encounters: Encounter[] = [];
+
+    backupImageUrl = 'assets/placeholder-128.png';
 
     constructor (
         private employeesService: EmployeesService,
@@ -39,6 +43,7 @@ export class ClientProfileComponent {
 
     onRadioChange(newCustomer: Customer) {
         this.customer = newCustomer;
+        this.customerImageUrl = '/api/' + this.customer.image_url;
         this.paymentHistoryService.getPayments(this.customer.id).subscribe(
             (data) => { this.payments = data; console.log(data)},
             (error) => { console.error("Failed to load payments list", error); }
@@ -47,5 +52,9 @@ export class ClientProfileComponent {
             (data) => { this.encounters = data; console.log(data)},
             (error) => { console.error("Failed to load encounters list", error); }
         );
+    }
+
+    onImageError(event: any) {
+        event.target.src = this.backupImageUrl;
     }
 }

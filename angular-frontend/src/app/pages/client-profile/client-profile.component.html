@@ -1,4 +1,4 @@
-<div class="column is-11">
+<div class="column is-11 mt-5">
     <p class="title is-1">Customers</p>
     <hr>
 </div>
@@ -8,7 +8,8 @@
         <div class="dropdown is-hoverable">
             <div class="dropdown-trigger">
                 <button class="button is-warning is-large">
-                    <span>Customer -</span>
+                    <span *ngIf="customer != null">Customer  {{ ' - ' + customer?.name + ' ' + customer?.surname }}</span>
+                    <span *ngIf="customer == null">Select a customer</span>
                 </button>
             </div>
             <div class="dropdown-menu" role="menu">
@@ -29,35 +30,36 @@
     </div>
     <div class="column">
         <div class="card-image">
-            <!-- <figure class="image is-256x256 is-inline-block"> -->
-                <!-- <img src="{{ coach?.image_url }}" alt="User Photo"> -->
-            <!-- </figure> -->
+            <figure class="image is-200x200 is-inline-block">
+                <img [src]="customerImageUrl ?? 'assets/placeholder-128.png' | secure | async" alt="User Photo" (error)="onImageError($event)">
+            </figure>
         </div>
     </div>
 </div>
 
-<div class="columns">
-    <div class="column is-5">
+<div class="columns mb-6">
+    <div>
+        <div class="column is-5">
+            <table class="table is-fullwidth">
+                <thead>
+                    <tr class="is-selected is-warning">
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Comment</th>
+                    </tr>
+                </thead>
 
-        <table class="table is-fullwidth">
-            <thead>
-                <tr class="is-selected is-warning">
-                    <th>Date</th>
-                    <th>Amount</th>
-                    <th>Comment</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr *ngFor="let payment of this.payments">
-                    <td>{{ payment.date }}</td>
-                    <td>{{ payment.amount }}</td>
-                    <td>{{ payment.comment }}</td>
-                </tr>
-            </tbody>
-        </table>
-
+                <tbody>
+                    <tr *ngFor="let payment of this.payments">
+                        <td>{{ payment.date }}</td>
+                        <td>{{ payment.amount }}</td>
+                        <td>{{ payment.comment }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+
     <div class="column is-1"></div>
     <div class="column is-5">
 
