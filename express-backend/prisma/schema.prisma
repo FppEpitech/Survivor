@@ -33,7 +33,7 @@ model Customer {
   description       String
   astrological_sign String
   coach_id          Int
-  image_url         String
+  image_url         String?
   clothes           Json
 }
 
