@@ -10,6 +10,7 @@ import { StatisticsPageComponent } from './pages/statistics/statistics.component
 import { AstrologicalCompatibilityComponent } from './pages/astrological-compatibility/astrological-compatibility.component';
 import { TipsComponent } from './pages/tips/tips.component';
 import { CoachesComponent } from './pages/coaches/coaches.component';
+import { EventsComponent } from './pages/events/events.component';
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
     { path: 'statistics', component: StatisticsPageComponent, canActivate: [LoggedGuard] },
     { path: 'wardrobe', component: WardrobeComponent, canActivate: [LoggedGuard] },
     { path: 'tips', component: TipsComponent, canActivate: [LoggedGuard] },
-    { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] }
+    { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] },
+    { path: 'events', component: EventsComponent, canActivate: [LoggedGuard] },
 ];
 
 @NgModule({
