@@ -115,4 +115,14 @@ router.get('/customers/:id', async (req: Request, res: Response) => {
     }
 })
 
+router.get('/me', async (req: Request, res: Response) => {
+    try {
+      let me = await prisma.employee.findUnique({where: {id: (req as any).middlewareId}});
+      if (!me) throw new Error("Failed getting employee's informations");
+      res.status(200).json(me);
+    } catch (error) {
+      res.status(500).json({error: 'Error deleting employee'});
+    }
+})
+
 export default router;
