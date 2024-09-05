@@ -12,6 +12,7 @@ export interface Employee {
   gender: string;
   work: string;
   last_login: string;
+  image_url: string;
 }
 
 @Injectable({
