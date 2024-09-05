@@ -45,11 +45,12 @@ export class WardrobeComponent {
   constructor(private customerService : CustomersService, private employeeService : EmployeesService, private clotheService : ClothesService) { }
 
   ngOnInit(): void {
-    this.customerService.getCustomers().subscribe((customers) => {
-      this.customers = customers;
+    this.employeeService.getMe().subscribe((employee) => {
+      this.employeeService.getCustomers(employee.id).subscribe((customers) => {
+        this.customers = customers;
+        this.getClothes();
+      });
     });
-
-    this.getClothes();
   }
 
   updateCustomer(customer: Customer): void {
