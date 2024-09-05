@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Customer } from '../customers/customers.service';
 
 export interface Employee {
   id: number;
@@ -34,6 +35,11 @@ export class EmployeesService {
   // Get me
   getMe(): Observable<Employee> {
     return this.http.get<Employee>(`${this.apiUrl}/me`);
+  }
+
+  // Get the customers of an Employee
+  getCustomers(id: number): Observable<Customer[]> {
+    return this.http.get<Customer[]>(`${this.apiUrl}/customers/${id}`);
   }
 
   // Create a new Employee

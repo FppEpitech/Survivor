@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Customer, CustomersService } from 'src/app/service/customers/customers.service';
+import { Customer } from 'src/app/service/customers/customers.service';
 import { EmployeesService, Employee } from 'src/app/service/employees/employees.service';
 
 @Component({
@@ -8,26 +8,25 @@ import { EmployeesService, Employee } from 'src/app/service/employees/employees.
   styleUrls: ['./astrological-compatibility.component.scss']
 })
 export class AstrologicalCompatibilityComponent {
+    private coach?: Employee;
+    customers : Customer[] = [];
     customerLeft?: Customer;
     customerRight?: Customer;
 
-    customers : Customer[] = [];
-
-    coach?: Employee;
-
     compatibility = 0;
 
-    constructor (private customersService: CustomersService, private employeesService: EmployeesService) {}
+    constructor (private employeesService: EmployeesService) {}
 
     ngOnInit(): void {
-        // this.employeesService.getEmployee().subscribe(
-        //     (data) => { this.employees = data; console.log(this.employees)},
-        //     (error) => { console.error("Failed to load Employees list", error); }
-        // );
-
-        this.customersService.getCustomers().subscribe(
-            (data) => { this.customers = data; },
-            (error) => { console.error("Failed to load Customers list", error); }
+        this.employeesService.getMe().subscribe(
+            (data) => {
+                this.coach = data;
+                this.employeesService.getCustomers(this.coach?.id).subscribe(
+                    (data) => { this.customers = data; },
+                    (error) => { console.error("Failed to load Customers list", error); }
+                );
+            },
+            (error) => { console.error("Failed to load coach me", error); }
         );
     }
 
