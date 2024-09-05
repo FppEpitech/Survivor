@@ -1,87 +1,94 @@
 <div class="column is-11 mt-5">
-    <p class="title is-1">Customers</p>
-    <hr>
+  <p class="title is-1">Customers</p>
+  <hr>
 </div>
 
-<div class="columns">
+<div class="pageBody" *ngIf="this.customers.length != 0; else noClients">
+  <div class="columns">
     <div class="column m-3 is-8">
-        <div class="dropdown is-hoverable">
-            <div class="dropdown-trigger">
-                <button class="button is-warning is-large">
-                    <span *ngIf="customer != null">Customer  {{ ' - ' + customer.name + ' ' + customer.surname }}</span>
-                    <span *ngIf="customer == null">Select a customer</span>
-                </button>
-            </div>
-            <div class="dropdown-menu" role="menu">
-                <div class="dropdown-content p-3" *ngFor="let customer of customers">
-                    <label class="radio">
-                        <input type="radio" name="customer2" (click)="onRadioChange(customer)"/>
-                        {{ customer.name }} {{ customer.surname }}
-                    </label>
-                </div>
-            </div>
+      <div class="dropdown is-hoverable">
+        <div class="dropdown-trigger">
+          <button class="button is-warning is-large">
+            <span *ngIf="customer != null">Customer {{ ' - ' + customer.name + ' ' + customer.surname }}</span>
+            <span *ngIf="customer == null">Select a customer</span>
+          </button>
         </div>
-        <p class="subtitle is-3 m-4">{{ this.customer?.name }} {{ this.customer?.surname }}</p>
-        <p class="subtitle is-5 m-4">{{ this.customer?.birth_date }}</p>
-        <p class="subtitle is-5 m-4">{{ this.customer?.description }}</p>
-        <div class="column ">
-            <hr>
+        <div class="dropdown-menu" role="menu">
+          <div class="dropdown-content p-3" *ngFor="let customer of customers">
+            <label class="radio">
+              <input type="radio" name="customer2" (click)="onRadioChange(customer)" />
+              {{ customer.name }} {{ customer.surname }}
+            </label>
+          </div>
         </div>
+      </div>
+      <p class="subtitle is-3 m-4">{{ this.customer?.name }} {{ this.customer?.surname }}</p>
+      <p class="subtitle is-5 m-4">{{ this.customer?.birth_date }}</p>
+      <p class="subtitle is-5 m-4">{{ this.customer?.description }}</p>
+      <div class="column ">
+        <hr>
+      </div>
     </div>
     <div class="column">
-        <div class="card-image">
-            <figure class="image is-200x200 is-inline-block">
-                <img [src]="customerImageUrl ?? 'assets/placeholder-128.png' | secure | async" alt="User Photo" (error)="onImageError($event)">
-            </figure>
-        </div>
+      <div class="card-image">
+        <figure class="image is-200x200 is-inline-block">
+          <img [src]="customerImageUrl ?? 'assets/placeholder-128.png' | secure | async" alt="User Photo"
+            (error)="onImageError($event)">
+        </figure>
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="columns mb-6">
+  <div class="columns mb-6">
     <div>
-        <div class="column is-5">
-            <table class="table is-fullwidth">
-                <thead>
-                    <tr class="is-selected is-warning">
-                        <th>Date</th>
-                        <th>Amount</th>
-                        <th>Comment</th>
-                    </tr>
-                </thead>
+      <div class="column is-5">
+        <table class="table is-fullwidth">
+          <thead>
+            <tr class="is-selected is-warning">
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Comment</th>
+            </tr>
+          </thead>
 
-                <tbody>
-                    <tr *ngFor="let payment of this.payments">
-                        <td>{{ payment.date }}</td>
-                        <td>{{ payment.amount }}</td>
-                        <td>{{ payment.comment }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+          <tbody>
+            <tr *ngFor="let payment of this.payments">
+              <td>{{ payment.date }}</td>
+              <td>{{ payment.amount }}</td>
+              <td>{{ payment.comment }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <div class="column is-1"></div>
     <div class="column is-5">
 
-        <table class="table is-fullwidth">
-            <thead>
-                <tr class="is-selected is-warning">
-                    <th>Date</th>
-                    <th>Rating</th>
-                    <th>Report</th>
-                    <th>Source</th>
-                </tr>
-            </thead>
+      <table class="table is-fullwidth">
+        <thead>
+          <tr class="is-selected is-warning">
+            <th>Date</th>
+            <th>Rating</th>
+            <th>Report</th>
+            <th>Source</th>
+          </tr>
+        </thead>
 
-            <tbody>
-                <tr *ngFor="let encounter of this.encounters">
-                    <td>{{ encounter.date }}</td>
-                    <td>{{ encounter.rating }}</td>
-                    <td>{{ encounter.comment }}</td>
-                    <td>{{ encounter.source }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <tbody>
+          <tr *ngFor="let encounter of this.encounters">
+            <td>{{ encounter.date }}</td>
+            <td>{{ encounter.rating }}</td>
+            <td>{{ encounter.comment }}</td>
+            <td>{{ encounter.source }}</td>
+          </tr>
+        </tbody>
+      </table>
 
     </div>
+  </div>
 </div>
+
+<ng-template #noClients>
+  Loading customers...
+</ng-template>

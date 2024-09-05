@@ -1,4 +1,4 @@
-<section class="section pt-5">
+<section class="section pt-5" *ngIf="this.customers.length != 0; else noClients">
     <div class="container has-text-centered">
         <h1 class="title is-centered">Wardrobe</h1>
     </div>
@@ -118,3 +118,7 @@
         </div>
     </div>
 </section>
+
+<ng-template class="container" #noClients>
+  <h1>Loading customers...</h1>
+</ng-template>
