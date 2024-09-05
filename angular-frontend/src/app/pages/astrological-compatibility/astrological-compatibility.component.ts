@@ -20,6 +20,8 @@ export class AstrologicalCompatibilityComponent {
     compatibility?: Compatibility;
     compatibilityPercentage = 0;
 
+    backupImageUrl = 'assets/placeholder-128.png';
+
     constructor (private employeesService: EmployeesService, private compatibilityService: CompatibilityService) {}
 
     ngOnInit(): void {
@@ -56,5 +58,9 @@ export class AstrologicalCompatibilityComponent {
             },
             (error) => { console.error("Failed to load compatility", error); }
         );
+    }
+
+    onImageError(event: any) {
+        event.target.src = this.backupImageUrl;
     }
 }
