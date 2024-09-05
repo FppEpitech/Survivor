@@ -1,1 +1,38 @@
-<p>coaches works!</p>
+<p class="title is-1">Coaches</p>
+<hr>
+<table class="table is-fullwidth">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Birth Date</th>
+            <th>Customers</th>
+            <th>Last Connection</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let a of [0,1,2,3,4,5,6,7]"> <!-- TODO: replace this list by employes list -->
+            <td>{{ a }}</td>
+            <td>Valgrind</td>
+            <td>14-11-2004</td>
+            <td><div class="dropdown is-hoverable">
+                <div class="dropdown-trigger">
+                    <button class="button is-warning">
+                        <span>Edit list...</span>
+                    </button>
+                </div>
+                <div class="dropdown-menu" role="menu">
+                    <div class="dropdown-content p-3" *ngFor="let b of [0,1,2,3,4,5,6,7]"> <!-- TODO: replace this list by customers list -->
+                        <label class="checkbox">
+                            <input type="checkbox"/>
+                            {{b}}
+                        </label>
+                    </div>
+                </div>
+            </div></td>
+            <td>04-09-2024</td>
+        </tr>
+    </tbody>
+
+</table>
