@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { SecurePipe } from './pipes/secure.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsService } from './service/events/events.service';
+import { Events } from 'leaflet';
 
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 // import {  StatisticsComponent } from './statistics/statistics.component';
@@ -34,7 +35,8 @@ import { EventsService } from './service/events/events.service';
     TipsComponent,
     AstrologicalCompatibilityComponent,
     LoginComponent,
-    SecurePipe
+    SecurePipe,
+    EventsComponent
   ],
   imports: [
     AppRoutingModule,
