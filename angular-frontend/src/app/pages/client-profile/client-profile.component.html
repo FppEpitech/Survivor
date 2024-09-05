@@ -30,7 +30,7 @@
     <div class="column">
         <div class="card-image">
             <!-- <figure class="image is-256x256 is-inline-block"> -->
-                <img src="{{ coach?.image_url }}" alt="User Photo">
+                <!-- <img src="{{ coach?.image_url }}" alt="User Photo"> -->
             <!-- </figure> -->
         </div>
     </div>
@@ -72,11 +72,11 @@
             </thead>
 
             <tbody>
-                <tr *ngFor="let coach of [1,2,3]">
-                    <td>{{ coach }}</td>
-                    <td>{{ coach }}</td>
-                    <td>{{ coach }}</td>
-                    <td>{{ coach }}</td>
+                <tr *ngFor="let encounter of this.encounters">
+                    <td>{{ encounter.date }}</td>
+                    <td>{{ encounter.rating }}</td>
+                    <td>{{ encounter.comment }}</td>
+                    <td>{{ encounter.source }}</td>
                 </tr>
             </tbody>
         </table>

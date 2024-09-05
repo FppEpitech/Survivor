@@ -1,3 +1,4 @@
+import { Encounter, EncountersService } from './../../service/encounters/encounters.service';
 import { PaymentHistory, PaymentHistoryService } from './../../service/paymentHistory/payment-history.service';
 import { Component } from '@angular/core';
 import { Customer } from 'src/app/service/customers/customers.service';
@@ -15,18 +16,18 @@ export class ClientProfileComponent {
     customer?: Customer;
 
     payments: PaymentHistory[] = [];
+    encounters: Encounter[] = [];
 
     constructor (
         private employeesService: EmployeesService,
-        private paymentHistoryService: PaymentHistoryService
+        private paymentHistoryService: PaymentHistoryService,
+        private encountersService: EncountersService
     ) {}
 
     ngOnInit(): void {
         this.employeesService.getMe().subscribe(
             (data) => {
                 this.coach = data;
-                this.coach.image_url = 'http://localhost:3001/api/' + this.coach.image_url;
-                console.log(this.coach.image_url);
                 this.employeesService.getCustomers(this.coach?.id).subscribe(
                     (data) => { this.customers = data; },
                     (error) => { console.error("Failed to load Customers list", error); }
@@ -41,6 +42,10 @@ export class ClientProfileComponent {
         this.paymentHistoryService.getPayments(this.customer.id).subscribe(
             (data) => { this.payments = data; console.log(data)},
             (error) => { console.error("Failed to load payments list", error); }
+        );
+        this.encountersService.getCustomerEncounters(this.customer.id).subscribe(
+            (data) => { this.encounters = data; console.log(data)},
+            (error) => { console.error("Failed to load encounters list", error); }
         );
     }
 }
