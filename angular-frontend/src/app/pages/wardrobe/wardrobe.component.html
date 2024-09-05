@@ -3,15 +3,31 @@
         <h1 class="title is-centered">Wardrobe</h1>
     </div>
     <div class="container mt-5">
+        <div class="dropdown is-hoverable">
+            <div class="dropdown-trigger">
+                <button class="button is-warning">
+                    <span>{{ customer?.name }} {{ customer?.surname ?? 'Select a Customer' }}</span>
+                </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+              <div class="dropdown-content">
+                <label *ngFor="let customer_ of this.customers">
+                    <button (click)="updateCustomer(customer_)">
+                        {{ customer_.name }} {{ customer_.surname }}
+                    </button>
+                </label>
+              </div>
+            </div>
+        </div>
         <div class="container has-text-centered mb-2">
-            <button class="button is-primary is-centered is-vcentered">
-                <span>Random</span>
+            <button class="button is-primary is-centered is-vcentered" (click)="randomOutfit()">
+                <span>Random Outfit</span>
             </button>
         </div>
         <div class="container">
             <div class="columns is-vcentered is-centered">
                 <div class="column is-narrow is-hidden-mobile">
-                    <button class="button is-light is-hidden-mobile">
+                    <button class="button is-light is-hidden-mobile" (click)="previousHatCap()">
                         <span class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
                         </span>
@@ -19,11 +35,11 @@
                 </div>
                 <div class="column is-narrow">
                     <figure class="image is-185x185 is-centered">
-                        <img src="https://via.placeholder.com/128" alt="Image">
+                        <img [src]="hat_cap_url ?? 'https://via.placeholder.com/128' | secure | async" alt="Hat/Caps clothe image">
                     </figure>
                 </div>
                 <div class="column is-narrow is-hidden-mobile">
-                    <button class="button is-light">
+                    <button class="button is-light" (click)="nextHatCap()">
                         <span class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
                         </span>
@@ -34,7 +50,7 @@
         <div class="container">
             <div class="columns is-vcentered is-centered">
                 <div class="column is-narrow is-hidden-mobile">
-                    <button class="button is-light">
+                    <button class="button is-light" (click)="previousTop()">
                         <span class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
                         </span>
@@ -42,11 +58,11 @@
                 </div>
                 <div class="column is-narrow">
                     <figure class="image is-185x185">
-                        <img src="https://via.placeholder.com/128" alt="Image">
+                        <img [src]="top_url ?? 'https://via.placeholder.com/128' | secure | async" alt="Top clothe image">
                     </figure>
                 </div>
                 <div class="column is-narrow is-hidden-mobile">
-                    <button class="button is-light">
+                    <button class="button is-light" (click)="nextTop()">
                         <span class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
                         </span>
@@ -57,7 +73,7 @@
         <div class="container">
             <div class="columns is-vcentered is-centered">
                 <div class="column is-narrow is-hidden-mobile">
-                    <button class="button is-light">
+                    <button class="button is-light" (click)="previousBottom()">
                         <span class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
                         </span>
@@ -65,11 +81,11 @@
                 </div>
                 <div class="column is-narrow">
                     <figure class="image is-185x185">
-                        <img src="https://via.placeholder.com/128" alt="Image">
+                        <img [src]="bottom_url ?? 'https://via.placeholder.com/128'  | secure | async" alt="Bottom clothe image">
                     </figure>
                 </div>
                 <div class="column is-narrow is-hidden-mobile">
-                    <button class="button is-light">
+                    <button class="button is-light" (click)="nextBottom()">
                         <span class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
                         </span>
@@ -80,7 +96,7 @@
         <div class="container">
             <div class="columns is-vcentered is-centered">
                 <div class="column is-narrow is-hidden-mobile">
-                    <button class="button is-light">
+                    <button class="button is-light" (click)="previousShoes()">
                         <span class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
                         </span>
@@ -88,11 +104,11 @@
                 </div>
                 <div class="column is-narrow">
                     <figure class="image is-185x185">
-                        <img src="https://via.placeholder.com/128" alt="Image">
+                        <img [src]="shoes_url ?? 'https://via.placeholder.com/128'  | secure | async" alt="Shoes clothe image">
                     </figure>
                 </div>
                 <div class="column is-narrow is-hidden-mobile">
-                    <button class="button is-light">
+                    <button class="button is-light" (click)="nextShoes()">
                         <span class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
                         </span>
