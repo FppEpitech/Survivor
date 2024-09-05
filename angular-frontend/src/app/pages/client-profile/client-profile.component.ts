@@ -1,5 +1,8 @@
+import { Encounter, EncountersService } from './../../service/encounters/encounters.service';
+import { PaymentHistory, PaymentHistoryService } from './../../service/paymentHistory/payment-history.service';
 import { Component } from '@angular/core';
-import { Customer, CustomersService } from 'src/app/service/customers/customers.service';
+import { Customer } from 'src/app/service/customers/customers.service';
+import { Employee, EmployeesService } from 'src/app/service/employees/employees.service';
 
 @Component({
   selector: 'app-client-profile',
@@ -8,19 +11,50 @@ import { Customer, CustomersService } from 'src/app/service/customers/customers.
 })
 export class ClientProfileComponent {
 
-    customers: Customer[] = [];
+    coach?: Employee;
+    customers : Customer[] = [];
     customer?: Customer;
-    indexCustomer = 0; // TODO : change the index based on the customer to display
 
-    constructor (private customerService: CustomersService) {}
+    customerImageUrl?: string;
+
+    payments: PaymentHistory[] = [];
+    encounters: Encounter[] = [];
+
+    backupImageUrl = 'assets/placeholder-128.png';
+
+    constructor (
+        private employeesService: EmployeesService,
+        private paymentHistoryService: PaymentHistoryService,
+        private encountersService: EncountersService
+    ) {}
 
     ngOnInit(): void {
-        this.customerService.getCustomers().subscribe(
-            (data) => { this.customers = data;
-                console.log(this.customers);
-                this.customer = this.customers[this.indexCustomer];
+        this.employeesService.getMe().subscribe(
+            (data) => {
+                this.coach = data;
+                this.employeesService.getCustomers(this.coach?.id).subscribe(
+                    (data) => { this.customers = data; },
+                    (error) => { console.error("Failed to load Customers list", error); }
+                );
             },
-            (error) => { console.error("Failed to load Customer list", error); }
+            (error) => { console.error("Failed to load coach me", error); }
         );
+    }
+
+    onRadioChange(newCustomer: Customer) {
+        this.customer = newCustomer;
+        this.customerImageUrl = '/api/' + this.customer.image_url;
+        this.paymentHistoryService.getPayments(this.customer.id).subscribe(
+            (data) => { this.payments = data; console.log(data)},
+            (error) => { console.error("Failed to load payments list", error); }
+        );
+        this.encountersService.getCustomerEncounters(this.customer.id).subscribe(
+            (data) => { this.encounters = data; console.log(data)},
+            (error) => { console.error("Failed to load encounters list", error); }
+        );
+    }
+
+    onImageError(event: any) {
+        event.target.src = this.backupImageUrl;
     }
 }
