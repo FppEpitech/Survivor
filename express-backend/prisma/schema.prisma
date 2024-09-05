@@ -80,6 +80,7 @@ model PaymentHistory {
   payment_method      String
   amount              Int
   comment             String
+  customer_id         Int
 }
 
 model Clothe {

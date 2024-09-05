@@ -1,10 +1,21 @@
 import express, {Request, Response} from 'express';
 import {PrismaClient} from '@prisma/client';
+import { cp } from 'fs';
 
 const router = express.Router();
 const prisma = new PrismaClient();
 
 router.use(express.json());
+
+router.get('/me', async (req: Request, res: Response) => {
+    try {
+      let me = await prisma.employee.findUnique({where: {id: (req as any).middlewareId}});
+      if (!me) throw new Error("Failed getting employee's informations");
+      res.status(200).json(me);
+    } catch (error) {
+      res.status(500).json({error: 'Error deleting employee'});
+    }
+})
 
 router.get('/', async (req: Request, res: Response) => {
   try {
@@ -114,5 +125,6 @@ router.get('/customers/:id', async (req: Request, res: Response) => {
       res.status(500).json({error: 'Error deleting employee'});
     }
 })
+
 
 export default router;
