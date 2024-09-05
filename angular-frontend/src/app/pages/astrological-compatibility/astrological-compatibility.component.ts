@@ -1,4 +1,7 @@
-import { Component, HostListener } from '@angular/core';
+import { Compatibility, CompatibilityService } from './../../service/compatibility/compatibility.service';
+import { Component } from '@angular/core';
+import { Customer } from 'src/app/service/customers/customers.service';
+import { EmployeesService, Employee } from 'src/app/service/employees/employees.service';
 
 @Component({
   selector: 'app-astrological-compatibility',
@@ -6,40 +9,47 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./astrological-compatibility.component.scss']
 })
 export class AstrologicalCompatibilityComponent {
-    isLeftDropdownPressed = false;
-    isRightDropdownPressed = false;
+    private coach?: Employee;
+    customers : Customer[] = [];
+    customerLeft?: Customer;
+    customerRight?: Customer;
 
-    // Toggles the dropdown state
-    toggleDropdown(dropdown: 'left' | 'right', event: Event) {
-      event.stopPropagation(); // Prevents the event from bubbling up the DOM tree
-      if (dropdown === 'left') {
-        this.isLeftDropdownPressed = !this.isLeftDropdownPressed;
-      } else {
-        this.isRightDropdownPressed = !this.isRightDropdownPressed;
-      }
+    compatibility?: Compatibility;
+    compatibilityPercentage = 0;
+
+    constructor (private employeesService: EmployeesService, private compatibilityService: CompatibilityService) {}
+
+    ngOnInit(): void {
+        this.employeesService.getMe().subscribe(
+            (data) => {
+                this.coach = data;
+                this.employeesService.getCustomers(this.coach?.id).subscribe(
+                    (data) => { this.customers = data; },
+                    (error) => { console.error("Failed to load Customers list", error); }
+                );
+            },
+            (error) => { console.error("Failed to load coach me", error); }
+        );
     }
 
-    // Closes the dropdown
-    closeDropdown(dropdown: 'left' | 'right') {
-      if (dropdown === 'left') {
-        this.isLeftDropdownPressed = false;
-      } else {
-        this.isRightDropdownPressed = false;
-      }
+    onRadioChange(customer: Customer, left: boolean) {
+        this.compatibilityPercentage = 0;
+        if (left) {
+            this.customerLeft = customer;
+        } else {
+            this.customerRight = customer;
+        }
     }
 
-    // Closes the dropdown if clicked outside
-    @HostListener('document:click', ['$event'])
-  clickOutside(event: MouseEvent) {
-    const dropdownLeft = document.querySelector('.dropdownLeft');
-    const dropdownRight = document.querySelector('.dropdownRight');
-
-    if (dropdownLeft && !dropdownLeft.contains(event.target as Node)) {
-      this.isLeftDropdownPressed = false;
+    computeCompatibility() {
+        if (!this.customerLeft || !this.customerRight)
+            return;
+        this.compatibilityService.getCompatibility(this.customerLeft.id, this.customerRight.id).subscribe(
+            (data) => {
+                this.compatibility = data;
+                this.compatibilityPercentage = this.compatibility.compatibilityScore;
+            },
+            (error) => { console.error("Failed to load compatility", error); }
+        );
     }
-
-    if (dropdownRight && !dropdownRight.contains(event.target as Node)) {
-      this.isRightDropdownPressed = false;
-    }
-  }
 }
