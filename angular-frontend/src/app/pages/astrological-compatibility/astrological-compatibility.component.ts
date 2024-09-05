@@ -1,4 +1,6 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
+import { Customer, CustomersService } from 'src/app/service/customers/customers.service';
+import { EmployeesService, Employee } from 'src/app/service/employees/employees.service';
 
 @Component({
   selector: 'app-astrological-compatibility',
@@ -6,40 +8,38 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./astrological-compatibility.component.scss']
 })
 export class AstrologicalCompatibilityComponent {
-    isLeftDropdownPressed = false;
-    isRightDropdownPressed = false;
+    customerLeft?: Customer;
+    customerRight?: Customer;
 
-    // Toggles the dropdown state
-    toggleDropdown(dropdown: 'left' | 'right', event: Event) {
-      event.stopPropagation(); // Prevents the event from bubbling up the DOM tree
-      if (dropdown === 'left') {
-        this.isLeftDropdownPressed = !this.isLeftDropdownPressed;
-      } else {
-        this.isRightDropdownPressed = !this.isRightDropdownPressed;
-      }
+    customers : Customer[] = [];
+
+    coach?: Employee;
+
+    compatibility = 0;
+
+    constructor (private customersService: CustomersService, private employeesService: EmployeesService) {}
+
+    ngOnInit(): void {
+        // this.employeesService.getEmployee().subscribe(
+        //     (data) => { this.employees = data; console.log(this.employees)},
+        //     (error) => { console.error("Failed to load Employees list", error); }
+        // );
+
+        this.customersService.getCustomers().subscribe(
+            (data) => { this.customers = data; },
+            (error) => { console.error("Failed to load Customers list", error); }
+        );
     }
 
-    // Closes the dropdown
-    closeDropdown(dropdown: 'left' | 'right') {
-      if (dropdown === 'left') {
-        this.isLeftDropdownPressed = false;
-      } else {
-        this.isRightDropdownPressed = false;
-      }
+    onRadioChange(customer: Customer, left: boolean) {
+        if (left) {
+            this.customerLeft = customer;
+        } else {
+            this.customerRight = customer;
+        }
     }
 
-    // Closes the dropdown if clicked outside
-    @HostListener('document:click', ['$event'])
-  clickOutside(event: MouseEvent) {
-    const dropdownLeft = document.querySelector('.dropdownLeft');
-    const dropdownRight = document.querySelector('.dropdownRight');
+    computeCompatibility() {
 
-    if (dropdownLeft && !dropdownLeft.contains(event.target as Node)) {
-      this.isLeftDropdownPressed = false;
     }
-
-    if (dropdownRight && !dropdownRight.contains(event.target as Node)) {
-      this.isRightDropdownPressed = false;
-    }
-  }
 }

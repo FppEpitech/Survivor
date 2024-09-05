@@ -1,30 +1,34 @@
 <div class="container">
     <div class="has-text-centered">
         <p class="title is-4">Astrological compatibility:</p>
-        <p class="content title is-1">100%</p>
+        <p class="content title is-1">{{ this.compatibility }}%</p>
+        <div class="column">
+            <button class="button is-danger button-compute" (click)="computeCompatibility()">Compute</button>
+        </div>
     </div>
 
     <div class="columns is-centered m-6">
         <div class="column">
             <div class="card m-4">
                 <div class="card-content has-text-centered">
-                    <p class="title is-4">Kiki</p>
+                    <p class="title is-4">{{ this.customerLeft?.name || "Customer 1"}} {{ this.customerLeft?.surname }}</p>
                     <div class="card-image">
                         <figure class="image is-256x256 is-inline-block">
                             <img src="https://via.placeholder.com/256" alt="User Photo">
                         </figure>
                     </div>
-                    <div class="dropdown dropdownLeft" [class.is-active]="isLeftDropdownPressed">
+                    <div class="dropdown is-hoverable">
                         <div class="dropdown-trigger">
-                            <button class="button is-warning" aria-haspopup="true" aria-controls="dropdown-menu-left" (click)="toggleDropdown('left', $event)">
-                                <span>Click</span>
+                            <button class="button is-warning">
+                                <span>Find</span>
                             </button>
                         </div>
-                        <div class="dropdown-menu" id="dropdown-menu-left" role="menu">
-                            <div class="dropdown-content">
-                                <a class="dropdown-item" (click)="closeDropdown('left')">Item 1</a>
-                                <a class="dropdown-item" (click)="closeDropdown('left')">Item 2</a>
-                                <!-- More items -->
+                        <div class="dropdown-menu" role="menu">
+                            <div class="dropdown-content p-3" *ngFor="let customer of customers">
+                                <label class="radio">
+                                    <input type="radio" name="customer1" (click)="onRadioChange(customer, true)"/>
+                                    {{ customer.name }} {{ customer.surname }}
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -35,23 +39,24 @@
         <div class="column">
             <div class="card m-4">
                 <div class="card-content has-text-centered">
-                    <p class="title is-4">Axel</p>
+                    <p class="title is-4">{{ this.customerRight?.name || "Customer 2"}} {{ this.customerRight?.surname }}</p>
                     <div class="card-image">
                         <figure class="image is-256x256 is-inline-block">
                             <img src="https://via.placeholder.com/256" alt="User Photo">
                         </figure>
                     </div>
-                    <div class="dropdown dropdownRight" [class.is-active]="isRightDropdownPressed">
+                    <div class="dropdown is-hoverable">
                         <div class="dropdown-trigger">
-                            <button class="button is-warning" aria-haspopup="true" aria-controls="dropdown-menu-right" (click)="toggleDropdown('right', $event)">
-                                <span>Click</span>
+                            <button class="button is-warning">
+                                <span>Find</span>
                             </button>
                         </div>
-                        <div class="dropdown-menu" id="dropdown-menu-right" role="menu">
-                            <div class="dropdown-content">
-                                <a class="dropdown-item" (click)="closeDropdown('right')">Item A</a>
-                                <a class="dropdown-item" (click)="closeDropdown('right')">Item B</a>
-                                <!-- More items -->
+                        <div class="dropdown-menu" role="menu">
+                            <div class="dropdown-content p-3" *ngFor="let customer of customers">
+                                <label class="radio">
+                                    <input type="radio" name="customer2" (click)="onRadioChange(customer, false)"/>
+                                    {{ customer.name }} {{ customer.surname }}
+                                </label>
                             </div>
                         </div>
                     </div>

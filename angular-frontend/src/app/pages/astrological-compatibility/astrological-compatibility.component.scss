@@ -7,10 +7,10 @@ html, body {
 
 .container {
     display: flex;
-    flex-direction: column; /* Stack the content vertically */
-    justify-content: center; /* Center the content vertically */
-    align-items: center; /* Center the content horizontally */
-    height: 100vh; /* Ensure the container takes up the full height of the viewport */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .columns {
@@ -19,7 +19,7 @@ html, body {
 
 .column {
     display: flex;
-    justify-content: center; /* Centers the content horizontally within each column */
+    justify-content: center;
 }
 
 .card-image {
@@ -32,7 +32,11 @@ html, body {
   }
 
 .dropdown-menu {
-    max-height: 200px; /* Set a maximum height for the dropdown */
-    overflow-y: auto;  /* Enable vertical scrolling */
-    overflow-x: hidden; /* Hide horizontal scrollbar */
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.button-compute {
+    max-height: 10%;
 }
