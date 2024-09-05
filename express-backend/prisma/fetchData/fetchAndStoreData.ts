@@ -3,6 +3,7 @@ import fetchClothes from './fetchClothes';
 import fetchCustomers from './fetchCustomers';
 import fetchEmployees from './fetchEmployees';
 import fetchEncounters from './fetchEncounters';
+import fetchPaymentHistory from './fetchPaymentHistory';
 
 async function get_token() {
     try {
@@ -38,6 +39,7 @@ async function main() {
     await fetchCustomers(token);
     await fetchEmployees(token);
     await fetchEncounters(token);
+    await fetchPaymentHistory(token);
 }
 
 main()

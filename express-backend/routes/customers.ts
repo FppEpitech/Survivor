@@ -29,6 +29,40 @@ router.get('/:id', async (req: Request, res: Response) => {
   }
 });
 
+router.get('/:id/payments_history', async (req: Request, res: Response) => {
+  const customerId = parseInt(req.params.id);
+
+  if (isNaN(customerId)) {
+    return res.status(400).json({ error: 'Invalid customer ID' });
+  }
+
+  try {
+    // Récupérer le client pour obtenir les IDs des paiements
+    const customer = await prisma.customer.findUnique({
+      where: { id: customerId },
+      select: { payment_ids: true }, // On sélectionne uniquement les IDs des paiements
+    });
+
+    if (!customer) {
+      return res.status(404).json({ error: 'Customer not found' });
+    }
+
+    // Récupérer les détails des paiements en utilisant les IDs
+    const payments = await prisma.paymentHistory.findMany({
+      where: {
+        id: {
+          in: customer.payment_ids, // On utilise les IDs des paiements récupérés
+        },
+      },
+    });
+
+    res.status(200).json(payments);
+  } catch (error) {
+    console.error('Error retrieving payment histories:', error);
+    res.status(500).json({ error: 'Error retrieving payment histories' });
+  }
+});
+
 router.get('/:id/image', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
 
