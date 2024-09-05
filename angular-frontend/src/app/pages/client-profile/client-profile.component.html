@@ -8,7 +8,7 @@
         <div class="dropdown is-hoverable">
             <div class="dropdown-trigger">
                 <button class="button is-warning is-large">
-                    <span *ngIf="customer != null">Customer  {{ ' - ' + customer?.name + ' ' + customer?.surname }}</span>
+                    <span *ngIf="customer != null">Customer  {{ ' - ' + customer.name + ' ' + customer.surname }}</span>
                     <span *ngIf="customer == null">Select a customer</span>
                 </button>
             </div>
