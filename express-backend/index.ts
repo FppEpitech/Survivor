@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express';
 import path from 'path';
-import {PrismaClient} from '@prisma/client';
 
 import tipsRouter from './routes/tips';
 import loginRouter from './routes/login';

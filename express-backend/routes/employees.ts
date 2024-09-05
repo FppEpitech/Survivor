@@ -1,11 +1,9 @@
 import express, {Request, Response} from 'express';
-import {PrismaClient} from '@prisma/client';
 import { cp } from 'fs';
+import bcrypt from 'bcryptjs'
+import prisma from '../prismaClient'
 
 const router = express.Router();
-const prisma = new PrismaClient();
-
-router.use(express.json());
 
 router.get('/me', async (req: Request, res: Response) => {
     try {
@@ -50,11 +48,15 @@ router.post('/', async (req: Request, res: Response) => {
     birth_date,
     gender,
     work,
-    hashed_password,
+    password,
     image_url,
   } = req.body;
 
   try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    if (!hashedPassword) {
+        throw new Error("Failed hashing your password");
+    }
     const newEmployee = await prisma.employee.create({
         data: {
         email,
@@ -63,7 +65,7 @@ router.post('/', async (req: Request, res: Response) => {
         birth_date,
         gender,
         work,
-        hashed_password,
+        hashed_password : hashedPassword,
         old_id:-1,
         image_url: image_url,
       },
@@ -84,7 +86,7 @@ router.put('/:id', async (req: Request, res: Response) => {
         birth_date,
         gender,
         work,
-        hashed_password} = req.body;
+        } = req.body;
 
     try {
       const updatedEmployee = await prisma.employee.update({
@@ -96,7 +98,6 @@ router.put('/:id', async (req: Request, res: Response) => {
           birth_date,
           gender,
           work,
-          hashed_password
         }
       });
       res.status(200).json(updatedEmployee);

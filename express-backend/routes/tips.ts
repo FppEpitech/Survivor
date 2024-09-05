@@ -4,7 +4,6 @@ import {PrismaClient} from '@prisma/client';
 const router = express.Router();
 import prisma from '../prismaClient'
 
-router.use(express.json());
 
 router.get('/', async (req: Request, res: Response) => {
   try {
