@@ -15,16 +15,7 @@ export class StatisticsPageComponent {
     employees:Employee[] = [];
     customerResults : any = {}
 
-
-
-
     constructor(private employeesService : EmployeesService) { }
-
-
-    userInfo(id : number) {
-        return [{ name: 'nb customers', value: 1 }, { name: 'nb meetings', value: 20 }];
-
-    }
 
     ngOnInit(): void {
         this.employeesService.getEmployees().subscribe(
@@ -33,15 +24,13 @@ export class StatisticsPageComponent {
             for (let employee of data) {
                 this.employeesService.getCustomers(employee.id).subscribe(
                     (data) => {
-                        console.log(employee.id)
-                        this.customerResults[employee.id] = data
+                        console.log(employee.id);
+                        this.customerResults[employee.id] = data.length;
                     },
                     (error) => {console.error("Failed to load Employee list", error);});
             }
 
         },
         (error) => {console.error("Failed to load Employee list", error);});
-
-
     }
 }
