@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { PrismaClient } from '@prisma/client';
 import fs from 'fs';
 import path from 'path';
@@ -80,6 +79,7 @@ async function fetchCustomers(access_token: string) {
                                 astrological_sign: customer.astrological_sign,
                                 coach_id: -1,
                                 image_url: imageUrl,
+                                payment_ids: [],
                                 clothes: customersClothe,
                             },
                         });

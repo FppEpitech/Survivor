@@ -19,6 +19,10 @@ import { AstrologicalCompatibilityComponent } from './pages/astrological-compati
 import { FormsModule } from '@angular/forms';
 import { SecurePipe } from './pipes/secure.pipe';
 import { SignInCoachComponent } from './pages/sign-in-coach/sign-in-coach.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EventsService } from './service/events/events.service';
+import { Events } from 'leaflet';
+
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 // import {  StatisticsComponent } from './statistics/statistics.component';
 
@@ -30,17 +34,18 @@ import { SignInCoachComponent } from './pages/sign-in-coach/sign-in-coach.compon
     WardrobeComponent,
     CoachesComponent,
     TipsComponent,
-    EventsComponent,
     AstrologicalCompatibilityComponent,
     LoginComponent,
     SecurePipe,
-    SignInCoachComponent
+    SignInCoachComponent,
+    EventsComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {
@@ -50,7 +55,8 @@ import { SignInCoachComponent } from './pages/sign-in-coach/sign-in-coach.compon
       },
       TipsService,
       CustomersService,
-      EmployeesService
+      EmployeesService,
+      EventsService
   ],
   bootstrap: [AppComponent]
 })

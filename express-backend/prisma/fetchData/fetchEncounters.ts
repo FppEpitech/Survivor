@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -35,7 +34,7 @@ async function fetchEncounterById(id: number, access_token: string) {
       await prisma.encounter.create({
         data: {
           old_id: encounter.id,
-          customer_id: customer.id,
+          customer_id: customer.id, 
           date: encounter.date,
           rating: encounter.rating,
           comment: encounter.comment,

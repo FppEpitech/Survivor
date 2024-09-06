@@ -11,6 +11,8 @@ import { AstrologicalCompatibilityComponent } from './pages/astrological-compati
 import { TipsComponent } from './pages/tips/tips.component';
 import { CoachesComponent } from './pages/coaches/coaches.component';
 import { SignInCoachComponent } from './pages/sign-in-coach/sign-in-coach.component';
+import { EventsComponent } from './pages/events/events.component';
+// import {  AccountManagementComponent } from './account-management/account-management.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [LoggedGuard]},
@@ -22,7 +24,8 @@ const routes: Routes = [
     { path: 'wardrobe', component: WardrobeComponent, canActivate: [LoggedGuard] },
     { path: 'tips', component: TipsComponent, canActivate: [LoggedGuard] },
     { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] },
-    { path: 'sign-in-coach', component: SignInCoachComponent, canActivate: [LoggedGuard] }
+    { path: 'sign-in-coach', component: SignInCoachComponent, canActivate: [LoggedGuard] },
+    { path: 'events', component: EventsComponent, canActivate: [LoggedGuard] }
 ];
 
 @NgModule({
