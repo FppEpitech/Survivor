@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="this.customers.length != 0; else noClients">
     <div class="has-text-centered">
         <p class="title is-4">Astrological compatibility:</p>
         <p class="content title is-1">{{ this.compatibilityPercentage }}%</p>
@@ -67,3 +67,7 @@
         </div>
     </div>
 </div>
+
+<ng-template class="container" #noClients>
+  <h1>Loading customers...</h1>
+</ng-template>

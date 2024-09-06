@@ -1,4 +1,4 @@
-<section class="container">
+<section class="container" *ngIf="this.tips.length != 0; else noTips">
     <div class="container">
         <h1 class="big-title has-text-centered mt-4">Tips</h1>
     </div>
@@ -10,3 +10,7 @@
         </div>
     </div>
 </section>
+
+<ng-template #noTips>
+  Loading tips...
+</ng-template>

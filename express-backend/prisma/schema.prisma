@@ -35,6 +35,7 @@ model Customer {
   coach_id          Int
   image_url         String?
   clothes           Json
+  payment_ids       Int[]
 }
 
 model Employee {
@@ -79,7 +80,7 @@ model PaymentHistory {
   id                  Int    @id @default(autoincrement())
   date                String
   payment_method      String
-  amount              Int
+  amount              Float
   comment             String
   customer_id         Int
 }

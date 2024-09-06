@@ -21,6 +21,8 @@ import { SecurePipe } from './pipes/secure.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StatisticsPageComponent } from './pages/statistics/statistics.component';
 // import { NgxChartsModule } from 'ngx-charts';
+import { EventsService } from './service/events/events.service';
+import { Events } from 'leaflet';
 
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 // import {  StatisticsComponent } from './statistics/statistics.component';
@@ -33,10 +35,10 @@ import { StatisticsPageComponent } from './pages/statistics/statistics.component
     WardrobeComponent,
     CoachesComponent,
     TipsComponent,
-    EventsComponent,
     AstrologicalCompatibilityComponent,
     LoginComponent,
-    SecurePipe
+    SecurePipe,
+    EventsComponent
   ],
   imports: [
     AppRoutingModule,
@@ -53,7 +55,8 @@ import { StatisticsPageComponent } from './pages/statistics/statistics.component
       },
       TipsService,
       CustomersService,
-      EmployeesService
+      EmployeesService,
+      EventsService
   ],
   bootstrap: [AppComponent]
 })

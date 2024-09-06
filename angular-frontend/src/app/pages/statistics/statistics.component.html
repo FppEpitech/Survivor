@@ -3,10 +3,10 @@
         <h1 class="title has-text-centered"> Statistics </h1>
     </div>
 
-    <section class="mt-3">
-        <div class="grid is-row-max-6">
-            <div *ngFor="let employee of employees" class="card cell">
-                <section class="is-outlined card-border p-3 has-text-centered is-hoverable">
+    <section class="grid ml-0 mt-3 mr-6 is-column-gap-5 is-row-gap-3">
+        <div *ngFor="let employee of employees" class="cell card p-3 min-width-150">
+            <a href="https://google.com">
+                <section class="is-outlined p-3 has-text-centered is-hoverable">
                     <div>
                         <figure>
                             <!-- <img [src]="this.employee ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo" class="is-rounded"> -->
@@ -24,7 +24,7 @@
                     ]">
                 </ngx-charts-bar-vertical>
 
-            </div>
-        </div>
-    </section>
-</section>
+            <!-- </div> -->
+        <!-- </div> -->
+    <!-- </section> -->
+<!-- </section> -->

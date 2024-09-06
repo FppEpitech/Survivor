@@ -1,6 +1,6 @@
 import { Compatibility, CompatibilityService } from './../../service/compatibility/compatibility.service';
 import { Component } from '@angular/core';
-import { Customer } from 'src/app/service/customers/customers.service';
+import { Customer, CustomersService } from 'src/app/service/customers/customers.service';
 import { EmployeesService, Employee } from 'src/app/service/employees/employees.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { EmployeesService, Employee } from 'src/app/service/employees/employees.
 })
 export class AstrologicalCompatibilityComponent {
     private coach?: Employee;
+    isCoach: boolean = false;
     customers : Customer[] = [];
     customerLeft?: Customer;
     customerRight?: Customer;
@@ -22,16 +23,24 @@ export class AstrologicalCompatibilityComponent {
 
     backupImageUrl = 'assets/placeholder-128.png';
 
-    constructor (private employeesService: EmployeesService, private compatibilityService: CompatibilityService) {}
+    constructor (private employeesService: EmployeesService, private compatibilityService: CompatibilityService, private customerService : CustomersService) {}
 
     ngOnInit(): void {
         this.employeesService.getMe().subscribe(
             (data) => {
                 this.coach = data;
-                this.employeesService.getCustomers(this.coach?.id).subscribe(
-                    (data) => { this.customers = data; },
-                    (error) => { console.error("Failed to load Customers list", error); }
-                );
+                this.isCoach = this.coach?.work === 'Coach';
+                if (this.isCoach) {
+                  this.employeesService.getCustomers(this.coach?.id).subscribe(
+                      (data) => { this.customers = data; },
+                      (error) => { console.error("Failed to load Customers list", error); }
+                  );
+                } else {
+                  this.customerService.getCustomers().subscribe(
+                      (data) => { this.customers = data;},
+                      (error) => { console.error("Failed to load Customers list", error); }
+                  );
+                }
             },
             (error) => { console.error("Failed to load coach me", error); }
         );
