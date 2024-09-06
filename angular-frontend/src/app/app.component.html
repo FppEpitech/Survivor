@@ -1,9 +1,9 @@
 <div class="columns is-gapless">
-    <div class="column is-one-fifth" *ngIf="this._auth.authLogged == true">
-        <app-navbar></app-navbar>
-    </div>
+  <div class="column is-one-fifth is-full-mobile" *ngIf="this._auth.authLogged == true">
+      <app-navbar></app-navbar>
+  </div>
 
-    <div class="column is-four-fifth">
-        <router-outlet></router-outlet>
-    </div>
+  <div class="column is-four-fifths is-full-mobile">
+      <router-outlet></router-outlet>
+  </div>
 </div>
