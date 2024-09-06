@@ -27,13 +27,15 @@
         <div class="column">
             <div class="card">
                 <ngx-charts-bar-horizontal
+                    *ngIf="this.nbCustomers[0] !== undefined &&
+                    this.nbEncounters[0] !== undefined"
                     [view]="[700,300]"
                     [scheme]="colorScheme"
+                    [xAxis]="true"
+                    [yAxis]="true"
                     [results]="[
-                        { name: 'Tips', value: 1500 },
-                        { name: 'Events', value: 67 },
-                        { name: 'Employees', value: 24578 },
-                        { name: 'Events', value: 25678 }
+                        { name: 'Customers', value: this.nbCustomers[0].length},
+                        { name: 'Encounters', value: this.nbEncounters[0].length},
                     ]">
                 </ngx-charts-bar-horizontal>
             </div>
@@ -41,7 +43,7 @@
     </div>
 
     <section class="grid ml-0 mt-3 mr-6 is-column-gap-5 is-row-gap-3">
-        <div *ngFor="let coaches of coaches" class="cell card p-3 min-width-150">
+        <div *ngFor="let coaches of coaches" class="cell card p-3 cell-width cell-width">
             <a href="https://google.com">
             <section class="is-outlined p-3 has-text-centered is-hoverable">
                 <div>

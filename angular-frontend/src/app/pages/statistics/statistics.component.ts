@@ -1,3 +1,4 @@
+import { TipsService } from './../../service/tips/tips.service';
 import { PaymentHistory, PaymentHistoryService } from './../../service/paymentHistory/payment-history.service';
 import { CustomersService } from './../../service/customers/customers.service';
 import { EncountersService } from './../../service/encounters/encounters.service';
@@ -30,17 +31,24 @@ export class StatisticsPageComponent {
     nbCoaches: any = {};
     nbCustomers: any = {};
     paymentAccount: any = {};
+    nbTips: any = {};
+    nbEncounters: any = {};
 
     constructor(
         private employeesService : EmployeesService,
         private encountersService: EncountersService,
         private customersService: CustomersService,
-        private paymentHistoryService: PaymentHistoryService) { }
+        private paymentHistoryService: PaymentHistoryService,
+        private tipsService: TipsService,
+        private EncountersService: EncountersService
+    ) { }
 
     ngOnInit(): void {
         this.initPayments();
         this.initCustomers();
         this.initEmployees();
+        this.initTips();
+        this.initEncounters();
     }
 
     initPayments() {
@@ -96,6 +104,24 @@ export class StatisticsPageComponent {
 
             },
             (error) => {console.error("Failed to load Employee list", error);}
+        );
+    }
+
+    initTips() {
+        this.tipsService.getTips().subscribe(
+            (data) => {
+                this.nbTips[0] = data;
+            },
+            (error) => {console.error("Failed to load Tips list", error);}
+        );
+    }
+
+    initEncounters() {
+        this.encountersService.getEncounters().subscribe(
+            (data) => {
+                this.nbEncounters[0] = data;
+            },
+            (error) => {console.error("Failed to load Encounters list", error);}
         );
     }
 }
