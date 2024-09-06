@@ -48,7 +48,7 @@ export class ClientProfileComponent {
     onRadioChange(newCustomer: Customer) {
         this.customer = newCustomer;
         this.customerImageUrl = 'api/' + this.customer.image_url;
-        this.paymentHistoryService.getPayments(this.customer.id).subscribe(
+        this.paymentHistoryService.getPaymentsCustomer(this.customer.id).subscribe(
             (data) => { this.payments = data; console.log(data)},
             (error) => { console.error("Failed to load payments list", error); }
         );

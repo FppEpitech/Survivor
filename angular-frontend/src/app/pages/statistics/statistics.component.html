@@ -1,30 +1,65 @@
 <section class="mr-8">
-    <div class="container mt-5">
-        <h1 class="title has-text-centered"> Statistics </h1>
+    <div class="column is-11">
+        <p class="title is-1">Statistics</p>
+        <hr>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <div class="card">
+                <ngx-charts-number-card
+                    *ngIf="this.nbEmployees[0] !== undefined &&
+                    this.paymentAccount[0] !== undefined &&
+                    this.nbCoaches[0] !== undefined &&
+                    this.nbCustomers[0] !== undefined"
+                    [view]="[700,300]"
+                    [cardColor]="cardColor"
+                    [scheme]="colorScheme"
+                    [results]="[
+                        { name: 'Total sales (€)', value: this.paymentAccount[0] || 0},
+                        { name: 'Customers', value: this.nbCustomers[0].length || 0},
+                        { name: 'Employees', value: this.nbEmployees[0].length || 0},
+                        { name: 'Coaches', value: this.nbCoaches[0].length || 0},
+                    ]">
+                </ngx-charts-number-card>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                <ngx-charts-bar-horizontal
+                    [view]="[700,300]"
+                    [scheme]="colorScheme"
+                    [results]="[
+                        { name: 'Tips', value: 1500 },
+                        { name: 'Events', value: 67 },
+                        { name: 'Employees', value: 24578 },
+                        { name: 'Events', value: 25678 }
+                    ]">
+                </ngx-charts-bar-horizontal>
+            </div>
+        </div>
     </div>
 
     <section class="grid ml-0 mt-3 mr-6 is-column-gap-5 is-row-gap-3">
-        <div *ngFor="let employee of employees" class="cell card p-3 min-width-150">
+        <div *ngFor="let coaches of coaches" class="cell card p-3 min-width-150">
             <a href="https://google.com">
-                <section class="is-outlined p-3 has-text-centered is-hoverable">
-                    <div>
-                        <figure>
-                            <!-- <img [src]="this.employee ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo" class="is-rounded"> -->
-                        </figure>
-                    </div>
-                    <div class="container mt-4 mb-2 has-text-black">
-                        <p> <strong>Prénom / Nom </strong> : {{employee?.name}} {{employee?.surname}} </p>
-                    </div>
-                </section>
-                <ngx-charts-bar-vertical *ngIf="customerResults[employee.id] !== undefined && encounterResults[employee.id] !== undefined"
-                    [view]="[100,100]"
-                    [results]="[
-                        { name: 'nb customers', value: customerResults[employee.id] || 0 },
-                        { name: 'nb meetings', value: encounterResults[employee.id] || 0 }
-                    ]">
-                </ngx-charts-bar-vertical>
-
-            <!-- </div> -->
+            <section class="is-outlined p-3 has-text-centered is-hoverable">
+                <div>
+                    <figure>
+                        <!-- <img [src]="this.coaches ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo" class="is-rounded"> -->
+                    </figure>
+                </div>
+                <div class="container mt-4 mb-2 has-text-black">
+                    <p> <strong>Prénom / Nom </strong> : {{coaches?.name}} {{coaches?.surname}} </p>
+                </div>
+            </section>
+            <ngx-charts-bar-vertical *ngIf="customerResults[coaches.id] !== undefined && encounterResults[coaches.id] !== undefined"
+                [view]="[100,100]"
+                [results]="[
+                    { name: 'nb customers', value: customerResults[coaches.id] || 0 },
+                    { name: 'nb meetings', value: encounterResults[coaches.id] || 0 }
+                ]">
+            </ngx-charts-bar-vertical>
         <!-- </div> -->
     <!-- </section> -->
 <!-- </section> -->
