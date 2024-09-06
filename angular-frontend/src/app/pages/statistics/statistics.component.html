@@ -48,23 +48,35 @@
 
     <section class="grid ml-0 mt-3 mr-6 is-column-gap-5 is-row-gap-3">
         <div *ngFor="let coaches of coaches" class="cell card p-3 cell-width cell-width">
-            <section class="is-outlined p-3 has-text-centered is-hoverable">
+            <div class="is-outlined p-3 has-text-centered is-hoverable">
                 <div>
                     <figure>
                         <!-- <img [src]="this.coaches ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo" class="is-rounded"> -->
                     </figure>
                 </div>
                 <div class="container mt-4 mb-2 has-text-black">
-                    <p> <strong>Prénom / Nom </strong> : {{coaches?.name}} {{coaches?.surname}} </p>
+                    <p class="title">{{coaches?.name}} {{coaches?.surname}} </p>
                 </div>
-            </section>
-            <ngx-charts-bar-vertical *ngIf="customerResults[coaches.id] !== undefined && encounterResults[coaches.id] !== undefined"
-                [view]="[100,100]"
+            </div>
+            <ngx-charts-bar-horizontal *ngIf="customerResults[coaches.id] !== undefined && encounterResults[coaches.id] !== undefined"
+                [view]="[450,100]"
+                [scheme]="'flame'"
+                [xAxis]="true"
+                [yAxis]="true"
                 [results]="[
-                    { name: 'nb customers', value: customerResults[coaches.id] || 0 },
-                    { name: 'nb meetings', value: encounterResults[coaches.id] || 0 }
+                    { name: 'customers', value: customerResults[coaches.id] || 0 },
+                    { name: 'meetings', value: encounterResults[coaches.id] || 0 }
                 ]">
-            </ngx-charts-bar-vertical>
-        <!-- </div> -->
-    <!-- </section> -->
-<!-- </section> -->
+            </ngx-charts-bar-horizontal>
+            <ngx-charts-advanced-pie-chart *ngIf="genderResults[coaches.id] !== undefined"
+                [view]="[700,200]"
+                [scheme]="'forest'"
+                [results]="[
+                    { name: 'Male', value: genderResults[coaches.id][0] || 0 },
+                    { name: 'Female', value: genderResults[coaches.id][1] || 0 },
+                    { name: 'Other', value: genderResults[coaches.id][2] || 0 }
+                ]">
+            </ngx-charts-advanced-pie-chart>
+        </div>
+    </section>
+</section>

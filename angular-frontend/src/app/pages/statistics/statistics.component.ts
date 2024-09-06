@@ -22,8 +22,9 @@ export class StatisticsPageComponent {
     customers:Customer[] = [];
     payments:PaymentHistory[] = [];
 
-    customerResults : any = {}
-    encounterResults : any = {}
+    customerResults : any = {};
+    encounterResults : any = {};
+    genderResults : any = {};
 
     cardColor: string = '#fff4de';
     colorScheme:string = 'flame';
@@ -84,9 +85,11 @@ export class StatisticsPageComponent {
             (data) => {
                 this.employees = data;
                 this.coaches = data.filter(employee => employee.work === 'Coach');
+                // this.coaches = data;
                 this.nbEmployees[0] = this.employees;
                 this.nbCoaches[0] = this.coaches;
                 for (let employee of data) {
+                    this.genderResults[employee.id] = [0, 0, 0];
                     this.employeesService.getCustomers(employee.id).subscribe(
                         (data) => {
                             this.customerResults[employee.id] = data.length;
@@ -100,6 +103,7 @@ export class StatisticsPageComponent {
                                     },
                                     (error) => {console.error("Failed to load encounter list", error);}
                                 )
+                                this.updateGender(customer.gender, employee.id);
                             }
                         },
                         (error) => {console.error("Failed to load Employee list", error);});
@@ -135,5 +139,14 @@ export class StatisticsPageComponent {
             },
             (error) => {console.error("Failed to load Events list", error);}
         );
+    }
+
+    updateGender(gender:string, id:number) {
+        if (gender === 'Male')
+            this.genderResults[id][0] += 1;
+        else if (gender === 'Female')
+            this.genderResults[id][1] += 1;
+        else
+        this.genderResults[id][2] += 1;
     }
 }
