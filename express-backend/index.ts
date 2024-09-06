@@ -13,9 +13,16 @@ import compatibilityRouter from './routes/compatibility';
 require('dotenv').config();
 
 const app = express();
-const port = process.env.BACK_PORT || 0;
+const port = process.env.BACK_PORT || 3001;
 
-app.use('/', express.static(path.join(__dirname, '../../angular-frontend/dist/angular-frontend')));
+if (process.env.FROM_DOCKER == "true") {
+    app.use('/', express.static(path.join(__dirname, '../../angular-frontend/dist/angular-frontend')));
+} else {
+    //we could serve angular dist folder from here.
+    app.get('/', (req: Request, res: Response) => {
+        res.send('Hello world');
+    });
+}
 
 let apiRouter = express.Router();
 
@@ -26,7 +33,7 @@ apiRouter.use(require('helmet')());
 
 apiRouter.use(authenticateToken); //now all routes are protected, user need to have a valid acc_token.
 
-apiRouter.use('/assets', express.static(path.join(__dirname, '../assets')));
+apiRouter.use('/assets', express.static(path.join(__dirname, process.env.FROM_DOCKER == 'true' ? '../assets' : 'assets')));
 apiRouter.use('/tips', tipsRouter);
 apiRouter.use('/customers', customersRouter);
 apiRouter.use('/employees', employeesRouter);
