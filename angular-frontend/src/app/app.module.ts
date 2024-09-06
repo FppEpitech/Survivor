@@ -19,6 +19,8 @@ import { AstrologicalCompatibilityComponent } from './pages/astrological-compati
 import { FormsModule } from '@angular/forms';
 import { SecurePipe } from './pipes/secure.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EventsService } from './service/events/events.service';
+import { Events } from 'leaflet';
 
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 // import {  StatisticsComponent } from './statistics/statistics.component';
@@ -31,10 +33,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     WardrobeComponent,
     CoachesComponent,
     TipsComponent,
-    EventsComponent,
     AstrologicalCompatibilityComponent,
     LoginComponent,
-    SecurePipe
+    SecurePipe,
+    EventsComponent
   ],
   imports: [
     AppRoutingModule,
@@ -51,7 +53,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       },
       TipsService,
       CustomersService,
-      EmployeesService
+      EmployeesService,
+      EventsService
   ],
   bootstrap: [AppComponent]
 })
