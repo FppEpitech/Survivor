@@ -4,9 +4,9 @@
         <hr>
     </div>
 
-    <div class="columns">
-        <div class="column">
-            <div class="card">
+    <div class="columns is-multiline">
+        <div class="column is-6">
+            <div #containerRef class="card is-flex is-justify-content-center">
                 <ngx-charts-number-card
                     *ngIf="this.nbEmployees[0] !== undefined &&
                     this.paymentAccount[0] !== undefined &&
@@ -14,7 +14,7 @@
                     this.nbEvents[0] !== undefined &&
                     this.nbTips[0] !== undefined &&
                     this.nbCustomers[0] !== undefined"
-                    [view]="[700,300]"
+                    [view]="[containerRef.offsetWidth, 300]"
                     [cardColor]="cardColor"
                     [scheme]="colorScheme"
                     [results]="[
@@ -28,12 +28,12 @@
                 </ngx-charts-number-card>
             </div>
         </div>
-        <div class="column">
-            <div class="card">
+        <div class="column is-5">
+            <div #containerRef2 class="card is-justify-content-center">
                 <ngx-charts-bar-horizontal
                     *ngIf="this.nbCustomers[0] !== undefined &&
                     this.nbEncounters[0] !== undefined"
-                    [view]="[700,300]"
+                    [view]="[containerRef2.offsetWidth, 300]"
                     [scheme]="colorScheme"
                     [xAxis]="true"
                     [yAxis]="true"
@@ -46,12 +46,11 @@
         </div>
     </div>
 
-    <section class="grid ml-0 mt-3 mr-6 is-column-gap-5 is-row-gap-3">
-        <div *ngFor="let coaches of coaches" class="cell card p-3 cell-width cell-width">
+    <div class="columns is-multiline">
+        <div #containerRef3 *ngFor="let coaches of coaches" class="column is-5 m-4 card cell-width">
             <div class="is-outlined p-3 has-text-centered is-hoverable">
                 <div>
                     <figure>
-                        <!-- <img [src]="this.coaches ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo" class="is-rounded"> -->
                     </figure>
                 </div>
                 <div class="container mt-4 mb-2 has-text-black">
@@ -59,7 +58,7 @@
                 </div>
             </div>
             <ngx-charts-bar-horizontal *ngIf="customerResults[coaches.id] !== undefined && encounterResults[coaches.id] !== undefined"
-                [view]="[450,100]"
+                [view]="[containerRef3.offsetWidth - 20, 100]"
                 [scheme]="'flame'"
                 [xAxis]="true"
                 [yAxis]="true"
@@ -69,7 +68,7 @@
                 ]">
             </ngx-charts-bar-horizontal>
             <ngx-charts-advanced-pie-chart *ngIf="genderResults[coaches.id] !== undefined"
-                [view]="[700,200]"
+                [view]="[containerRef3.offsetWidth, 200]"
                 [scheme]="'forest'"
                 [results]="[
                     { name: 'Male', value: genderResults[coaches.id][0] || 0 },
@@ -78,5 +77,42 @@
                 ]">
             </ngx-charts-advanced-pie-chart>
         </div>
-    </section>
+    </div>
 </section>
+
+<!-- <section class="columns is-multiline is-centered">
+    <div *ngFor="let coach of coaches" class="column is-4-tablet is-3-desktop is-2-widescreen">
+      <div class="card p-3 is-fullheight">
+        <div class="card-content is-outlined has-text-centered is-hoverable">
+          <div>
+            <figure>
+            </figure>
+          </div>
+          <div class="container mt-4 mb-2 has-text-black">
+            <p class="title">{{coach?.name}} {{coach?.surname}}</p>
+          </div>
+        </div>
+        <ngx-charts-bar-horizontal
+          *ngIf="customerResults[coach.id] !== undefined && encounterResults[coach.id] !== undefined"
+          [view]="[300,150]"
+          [scheme]="'flame'"
+          [xAxis]="true"
+          [yAxis]="true"
+          [results]="[
+            { name: 'customers', value: customerResults[coach.id] || 0 },
+            { name: 'meetings', value: encounterResults[coach.id] || 0 }
+          ]">
+        </ngx-charts-bar-horizontal>
+        <ngx-charts-advanced-pie-chart
+          *ngIf="genderResults[coach.id] !== undefined"
+          [view]="[300,150]"
+          [scheme]="'forest'"
+          [results]="[
+            { name: 'Male', value: genderResults[coach.id][0] || 0 },
+            { name: 'Female', value: genderResults[coach.id][1] || 0 },
+            { name: 'Other', value: genderResults[coach.id][2] || 0 }
+          ]">
+        </ngx-charts-advanced-pie-chart>
+      </div>
+    </div>
+  </section> -->

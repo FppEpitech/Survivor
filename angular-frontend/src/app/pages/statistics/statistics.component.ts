@@ -85,7 +85,6 @@ export class StatisticsPageComponent {
             (data) => {
                 this.employees = data;
                 this.coaches = data.filter(employee => employee.work === 'Coach');
-                // this.coaches = data;
                 this.nbEmployees[0] = this.employees;
                 this.nbCoaches[0] = this.coaches;
                 for (let employee of data) {
