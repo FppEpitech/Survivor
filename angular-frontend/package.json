@@ -2,7 +2,7 @@
   "name": "angular-frontend",
   "version": "0.0.0",
   "scripts": {
-    "install-all" : "npm install && npm install @angular/cli -g",
+    "install-all": "npm install --force && npm install @angular/cli -g",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",

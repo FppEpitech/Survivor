@@ -16,14 +16,18 @@ const app = express();
 const port = process.env.BACK_PORT || 0;
 
 app.use(express.json());
+
+app.use('/', express.static(path.join(__dirname, '../../angular-frontend/dist/angular-frontend')));
+
 app.use(loginRouter)
 app.use(require('cors')());
 app.use(require('helmet')());
 
 
+
 app.use(authenticateToken); //now all routes are protected, user need to have a valid acc_token.
 
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/assets', express.static(path.join(__dirname, '../assets')));
 app.use('/tips', tipsRouter);
 app.use('/customers', customersRouter);
 app.use('/employees', employeesRouter);
@@ -32,10 +36,6 @@ app.use('/events', eventsRouter);
 app.use('/clothes', clothesRouter);
 app.use('/paymenthistory', PaymentHistoryRouter);
 app.use('/compatibility', compatibilityRouter);
-
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello, World!');
-});
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
