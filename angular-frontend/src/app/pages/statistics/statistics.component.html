@@ -16,8 +16,14 @@
                         <p> <strong>Prénom / Nom </strong> : {{employee?.name}} {{employee?.surname}} </p>
                     </div>
                 </section>
-                <ngx-charts-bar-vertical [view]="[100,100]" [results]="[{ name: 'nb customers', value: this.customerResults[employee.id] }, { name: 'nb meetings', value: 20 }]">
+                <ngx-charts-bar-vertical *ngIf="customerResults[employee.id] !== undefined && encounterResults[employee.id] !== undefined"
+                    [view]="[100,100]"
+                    [results]="[
+                        { name: 'nb customers', value: customerResults[employee.id] || 0 },
+                        { name: 'nb meetings', value: encounterResults[employee.id] || 0 }
+                    ]">
                 </ngx-charts-bar-vertical>
+
             </div>
         </div>
     </section>
