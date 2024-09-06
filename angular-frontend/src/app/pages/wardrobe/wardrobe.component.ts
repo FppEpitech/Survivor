@@ -1,3 +1,4 @@
+import { Employee } from './../../service/employees/employees.service';
 import { Component } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { Clothe, ClothesService } from 'src/app/service/clothes/clothes.service';
@@ -41,6 +42,7 @@ export class WardrobeComponent {
   top_id: number[] = [];
   bottom_id: number[] = [];
   shoes_id: number[] = [];
+  isCoach : boolean = false;
 
   customerSelected = false;
 
@@ -49,10 +51,17 @@ export class WardrobeComponent {
   constructor(private customerService : CustomersService, private employeeService : EmployeesService, private clotheService : ClothesService) { }
 
   ngOnInit(): void {
-    this.employeeService.getMe().subscribe((employee) => {
-      this.employeeService.getCustomers(employee.id).subscribe((customers) => {
-        this.customers = customers;
-      });
+    this.employeeService.getMe().subscribe((employee : Employee) => {
+      this.isCoach = employee.work === 'Coach';
+      if (this.isCoach) {
+        this.employeeService.getCustomers(employee.id).subscribe((customers) => {
+          this.customers = customers;
+        });
+      } else {
+        this.customerService.getCustomers().subscribe((customers) => {
+          this.customers = customers;
+        });
+      }
     });
   }
 

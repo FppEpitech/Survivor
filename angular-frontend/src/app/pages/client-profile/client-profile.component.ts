@@ -1,7 +1,7 @@
 import { Encounter, EncountersService } from './../../service/encounters/encounters.service';
 import { PaymentHistory, PaymentHistoryService } from './../../service/paymentHistory/payment-history.service';
 import { Component } from '@angular/core';
-import { Customer } from 'src/app/service/customers/customers.service';
+import { Customer, CustomersService } from 'src/app/service/customers/customers.service';
 import { Employee, EmployeesService } from 'src/app/service/employees/employees.service';
 
 @Component({
@@ -19,37 +19,41 @@ export class ClientProfileComponent {
 
     payments: PaymentHistory[] = [];
     encounters: Encounter[] = [];
-
+    isCoach : boolean = false;
     backupImageUrl = 'assets/placeholder-128.png';
 
     constructor (
         private employeesService: EmployeesService,
         private paymentHistoryService: PaymentHistoryService,
-        private encountersService: EncountersService
+        private encountersService: EncountersService,
+        private customerService: CustomersService,
     ) {}
 
     ngOnInit(): void {
-        this.employeesService.getMe().subscribe(
-            (data) => {
-                this.coach = data;
-                this.employeesService.getCustomers(this.coach?.id).subscribe(
-                    (data) => { this.customers = data; },
-                    (error) => { console.error("Failed to load Customers list", error); }
-                );
-            },
-            (error) => { console.error("Failed to load coach me", error); }
-        );
+      this.employeesService.getMe().subscribe((employee : Employee) => {
+        this.isCoach = employee.work === 'Coach';
+        this.coach = employee
+        if (this.isCoach) {
+          this.employeesService.getCustomers(employee.id).subscribe((customers) => {
+            this.customers = customers;
+          });
+        } else {
+          this.customerService.getCustomers().subscribe((customers) => {
+            this.customers = customers;
+          });
+        }
+      });
     }
 
     onRadioChange(newCustomer: Customer) {
         this.customer = newCustomer;
-        this.customerImageUrl = '/api/' + this.customer.image_url;
+        this.customerImageUrl = 'api/' + this.customer.image_url;
         this.paymentHistoryService.getPayments(this.customer.id).subscribe(
             (data) => { this.payments = data; console.log(data)},
             (error) => { console.error("Failed to load payments list", error); }
         );
         this.encountersService.getCustomerEncounters(this.customer.id).subscribe(
-            (data) => { this.encounters = data; console.log(data)},
+            (data) => { this.encounters = data; console.log(`Encounters : ${data}`)},
             (error) => { console.error("Failed to load encounters list", error); }
         );
     }
