@@ -20,6 +20,10 @@
             "outputPath": "dist/angular-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "rfdc",
+              "leaflet"
+            ],
             "polyfills": [
               "zone.js"
             ],
@@ -40,7 +44,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",

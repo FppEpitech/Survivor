@@ -13,7 +13,7 @@ import compatibilityRouter from './routes/compatibility';
 require('dotenv').config();
 
 const app = express();
-const port = 3001;
+const port = process.env.BACK_PORT || 0;
 
 app.use(express.json());
 app.use(loginRouter)
