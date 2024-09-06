@@ -11,15 +11,19 @@
                     *ngIf="this.nbEmployees[0] !== undefined &&
                     this.paymentAccount[0] !== undefined &&
                     this.nbCoaches[0] !== undefined &&
+                    this.nbEvents[0] !== undefined &&
+                    this.nbTips[0] !== undefined &&
                     this.nbCustomers[0] !== undefined"
                     [view]="[700,300]"
                     [cardColor]="cardColor"
                     [scheme]="colorScheme"
                     [results]="[
                         { name: 'Total sales (€)', value: this.paymentAccount[0] || 0},
-                        { name: 'Customers', value: this.nbCustomers[0].length || 0},
-                        { name: 'Employees', value: this.nbEmployees[0].length || 0},
-                        { name: 'Coaches', value: this.nbCoaches[0].length || 0},
+                        { name: 'Customer(s)', value: this.nbCustomers[0].length || 0},
+                        { name: 'Employee(s)', value: this.nbEmployees[0].length || 0},
+                        { name: 'Coach(es)', value: this.nbCoaches[0].length || 0},
+                        { name: 'Event(s)', value: this.nbEvents[0].length || 0},
+                        { name: 'Tip(s)', value: this.nbTips[0].length || 0},
                     ]">
                 </ngx-charts-number-card>
             </div>
@@ -44,7 +48,6 @@
 
     <section class="grid ml-0 mt-3 mr-6 is-column-gap-5 is-row-gap-3">
         <div *ngFor="let coaches of coaches" class="cell card p-3 cell-width cell-width">
-            <a href="https://google.com">
             <section class="is-outlined p-3 has-text-centered is-hoverable">
                 <div>
                     <figure>

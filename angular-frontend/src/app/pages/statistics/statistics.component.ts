@@ -1,3 +1,4 @@
+import { EventsService } from './../../service/events/events.service';
 import { TipsService } from './../../service/tips/tips.service';
 import { PaymentHistory, PaymentHistoryService } from './../../service/paymentHistory/payment-history.service';
 import { CustomersService } from './../../service/customers/customers.service';
@@ -33,6 +34,7 @@ export class StatisticsPageComponent {
     paymentAccount: any = {};
     nbTips: any = {};
     nbEncounters: any = {};
+    nbEvents: any = {};
 
     constructor(
         private employeesService : EmployeesService,
@@ -40,7 +42,7 @@ export class StatisticsPageComponent {
         private customersService: CustomersService,
         private paymentHistoryService: PaymentHistoryService,
         private tipsService: TipsService,
-        private EncountersService: EncountersService
+        private eventsService: EventsService
     ) { }
 
     ngOnInit(): void {
@@ -49,6 +51,7 @@ export class StatisticsPageComponent {
         this.initEmployees();
         this.initTips();
         this.initEncounters();
+        this.initEvents();
     }
 
     initPayments() {
@@ -122,6 +125,15 @@ export class StatisticsPageComponent {
                 this.nbEncounters[0] = data;
             },
             (error) => {console.error("Failed to load Encounters list", error);}
+        );
+    }
+
+    initEvents() {
+        this.eventsService.getEvents().subscribe(
+            (data) => {
+                this.nbEvents[0] = data;
+            },
+            (error) => {console.error("Failed to load Events list", error);}
         );
     }
 }
