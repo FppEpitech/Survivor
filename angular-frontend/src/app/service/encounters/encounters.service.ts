@@ -19,6 +19,11 @@ export class EncountersService {
 
     constructor(private http: HttpClient) { }
 
+    // Get all Encounters
+    getEncounters(): Observable<Encounter[]> {
+        return this.http.get<Encounter[]>(`${this.apiUrl}`);
+    }
+
     // Get all Encounters of a single customer
     getCustomerEncounters(id: number): Observable<Encounter[]> {
         return this.http.get<Encounter[]>(`${this.apiUrl}/customer/${id}`);
