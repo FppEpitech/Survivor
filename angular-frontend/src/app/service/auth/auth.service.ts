@@ -1,3 +1,4 @@
+import { EmployeesService } from 'src/app/service/employees/employees.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,14 +12,13 @@ export class AuthService {
     private apiUrl = 'api';
     authLogged = false;
 
-    constructor(private http: HttpClient, private router : Router) { }
+    constructor(private http: HttpClient, private router : Router, private employeesService: EmployeesService) { }
 
     login(email: string, password: string): void {
         if (email == '' || password == '')
             return;
         this.http.post(`${this.apiUrl}/login`, {email, password}).subscribe(
             (data : any) => {
-                console.log(data);
                 if (data.token) {
                     localStorage.setItem("token", data.token);
                     localStorage.setItem("token_date", Date.now().toString())
@@ -55,5 +55,20 @@ export class AuthService {
         }
         this.authLogged = token != null;
         return token != null
+    }
+
+    async isManager(): Promise<boolean> {
+        try {
+            const data = await this.employeesService.getMe().toPromise();
+
+            if (data && data.work !== undefined) {
+                return data.work !== 'Coach';
+            } else {
+                return false;
+            }
+        } catch (error) {
+            console.log("Failed to get Me employee", error);
+            return false;
+        }
     }
 }
