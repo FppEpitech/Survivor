@@ -3,11 +3,11 @@ import { EmployeeCreation, EmployeesService } from '../../service/employees/empl
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-sign-in-employee',
-  templateUrl: './sign-in-employee.component.html',
-  styleUrls: ['./sign-in-employee.component.scss']
+  selector: 'app-register-employee',
+  templateUrl: './register-employee.component.html',
+  styleUrls: ['./register-employee.component.scss']
 })
-export class SignInEmployeeComponent {
+export class RegisterEmployeeComponent {
 
     name = "";
     surname = "";

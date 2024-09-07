@@ -10,7 +10,7 @@ import { StatisticsPageComponent } from './pages/statistics/statistics.component
 import { AstrologicalCompatibilityComponent } from './pages/astrological-compatibility/astrological-compatibility.component';
 import { TipsComponent } from './pages/tips/tips.component';
 import { CoachesComponent } from './pages/coaches/coaches.component';
-import { SignInEmployeeComponent } from './pages/sign-in-employee/sign-in-employee.component';
+import { RegisterEmployeeComponent } from './pages/register-employee/register-employee.component';
 import { EventsComponent } from './pages/events/events.component';
 // import {  AccountManagementComponent } from './account-management/account-management.component';
 
@@ -24,7 +24,7 @@ const routes: Routes = [
     { path: 'wardrobe', component: WardrobeComponent, canActivate: [LoggedGuard] },
     { path: 'tips', component: TipsComponent, canActivate: [LoggedGuard] },
     { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] },
-    { path: 'sign-in-employee', component: SignInEmployeeComponent, canActivate: [LoggedGuard] },
+    { path: 'register-employee', component: RegisterEmployeeComponent, canActivate: [LoggedGuard] },
     { path: 'events', component: EventsComponent, canActivate: [LoggedGuard] }
 ];
 

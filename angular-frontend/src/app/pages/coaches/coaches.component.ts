@@ -70,6 +70,6 @@ export class CoachesComponent {
     }
 
     goToSignIn() {
-        this.router.navigate(["/sign-in-employee"])
+        this.router.navigate(["/register-employee"])
     }
 }
