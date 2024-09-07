@@ -22,6 +22,7 @@ export class AuthService {
                 if (data.token) {
                     localStorage.setItem("token", data.token);
                     localStorage.setItem("token_date", Date.now().toString())
+                    this.setManager();
                     this.router.navigate(["/"]);
                 } else {
                     console.error('Error empty access token');
@@ -57,18 +58,24 @@ export class AuthService {
         return token != null
     }
 
-    async isManager(): Promise<boolean> {
-        try {
-            const data = await this.employeesService.getMe().toPromise();
+    setManager() {
+        this.employeesService.getMe().subscribe(
 
-            if (data && data.work !== undefined) {
-                return data.work !== 'Coach';
-            } else {
-                return false;
+            (data) => {
+                if (data && data.work !== undefined && data.work !== 'Coach') {
+                    localStorage.setItem("Manager", "true");
+                } else {
+                    localStorage.setItem("Manager", "false");
+                }
+            },
+            (error) => {
+                console.log("Failed to get Me employee", error);
+                localStorage.setItem("Manager", "false");
             }
-        } catch (error) {
-            console.log("Failed to get Me employee", error);
-            return false;
-        }
+        );
+    }
+
+    isManager () {
+        return localStorage.getItem("Manager") === "true";
     }
 }

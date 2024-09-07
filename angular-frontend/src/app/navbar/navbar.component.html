@@ -2,7 +2,7 @@
   <ul class="menu-list">
     <li><a *ngIf="this.displayNav && this.width < 800" class="button is-active" (click)="this.toggleNav()">X</a></li>
     <li><a class="underline" href="/home">Home</a></li>
-    <li *ngIf="this.isManager"><a class="underline" href="/coaches">Coaches</a></li>
+    <li *ngIf="this.authService.isManager()"><a class="underline" href="/coaches">Coaches</a></li>
     <li><a class="underline" href="/client-profile">Customers</a></li>
     <li><a class="underline" href="/statistics">Statistics</a></li>
     <li><a class="underline" href="/tips">Tips</a></li>
