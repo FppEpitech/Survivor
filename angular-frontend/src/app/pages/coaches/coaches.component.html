@@ -3,7 +3,7 @@
         <p class="title is-1">Coaches</p>
     </div>
     <div class="column m-3 is-8">
-        <button class="button is-success" onclick="window.location.href='/sign-in-coach';">Create Coach</button>
+        <button class="button is-success" (click)="goToSignIn()">Create Employee</button>
     </div>
     <div class="column m-3">
         <button class="button is-danger" (click)="saveChanges()" [class.is-static]="!this.changesOccured" [class.is-loading]="this.isLoading">Save</button>
