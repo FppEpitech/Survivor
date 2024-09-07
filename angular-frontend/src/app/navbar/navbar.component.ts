@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/service/auth/auth.service';
 import { Component } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -9,9 +10,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class NavbarComponent {
   public width = window.innerWidth
   displayNav = false
+  isManager = false;
 
-  constructor() {
+  constructor(public authService: AuthService) {
     window.addEventListener('resize', this.onResize.bind(this));
+  }
+
+  async ngOnInit() {
+    this.isManager = await this.authService.isManager();
   }
 
   private onResize(): void {
