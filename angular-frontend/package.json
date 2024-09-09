@@ -2,6 +2,7 @@
   "name": "angular-frontend",
   "version": "0.0.0",
   "scripts": {
+    "install-all": "npm install --force && npm install @angular/cli -g",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -21,8 +22,6 @@
     "@angular/router": "^15.0.0",
     "@swimlane/ngx-charts": "^20.5.0",
     "bulma": "^1.0.2",
-    "echarts": "^5.5.1",
-    "jquery": "^3.7.1",
     "leaflet": "^1.9.4",
     "ngx-charts": "^3.0.2",
     "rxjs": "~7.5.0",
@@ -30,7 +29,7 @@
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^15.0.1",
+    "@angular-devkit/build-angular": "^15.2.11",
     "@angular/cli": "~15.0.1",
     "@angular/compiler-cli": "^15.0.0",
     "@types/d3": "^7.4.3",

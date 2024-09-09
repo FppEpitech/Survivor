@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Customer } from '../customers/customers.service';
+import { environment } from 'src/environments/environment';
 
 export interface Employee {
   id: number;
@@ -15,11 +16,22 @@ export interface Employee {
   image_url: string;
 }
 
+export interface EmployeeCreation {
+    email: string;
+    name: string;
+    surname: string;
+    birth_date: string;
+    gender: string;
+    work: string;
+    password: string;
+    image_url: string;
+  }
+
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeesService {
-  private apiUrl = 'api/employees';
+  private apiUrl = `${environment.apiUrl}/employees`;
 
   constructor(private http: HttpClient) {}
 
@@ -44,7 +56,7 @@ export class EmployeesService {
   }
 
   // Create a new Employee
-  createEmployee(employee: Employee): Observable<Employee> {
+  createEmployee(employee: EmployeeCreation): Observable<Employee> {
     return this.http.post<Employee>(`${this.apiUrl}/`, employee, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

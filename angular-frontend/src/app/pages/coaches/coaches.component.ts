@@ -1,6 +1,7 @@
 import { Customer, CustomersService } from 'src/app/service/customers/customers.service';
 import { Component } from '@angular/core';
 import { Employee, EmployeesService } from 'src/app/service/employees/employees.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-coaches',
@@ -16,11 +17,16 @@ export class CoachesComponent {
 
     customerToSave: { [id: number] : Customer; } = {};
 
-    constructor (private employeesService: EmployeesService, private customersService: CustomersService) {}
+    constructor (
+        private employeesService: EmployeesService,
+        private customersService: CustomersService,
+        private router: Router) {}
 
     ngOnInit(): void {
         this.employeesService.getEmployees().subscribe(
-            (data) => { this.employees = data; console.log(this.employees)},
+            (data) => {
+                this.employees = data.filter(employee => employee.work === 'Coach');
+            },
             (error) => { console.error("Failed to load Employees list", error); }
         );
 
@@ -63,5 +69,9 @@ export class CoachesComponent {
     removeCoach (customer: Customer) {
         customer.coach_id = -1;
         this.customerToSave[customer.id] = customer;
+    }
+
+    goToSignIn() {
+        this.router.navigate(["/register-employee"])
     }
 }

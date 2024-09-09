@@ -1,6 +1,7 @@
 let fs = require('fs')
 import path from 'path'
 import { v4 } from 'uuid'
+import prisma from '../prismaClient';
 
 async function accountExistsLegacy(email : string, password : string) {
     try {
@@ -66,11 +67,15 @@ async function getMyLegacyImage(access_token: string, id : number) {
         });
         if (response.ok) {
             const arrayBuffer = await response.arrayBuffer();
-            const buffer = Buffer.from(arrayBuffer);
-            const fileName = `${await v4()}.png`
-            const filePath = await path.join(__dirname, "..", 'assets', fileName);
-            fs.writeFileSync(filePath, buffer);
-            return `assets/${fileName}`
+            const buffer = await Buffer.from(arrayBuffer);
+            const uuid = await v4();
+            const savedImage = await prisma.image.create({
+                data: {
+                    uuid: uuid,
+                    data: buffer,
+                },
+            });
+            return `assets/${savedImage.uuid}`
         } else {
             return undefined;
         }

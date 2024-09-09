@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "requirements": "sudo npm install --force && npx prisma generate && npm install ts-node -g",
+    "requirements": "npm install && npx prisma generate && npm install ts-node -g",
+    "build": "tsc",
     "fetch-legacy": "ts-node prisma/fetchData/fetchAndStoreData.ts",
-    "execute": "tsc && node dist/index.js"
+    "execute-prod": "npm run build && node dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,7 @@
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
     "node-fetch": "^2.7.0",
+    "p-limit": "^6.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4",
     "uuid": "^10.0.0"

@@ -1,3 +1,13 @@
-.min-width-150 {
+.cell-width {
     min-width: 150px;
+    max-width: 440px;
+}
+
+section {
+    overflow-x: hidden;
+}
+
+.columns {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 export interface Clothe {
   old_id: number;
@@ -11,7 +12,7 @@ export interface Clothe {
   providedIn: 'root'
 })
 export class ClothesService {
-  private apiUrl = 'api/clothes';
+  private apiUrl = `${environment.apiUrl}/clothes`;
 
   constructor(private http: HttpClient) {}
 

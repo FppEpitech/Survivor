@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export interface Encounter {
     id: number;
@@ -15,9 +16,14 @@ export interface Encounter {
   providedIn: 'root'
 })
 export class EncountersService {
-    private apiUrl = 'api/encounters';
+    private apiUrl = `${environment.apiUrl}/encounters`;
 
     constructor(private http: HttpClient) { }
+
+    // Get all Encounters
+    getEncounters(): Observable<Encounter[]> {
+        return this.http.get<Encounter[]>(`${this.apiUrl}`);
+    }
 
     // Get all Encounters of a single customer
     getCustomerEncounters(id: number): Observable<Encounter[]> {
