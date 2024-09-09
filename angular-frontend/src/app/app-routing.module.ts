@@ -25,7 +25,7 @@ const routes: Routes = [
     { path: 'wardrobe', component: WardrobeComponent, canActivate: [LoggedGuard] },
     { path: 'tips', component: TipsComponent, canActivate: [LoggedGuard] },
     { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] },
-    { path: 'register-employee', component: RegisterEmployeeComponent, canActivate: [LoggedGuard] },
+    { path: 'register-employee', component: RegisterEmployeeComponent, canActivate: [LoggedGuard, ManagerGuard] },
     { path: 'events', component: EventsComponent, canActivate: [LoggedGuard] }
 ];
 
