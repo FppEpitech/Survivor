@@ -1,6 +1,4 @@
 import {PrismaClient} from '@prisma/client';
-import fs from 'fs';
-import path from 'path';
 import {v4 as uuidv4} from 'uuid';
 
 const prisma = new PrismaClient();
@@ -28,18 +26,22 @@ async function fetchClothes(access_token : string) {
 
                 if (clothesResponse.ok) {
                     const arrayBuffer = await clothesResponse.arrayBuffer();
-                    const buffer = Buffer.from(arrayBuffer);
-                    const fileName = `${uuidv4()}.png`;
-                    const filePath = path.join(__dirname, "../..", 'assets', fileName);
-                    fs.writeFileSync(filePath, buffer);
+                    const buffer = await Buffer.from(arrayBuffer);
+                    const uuid = await uuidv4();
+                    const savedImage = await prisma.image.create({
+                        data: {
+                            uuid: uuid,
+                            data: buffer,
+                        },
+                    });
 
                     await prisma.clothe.create({
                         data: {
                             old_id: id,
-                            type: `assets/${fileName}`,
+                            type: `assets/${savedImage.uuid}`,
                         },
                     });
-                    console.log(`Image ${id} saved as assets/${fileName}`);
+                    console.log(`Image ${id} saved as assets/${savedImage.uuid}`);
                 } else if (clothesResponse.status === 404) {
                     moreClothes = false;
                 } else {
