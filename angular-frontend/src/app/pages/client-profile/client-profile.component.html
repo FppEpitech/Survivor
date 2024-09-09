@@ -1,8 +1,11 @@
-<h2 class="title has-text-centered"> Customers </h2>
-<hr>
+<div class="column is-11">
+    <p class="title is-1">Customers</p>
+    <hr>
+</div>
 
 <div class="pageBody" *ngIf="this.customers.length != 0; else noClients">
     <div class="columns">
+
         <div class="column m-3 is-8">
             <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
@@ -20,28 +23,20 @@
                     </div>
                 </div>
             </div>
-            <div class="dropdown-menu" role="menu">
-                <div class="dropdown-content p-3" *ngFor="let customer of customers">
-                    <label class="radio">
-                        <input type="radio" name="customer2" (click)="onRadioChange(customer)" />
-                        {{ customer.name }} {{ customer.surname }}
-                    </label>
-                </div>
+            <p class="subtitle is-3 m-4">{{ this.customer?.name }} {{ this.customer?.surname }}</p>
+            <p class="subtitle is-5 m-4">{{ this.customer?.birth_date }}</p>
+            <p class="subtitle is-5 m-4">{{ this.customer?.description }}</p>
+            <div class="column ">
+                <hr>
             </div>
         </div>
-        <p class="subtitle is-3 m-4">{{ this.customer?.name }} {{ this.customer?.surname }}</p>
-        <p class="subtitle is-5 m-4">{{ this.customer?.birth_date }}</p>
-        <p class="subtitle is-5 m-4">{{ this.customer?.description }}</p>
-        <div class="column ">
-            <hr>
-        </div>
-    </div>
-    <div class="column">
-        <div class="card-image">
-            <figure class="image is-200x200 is-inline-block">
-                <img [src]="customerImageUrl ?? 'assets/placeholder-128.png' | secure | async" alt="User Photo"
-                (error)="onImageError($event)">
-            </figure>
+        <div class="column">
+            <div class="card-image">
+                <figure class="image is-200x200 is-inline-block">
+                    <img [src]="customerImageUrl ?? 'assets/placeholder-128.png' | secure | async" alt="User Photo"
+                    (error)="onImageError($event)">
+                </figure>
+            </div>
         </div>
     </div>
 </div>
