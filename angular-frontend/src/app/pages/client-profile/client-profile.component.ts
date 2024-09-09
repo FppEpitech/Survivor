@@ -43,14 +43,6 @@ export class ClientProfileComponent {
     async onRadioChange(newCustomer: Customer) {
         this.customer = newCustomer;
         this.customerImageUrl = this.apiUrl + this.customer.image_url;
-        // this.paymentHistoryService.getPaymentsCustomer(this.customer.id).subscribe(
-        //     (data) => { this.payments = data; console.log(data)},
-        //     (error) => { console.error("Failed to load payments list", error); }
-        // );
-        // this.encountersService.getCustomerEncounters(this.customer.id).subscribe(
-        //     (data) => { this.encounters = data; console.log(`Encounters : ${data}`)},
-        //     (error) => { console.error("Failed to load encounters list", error); }
-        // );
         this.payments = await this.paymentHistoryService.getPaymentsCustomer(this.customer.id);
         this.encounters = await this.encountersService.getCustomerEncounters(this.customer.id);
     }

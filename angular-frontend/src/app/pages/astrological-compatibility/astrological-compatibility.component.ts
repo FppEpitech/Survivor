@@ -52,13 +52,6 @@ export class AstrologicalCompatibilityComponent {
     async computeCompatibility() {
         if (!this.customerLeft || !this.customerRight)
             return;
-        // this.compatibilityService.getCompatibility(this.customerLeft.id, this.customerRight.id).subscribe(
-        //     (data) => {
-        //         this.compatibility = data;
-        //         this.compatibilityPercentage = this.compatibility.compatibilityScore;
-        //     },
-        //     (error) => { console.error("Failed to load compatility", error); }
-        // );
         this.compatibility = await this.compatibilityService.getCompatibility(this.customerLeft.id, this.customerRight.id);
         if (this.compatibility !== undefined) {
             this.compatibilityPercentage = this.compatibility.compatibilityScore;

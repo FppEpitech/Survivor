@@ -2,7 +2,6 @@ import { Employee, EmployeesService } from 'src/app/service/employees/employees.
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -62,20 +61,6 @@ export class AuthService {
     }
 
     async setManager() {
-        // this.employeesService.getMe().subscribe(
-
-        //     (data) => {
-        //         if (data && data.work !== undefined && data.work !== 'Coach') {
-        //             localStorage.setItem("Manager", "true");
-        //         } else {
-        //             localStorage.setItem("Manager", "false");
-        //         }
-        //     },
-        //     (error) => {
-        //         console.log("Failed to get Me employee", error);
-        //         localStorage.setItem("Manager", "false");
-        //     }
-        // );
         this.employee = await this.employeesService.getMe();
         if (this.employee === undefined)
             return;

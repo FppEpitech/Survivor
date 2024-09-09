@@ -48,13 +48,6 @@ export class RegisterEmployeeComponent {
             image_url: ""
         };
 
-        // this.employeesService.createEmployee(this.newEmployee).subscribe(
-        //     () => {
-        //         this.router.navigate(["/coaches"]);
-        //     },
-        //     (error) => {console.error("Failed to create New Employee", error)}
-        // );
-
         if (await this.employeesService.createEmployee(this.newEmployee) === undefined)
             return;
         this.router.navigate(["/coaches"]);

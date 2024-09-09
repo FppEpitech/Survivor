@@ -33,10 +33,6 @@ export class CoachesComponent {
 
         for (let key in this.customerToSave) {
             let customer = this.customerToSave[key];
-            // this.customersService.updateCustomer(customer.id, customer).subscribe(
-            //     null,
-            //     (error) => { console.error("Failed to update customer", error); }
-            // );
             this.customersService.updateCustomer(customer.id, customer);
         }
 
