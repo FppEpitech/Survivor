@@ -23,9 +23,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsService } from './service/events/events.service';
 import { Events } from 'leaflet';
 
-// import {  AccountManagementComponent } from './account-management/account-management.component';
-// import {  StatisticsComponent } from './statistics/statistics.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +42,7 @@ import { Events } from 'leaflet';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {
