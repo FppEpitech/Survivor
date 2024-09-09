@@ -49,12 +49,12 @@ export class StatisticsPageComponent {
     ) { }
 
     async ngOnInit() {
+        this.initTips();
+        this.initEvents();
         await this.initPayments();
+        await this.initEncounters();
         await this.initCustomers();
         await this.initEmployees();
-        this.initTips();
-        await this.initEncounters();
-        this.initEvents();
     }
 
     async initPayments() {
@@ -70,7 +70,7 @@ export class StatisticsPageComponent {
     }
 
     async initCustomers() {
-        this.nbCustomers = await this.customersService.getCustomers();
+        this.nbCustomers[0] = await this.customersService.getCustomers();
     }
 
     async initEmployees() {

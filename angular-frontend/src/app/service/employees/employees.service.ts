@@ -75,7 +75,7 @@ export class EmployeesService {
     // Get the customers of an Employee
     async getCustomers(id: number): Promise<Customer[]> {
         try {
-            this.customers = await firstValueFrom(this.http.get<Customer[]>(`${this.apiUrl}/customer/${id}`));
+            this.customers = await firstValueFrom(this.http.get<Customer[]>(`${this.apiUrl}/customers/${id}`));
         } catch (error) {
             console.error("Failed to load customers list", error);
             this.customers = [];
