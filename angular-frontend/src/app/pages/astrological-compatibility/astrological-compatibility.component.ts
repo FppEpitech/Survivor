@@ -28,25 +28,14 @@ export class AstrologicalCompatibilityComponent {
 
     constructor (private employeesService: EmployeesService, private compatibilityService: CompatibilityService, private customerService : CustomersService) {}
 
-    ngOnInit(): void {
-        this.employeesService.getMe().subscribe(
-            (data) => {
-                this.coach = data;
-                this.isCoach = this.coach?.work === 'Coach';
-                if (this.isCoach) {
-                  this.employeesService.getCustomers(this.coach?.id).subscribe(
-                      (data) => { this.customers = data; },
-                      (error) => { console.error("Failed to load Customers list", error); }
-                  );
-                } else {
-                  this.customerService.getCustomers().subscribe(
-                      (data) => { this.customers = data;},
-                      (error) => { console.error("Failed to load Customers list", error); }
-                  );
-                }
-            },
-            (error) => { console.error("Failed to load coach me", error); }
-        );
+    async ngOnInit() {
+        this.coach = await this.employeesService.getMe();
+        if (this.coach !== undefined) {
+            if (this.coach?.work === 'Coach')
+                this.customers = await this.employeesService.getCustomers(this.coach?.id);
+            else
+                this.customers = await this.customerService.getCustomers();
+        }
     }
 
     onRadioChange(customer: Customer, left: boolean) {
@@ -60,16 +49,13 @@ export class AstrologicalCompatibilityComponent {
         }
     }
 
-    computeCompatibility() {
+    async computeCompatibility() {
         if (!this.customerLeft || !this.customerRight)
             return;
-        this.compatibilityService.getCompatibility(this.customerLeft.id, this.customerRight.id).subscribe(
-            (data) => {
-                this.compatibility = data;
-                this.compatibilityPercentage = this.compatibility.compatibilityScore;
-            },
-            (error) => { console.error("Failed to load compatility", error); }
-        );
+        this.compatibility = await this.compatibilityService.getCompatibility(this.customerLeft.id, this.customerRight.id);
+        if (this.compatibility !== undefined) {
+            this.compatibilityPercentage = this.compatibility.compatibilityScore;
+        }
     }
 
     onImageError(event: any) {

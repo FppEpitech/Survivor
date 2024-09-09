@@ -1,18 +1,18 @@
-<aside class="menu is-fullheight" *ngIf="this.width >= 800 || this.displayNav">
+<aside class="menu is-fullheight" *ngIf="this.width > 1023  || this.displayNav">
   <ul class="menu-list">
-    <li><a *ngIf="this.displayNav && this.width < 800" class="button is-active" (click)="this.toggleNav()">X</a></li>
+    <li><a *ngIf="this.displayNav && this.width <= 1023" class="button is-active" (click)="this.toggleNav()">X</a></li>
     <li><a class="underline" routerLink="/home">Home</a></li>
-    <li *ngIf="this.authService.isManager()"><a class="underline" routerLink="/coaches">Coaches</a></li>
+    <li *ngIf="this._auth.isManager()"><a class="underline" routerLink="/coaches">Coaches</a></li>
     <li><a class="underline" routerLink="/client-profile">Customers</a></li>
     <li><a class="underline" routerLink="/statistics">Statistics</a></li>
     <li><a class="underline" routerLink="/tips">Tips</a></li>
     <li><a class="underline" routerLink="/events">Events</a></li>
     <li><a class="underline" routerLink="/wardrobe">Wardrobe</a></li>
     <li><a class="underline" routerLink="/astrological-compatibility">Astrological compatibility</a></li>
+    <li><i><a class="underline" style="color:black" (click)="this._auth.logout()">Logout</a></i></li>
   </ul>
 </aside>
 
-
-<div *ngIf="this.width < 800" class="nav-dropdown-button">
+<div *ngIf="this.width <= 1023" class="nav-dropdown-button">
   <button class="button is-warning close-nav" *ngIf="!this.displayNav" (click)="this.toggleNav()">\/</button>
 </div>

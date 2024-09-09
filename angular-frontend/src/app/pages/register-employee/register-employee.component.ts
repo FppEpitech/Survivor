@@ -24,7 +24,7 @@ export class RegisterEmployeeComponent {
 
     constructor(private employeesService: EmployeesService, private router : Router) {}
 
-    createAccount() {
+    async createAccount() {
         if (!this.name || !this.surname || !this.date || !this.email || !this.gender || !this.password || !this.workType) {
             console.log("empty tag");
             return;
@@ -48,12 +48,9 @@ export class RegisterEmployeeComponent {
             image_url: ""
         };
 
-        this.employeesService.createEmployee(this.newEmployee).subscribe(
-            () => {
-                this.router.navigate(["/coaches"]);
-            },
-            (error) => {console.error("Failed to create New Employee", error)}
-        );
+        if (await this.employeesService.createEmployee(this.newEmployee) === undefined)
+            return;
+        this.router.navigate(["/coaches"]);
     }
 
     setEmployee(Employee:boolean) {

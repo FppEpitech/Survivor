@@ -1,6 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-import fs from 'fs';
-import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 
 const prisma = new PrismaClient();
@@ -57,11 +55,15 @@ async function fetchCustomers(access_token: string) {
 
                     if (imageResponse.ok) {
                         const arrayBuffer = await imageResponse.arrayBuffer();
-                        const buffer = Buffer.from(arrayBuffer);
-                        const fileName = `${uuidv4()}.png`;
-                        const filePath = path.join(__dirname, "../..", 'assets', fileName);
-                        fs.writeFileSync(filePath, buffer);
-                        imageUrl = `assets/${fileName}`;
+                        const buffer = await Buffer.from(arrayBuffer);
+                        const uuid = await uuidv4();
+                        const savedImage = await prisma.image.create({
+                            data: {
+                                uuid: uuid,
+                                data: buffer,
+                            },
+                        });
+                        imageUrl = `assets/${savedImage.uuid}`;
                     } else {
                         console.log(`Image not available for customer ID ${id}, proceeding with an empty URL.`);
                     }

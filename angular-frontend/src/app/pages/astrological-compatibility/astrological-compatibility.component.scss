@@ -1,11 +1,4 @@
 
-Copy code
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
-
 img {
   width: 27vh;
   height: 27vh;
@@ -16,14 +9,13 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 .columns {
     width: 100%;
 }
 
-.column {
+.column-center {
     display: flex;
     justify-content: center;
 }
