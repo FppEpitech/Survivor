@@ -11,7 +11,7 @@ export class NavbarComponent {
   public width = window.innerWidth
   displayNav = false
 
-  constructor(public authService: AuthService) {
+  constructor(public _auth : AuthService) {
     window.addEventListener('resize', this.onResize.bind(this));
   }
 
