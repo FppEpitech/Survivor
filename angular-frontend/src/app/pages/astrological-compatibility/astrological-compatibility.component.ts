@@ -2,6 +2,7 @@ import { Compatibility, CompatibilityService } from './../../service/compatibili
 import { Component } from '@angular/core';
 import { Customer, CustomersService } from 'src/app/service/customers/customers.service';
 import { EmployeesService, Employee } from 'src/app/service/employees/employees.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-astrological-compatibility',
@@ -20,6 +21,8 @@ export class AstrologicalCompatibilityComponent {
 
     compatibility?: Compatibility;
     compatibilityPercentage = 0;
+
+    apiUrl = environment.apiUrl;
 
     backupImageUrl = 'assets/placeholder-128.png';
 
@@ -50,10 +53,10 @@ export class AstrologicalCompatibilityComponent {
         this.compatibilityPercentage = 0;
         if (left) {
             this.customerLeft = customer;
-            this.customerLeftImageUrl = '/api/' + customer.image_url;
+            this.customerLeftImageUrl = this.apiUrl +  '/' + customer.image_url;
         } else {
             this.customerRight = customer;
-            this.customerRightImageUrl = '/api/' + customer.image_url;
+            this.customerRightImageUrl = this.apiUrl + '/' + customer.image_url;
         }
     }
 
