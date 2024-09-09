@@ -1,14 +1,18 @@
+<div class="column is-11">
+    <p class="title is-1">Astrological compatibility</p>
+    <hr>
+</div>
+
 <div class="container" *ngIf="this.customers.length != 0; else noClients">
   <div class="has-text-centered">
-    <h2 class="title has-text-centered"> Astrological Compatibility: </h2>
     <p class="content title is-1">{{ this.compatibilityPercentage }}%</p>
-    <div class="column">
+    <div class="column column-center">
       <button class="button is-danger button-compute" (click)="computeCompatibility()">Compute</button>
     </div>
   </div>
 
   <div class="columns is-centered m-6">
-    <div class="column">
+    <div class="column column-center">
       <div class="card m-4">
         <div class="card-content has-text-centered">
           <p class="title is-4">{{ this.customerLeft?.name || "Customer 1"}} {{ this.customerLeft?.surname }}</p>
@@ -38,7 +42,7 @@
       </div>
     </div>
 
-    <div class="column">
+    <div class="column column-center">
       <div class="card m-4">
         <div class="card-content has-text-centered">
           <p class="title is-4">{{ this.customerRight?.name || "Customer 2"}} {{ this.customerRight?.surname }}</p>

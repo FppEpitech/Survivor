@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export interface PaymentHistory {
@@ -15,16 +15,29 @@ export interface PaymentHistory {
   providedIn: 'root'
 })
 export class PaymentHistoryService {
-        private apiUrl = `${environment.apiUrl}/paymentHistory`;
+    private apiUrl = `${environment.apiUrl}/paymentHistory`;
+    private payments: PaymentHistory[] = [];
 
     constructor(private http: HttpClient) { }
 
-    getPayments(): Observable<PaymentHistory[]> {
-        return this.http.get<PaymentHistory[]>(`${this.apiUrl}`);
+    async getPayments(): Promise<PaymentHistory[]> {
+        try {
+            this.payments = await firstValueFrom(this.http.get<PaymentHistory[]>(`${this.apiUrl}`));
+        } catch (error) {
+            console.error("Failed to load payments list", error);
+            this.payments = [];
+        }
+        return this.payments;
     }
 
     //Get payment History for a customer
-    getPaymentsCustomer(id: number): Observable<PaymentHistory[]> {
-        return this.http.get<PaymentHistory[]>(`${this.apiUrl}/customer/${id}`);
+    async getPaymentsCustomer(id: number): Promise<PaymentHistory[]> {
+        try {
+            this.payments = await firstValueFrom(this.http.get<PaymentHistory[]>(`${this.apiUrl}/customer/${id}`));
+        } catch (error) {
+            console.error("Failed to load payments list", error);
+            this.payments = [];
+        }
+        return this.payments;
     }
 }
