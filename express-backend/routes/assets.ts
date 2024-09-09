@@ -1,8 +1,9 @@
 import express, { Request, Response } from 'express';
+import authenticateToken from '../middlewares/isLoggedIn';
 const router = express.Router();
 import prisma from '../prismaClient'
 
-router.get('/:uuid', async (req: Request, res: Response) => {
+router.get('/:uuid', authenticateToken, async (req: Request, res: Response) => {
     const { uuid } = req.params;
 
     try {

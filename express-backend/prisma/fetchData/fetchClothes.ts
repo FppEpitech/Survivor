@@ -53,6 +53,8 @@ async function fetchClothes(access_token: string) {
                         } else {
                             throw new Error(`Failed to fetch clothes with ID ${id}. Status: ${clothesResponse.status}`);
                         }
+                    } else {
+                        break;
                     }
                 } catch (error) {
                     retries++;
@@ -64,7 +66,6 @@ async function fetchClothes(access_token: string) {
                     }
                 }
             }
-
             id++;
         }
     } catch (error) {
