@@ -28,7 +28,7 @@ nav-dropdown-button {
     top: 0;
     left: 0;
     overflow-y: auto;
-    z-index: 1000;
+    z-index: 10000;
 }
 
 .menu-list a {
@@ -67,7 +67,7 @@ nav-dropdown-button {
     background-color: #ffffff;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1023px) {
     .menu.is-fullheight {
       width: 100%;
       height: 100%;

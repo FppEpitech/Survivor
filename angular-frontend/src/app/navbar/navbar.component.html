@@ -1,6 +1,6 @@
-<aside class="menu is-fullheight" *ngIf="this.width >= 800 || this.displayNav">
+<aside class="menu is-fullheight" *ngIf="this.width > 1023  || this.displayNav">
   <ul class="menu-list">
-    <li><a *ngIf="this.displayNav && this.width < 800" class="button is-active" (click)="this.toggleNav()">X</a></li>
+    <li><a *ngIf="this.displayNav && this.width <= 1023" class="button is-active" (click)="this.toggleNav()">X</a></li>
     <li><a class="underline" href="/home">Home</a></li>
     <li><a class="underline" href="/coaches">Coaches</a></li>
     <li><a class="underline" href="/client-profile">Customers</a></li>
@@ -12,6 +12,6 @@
   </ul>
 </aside>
 
-<div *ngIf="this.width < 800" class="nav-dropdown-button">
+<div *ngIf="this.width <= 1023" class="nav-dropdown-button">
   <button class="button is-warning close-nav" *ngIf="!this.displayNav" (click)="this.toggleNav()">\/</button>
 </div>
