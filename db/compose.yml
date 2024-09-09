@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres:9.4
+    restart: on-failure
+    environment:
+      - POSTGRES_DB={{POSTGRES_DB}}
+      - POSTGRES_USER={{POSTGRES_USER}}
+      - POSTGRES_PASSWORD={{POSTGRES_PASSWORD}}
+    networks:
+      - db-tier
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  # express-backend:
+  #   build: ./express-backend
+  #   restart: on-failure
+  #   depends_on:
+  #     - db
+  #   ports:
+  #     - "3005:3001"
+  #   networks:
+  #     - express-backend-tier
+  #     - db-tier
+  #   environment:
+  #     - DB_HOST=db
+  #     - DB_PORT=5432
+  #     - DB_USER=user
+  #     - DB_PASSWORD=user
+  #   # Configuration pour le backend Express (le port interne doit être 3005, le port exposé est 3001)
+
+  # front-angular:
+  #   build: ./angular-frontend
+  #   restart: on-failure
+  #   ports:
+  #     - "80:8080"
+  #   networks:
+  #     - front-angular-tier
+  #   environment:
+  #     - API_URL=http://express-backend:3001
+  #   depends_on:
+  #     - express-backend
+
+
+networks:
+  # front-angular-tier:
+  # express-backend-tier:
+  # db-tier:
+
+volumes:
+  db-data:

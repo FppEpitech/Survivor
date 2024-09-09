@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 export interface Tip {
   id?: number;
@@ -12,7 +13,7 @@ export interface Tip {
   providedIn: 'root'
 })
 export class TipsService {
-  private apiUrl = 'api/tips';
+  private apiUrl = `${environment.apiUrl}/tips`;
 
   constructor(private http: HttpClient) {}
 
