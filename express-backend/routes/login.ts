@@ -87,8 +87,7 @@ loginRouter.post('/login', async (req: Request, res: Response) => {
             }
         }
         const isValidPassword = await bcrypt.compare(password, user?.hashed_password);
-
-        if (!isValidPassword && user == null)
+        if (await !isValidPassword)
             return res.status(409).json({ msg: "Invalid Credentials" });
         const token = generateToken(user.id);
         await updateLastConnection(user.id)

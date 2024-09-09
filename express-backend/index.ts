@@ -28,9 +28,9 @@ if (process.env.FROM_DOCKER == "true") {
 let apiRouter = express.Router();
 
 apiRouter.use(express.json());
-apiRouter.use(loginRouter)
 apiRouter.use(require('cors')());
 apiRouter.use(require('helmet')());
+apiRouter.use(loginRouter);
 
 apiRouter.use(authenticateToken); //now all routes are protected, user need to have a valid acc_token.
 
