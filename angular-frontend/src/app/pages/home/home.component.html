@@ -1,80 +1,85 @@
 <section>
     <div class="column is-11">
-        <h1 class="big-title is-uppercase has-text-weight-bold has-text-centered mt-3 has-text-black">SOUL CONNECTION</h1>
-        <h1 class="title is-uppercase has-text-centered">dashboard</h1>
+        <p class="big-title is-uppercase has-text-weight-bold has-text-centered mt-3 has-text-black">SOUL CONNECTION</p>
+        <p class="title is-uppercase has-text-centered">dashboard</p>
         <hr>
     </div>
-    <div class="columns is-multiline">
+    <div *ngIf="this._auth.isManager()" class="columns is-multiline">
         <div class="column is-3">
             <div #containerRef1 class="card is-flex is-justify-content-center">
                 <ngx-charts-number-card
+                    *ngIf="this.paymentAccount[0] !== undefined"
                     [view]="[containerRef1.offsetWidth, 300]"
                     [cardColor]="'#fff4de'"
                     [scheme]="'flame'"
-                    [results]="barChartData1">
+                    [results]="[
+                        { name: 'Total sales (€)', value: this.paymentAccount[0] }
+                    ]">
                 </ngx-charts-number-card>
             </div>
         </div>
         <div class="column is-5">
             <div #containerRef2 class="card is-flex is-justify-content-center">
                 <ngx-charts-bar-vertical
+                    *ngIf="this.nbCustomers[0] !== undefined"
                     [view]="[containerRef2.offsetWidth, 300]"
                     [scheme]="'flame'"
                     [xAxis]="true"
                     [yAxis]="true"
-                    [results]="barChartData2">
+                    [results]="[
+                        { name: 'Customers', value: this.nbCustomers[0].length },
+                        { name: 'Male', value: this.genders[0]},
+                        { name: 'Female', value: this.genders[1] },
+                        { name: 'Other', value: this.genders[2] },
+                    ]">
                 </ngx-charts-bar-vertical>
             </div>
         </div>
         <div class="column is-3">
             <div #containerRef3 class="card is-flex is-justify-content-center">
-                <ngx-charts-bar-vertical
+                <ngx-charts-number-card
+                    *ngIf="this.nbEmployees[0] !== undefined && this.nbEncounters[0] !== undefined"
                     [view]="[containerRef3.offsetWidth, 300]"
                     [scheme]="'flame'"
-                    [xAxis]="true"
-                    [yAxis]="true"
-                    [results]="barChartData3">
-                </ngx-charts-bar-vertical>
+                    [cardColor]="'#fff4de'"
+                    [results]="[
+                    { name: 'Coachs', value: this.nbEmployees[0].length },
+                    { name: 'Meetings', value: this.nbEncounters[0].length},
+                ]">
+                </ngx-charts-number-card>
             </div>
         </div>
     </div>
 
-    <div *ngIf="" class="columns is-multiline">
+
+    <div *ngIf="!this._auth.isManager()" class="columns is-multiline">
         <div class="column is-3">
             <div #containerRef1 class="card is-flex is-justify-content-center">
                 <ngx-charts-number-card
                     [view]="[containerRef1.offsetWidth, 300]"
                     [cardColor]="'#fff4de'"
                     [scheme]="'flame'"
-                    [results]="barChartData1">
+                    [results]="[
+                        { name: 'Customers', value: 2 },
+                        { name: 'Meetings', value: 800 },
+                    ]">
                 </ngx-charts-number-card>
             </div>
         </div>
-        <div class="column is-5">
+        <div class="column is-8">
             <div #containerRef2 class="card is-flex is-justify-content-center">
-                <ngx-charts-bar-vertical
+                <ngx-charts-pie-grid
                     [view]="[containerRef2.offsetWidth, 300]"
                     [scheme]="'flame'"
-                    [xAxis]="true"
-                    [yAxis]="true"
-                    [results]="barChartData2">
-                </ngx-charts-bar-vertical>
-            </div>
-        </div>
-        <div class="column is-3">
-            <div #containerRef3 class="card is-flex is-justify-content-center">
-                <ngx-charts-bar-vertical
-                    [view]="[containerRef3.offsetWidth, 300]"
-                    [scheme]="'flame'"
-                    [xAxis]="true"
-                    [yAxis]="true"
-                    [results]="barChartData3">
-                </ngx-charts-bar-vertical>
+                    [results]="[
+                    { name: 'Male', value: 50 },
+                    { name: 'Female', value: 50 },
+                    { name: 'Other', value: 0 },
+                ]">
+                </ngx-charts-pie-grid>
             </div>
         </div>
     </div>
-
-
 
 
     <!-- <div class="container is-flex is-justify-content-center mt-6">
