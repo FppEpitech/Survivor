@@ -18,6 +18,7 @@ export class HomeComponent {
     payments:PaymentHistory[] = [];
     customers:Customer[] = [];
     employees:Employee[] = [];
+    coach?:Employee;
 
     paymentAccount: any = {};
     nbCustomers: any = {};
@@ -33,39 +34,38 @@ export class HomeComponent {
         private encountersService: EncountersService
     ) {}
 
-    ngOnInit(): void {
+    async ngOnInit() {
         if (this._auth.isManager()) {
-            this.initPayments();
-            this.initCustomers();
+            await this.initPayments();
+            await this.initCustomers();
+            this.initGender(this.customers);
             this.initEmployees();
             this.initEncounters();
+        } else {
+            this.coach = await this.employeesService.getMe();
+            if (this.coach) {
+                this.customers = await this.employeesService.getCustomers(this.coach.id);
+                this.nbCustomers[0] = this.customers;
+                this.nbEncounters[0] = 0;
+                this.initGender(this.customers);
+                for (let customer of this.customers) {
+                    this.nbEncounters[0] += (await this.encountersService.getCustomerEncounters(customer.id)).length;
+                }
+            }
         }
     }
 
-    initPayments() {
-        this.paymentHistoryService.getPayments().subscribe(
-            (data) => {
-                this.payments = data;
-                for (let payment of this.payments) {
-                    if (this.paymentAccount[0] !== undefined)
-                        this.paymentAccount[0] += payment.amount;
-                    else
-                        this.paymentAccount[0] = payment.amount;
-                }
-            },
-            (error) => {console.error("Failed to load Payment history list", error);}
-        );
+    async initPayments() {
+        this.payments = await this.paymentHistoryService.getPayments();
+        this.paymentAccount[0] = 0;
+        for (let payment of this.payments) {
+            this.paymentAccount[0] += payment.amount;
+        }
     }
 
-    initCustomers() {
-        this.customersService.getCustomers().subscribe(
-            (data) => {
-                this.customers = data;
-                this.nbCustomers[0] = this.customers;
-                this.initGender(this.customers);
-            },
-            (error) => {console.error("Failed to load Customers list", error);}
-        );
+    async initCustomers() {
+        this.customers = await this.customersService.getCustomers();
+        this.nbCustomers[0] = this.customers || 0;
     }
 
     initGender(customers:Customer[]) {
@@ -79,22 +79,12 @@ export class HomeComponent {
         }
     }
 
-    initEmployees () {
-        this.employeesService.getEmployees().subscribe(
-            (data) => {
-                this.employees = data.filter(employee => employee.work === 'Coach');
-                this.nbEmployees[0] = this.employees;
-            },
-            (error) => {console.error("Failed to load Employees list", error);}
-        );
+    async initEmployees () {
+        this.employees = (await this.employeesService.getEmployees()).filter(employee => employee.work === 'Coach');
+        this.nbEmployees[0] = this.employees;
     }
 
-    initEncounters() {
-        this.encountersService.getEncounters().subscribe(
-            (data) => {
-                this.nbEncounters[0] = data;
-            },
-            (error) => {console.error("Failed to load Encounters list", error);}
-        );
+    async initEncounters() {
+        this.nbEncounters[0] = await this.encountersService.getEncounters();
     }
 }
