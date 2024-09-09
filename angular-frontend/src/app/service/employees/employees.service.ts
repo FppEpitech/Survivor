@@ -16,6 +16,17 @@ export interface Employee {
   image_url: string;
 }
 
+export interface EmployeeCreation {
+    email: string;
+    name: string;
+    surname: string;
+    birth_date: string;
+    gender: string;
+    work: string;
+    password: string;
+    image_url: string;
+  }
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,7 +56,7 @@ export class EmployeesService {
   }
 
   // Create a new Employee
-  createEmployee(employee: Employee): Observable<Employee> {
+  createEmployee(employee: EmployeeCreation): Observable<Employee> {
     return this.http.post<Employee>(`${this.apiUrl}/`, employee, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
