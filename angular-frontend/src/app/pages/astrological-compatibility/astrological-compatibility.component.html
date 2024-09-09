@@ -1,73 +1,75 @@
 <div class="container" *ngIf="this.customers.length != 0; else noClients">
-    <div class="has-text-centered">
-        <p class="title is-4">Astrological compatibility:</p>
-        <p class="content title is-1">{{ this.compatibilityPercentage }}%</p>
-        <div class="column">
-            <button class="button is-danger button-compute" (click)="computeCompatibility()">Compute</button>
+  <div class="has-text-centered">
+    <h2 class="title has-text-centered"> Astrological Compatibility: </h2>
+    <p class="content title is-1">{{ this.compatibilityPercentage }}%</p>
+    <div class="column">
+      <button class="button is-danger button-compute" (click)="computeCompatibility()">Compute</button>
+    </div>
+  </div>
+
+  <div class="columns is-centered m-6">
+    <div class="column">
+      <div class="card m-4">
+        <div class="card-content has-text-centered">
+          <p class="title is-4">{{ this.customerLeft?.name || "Customer 1"}} {{ this.customerLeft?.surname }}</p>
+          <p class="title is-5 m-4">{{ this.customerLeft?.astrological_sign || "Sign"}}</p>
+          <div class="card-image">
+            <figure class="image is-256x256 is-inline-block">
+              <img [src]="customerLeftImageUrl ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo"
+                (error)="onImageError($event)">
+            </figure>
+          </div>
+          <div class="dropdown is-hoverable">
+            <div class="dropdown-trigger">
+              <button class="button is-warning">
+                <span>Find</span>
+              </button>
+            </div>
+            <div class="dropdown-menu" role="menu">
+              <div class="dropdown-content p-3" *ngFor="let customer of customers">
+                <label class="radio">
+                  <input type="radio" name="customer1" (click)="onRadioChange(customer, true)" />
+                  {{ customer.name }} {{ customer.surname }}
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
-    <div class="columns is-centered m-6">
-        <div class="column">
-            <div class="card m-4">
-                <div class="card-content has-text-centered">
-                    <p class="title is-4">{{ this.customerLeft?.name || "Customer 1"}} {{ this.customerLeft?.surname }}</p>
-                    <p class="title is-5 m-4">{{ this.customerLeft?.astrological_sign || "Sign"}}</p>
-                    <div class="card-image">
-                        <figure class="image is-256x256 is-inline-block">
-                            <img [src]="customerLeftImageUrl ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo" (error)="onImageError($event)">
-                        </figure>
-                    </div>
-                    <div class="dropdown is-hoverable">
-                        <div class="dropdown-trigger">
-                            <button class="button is-warning">
-                                <span>Find</span>
-                            </button>
-                        </div>
-                        <div class="dropdown-menu" role="menu">
-                            <div class="dropdown-content p-3" *ngFor="let customer of customers">
-                                <label class="radio">
-                                    <input type="radio" name="customer1" (click)="onRadioChange(customer, true)"/>
-                                    {{ customer.name }} {{ customer.surname }}
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="column">
+      <div class="card m-4">
+        <div class="card-content has-text-centered">
+          <p class="title is-4">{{ this.customerRight?.name || "Customer 2"}} {{ this.customerRight?.surname }}</p>
+          <p class="title is-5 m-4">{{ this.customerRight?.astrological_sign || "Sign"}}</p>
+          <div class="card-image">
+            <figure class="image is-256x256 is-inline-block">
+              <img [src]="customerRightImageUrl ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo"
+                (error)="onImageError($event)">
+            </figure>
+          </div>
+          <div class="dropdown is-hoverable">
+            <div class="dropdown-trigger">
+              <button class="button is-warning">
+                <span>Find</span>
+              </button>
             </div>
-        </div>
-
-        <div class="column">
-            <div class="card m-4">
-                <div class="card-content has-text-centered">
-                    <p class="title is-4">{{ this.customerRight?.name || "Customer 2"}} {{ this.customerRight?.surname }}</p>
-                    <p class="title is-5 m-4">{{ this.customerRight?.astrological_sign || "Sign"}}</p>
-                    <div class="card-image">
-                        <figure class="image is-256x256 is-inline-block">
-                            <img [src]="customerRightImageUrl ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo" (error)="onImageError($event)">
-                        </figure>
-                    </div>
-                    <div class="dropdown is-hoverable">
-                        <div class="dropdown-trigger">
-                            <button class="button is-warning">
-                                <span>Find</span>
-                            </button>
-                        </div>
-                        <div class="dropdown-menu" role="menu">
-                            <div class="dropdown-content p-3" *ngFor="let customer of customers">
-                                <label class="radio">
-                                    <input type="radio" name="customer2" (click)="onRadioChange(customer, false)"/>
-                                    {{ customer.name }} {{ customer.surname }}
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="dropdown-menu" role="menu">
+              <div class="dropdown-content p-3" *ngFor="let customer of customers">
+                <label class="radio">
+                  <input type="radio" name="customer2" (click)="onRadioChange(customer, false)" />
+                  {{ customer.name }} {{ customer.surname }}
+                </label>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <ng-template class="container" #noClients>
-  <h1>Loading customers...</h1>
+  <h1>Loading customers for Astrological Compatibility page...</h1>
 </ng-template>
