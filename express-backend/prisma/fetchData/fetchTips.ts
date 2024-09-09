@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
-const BATCH_SIZE = 10; // Taille du lot, tu peux ajuster ce nombre en fonction de la charge de travail
+const BATCH_SIZE = 10;
 
 async function fetchTips(access_token: string) {
     try {
