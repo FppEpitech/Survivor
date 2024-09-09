@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { Clothe, ClothesService } from 'src/app/service/clothes/clothes.service';
 import { Clothes, Customer, CustomersService } from 'src/app/service/customers/customers.service';
 import { EmployeesService } from 'src/app/service/employees/employees.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-wardrobe',
@@ -32,6 +33,8 @@ export class WardrobeComponent {
   top_url?: string;
   bottom_url?: string;
   shoes_url?: string;
+
+  apiUrl = environment.apiUrl + '/';
 
   index_hats_caps = 0;
   index_tops = 0;
@@ -87,10 +90,10 @@ export class WardrobeComponent {
         this.bottom = this.bottoms.at(this.index_bottoms);
         this.shoes = this.shoes_list.at(this.index_shoes);
 
-        this.hat_cap_url = this.hat_cap?.type ? 'api/' + this.hat_cap.type! : '';
-        this.top_url = this.top?.type ? 'api/' + this.top.type! : '';
-        this.bottom_url = this.bottom?.type ? 'api/' + this.bottom.type! : '';
-        this.shoes_url = this.shoes?.type ? 'api/' + this.shoes.type! : '';
+        this.hat_cap_url = this.hat_cap?.type ? this.apiUrl + this.hat_cap.type! : '';
+        this.top_url = this.top?.type ? this.apiUrl + this.top.type! : '';
+        this.bottom_url = this.bottom?.type ? this.apiUrl + this.bottom.type! : '';
+        this.shoes_url = this.shoes?.type ? this.apiUrl + this.shoes.type! : '';
       });
     });
   }
@@ -138,7 +141,7 @@ export class WardrobeComponent {
       this.index_hats_caps++;
     }
     this.hat_cap = this.hats_caps.at(this.index_hats_caps);
-    this.hat_cap_url = this.hat_cap?.type ? 'api/' + this.hat_cap.type! : '';
+    this.hat_cap_url = this.hat_cap?.type ? this.apiUrl + this.hat_cap.type! : '';
   }
 
   previousHatCap(): void {
@@ -150,7 +153,7 @@ export class WardrobeComponent {
       this.index_hats_caps--;
     }
     this.hat_cap = this.hats_caps.at(this.index_hats_caps);
-    this.hat_cap_url = this.hat_cap?.type ? 'api/' + this.hat_cap.type! : '';
+    this.hat_cap_url = this.hat_cap?.type ? this.apiUrl + this.hat_cap.type! : '';
   }
 
   nextTop(): void {
@@ -162,7 +165,7 @@ export class WardrobeComponent {
       this.index_tops++;
     }
     this.top = this.tops.at(this.index_tops);
-    this.top_url = this.top?.type ? 'api/' + this.top.type! : '';
+    this.top_url = this.top?.type ? this.apiUrl + this.top.type! : '';
   }
 
   previousTop(): void {
@@ -174,7 +177,7 @@ export class WardrobeComponent {
       this.index_tops--;
     }
     this.top = this.tops.at(this.index_tops);
-    this.top_url = this.top?.type ? 'api/' + this.top.type! : '';
+    this.top_url = this.top?.type ? this.apiUrl + this.top.type! : '';
   }
 
   nextBottom(): void {
@@ -186,7 +189,7 @@ export class WardrobeComponent {
       this.index_bottoms++;
     }
     this.bottom = this.bottoms.at(this.index_bottoms);
-    this.bottom_url = this.bottom?.type ? 'api/' + this.bottom.type! : '';
+    this.bottom_url = this.bottom?.type ? this.apiUrl + this.bottom.type! : '';
   }
 
   previousBottom(): void {
@@ -198,7 +201,7 @@ export class WardrobeComponent {
       this.index_bottoms--;
     }
     this.bottom = this.bottoms.at(this.index_bottoms);
-    this.bottom_url = this.bottom?.type ? 'api/' + this.bottom.type! : '';
+    this.bottom_url = this.bottom?.type ? this.apiUrl + this.bottom.type! : '';
   }
 
   nextShoes(): void {
@@ -210,7 +213,7 @@ export class WardrobeComponent {
       this.index_shoes++;
     }
     this.shoes = this.shoes_list.at(this.index_shoes);
-    this.shoes_url = this.shoes?.type ? 'api/' + this.shoes.type! : '';
+    this.shoes_url = this.shoes?.type ? this.apiUrl + this.shoes.type! : '';
   }
 
   previousShoes(): void {
@@ -222,7 +225,7 @@ export class WardrobeComponent {
       this.index_shoes--;
     }
     this.shoes = this.shoes_list.at(this.index_shoes);
-    this.shoes_url = this.shoes?.type ? 'api/' + this.shoes.type! : '';
+    this.shoes_url = this.shoes?.type ? this.apiUrl + this.shoes.type! : '';
   }
 
   randomOutfit(): void {
@@ -238,10 +241,10 @@ export class WardrobeComponent {
     this.bottom = this.bottoms.at(this.index_bottoms);
     this.shoes = this.shoes_list.at(this.index_shoes);
 
-    this.hat_cap_url = this.hat_cap?.type ? 'api/' + this.hat_cap.type! : '';
-    this.top_url = this.top?.type ? 'api/' + this.top.type! : '';
-    this.bottom_url = this.bottom?.type ? 'api/' + this.bottom.type! : '';
-    this.shoes_url = this.shoes?.type ? 'api/' + this.shoes.type! : '';
+    this.hat_cap_url = this.hat_cap?.type ? this.apiUrl + this.hat_cap.type! : '';
+    this.top_url = this.top?.type ? this.apiUrl + this.top.type! : '';
+    this.bottom_url = this.bottom?.type ? this.apiUrl + this.bottom.type! : '';
+    this.shoes_url = this.shoes?.type ? this.apiUrl + this.shoes.type! : '';
   }
 
   onImageError(event: any) {

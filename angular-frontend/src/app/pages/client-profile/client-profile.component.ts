@@ -3,6 +3,7 @@ import { PaymentHistory, PaymentHistoryService } from './../../service/paymentHi
 import { Component } from '@angular/core';
 import { Customer, CustomersService } from 'src/app/service/customers/customers.service';
 import { Employee, EmployeesService } from 'src/app/service/employees/employees.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-client-profile',
@@ -21,6 +22,7 @@ export class ClientProfileComponent {
     encounters: Encounter[] = [];
     isCoach : boolean = false;
     backupImageUrl = 'assets/placeholder-128.png';
+    apiUrl = environment.apiUrl + '/';
 
     constructor (
         private employeesService: EmployeesService,
@@ -47,7 +49,7 @@ export class ClientProfileComponent {
 
     onRadioChange(newCustomer: Customer) {
         this.customer = newCustomer;
-        this.customerImageUrl = 'api/' + this.customer.image_url;
+        this.customerImageUrl = this.apiUrl + this.customer.image_url;
         this.paymentHistoryService.getPayments(this.customer.id).subscribe(
             (data) => { this.payments = data; console.log(data)},
             (error) => { console.error("Failed to load payments list", error); }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export interface Compatibility {
     customer1AstrologicalSign: string;
@@ -12,7 +13,7 @@ export interface Compatibility {
   providedIn: 'root'
 })
 export class CompatibilityService {
-    private apiUrl = 'api/compatibility';
+    private apiUrl = `${environment.apiUrl}/compatibility`;
 
     constructor(private http: HttpClient) { }
 
