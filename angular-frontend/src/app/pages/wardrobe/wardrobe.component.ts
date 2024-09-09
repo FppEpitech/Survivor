@@ -142,6 +142,7 @@ export class WardrobeComponent {
     }
     this.hat_cap = this.hats_caps.at(this.index_hats_caps);
     this.hat_cap_url = this.hat_cap?.type ? this.apiUrl + this.hat_cap.type! : '';
+    console.log(this.hat_cap_url);
   }
 
   previousHatCap(): void {
