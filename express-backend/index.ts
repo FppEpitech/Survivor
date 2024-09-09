@@ -10,6 +10,7 @@ import clothesRouter from './routes/clothes';
 import PaymentHistoryRouter from './routes/paymentHistory'
 import authenticateToken from './middlewares/isLoggedIn';
 import compatibilityRouter from './routes/compatibility';
+import assetsRouter from './routes/assets';
 require('dotenv').config();
 
 const app = express();
@@ -33,7 +34,7 @@ apiRouter.use(require('helmet')());
 
 apiRouter.use(authenticateToken); //now all routes are protected, user need to have a valid acc_token.
 
-apiRouter.use('/assets', express.static(path.join(__dirname, process.env.FROM_DOCKER == 'true' ? '../assets' : 'assets')));
+app.use('/assets', assetsRouter);
 apiRouter.use('/tips', tipsRouter);
 apiRouter.use('/customers', customersRouter);
 apiRouter.use('/employees', employeesRouter);
