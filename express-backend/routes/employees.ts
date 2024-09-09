@@ -104,7 +104,7 @@ router.put('/:id', async (req: Request, res: Response) => {
     } catch (error) {
       res.status(500).json({error: 'Error updating employee'});
     }
-  });
+});
 
 router.delete('/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
