@@ -1,6 +1,4 @@
 import {PrismaClient} from '@prisma/client';
-import fs from 'fs';
-import path from 'path';
 import {v4 as uuidv4} from 'uuid';
 
 const prisma = new PrismaClient();
@@ -18,35 +16,43 @@ async function fetchClothes(access_token: string) {
 
             while (retries < MAX_RETRIES && !success) {
                 try {
-                    const clothesResponse = await fetch(`${process.env.SOULCONNECTION_PROD_API_URL}/api/clothes/${id}/image`, {
-                        method: 'GET',
-                        headers: {
-                            'Accept': 'image/png',
-                            'X-Group-Authorization': process.env.GROUP_AUTHO as string,
-                            'Authorization': `Bearer ${access_token}`,
-                        },
+                    const existingClothe = await prisma.clothe.findFirst({
+                        where: {old_id: id},
                     });
-
-                    if (clothesResponse.ok) {
-                        const arrayBuffer = await clothesResponse.arrayBuffer();
-                        const buffer = Buffer.from(arrayBuffer);
-                        const fileName = `${uuidv4()}.png`;
-                        const filePath = path.join(__dirname, "../..", 'assets', fileName);
-                        fs.writeFileSync(filePath, buffer);
-
-                        await prisma.clothe.create({
-                            data: {
-                                old_id: id,
-                                type: `assets/${fileName}`,
+        
+                    if (!existingClothe) {
+                        const clothesResponse = await fetch(`${process.env.SOULCONNECTION_PROD_API_URL}/api/clothes/${id}/image`, {
+                            method: 'GET',
+                            headers: {
+                                'Accept': 'image/png',
+                                'X-Group-Authorization': process.env.GROUP_AUTHO as string,
+                                'Authorization': `Bearer ${access_token}`,
                             },
                         });
-                        console.log(`Image ${id} saved as assets/${fileName}`);
-                        success = true;
-                    } else if (clothesResponse.status === 404) {
-                        moreClothes = false;
-                        break;
-                    } else {
-                        throw new Error(`Failed to fetch clothes with ID ${id}. Status: ${clothesResponse.status}`);
+        
+                        if (clothesResponse.ok) {
+                            const arrayBuffer = await clothesResponse.arrayBuffer();
+                            const buffer = await Buffer.from(arrayBuffer);
+                            const uuid = await uuidv4();
+                            const savedImage = await prisma.image.create({
+                                data: {
+                                    uuid: uuid,
+                                    data: buffer,
+                                },
+                            });
+        
+                            await prisma.clothe.create({
+                                data: {
+                                    old_id: id,
+                                    type: `assets/${savedImage.uuid}`,
+                                },
+                            });
+                            console.log(`Image ${id} saved as assets/${savedImage.uuid}`);
+                        } else if (clothesResponse.status === 404) {
+                            moreClothes = false;
+                        } else {
+                            throw new Error(`Failed to fetch clothes with ID ${id}. Status: ${clothesResponse.status}`);
+                        }
                     }
                 } catch (error) {
                     retries++;

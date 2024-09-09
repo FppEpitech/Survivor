@@ -90,3 +90,9 @@ model Clothe {
   id                  Int    @id @default(autoincrement())
   type                String
 }
+
+model Image {
+    id                  Int    @id @default(autoincrement())
+    uuid                String  @unique
+    data                Bytes
+}
