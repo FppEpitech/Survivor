@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/service/auth/auth.service';
 import { Component } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -10,7 +11,7 @@ export class NavbarComponent {
   public width = window.innerWidth
   displayNav = false
 
-  constructor() {
+  constructor(public authService: AuthService) {
     window.addEventListener('resize', this.onResize.bind(this));
   }
 
