@@ -1,4 +1,4 @@
-import { EmployeesService } from 'src/app/service/employees/employees.service';
+import { Employee, EmployeesService } from 'src/app/service/employees/employees.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -12,6 +12,7 @@ export class AuthService {
 
     private apiUrl = environment.apiUrl;
     authLogged = false;
+    private employee?: Employee;
 
     constructor(private http: HttpClient, private router : Router, private employeesService: EmployeesService) { }
 
@@ -60,21 +61,29 @@ export class AuthService {
         return token != null
     }
 
-    setManager() {
-        this.employeesService.getMe().subscribe(
+    async setManager() {
+        // this.employeesService.getMe().subscribe(
 
-            (data) => {
-                if (data && data.work !== undefined && data.work !== 'Coach') {
-                    localStorage.setItem("Manager", "true");
-                } else {
-                    localStorage.setItem("Manager", "false");
-                }
-            },
-            (error) => {
-                console.log("Failed to get Me employee", error);
-                localStorage.setItem("Manager", "false");
-            }
-        );
+        //     (data) => {
+        //         if (data && data.work !== undefined && data.work !== 'Coach') {
+        //             localStorage.setItem("Manager", "true");
+        //         } else {
+        //             localStorage.setItem("Manager", "false");
+        //         }
+        //     },
+        //     (error) => {
+        //         console.log("Failed to get Me employee", error);
+        //         localStorage.setItem("Manager", "false");
+        //     }
+        // );
+        this.employee = await this.employeesService.getMe();
+        if (this.employee === undefined)
+            return;
+        if (this.employee && this.employee.work !== undefined && this.employee.work !== 'Coach') {
+            localStorage.setItem("Manager", "true");
+        } else {
+            localStorage.setItem("Manager", "false");
+        }
     }
 
     isManager () {

@@ -31,33 +31,28 @@ export class ClientProfileComponent {
         private customerService: CustomersService,
     ) {}
 
-    ngOnInit(): void {
-      this.employeesService.getMe().subscribe((employee : Employee) => {
-        this.isCoach = employee.work === 'Coach';
-        this.coach = employee
-        if (this.isCoach) {
-          this.employeesService.getCustomers(employee.id).subscribe((customers) => {
-            this.customers = customers;
-          });
+    async ngOnInit() {
+        this.coach = await this.employeesService.getMe();
+        if (this.coach?.work === 'Coach') {
+            this.customers = await this.employeesService.getCustomers(this.coach?.id);
         } else {
-          this.customerService.getCustomers().subscribe((customers) => {
-            this.customers = customers;
-          });
+            this.customers = await this.customerService.getCustomers();
         }
-      });
     }
 
-    onRadioChange(newCustomer: Customer) {
+    async onRadioChange(newCustomer: Customer) {
         this.customer = newCustomer;
         this.customerImageUrl = this.apiUrl + this.customer.image_url;
-        this.paymentHistoryService.getPaymentsCustomer(this.customer.id).subscribe(
-            (data) => { this.payments = data; console.log(data)},
-            (error) => { console.error("Failed to load payments list", error); }
-        );
-        this.encountersService.getCustomerEncounters(this.customer.id).subscribe(
-            (data) => { this.encounters = data; console.log(`Encounters : ${data}`)},
-            (error) => { console.error("Failed to load encounters list", error); }
-        );
+        // this.paymentHistoryService.getPaymentsCustomer(this.customer.id).subscribe(
+        //     (data) => { this.payments = data; console.log(data)},
+        //     (error) => { console.error("Failed to load payments list", error); }
+        // );
+        // this.encountersService.getCustomerEncounters(this.customer.id).subscribe(
+        //     (data) => { this.encounters = data; console.log(`Encounters : ${data}`)},
+        //     (error) => { console.error("Failed to load encounters list", error); }
+        // );
+        this.payments = await this.paymentHistoryService.getPaymentsCustomer(this.customer.id);
+        this.encounters = await this.encountersService.getCustomerEncounters(this.customer.id);
     }
 
     onImageError(event: any) {

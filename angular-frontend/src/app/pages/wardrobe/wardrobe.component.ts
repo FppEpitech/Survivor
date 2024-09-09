@@ -16,6 +16,8 @@ export class WardrobeComponent {
   customers: Customer[] = [];
   customer?: Customer;
 
+  employee?: Employee;
+
   clothes: Clothes[] = [];
   clothe?: Clothe;
 
@@ -53,50 +55,47 @@ export class WardrobeComponent {
 
   constructor(private customerService : CustomersService, private employeeService : EmployeesService, private clotheService : ClothesService) { }
 
-  ngOnInit(): void {
-    this.employeeService.getMe().subscribe((employee : Employee) => {
-      this.isCoach = employee.work === 'Coach';
-      if (this.isCoach) {
-        this.employeeService.getCustomers(employee.id).subscribe((customers) => {
-          this.customers = customers;
-        });
-      } else {
-        this.customerService.getCustomers().subscribe((customers) => {
-          this.customers = customers;
-        });
-      }
-    });
-  }
+    async ngOnInit() {
+        this.employee = await this.employeeService.getMe();
+        if (this.employee === undefined) {
+            return;
+        } else {
+            if (this.isCoach) {
+                this.customers = await this.employeeService.getCustomers(this.employee.id);
+            } else {
+                this.customers = await this.customerService.getCustomers();
+            }
+        }
+    }
 
-  updateCustomer(customer: Customer): void {
-    this.customerSelected = true;
-    console.log("Customer selected: ", customer);
-    this.customer = customer;
-    this.getClothes();
-  }
+    updateCustomer(customer: Customer): void {
+        this.customerSelected = true;
+        console.log("Customer selected: ", customer);
+        this.customer = customer;
+        this.getClothes();
+    }
 
-  getClothes(): void {
-    this.customerService.getCustomerClothes(this.customer!.id).subscribe((clothes) => {
-      this.clothes = clothes;
+    async getClothes() {
+        this.clothes = await this.customerService.getCustomerClothes(this.customer!.id);
+        if (this.clothes !== undefined) {
+            this.hat_cap_id = this.clothes.filter((clothe) => clothe.type === 'hat/cap').map((clothe) => clothe.id);
+            this.top_id = this.clothes.filter((clothe) => clothe.type === 'top').map((clothe) => clothe.id);
+            this.bottom_id = this.clothes.filter((clothe) => clothe.type === 'bottom').map((clothe) => clothe.id);
+            this.shoes_id = this.clothes.filter((clothe) => clothe.type === 'shoes').map((clothe) => clothe.id);
 
-      this.hat_cap_id = clothes.filter((clothe) => clothe.type === 'hat/cap').map((clothe) => clothe.id);
-      this.top_id = clothes.filter((clothe) => clothe.type === 'top').map((clothe) => clothe.id);
-      this.bottom_id = clothes.filter((clothe) => clothe.type === 'bottom').map((clothe) => clothe.id);
-      this.shoes_id = clothes.filter((clothe) => clothe.type === 'shoes').map((clothe) => clothe.id);
+            this.getAllClothes().then(() => {
+                this.hat_cap = this.hats_caps.at(this.index_hats_caps);
+                this.top = this.tops.at(this.index_tops);
+                this.bottom = this.bottoms.at(this.index_bottoms);
+                this.shoes = this.shoes_list.at(this.index_shoes);
 
-      this.getAllClothes().then(() => {
-        this.hat_cap = this.hats_caps.at(this.index_hats_caps);
-        this.top = this.tops.at(this.index_tops);
-        this.bottom = this.bottoms.at(this.index_bottoms);
-        this.shoes = this.shoes_list.at(this.index_shoes);
-
-        this.hat_cap_url = this.hat_cap?.type ? this.apiUrl + this.hat_cap.type! : '';
-        this.top_url = this.top?.type ? this.apiUrl + this.top.type! : '';
-        this.bottom_url = this.bottom?.type ? this.apiUrl + this.bottom.type! : '';
-        this.shoes_url = this.shoes?.type ? this.apiUrl + this.shoes.type! : '';
-      });
-    });
-  }
+                this.hat_cap_url = this.hat_cap?.type ? this.apiUrl + this.hat_cap.type! : '';
+                this.top_url = this.top?.type ? this.apiUrl + this.top.type! : '';
+                this.bottom_url = this.bottom?.type ? this.apiUrl + this.bottom.type! : '';
+                this.shoes_url = this.shoes?.type ? this.apiUrl + this.shoes.type! : '';
+            });
+        }
+    }
 
   async getAllClothes(): Promise<void> {
     try {
