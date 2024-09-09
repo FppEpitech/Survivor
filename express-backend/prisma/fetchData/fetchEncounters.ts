@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
-const BATCH_SIZE = 10; // Nombre de requêtes parallèles
+const BATCH_SIZE = 10;
 
 async function fetchEncounterById(id: number, access_token: string) {
   const existingEncounter = await prisma.encounter.findFirst({
@@ -34,7 +34,7 @@ async function fetchEncounterById(id: number, access_token: string) {
       await prisma.encounter.create({
         data: {
           old_id: encounter.id,
-          customer_id: customer.id, 
+          customer_id: customer.id,
           date: encounter.date,
           rating: encounter.rating,
           comment: encounter.comment,
