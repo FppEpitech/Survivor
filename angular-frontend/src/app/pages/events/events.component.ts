@@ -15,20 +15,19 @@ export class EventsComponent {
 
   constructor(private eventService : EventsService) {}
 
-  ngOnInit(): void {
-    this.initMap();
+    ngOnInit(): void {
+        this.initMap();
 
-    this.eventService.getEvents().subscribe(events => {
-      console.log(events);
-      this.events = events;
-      for (const event of events) {
-        L.marker([parseFloat(event.location_x), parseFloat(event.location_y)]).addTo(this.map!)
-          .bindPopup(event.name)
-          .openPopup();
-      }
-    });
-
-  }
+        this.eventService.getEvents().subscribe(events => {
+        console.log(events);
+        this.events = events;
+        for (const event of events) {
+            L.marker([parseFloat(event.location_x), parseFloat(event.location_y)]).addTo(this.map!)
+            .bindPopup(event.name)
+            .openPopup();
+        }
+        });
+    }
 
   private initMap(): void {
     this.map = L.map('map').setView([48.86, 2.33], 13);
