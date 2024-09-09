@@ -10,20 +10,23 @@ import { StatisticsPageComponent } from './pages/statistics/statistics.component
 import { AstrologicalCompatibilityComponent } from './pages/astrological-compatibility/astrological-compatibility.component';
 import { TipsComponent } from './pages/tips/tips.component';
 import { CoachesComponent } from './pages/coaches/coaches.component';
+import { RegisterEmployeeComponent } from './pages/register-employee/register-employee.component';
 import { EventsComponent } from './pages/events/events.component';
-// import {  AccountManagementComponent } from './account-management/account-management.component';
+import { ManagerGuard } from './guards/manager.guard';
+
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [LoggedGuard]},
     { path: 'login', component: LoginComponent},
     { path: 'client-profile', component: ClientProfileComponent, canActivate: [LoggedGuard] },
-    { path: 'coaches', component: CoachesComponent, canActivate: [LoggedGuard] },
+    { path: 'coaches', component: CoachesComponent, canActivate: [LoggedGuard, ManagerGuard] },
     { path: 'astrological-compatibility', component: AstrologicalCompatibilityComponent, canActivate: [LoggedGuard]},
     { path: 'statistics', component: StatisticsPageComponent, canActivate: [LoggedGuard] },
     { path: 'wardrobe', component: WardrobeComponent, canActivate: [LoggedGuard] },
     { path: 'tips', component: TipsComponent, canActivate: [LoggedGuard] },
     { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] },
-    { path: 'events', component: EventsComponent, canActivate: [LoggedGuard] },
+    { path: 'register-employee', component: RegisterEmployeeComponent, canActivate: [LoggedGuard, ManagerGuard] },
+    { path: 'events', component: EventsComponent, canActivate: [LoggedGuard] }
 ];
 
 @NgModule({

@@ -18,12 +18,10 @@ import { EventsComponent } from './pages/events/events.component';
 import { AstrologicalCompatibilityComponent } from './pages/astrological-compatibility/astrological-compatibility.component';
 import { FormsModule } from '@angular/forms';
 import { SecurePipe } from './pipes/secure.pipe';
+import { RegisterEmployeeComponent } from './pages/register-employee/register-employee.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsService } from './service/events/events.service';
 import { Events } from 'leaflet';
-
-// import {  AccountManagementComponent } from './account-management/account-management.component';
-// import {  StatisticsComponent } from './statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +34,7 @@ import { Events } from 'leaflet';
     AstrologicalCompatibilityComponent,
     LoginComponent,
     SecurePipe,
+    RegisterEmployeeComponent,
     EventsComponent
   ],
   imports: [
@@ -43,7 +42,7 @@ import { Events } from 'leaflet';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {
