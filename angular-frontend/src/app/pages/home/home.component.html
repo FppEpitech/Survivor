@@ -1,7 +1,7 @@
 
 <div class="column is-11">
     <p class="big-title is-uppercase has-text-weight-bold has-text-centered mt-3">SOUL CONNECTION</p>
-    <p class="title is-uppercase has-text-centered">{{ 'dashboard' | transloco }}</p>
+    <p class="title is-uppercase has-text-centered">{{ 'navHome' | transloco }}</p>
     <hr>
 </div>
 <div *ngIf="this._auth.isManager()" class="columns is-multiline">
@@ -83,7 +83,7 @@
 </div>
 
 <div class="column is-11">
-    <p class="subtitle has-text-weight-bold mt-3">Customers</p>
+    <p class="subtitle has-text-weight-bold mt-3">{{ "navCustomers" | transloco }}</p>
     <hr>
 </div>
 
@@ -92,8 +92,8 @@
         <thead>
             <tr class="is-selected is-warning">
                 <th>#</th>
-                <th>Name</th>
-                <th>Birth Date</th>
+                <th>{{ "nameTh" | transloco }}</th>
+                <th>{{ "birthdateTh" | transloco }}</th>
             </tr>
         </thead>
 

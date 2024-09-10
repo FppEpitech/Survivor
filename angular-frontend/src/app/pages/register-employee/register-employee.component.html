@@ -1,6 +1,6 @@
 <div class="is-flex is-justify-content-center is-align-items-center container-signin">
     <div class="container has-text-centered">
-        <p class="title is-1">Account creation</p>
+        <p class="title is-1">{{ "accCreationHeader" | transloco }}</p>
         <form class="mt-3 p-3">
             <input class="input mb-3" type="text" [(ngModel)]="this.name" id="name" name="name" placeholder="Name" required>
             <input class="input mb-3" type="text" [(ngModel)]="this.surname" id="surname" name="surname" placeholder="Surname" required>
@@ -8,25 +8,25 @@
             <input class="input mb-3" type="text" [(ngModel)]="this.email" id="email" name="email" placeholder="Email" required>
             <div class="select is-fullwidth mb-3">
                 <select id="gender" name="gender" [(ngModel)]="this.gender" required>
-                    <option value="" disabled selected>Gender</option>
-                    <option value="male" >Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
+                    <option value="" disabled selected>{{ "genderOption" | transloco }}</option>
+                    <option value="male" >{{ "maleOption" | transloco }}</option>
+                    <option value="female">{{ "femaleOption" | transloco }}</option>
+                    <option value="other">{{ "otherGenderOption" | transloco }}</option>
                 </select>
             </div>
             <input class="input mb-3" type="password" [(ngModel)]="this.password" id="password" name="password" placeholder="Password" required>
             <div class="select is-fullwidth mb-3">
                 <select id="accountType" name="accountType" [(ngModel)]="this.workType" required>
-                    <option value="" disabled selected>Select account type</option>
-                    <option value="coach"(click)="setEmployee(false)">Coach</option>
-                    <option value="employee" (click)="setEmployee(true)">Employee</option>
+                    <option value="" disabled selected>{{ "selecAccTypeOptionLabel" | transloco }}</option>
+                    <option value="coach"(click)="setEmployee(false)">{{ "coachTxt" | transloco }}</option>
+                    <option value="employee" (click)="setEmployee(true)">{{ "employeeTxt" | transloco }}</option>
                 </select>
             </div>
 
             <input *ngIf="this.workType == 'employee'" [(ngModel)]="this.work" class="input mb-3" type="text" id="employeeWork" name="employeeWork" placeholder="Work Description">
 
             <div class="control">
-                <button class="button is-large m-4 is-warning" (click)="createAccount()">Create</button>
+                <button class="button is-large m-4 is-warning" (click)="createAccount()">{{ "createTxt" | transloco }}</button>
             </div>
         </form>
     </div>
