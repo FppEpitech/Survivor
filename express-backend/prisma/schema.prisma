@@ -96,3 +96,9 @@ model Image {
     uuid                String  @unique
     data                Bytes
 }
+
+model ThemeDashboard {
+    id                  Int    @id @default(autoincrement())
+    theme               String
+    coach_id            Int    @unique
+}
