@@ -19,7 +19,7 @@ async function fetchClothes(access_token: string) {
                     const existingClothe = await prisma.clothe.findFirst({
                         where: {old_id: id},
                     });
-        
+
                     if (!existingClothe) {
                         const clothesResponse = await fetch(`${process.env.SOULCONNECTION_PROD_API_URL}/api/clothes/${id}/image`, {
                             method: 'GET',
@@ -29,7 +29,7 @@ async function fetchClothes(access_token: string) {
                                 'Authorization': `Bearer ${access_token}`,
                             },
                         });
-        
+
                         if (clothesResponse.ok) {
                             const arrayBuffer = await clothesResponse.arrayBuffer();
                             const buffer = await Buffer.from(arrayBuffer);
@@ -40,7 +40,7 @@ async function fetchClothes(access_token: string) {
                                     data: buffer,
                                 },
                             });
-        
+
                             await prisma.clothe.create({
                                 data: {
                                     old_id: id,
