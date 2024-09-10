@@ -33,13 +33,13 @@
         <div class="is-vcentered is-centered is-mobile">
           <div class="is-narrow">
             <figure class="image is-185x185 is-centered">
-              <img [src]="hat_cap_url ?? 'assets/placeholder-128.png' | secure | async" alt="Hat/Caps clothe image"
+              <img [src]="hat_cap_url.url ?? 'assets/placeholder-128.png' | secure | async" alt="Hat/Caps clothe image"
                 (error)="onImageError($event)">
             </figure>
           </div>
           <div class="is-flex is-justify-content-center">
             <div class="is-narrow p-3">
-              <button class="button is-light " (click)="previousHatCap()">
+              <button class="button is-light " (click)="swipeItem(false, hats_caps, index_hats_caps, hat_cap_url)">
                 <span class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
@@ -49,7 +49,7 @@
               </button>
             </div>
             <div class="is-narrow p-3">
-              <button class="button is-light" (click)="nextHatCap()">
+              <button class="button is-light" (click)="swipeItem(true, hats_caps, index_hats_caps, hat_cap_url)">
                 <span class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
@@ -65,13 +65,13 @@
         <div class="is-vcentered is-centered is-mobile">
           <div class="is-narrow">
             <figure class="image is-185x185">
-              <img [src]="top_url ?? 'assets/placeholder-128.png' | secure | async" alt="Top clothe image"
+              <img [src]="top_url.url ?? 'assets/placeholder-128.png' | secure | async" alt="Top clothe image"
                 (error)="onImageError($event)">
             </figure>
           </div>
           <div class="is-flex is-justify-content-center">
             <div class="is-narrow p-3">
-              <button class="button is-light" (click)="previousTop()">
+              <button class="button is-light" (click)="swipeItem(false, tops, index_tops, top_url)">
                 <span class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
@@ -81,7 +81,7 @@
               </button>
             </div>
             <div class="is-narrow p-3">
-              <button class="button is-light" (click)="nextTop()">
+              <button class="button is-light" (click)="swipeItem(true, tops, index_tops, top_url)">
                 <span class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
@@ -97,13 +97,13 @@
         <div class="is-vcentered is-centered is-mobile">
           <div class="is-narrow">
             <figure class="image is-185x185">
-              <img [src]="bottom_url ?? 'assets/placeholder-128.png' | secure | async" alt="Bottom clothe image"
+              <img [src]="bottom_url.url ?? 'assets/placeholder-128.png' | secure | async" alt="Bottom clothe image"
                 (error)="onImageError($event)">
             </figure>
           </div>
           <div class="is-flex is-justify-content-center">
             <div class="is-narrow p-3">
-              <button class="button is-light" (click)="previousBottom()">
+              <button class="button is-light" (click)="swipeItem(false, bottoms, index_bottoms, bottom_url)">
                 <span class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
@@ -113,7 +113,7 @@
               </button>
             </div>
             <div class="is-narrow p-3">
-              <button class="button is-light" (click)="nextBottom()">
+              <button class="button is-light" (click)="swipeItem(true, bottoms, index_bottoms, bottom_url)">
                 <span class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
@@ -129,13 +129,13 @@
         <div class="is-vcentered is-centered is-mobile">
           <div class="is-narrow">
             <figure class="image is-185x185">
-              <img [src]="shoes_url ?? 'assets/placeholder-128.png'  | secure | async" alt="Shoes clothe image"
+              <img [src]="shoes_url.url ?? 'assets/placeholder-128.png'  | secure | async" alt="Shoes clothe image"
                 (error)="onImageError($event)">
             </figure>
           </div>
           <div class="is-flex is-justify-content-center">
             <div class="is-narrow p-3">
-              <button class="button is-light" (click)="previousShoes()">
+              <button class="button is-light" (click)="swipeItem(false, shoes_list, index_shoes, shoes_url)">
                 <span class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
@@ -145,7 +145,7 @@
               </button>
             </div>
             <div class="is-narrow p-3">
-              <button class="button is-light" (click)="nextShoes()">
+              <button class="button is-light" (click)="swipeItem(true, shoes_list, index_shoes, shoes_url)">
                 <span class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
