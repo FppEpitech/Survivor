@@ -46,17 +46,17 @@
         <table class="table is-fullwidth">
             <thead>
                 <tr class="is-selected is-warning">
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Comment</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Comment</th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr *ngFor="let payment of this.payments">
-                <td>{{ payment.date }}</td>
-                <td>{{ payment.amount }}</td>
-                <td>{{ payment.comment }}</td>
+                    <td>{{ payment.date }}</td>
+                    <td>{{ payment.amount }}</td>
+                    <td>{{ payment.comment }}</td>
                 </tr>
             </tbody>
         </table>
@@ -68,23 +68,22 @@
         <table class="table is-fullwidth">
             <thead>
                 <tr class="is-selected is-warning">
-                <th>Date</th>
-                <th>Rating</th>
-                <th>Report</th>
-                <th>Source</th>
+                    <th>Date</th>
+                    <th>Rating</th>
+                    <th>Report</th>
+                    <th>Source</th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr *ngFor="let encounter of this.encounters">
-                <td>{{ encounter.date }}</td>
-                <td>{{ encounter.rating }}</td>
-                <td>{{ encounter.comment }}</td>
-                <td>{{ encounter.source }}</td>
+                    <td>{{ encounter.date }}</td>
+                    <td>{{ encounter.rating }}</td>
+                    <td>{{ encounter.comment }}</td>
+                    <td>{{ encounter.source }}</td>
                 </tr>
             </tbody>
         </table>
-
     </div>
 </div>
 
