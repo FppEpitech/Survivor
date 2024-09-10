@@ -68,10 +68,6 @@ export class WardrobeComponent {
         }
     }
 
-    isWorkCoach(work : string): boolean {
-        return work === 'Coach';
-    }
-
     updateCustomer(customer: Customer): void {
         this.customerSelected = true;
         console.log("Customer selected: ", customer);
