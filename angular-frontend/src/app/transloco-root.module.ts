@@ -27,9 +27,9 @@ export class TranslocoHttpLoader implements TranslocoLoader {
       useValue: translocoConfig({
         availableLangs: ['en', 'es', 'fr', 'zh'],
         defaultLang: 'en',
-        // Remove this option if your application doesn't support changing language in runtime.
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),
+        missingHandler: { logMissingKey : false } // must disable this when working on i18n
       })
     },
     { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader }
