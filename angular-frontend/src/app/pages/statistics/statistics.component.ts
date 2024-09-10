@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 import { Employee, EmployeesService } from 'src/app/service/employees/employees.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { Customer } from 'src/app/service/customers/customers.service';
+import { AuthService } from 'src/app/service/auth/auth.service';
 
 @Component({
   selector: 'app-statistics',
@@ -23,6 +24,7 @@ export class StatisticsPageComponent {
     employeesCustomers:Customer[] = [];
     encounters: Encounter[] = [];
     payments:PaymentHistory[] = [];
+    me?: Employee;
 
     customerResults : any = {};
     encounterResults : any = {};
@@ -45,15 +47,18 @@ export class StatisticsPageComponent {
         private customersService: CustomersService,
         private paymentHistoryService: PaymentHistoryService,
         private tipsService: TipsService,
-        private eventsService: EventsService
+        private eventsService: EventsService,
+        public _auth: AuthService
     ) { }
 
     async ngOnInit() {
-        this.initTips();
-        this.initEvents();
-        await this.initPayments();
-        await this.initEncounters();
-        await this.initCustomers();
+        if (this._auth.isManager()) {
+            this.initTips();
+            this.initEvents();
+            await this.initPayments();
+            await this.initEncounters();
+            await this.initCustomers();
+        }
         await this.initEmployees();
     }
 
@@ -75,8 +80,16 @@ export class StatisticsPageComponent {
 
     async initEmployees() {
 
-        this.employees = await this.employeesService.getEmployees();
-        this.coaches = this.employees.filter(employee => employee.work === 'Coach');
+        if (this._auth.isManager()) {
+            this.employees = await this.employeesService.getEmployees();
+            this.coaches = this.employees.filter(employee => employee.work === 'Coach');
+        } else {
+            this.me = await this.employeesService.getMe();
+            if (this.me !== undefined) {
+                this.employees = [this.me];
+                this.coaches = [this.me];
+            }
+        }
         this.nbEmployees[0] = this.employees;
         this.nbCoaches[0] = this.coaches;
 
