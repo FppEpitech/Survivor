@@ -57,5 +57,16 @@
   "eventsStatTxt": "Evento(s)",
   "tipsStatTxt": "Consejo(s)",
   "signTxt": "Signo",
-  "randomOutfitTxt": "Conjunto aleatorio"
+  "randomOutfitTxt": "Conjunto aleatorio",
+  "userPhotoAlt": "Foto de usuario",
+  "hatAlt": "Imagen de gorra/sombrero",
+  "topAlt": "Imagen de prenda superior",
+  "bottomAlt": "Imagen de prenda inferior",
+  "shoesAlt": "Imagen de calzado",
+  "emailPlaceholder": "Correo electrónico",
+  "passwordPlaceholder": "Contraseña",
+  "namePlaceholder": "Nombre",
+  "surnamePlaceholder": "Apellido",
+  "datePlaceholder": "Fecha",
+  "workddescriptionPlaceholder": "Descripción del trabajo"
 }

@@ -57,5 +57,16 @@
   "eventsStatTxt": "事件",
   "tipsStatTxt": "提示",
   "signTxt": "星座",
-  "randomOutfitTxt": "随机穿搭"
+  "randomOutfitTxt": "随机穿搭",
+  "userPhotoAlt": "用户照片",
+  "hatAlt": "帽子/头饰图片",  
+  "topAlt": "上衣图片",
+  "bottomAlt": "下装图片",
+  "shoesAlt": "鞋子图片",
+  "emailPlaceholder": "电子邮件",
+  "passwordPlaceholder": "密码",
+  "namePlaceholder": "姓名",
+  "surnamePlaceholder": "姓氏",
+  "datePlaceholder": "日期",
+  "workddescriptionPlaceholder": "工作描述"
 }

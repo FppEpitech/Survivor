@@ -19,7 +19,7 @@
           <p class="title is-5 m-4">{{ this.customerLeft?.astrological_sign || this._tloco.translate('signTxt')}}</p>
           <div class="card-image">
             <figure class="image is-256x256 is-inline-block">
-              <img [src]="customerLeftImageUrl ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo"
+              <img [src]="customerLeftImageUrl ?? 'assets/placeholder-128.png'  | secure | async" [alt]="this._tloco.translate('userPhotoAlt')"
                 (error)="onImageError($event)">
             </figure>
           </div>
@@ -46,10 +46,10 @@
       <div class="card m-4">
         <div class="card-content has-text-centered">
           <p class="title is-4">{{ this.customerRight?.name || this._tloco.translate('customerTxt') + " 2"}} {{ this.customerRight?.surname }}</p>
-            <p class="title is-5 m-4">{{ this.customerRight?.astrological_sign || this._tloco.translate('signTxt')}}}}</p>
+            <p class="title is-5 m-4">{{ this.customerRight?.astrological_sign || this._tloco.translate('signTxt')}}</p>
           <div class="card-image">
             <figure class="image is-256x256 is-inline-block">
-              <img [src]="customerRightImageUrl ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo"
+              <img [src]="customerRightImageUrl ?? 'assets/placeholder-128.png'  | secure | async" [alt]="this._tloco.translate('userPhotoAlt')"
                 (error)="onImageError($event)">
             </figure>
           </div>

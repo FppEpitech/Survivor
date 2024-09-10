@@ -1,3 +1,4 @@
+import { TranslocoService } from '@ngneat/transloco';
 import { Router } from '@angular/router';
 import { EmployeeCreation, EmployeesService } from '../../service/employees/employees.service';
 import { Component } from '@angular/core';
@@ -22,7 +23,7 @@ export class RegisterEmployeeComponent {
 
     newEmployee?: EmployeeCreation;
 
-    constructor(private employeesService: EmployeesService, private router : Router) {}
+    constructor(private employeesService: EmployeesService, private router : Router, public _tloco : TranslocoService) {}
 
     async createAccount() {
         if (!this.name || !this.surname || !this.date || !this.email || !this.gender || !this.password || !this.workType) {

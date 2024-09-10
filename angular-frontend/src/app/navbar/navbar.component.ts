@@ -24,6 +24,7 @@ export class NavbarComponent {
 
   langChangeSelect(lang : string) {
     this._transloco.setActiveLang(lang)
+    this.langValue = lang
     localStorage.setItem('lang', lang)
   }
 

@@ -57,5 +57,16 @@
   "eventsStatTxt": "Event(s)",
   "tipsStatTxt": "Tip(s)",
   "signTxt": "Sign",
-  "randomOutfitTxt" : "Random outfit"
+  "randomOutfitTxt": "Random outfit",
+  "userPhotoAlt": "User photo",
+  "hatAlt": "Hat/Caps clothe image",
+  "topAlt": "Top clothe image",
+  "bottomAlt": "Bottom clothe image",
+  "shoesAlt": "Shoes clothe image",
+  "emailPlaceholder": "Email",
+  "passwordPlaceholder": "Password",
+  "namePlaceholder": "Name",
+  "surnamePlaceholder": "Surname",
+  "datePlaceholder": "Date",
+  "workddescriptionPlaceholder": "Work description"
 }

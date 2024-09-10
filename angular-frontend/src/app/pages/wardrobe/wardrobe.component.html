@@ -24,8 +24,8 @@
       </div>
     </div>
     <div class="container has-text-centered mb-2">
-      <button class="button is-primary is-centered is-vcentered" (click)="randomOutfit()">
-        <span>{{ "randomOutfitTxt " | transloco}}</span>
+      <button class="button is-primary is-centered is-vcentered" (click)="randomOutfit()" *ngIf="this.customerSelected">
+        <span>{{ "randomOutfitTxt" | transloco}}</span>
       </button>
     </div>
     <div class="is-flex mt-6 is-justify-content-center">
@@ -33,7 +33,7 @@
         <div class="is-vcentered is-centered is-mobile">
           <div class="is-narrow">
             <figure class="image is-185x185 is-centered">
-              <img [src]="hat_cap_url.url ?? 'assets/placeholder-128.png' | secure | async" alt="Hat/Caps clothe image"
+              <img [src]="hat_cap_url.url ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('hatAlt')"
                 (error)="onImageError($event)">
             </figure>
           </div>
@@ -65,7 +65,7 @@
         <div class="is-vcentered is-centered is-mobile">
           <div class="is-narrow">
             <figure class="image is-185x185">
-              <img [src]="top_url.url ?? 'assets/placeholder-128.png' | secure | async" alt="Top clothe image"
+              <img [src]="top_url.url ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('topAlt')"
                 (error)="onImageError($event)">
             </figure>
           </div>
@@ -97,7 +97,7 @@
         <div class="is-vcentered is-centered is-mobile">
           <div class="is-narrow">
             <figure class="image is-185x185">
-              <img [src]="bottom_url.url ?? 'assets/placeholder-128.png' | secure | async" alt="Bottom clothe image"
+              <img [src]="bottom_url.url ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('bottomAlt')"
                 (error)="onImageError($event)">
             </figure>
           </div>
@@ -129,7 +129,7 @@
         <div class="is-vcentered is-centered is-mobile">
           <div class="is-narrow">
             <figure class="image is-185x185">
-              <img [src]="shoes_url.url ?? 'assets/placeholder-128.png'  | secure | async" alt="Shoes clothe image"
+              <img [src]="shoes_url.url ?? 'assets/placeholder-128.png'  | secure | async" [alt]="this._tloco.translate('shoesAlt')"
                 (error)="onImageError($event)">
             </figure>
           </div>

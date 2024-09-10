@@ -2,10 +2,10 @@
     <div class="container has-text-centered">
         <p class="title is-1">{{ "accCreationHeader" | transloco }}</p>
         <form class="mt-3 p-3">
-            <input class="input mb-3" type="text" [(ngModel)]="this.name" id="name" name="name" placeholder="Name" required>
-            <input class="input mb-3" type="text" [(ngModel)]="this.surname" id="surname" name="surname" placeholder="Surname" required>
-            <input class="input mb-3" type="date" [(ngModel)]="this.date" id="date" name="date" placeholder="Date" required>
-            <input class="input mb-3" type="text" [(ngModel)]="this.email" id="email" name="email" placeholder="Email" required>
+            <input class="input mb-3" type="text" [(ngModel)]="this.name" id="name" name="name" [placeholder]="this._tloco.translate('namePlaceholder')" required>
+            <input class="input mb-3" type="text" [(ngModel)]="this.surname" id="surname" name="surname" [placeholder]="this._tloco.translate('surnamePlaceholder')" required>
+            <input class="input mb-3" type="date" [(ngModel)]="this.date" id="date" name="date" [placeholder]="this._tloco.translate('datePlaceholder')" required>
+            <input class="input mb-3" type="text" [(ngModel)]="this.email" id="email" name="email" [placeholder]="this._tloco.translate('emailPlaceholder')" required>
             <div class="select is-fullwidth mb-3">
                 <select id="gender" name="gender" [(ngModel)]="this.gender" required>
                     <option value="" disabled selected>{{ "genderOption" | transloco }}</option>
@@ -14,7 +14,7 @@
                     <option value="other">{{ "otherGenderOption" | transloco }}</option>
                 </select>
             </div>
-            <input class="input mb-3" type="password" [(ngModel)]="this.password" id="password" name="password" placeholder="Password" required>
+            <input class="input mb-3" type="password" [(ngModel)]="this.password" id="password" name="password" [placeholder]="this._tloco.translate('passwordPlaceholder')" required>
             <div class="select is-fullwidth mb-3">
                 <select id="accountType" name="accountType" [(ngModel)]="this.workType" required>
                     <option value="" disabled selected>{{ "selecAccTypeOptionLabel" | transloco }}</option>
@@ -23,7 +23,7 @@
                 </select>
             </div>
 
-            <input *ngIf="this.workType == 'employee'" [(ngModel)]="this.work" class="input mb-3" type="text" id="employeeWork" name="employeeWork" placeholder="Work Description">
+            <input *ngIf="this.workType == 'employee'" [(ngModel)]="this.work" class="input mb-3" type="text" id="employeeWork" name="employeeWork" [placeholder]="this._tloco.translate('workdescriptionPlaceholder')">
 
             <div class="control">
                 <button class="button is-large m-4 is-warning" (click)="createAccount()">{{ "createTxt" | transloco }}</button>

@@ -33,7 +33,7 @@
         <div class="column">
             <div class="card-image">
                 <figure class="image is-200x200 is-inline-block">
-                    <img [src]="customerImageUrl ?? 'assets/placeholder-128.png' | secure | async" alt="User Photo"
+                    <img [src]="customerImageUrl ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('userPhotoAlt')"
                     (error)="onImageError($event)">
                 </figure>
             </div>
