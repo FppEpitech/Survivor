@@ -72,7 +72,11 @@ export class AuthService {
         }
     }
 
-    isManager () {
+    isManager() {
         return localStorage.getItem("Manager") === "true";
+    }
+
+    isCoach(employee: Employee): boolean {
+        return employee.work === 'Coach';
     }
 }
