@@ -15,8 +15,8 @@
     <div class="column column-center">
       <div class="card m-4">
         <div class="card-content has-text-centered">
-          <p class="title is-4">{{ this.customerLeft?.name || "Customer 1"}} {{ this.customerLeft?.surname }}</p>
-          <p class="title is-5 m-4">{{ this.customerLeft?.astrological_sign || "Sign"}}</p>
+          <p class="title is-4">{{ this.customerLeft?.name || this._tloco.translate('customerTxt') + " 1"}} {{ this.customerLeft?.surname }}</p>
+          <p class="title is-5 m-4">{{ this.customerLeft?.astrological_sign || this._tloco.translate('signTxt')}}</p>
           <div class="card-image">
             <figure class="image is-256x256 is-inline-block">
               <img [src]="customerLeftImageUrl ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo"
@@ -45,8 +45,8 @@
     <div class="column column-center">
       <div class="card m-4">
         <div class="card-content has-text-centered">
-          <p class="title is-4">{{ this.customerRight?.name || "Customer 2"}} {{ this.customerRight?.surname }}</p>
-            <p class="title is-5 m-4">{{ this.customerRight?.astrological_sign || "Sign"}}</p>
+          <p class="title is-4">{{ this.customerRight?.name || this._tloco.translate('customerTxt') + " 2"}} {{ this.customerRight?.surname }}</p>
+            <p class="title is-5 m-4">{{ this.customerRight?.astrological_sign || this._tloco.translate('signTxt')}}}}</p>
           <div class="card-image">
             <figure class="image is-256x256 is-inline-block">
               <img [src]="customerRightImageUrl ?? 'assets/placeholder-128.png'  | secure | async" alt="User Photo"

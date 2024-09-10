@@ -1,3 +1,4 @@
+import { TranslocoService } from '@ngneat/transloco';
 import { Compatibility, CompatibilityService } from './../../service/compatibility/compatibility.service';
 import { Component } from '@angular/core';
 import { Customer, CustomersService } from 'src/app/service/customers/customers.service';
@@ -26,7 +27,7 @@ export class AstrologicalCompatibilityComponent {
 
     backupImageUrl = 'assets/placeholder-128.png';
 
-    constructor (private employeesService: EmployeesService, private compatibilityService: CompatibilityService, private customerService : CustomersService) {}
+    constructor (private employeesService: EmployeesService, private compatibilityService: CompatibilityService, private customerService : CustomersService, public _tloco : TranslocoService) {}
 
     async ngOnInit() {
         this.coach = await this.employeesService.getMe();

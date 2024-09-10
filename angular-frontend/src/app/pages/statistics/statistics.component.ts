@@ -1,3 +1,4 @@
+import { TranslocoService } from '@ngneat/transloco';
 import { TranslocoRootModule } from './../../transloco-root.module';
 import { EventsService } from './../../service/events/events.service';
 import { TipsService } from './../../service/tips/tips.service';
@@ -49,7 +50,8 @@ export class StatisticsPageComponent {
         private paymentHistoryService: PaymentHistoryService,
         private tipsService: TipsService,
         private eventsService: EventsService,
-        public _auth: AuthService
+        public _auth: AuthService,
+        public _tloco : TranslocoService
     ) { }
 
     async ngOnInit() {

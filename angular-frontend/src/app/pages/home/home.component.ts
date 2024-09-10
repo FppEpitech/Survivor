@@ -1,3 +1,4 @@
+import { TranslocoService } from '@ngneat/transloco';
 import { TranslocoRootModule } from './../../transloco-root.module';
 import { EncountersService } from './../../service/encounters/encounters.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -32,7 +33,8 @@ export class HomeComponent {
         private paymentHistoryService: PaymentHistoryService,
         private customersService: CustomersService,
         private employeesService: EmployeesService,
-        private encountersService: EncountersService
+        private encountersService: EncountersService,
+        public _tloco: TranslocoService
     ) {}
 
     async ngOnInit() {

@@ -41,5 +41,21 @@
   "navAstro": "Astrological Compatibility",
   "computeBtn": "Compute",
   "findBtn": "Find",
-  "navLogout": "Logout"
+  "navLogout": "Logout",
+  "totalSalesText": "Total sales (€)",
+  "customersTxt": "Customers",
+  "maleTxt": "Male",
+  "femaleTxt": "Female",
+  "otherTxt": "Other",
+  "coachsTxt": "Coaches",
+  "meetingsTxt": "Meetings",
+  "encountersTxt": "Encounters",
+  "totalsalesStatTxt": "Total sales (€)",
+  "customersStatTxt": "Customer(s)",
+  "employeesStatTxt": "Employee(s)",
+  "coachesStatTxt": "Coach(es)",
+  "eventsStatTxt": "Event(s)",
+  "tipsStatTxt": "Tip(s)",
+  "signTxt": "Sign",
+  "randomOutfitTxt" : "Random outfit"
 }

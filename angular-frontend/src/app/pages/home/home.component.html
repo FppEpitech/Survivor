@@ -13,7 +13,7 @@
                 [cardColor]="'#fff4de'"
                 [scheme]="'flame'"
                 [results]="[
-                    { name: 'Total sales (€)', value: this.paymentAccount[0] }
+                    { name: this._tloco.translate('totalSalesText'), value: this.paymentAccount[0] }
                 ]">
             </ngx-charts-number-card>
         </div>
@@ -27,10 +27,10 @@
                 [xAxis]="true"
                 [yAxis]="true"
                 [results]="[
-                    { name: 'Customers', value: this.nbCustomers[0].length },
-                    { name: 'Male', value: this.genders[0]},
-                    { name: 'Female', value: this.genders[1] },
-                    { name: 'Other', value: this.genders[2] },
+                    { name: this._tloco.translate('customersTxt'), value: this.nbCustomers[0].length },
+                    { name: this._tloco.translate('maleTxt'), value: this.genders[0]},
+                    { name: this._tloco.translate('femaleTxt'), value: this.genders[1] },
+                    { name: this._tloco.translate('otherTxt'), value: this.genders[2] },
                 ]">
             </ngx-charts-bar-vertical>
         </div>
@@ -43,8 +43,8 @@
                 [scheme]="'flame'"
                 [cardColor]="'#fff4de'"
                 [results]="[
-                { name: 'Coachs', value: this.nbEmployees[0].length },
-                { name: 'Meetings', value: this.nbEncounters[0].length},
+                { name: this._tloco.translate('coachsTxt'), value: this.nbEmployees[0].length },
+                { name: this._tloco.translate('meetingsTxt'), value: this.nbEncounters[0].length},
             ]">
             </ngx-charts-number-card>
         </div>
@@ -61,8 +61,8 @@
                 [cardColor]="'#fff4de'"
                 [scheme]="'flame'"
                 [results]="[
-                    { name: 'Customers', value: this.nbCustomers[0].length },
-                    { name: 'Meetings', value: this.nbEncounters[0] },
+                    { name: this._tloco.translate('customersTxt'), value: this.nbCustomers[0].length },
+                    { name: this._tloco.translate('meetingsTxt'), value: this.nbEncounters[0] },
                 ]">
             </ngx-charts-number-card>
         </div>
@@ -73,9 +73,9 @@
                 [view]="[containerRef2.offsetWidth, 300]"
                 [scheme]="'flame'"
                 [results]="[
-                { name: 'Male', value: this.genders[0]},
-                { name: 'Female', value: this.genders[1] },
-                { name: 'Other', value: this.genders[2] }
+                { name: this._tloco.translate('maleTxt'), value: this.genders[0]},
+                { name: this._tloco.translate('femaleTxt'), value: this.genders[1] },
+                { name: this._tloco.translate('otherTxt'), value: this.genders[2] }
             ]">
             </ngx-charts-pie-grid>
         </div>
