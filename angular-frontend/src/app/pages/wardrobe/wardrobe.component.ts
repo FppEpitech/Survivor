@@ -47,7 +47,6 @@ export class WardrobeComponent {
   top_id: number[] = [];
   bottom_id: number[] = [];
   shoes_id: number[] = [];
-  isCoach : boolean = false;
 
   customerSelected = false;
 
@@ -60,12 +59,16 @@ export class WardrobeComponent {
         if (this.employee === undefined) {
             return;
         } else {
-            if (this.isCoach) {
+            if (this.isWorkCoach(this.employee.work)) {
                 this.customers = await this.employeeService.getCustomers(this.employee.id);
             } else {
                 this.customers = await this.customerService.getCustomers();
             }
         }
+    }
+
+    isWorkCoach(work : string): boolean {
+        return work === 'Coach';
     }
 
     updateCustomer(customer: Customer): void {
