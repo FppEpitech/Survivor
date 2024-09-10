@@ -42,7 +42,7 @@
 </div>
 
 <div class="columns mb-6">
-    <div *ngIf="this._auth.isManager() && this.customer !== undefined" class="column is-5">
+    <div *ngIf="this._auth.isManager() && this.customer !== undefined" class="column card is-5 is-align-self-flex-start">
         <table class="table is-fullwidth">
             <thead>
                 <tr class="is-selected is-warning">
@@ -63,7 +63,7 @@
     </div>
 
     <div *ngIf="this._auth.isManager() && this.customer !== undefined" class="column is-1"></div>
-    <div *ngIf="this.customer !== undefined" class="column is-5">
+    <div *ngIf="this.customer !== undefined" class="column card is-5">
 
         <table class="table is-fullwidth">
             <thead>
