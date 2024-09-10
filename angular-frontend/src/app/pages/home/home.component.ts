@@ -15,10 +15,10 @@ import { Employee, EmployeesService } from 'src/app/service/employees/employees.
 
 export class HomeComponent {
 
-    payments:PaymentHistory[] = [];
-    customers:Customer[] = [];
-    employees:Employee[] = [];
-    coach?:Employee;
+    payments: PaymentHistory[] = [];
+    customers: Customer[] = [];
+    employees: Employee[] = [];
+    coach?: Employee;
 
     paymentAccount: any = {};
     nbCustomers: any = {};
@@ -75,7 +75,7 @@ export class HomeComponent {
             else if (customer.gender === 'Female')
                 this.genders[1] += 1;
             else
-            this.genders[2] += 1;
+                this.genders[2] += 1;
         }
     }
 
