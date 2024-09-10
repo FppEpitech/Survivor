@@ -16,7 +16,7 @@ router.get('/:id', async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
 
     try {
-      const clothe = await prisma.clothe.findUnique({where: {id}});
+      const clothe = await prisma.clothe.findFirst({where: {old_id: id}});
 
       if (clothe) {
         res.status(200).json(clothe);
