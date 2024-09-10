@@ -32,9 +32,9 @@ apiRouter.use(require('cors')());
 apiRouter.use(require('helmet')());
 apiRouter.use(loginRouter);
 
-apiRouter.use(authenticateToken); //now all routes are protected, user need to have a valid acc_token.
+apiRouter.use(authenticateToken);
 
-app.use('/assets', assetsRouter);
+apiRouter.use('/assets', assetsRouter);
 apiRouter.use('/tips', tipsRouter);
 apiRouter.use('/customers', customersRouter);
 apiRouter.use('/employees', employeesRouter);
