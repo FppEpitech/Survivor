@@ -1,3 +1,4 @@
+import { TranslocoRootModule } from './../../transloco-root.module';
 import { EncountersService } from './../../service/encounters/encounters.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { Component } from '@angular/core';
@@ -10,7 +11,7 @@ import { Employee, EmployeesService } from 'src/app/service/employees/employees.
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports : [NgxChartsModule]
+  imports : [NgxChartsModule, TranslocoRootModule]
 })
 
 export class HomeComponent {

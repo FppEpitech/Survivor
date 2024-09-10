@@ -1,3 +1,4 @@
+import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -22,6 +23,7 @@ import { RegisterEmployeeComponent } from './pages/register-employee/register-em
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsService } from './service/events/events.service';
 import { Events } from 'leaflet';
+import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
   declarations: [
@@ -35,14 +37,15 @@ import { Events } from 'leaflet';
     LoginComponent,
     SecurePipe,
     RegisterEmployeeComponent,
-    EventsComponent
+    EventsComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TranslocoRootModule
   ],
   providers: [
     {
