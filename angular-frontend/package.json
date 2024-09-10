@@ -22,6 +22,7 @@
     "@angular/platform-browser": "^15.0.0",
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
+    "@ngneat/transloco": "^4.3.0",
     "@swimlane/ngx-charts": "^20.5.0",
     "bulma": "^1.0.2",
     "leaflet": "^1.9.4",
