@@ -9,11 +9,14 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 export class LoginComponent {
     Email = '';
     Password = '';
+    wrongPassword = false;
 
     constructor (private authService: AuthService) {}
 
     loginClick () {
         this.authService.login(this.Email, this.Password);
+        if (this.authService.isLogged() == false)
+          this.wrongPassword = true;
         this.Password = '';
     }
 }
