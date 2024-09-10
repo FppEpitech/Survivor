@@ -1,5 +1,6 @@
 import express, {Request, Response} from 'express';
 import prisma from '../prismaClient'
+import restrictCoach from '../middlewares/isManager';
 
 const router = express.Router();
 
@@ -28,7 +29,7 @@ router.get('/:id', async (req: Request, res: Response) => {
     }
 });
 
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', restrictCoach, async (req: Request, res: Response) => {
     const {
       name,
       date,
@@ -60,7 +61,7 @@ router.post('/', async (req: Request, res: Response) => {
     }
 });
 
-router.put('/:id', async (req: Request, res: Response) => {
+router.put('/:id', restrictCoach, async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     const {
       name,
@@ -94,7 +95,7 @@ router.put('/:id', async (req: Request, res: Response) => {
     }
 });
 
-router.delete('/:id', async (req: Request, res: Response) => {
+router.delete('/:id', restrictCoach, async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
 
     try {

@@ -21,6 +21,7 @@ async function fetchClothes(access_token: string) {
                     const existingClothe = await prisma.clothe.findFirst({
                         where: {old_id: id},
                     });
+
                     if (!existingClothe) {
                         const clothesResponse = await fetch(`${process.env.SOULCONNECTION_PROD_API_URL}/api/clothes/${id}/image`, {
                             method: 'GET',
