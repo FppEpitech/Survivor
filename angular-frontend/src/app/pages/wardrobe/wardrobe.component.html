@@ -28,8 +28,10 @@
         <span>Random Outfit</span>
       </button>
     </div>
-    <div class="is-flex mt-6 is-justify-content-center">
-      <div class="p-3">
+
+    <!-- <div class="is-flex mt-6 is-justify-content-center columns is-multiline">
+
+      <div class="column p-3 is-3">
         <div class="is-vcentered is-centered is-mobile">
           <div class="is-narrow">
             <figure class="image is-185x185 is-centered">
@@ -61,7 +63,8 @@
           </div>
         </div>
       </div>
-      <div class="p-3">
+
+      <div class="column p-3 is-3">
         <div class="is-vcentered is-centered is-mobile">
           <div class="is-narrow">
             <figure class="image is-185x185">
@@ -80,7 +83,7 @@
                 </span>
               </button>
             </div>
-            <div class="is-narrow p-3">
+            <div class="is-narrow p-3 is-3">
               <button class="button is-light" (click)="swipeItem(true, tops, index_tops, top_url)">
                 <span class="icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -93,7 +96,8 @@
           </div>
         </div>
       </div>
-      <div class="p-3">
+
+      <div class="column p-3 is-3">
         <div class="is-vcentered is-centered is-mobile">
           <div class="is-narrow">
             <figure class="image is-185x185">
@@ -125,7 +129,8 @@
           </div>
         </div>
       </div>
-      <div class="p-3">
+
+      <div class="column p-3">
         <div class="is-vcentered is-centered is-mobile">
           <div class="is-narrow">
             <figure class="image is-185x185">
@@ -157,8 +162,145 @@
           </div>
         </div>
       </div>
+    </div> -->
+  </div>
+
+<div class="is-flex mt-6 is-justify-content-center columns is-multiline">
+
+  <div class="column p-3 is-3">
+    <div class="is-flex is-justify-content-center is-align-items-center">
+      <div class="is-narrow">
+        <figure class="image is-185x185">
+          <img [src]="hat_cap_url.url ?? 'assets/placeholder-128.png' | secure | async" alt="Hat/Caps clothe image"
+            (error)="onImageError($event)">
+        </figure>
+      </div>
+    </div>
+    <div class="is-flex is-justify-content-center">
+      <div class="is-narrow p-3">
+        <button class="button is-light" (click)="swipeItem(false, hats_caps, index_hats_caps, hat_cap_url)">
+          <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+              </svg>
+          </span>
+        </button>
+      </div>
+      <div class="is-narrow p-3">
+        <button class="button is-light" (click)="swipeItem(true, hats_caps, index_hats_caps, hat_cap_url)">
+          <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+              </svg>
+          </span>
+        </button>
+      </div>
     </div>
   </div>
+
+  <div class="column p-3 is-3">
+    <div class="is-flex is-justify-content-center is-align-items-center">
+      <div class="is-narrow">
+        <figure class="image is-185x185">
+          <img [src]="top_url.url ?? 'assets/placeholder-128.png' | secure | async" alt="Top clothe image"
+            (error)="onImageError($event)">
+        </figure>
+      </div>
+    </div>
+    <div class="is-flex is-justify-content-center">
+      <div class="is-narrow p-3">
+        <button class="button is-light" (click)="swipeItem(false, tops, index_tops, top_url)">
+          <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+              </svg>
+          </span>
+        </button>
+      </div>
+      <div class="is-narrow p-3">
+        <button class="button is-light" (click)="swipeItem(true, tops, index_tops, top_url)">
+          <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+              </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="column p-3 is-3">
+    <div class="is-flex is-justify-content-center is-align-items-center">
+      <div class="is-narrow">
+        <figure class="image is-185x185">
+          <img [src]="bottom_url.url ?? 'assets/placeholder-128.png' | secure | async" alt="Bottom clothe image"
+            (error)="onImageError($event)">
+        </figure>
+      </div>
+    </div>
+    <div class="is-flex is-justify-content-center">
+      <div class="is-narrow p-3">
+        <button class="button is-light" (click)="swipeItem(false, bottoms, index_bottoms, bottom_url)">
+          <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+              </svg>
+          </span>
+        </button>
+      </div>
+      <div class="is-narrow p-3">
+        <button class="button is-light" (click)="swipeItem(true, bottoms, index_bottoms, bottom_url)">
+          <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+              </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="column p-3 is-3">
+    <div class="is-flex is-justify-content-center is-align-items-center">
+      <div class="is-narrow">
+        <figure class="image is-185x185">
+          <img [src]="shoes_url.url ?? 'assets/placeholder-128.png'  | secure | async" alt="Shoes clothe image"
+            (error)="onImageError($event)">
+        </figure>
+      </div>
+    </div>
+    <div class="is-flex is-justify-content-center">
+      <div class="is-narrow p-3">
+        <button class="button is-light" (click)="swipeItem(false, shoes_list, index_shoes, shoes_url)">
+          <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
+              </svg>
+          </span>
+        </button>
+      </div>
+      <div class="is-narrow p-3">
+        <button class="button is-light" (click)="swipeItem(true, shoes_list, index_shoes, shoes_url)">
+          <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+              </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 </section>
 
 <ng-template class="container" #noClients>

@@ -3,11 +3,13 @@
 }
 
 #dropdown-menu3 {
-  height: 500px;
-  overflow-y: scroll;
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
+
 img {
-  width: 20vw;
-  height: 20vw;
+  width: 30vw;
+  height: 25vw;
 }
