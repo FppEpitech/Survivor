@@ -56,7 +56,7 @@
                 <p class="title">{{coaches?.name}} {{coaches?.surname}} </p>
             </div>
         </div>
-        <ngx-charts-bar-horizontal *ngIf="customerResults[coaches.id] !== undefined && encounterResults[coaches.id] !== undefined"
+        <!-- <ngx-charts-bar-horizontal *ngIf="customerResults[coaches.id] !== undefined && encounterResults[coaches.id] !== undefined"
             [view]="[containerRef3.offsetWidth - 20, 100]"
             [scheme]="'flame'"
             [xAxis]="true"
@@ -65,10 +65,11 @@
                 { name: this._tloco.translate('customersTxt'), value: customerResults[coaches.id] || 0 },
                 { name: this._tloco.translate('meetingsTxt'), value: encounterResults[coaches.id] || 0 }
             ]">
-        </ngx-charts-bar-horizontal>
+        </ngx-charts-bar-horizontal> -->
         <ngx-charts-advanced-pie-chart *ngIf="genderResults[coaches.id] !== undefined"
             [view]="[containerRef3.offsetWidth, 200]"
             [scheme]="'forest'"
+            [label]="this._tloco.translate('totalLabelGraph')"
             [results]="[
                 { name: this._tloco.translate('maleTxt'), value: genderResults[coaches.id][0] || 0 },
                 { name: this._tloco.translate('femaleTxt'), value: genderResults[coaches.id][1] || 0 },

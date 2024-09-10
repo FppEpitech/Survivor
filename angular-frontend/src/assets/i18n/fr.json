@@ -68,5 +68,6 @@
   "namePlaceholder": "Nom",
   "surnamePlaceholder": "Prénom",
   "datePlaceholder": "Date",
-  "workddescriptionPlaceholder": "Description du travail"
+  "workddescriptionPlaceholder": "Description du travail",
+  "totalLabelGraph": "Total"
 }
