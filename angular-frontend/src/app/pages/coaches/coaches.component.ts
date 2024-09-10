@@ -22,18 +22,9 @@ export class CoachesComponent {
         private customersService: CustomersService,
         private router: Router) {}
 
-    ngOnInit(): void {
-        this.employeesService.getEmployees().subscribe(
-            (data) => {
-                this.employees = data.filter(employee => employee.work === 'Coach');
-            },
-            (error) => { console.error("Failed to load Employees list", error); }
-        );
-
-        this.customersService.getCustomers().subscribe(
-            (data) => { this.customers = data; },
-            (error) => { console.error("Failed to load Customers list", error); }
-        );
+    async ngOnInit() {
+        this.employees = (await this.employeesService.getEmployees()).filter(employee => employee.work === 'Coach');
+        this.customers = await this.customersService.getCustomers();
     }
 
     saveChanges() {
@@ -42,10 +33,7 @@ export class CoachesComponent {
 
         for (let key in this.customerToSave) {
             let customer = this.customerToSave[key];
-            this.customersService.updateCustomer(customer.id, customer).subscribe(
-                null,
-                (error) => { console.error("Failed to update customer", error); }
-            );
+            this.customersService.updateCustomer(customer.id, customer);
         }
 
         this.isLoading = false;

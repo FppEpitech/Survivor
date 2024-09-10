@@ -1,14 +1,18 @@
-<section class="container" *ngIf="this.tips.length != 0; else noTips">
-    <div class="container">
-        <h1 class="big-title has-text-centered mt-4">Tips</h1>
+<div class="column is-11">
+    <p class="title is-1">Tips</p>
+    <hr>
+</div>
+
+<section class="container" *ngIf="tips.length != 0; else noTips">
+    <div class="columns is-multiline is-centered mt-5 mb-6">
+    <div *ngFor="let tip of tips" class="column is-one-fifth-desktop is-full-mobile">
+      <div class="card tips-card is-flex is-justify-content-center is-align-items-center">
+        <p class="has-text-centered is-size-5">
+          <strong>{{tip.title}} : </strong>{{tip.tip}}
+        </p>
+      </div>
     </div>
-    <div class="container fixed-grid has-5-cols mt-5 mb-6">
-        <div class="grid">
-            <div *ngFor="let tip of tips" class="card tips-card cell is-flex is-justify-content-center is-align-items-center">
-                <p class="has-text-centered is-size-5"><strong>{{ tip.title }} : </strong>{{ tip.tip }}</p>
-            </div>
-        </div>
-    </div>
+  </div>
 </section>
 
 <ng-template #noTips>

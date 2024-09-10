@@ -4,6 +4,7 @@ import {v4 as uuidv4} from 'uuid';
 const prisma = new PrismaClient();
 
 async function fetchClothes(access_token: string) {
+    console.log('Fetching clothes...');
     const MAX_RETRIES = 3;
 
     try {
@@ -16,10 +17,11 @@ async function fetchClothes(access_token: string) {
 
             while (retries < MAX_RETRIES && !success) {
                 try {
+                    console.log(`Fetching clothes with ID ${id}...`);
                     const existingClothe = await prisma.clothe.findFirst({
                         where: {old_id: id},
                     });
-        
+
                     if (!existingClothe) {
                         const clothesResponse = await fetch(`${process.env.SOULCONNECTION_PROD_API_URL}/api/clothes/${id}/image`, {
                             method: 'GET',
@@ -29,7 +31,7 @@ async function fetchClothes(access_token: string) {
                                 'Authorization': `Bearer ${access_token}`,
                             },
                         });
-        
+
                         if (clothesResponse.ok) {
                             const arrayBuffer = await clothesResponse.arrayBuffer();
                             const buffer = await Buffer.from(arrayBuffer);
@@ -40,7 +42,7 @@ async function fetchClothes(access_token: string) {
                                     data: buffer,
                                 },
                             });
-        
+
                             await prisma.clothe.create({
                                 data: {
                                     old_id: id,
@@ -54,6 +56,8 @@ async function fetchClothes(access_token: string) {
                             throw new Error(`Failed to fetch clothes with ID ${id}. Status: ${clothesResponse.status}`);
                         }
                     } else {
+                        console.log(`Clothes with ID ${id} already exists.`);
+                        success = true;
                         break;
                     }
                 } catch (error) {
@@ -66,6 +70,7 @@ async function fetchClothes(access_token: string) {
                     }
                 }
             }
+            console.log(`Finished fetching clothes with ID ${id}.`);
             id++;
         }
     } catch (error) {

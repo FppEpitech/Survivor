@@ -1,3 +1,17 @@
 .big-title {
-    font-size: 4rem;
+    font-size: 3rem;
+}
+
+.columns {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+body, .columns {
+    margin: 0;
+    padding: 0;
+}
+
+.cell-width {
+    max-width: 1400px;
 }
