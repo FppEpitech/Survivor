@@ -34,8 +34,8 @@ async function get_token() {
 
 async function main() {
     let token = await get_token();
-        // await fetchTips(token);
-        // await fetchClothes(token);
+    await fetchTips(token);
+    await fetchClothes(token);
     await fetchCustomers(token);
     await fetchEmployees(token);
     await fetchEncounters(token);
