@@ -1,10 +1,11 @@
 import express, {Request, Response} from 'express';
 import {PrismaClient} from '@prisma/client';
 import prisma from '../prismaClient'
+import restrictCoach from '../middlewares/isManager';
 
 const router = express.Router();
 
-router.get('/', async (req: Request, res: Response) => {
+router.get('/', restrictCoach, async (req: Request, res: Response) => {
   try {
     const encounters = await prisma.encounter.findMany();
     res.status(200).json(encounters);
@@ -18,6 +19,23 @@ router.get('/:id', async (req: Request, res: Response) => {
 
   try {
     const encounter = await prisma.encounter.findUnique({where: {id}});
+
+    if (!encounter) {
+      return res.status(404).json({ error: 'Encounter not found' });
+    }
+
+    const customer = await prisma.customer.findFirst({ where: { id: encounter.customer_id } });
+
+    if (!customer) {
+      return res.status(404).json({ error: 'Customer not found' });
+    }
+
+    const employee = (req as any).middlewareUser;
+    if (employee?.work === 'Coach') {
+      if (customer?.coach_id !== employee.id) {
+        return res.status(403).json({ message: "Access denied. Coaches cannot access this route." });
+      }
+    }
 
     if (encounter) {
       res.status(200).json(encounter);
@@ -34,6 +52,18 @@ router.get('/customer/:id', async (req: Request, res: Response) => {
 
   if (isNaN(id)) {
     return res.status(400).json({ error: 'Invalid customer ID' });
+  }
+
+  const customer = await prisma.customer.findFirst({ where: { id: id } });
+  if (!customer) {
+    return res.status(404).json({ error: 'Customer not found' });
+  }
+
+  const employee = (req as any).middlewareUser;
+  if (employee?.work === 'Coach') {
+    if (customer?.coach_id !== employee.id) {
+      return res.status(403).json({ message: "Access denied. Coaches cannot access this route." });
+    }
   }
 
   try {
@@ -100,6 +130,23 @@ router.put('/:id', async (req: Request, res: Response) => {
     source} = req.body;
 
   try {
+    const encounter = await prisma.encounter.findUnique({where: {id}});
+    if (!encounter) {
+      return res.status(404).json({ error: 'Encounter not found' });
+    }
+
+    const customer = await prisma.customer.findFirst({ where: { id: encounter.customer_id } });
+    if (!customer) {
+      return res.status(404).json({ error: 'Customer not found' });
+    }
+
+    const employee = (req as any).middlewareUser;
+    if (employee?.work === 'Coach') {
+      if (customer?.coach_id !== employee.id) {
+        return res.status(403).json({ message: "Access denied. Coaches cannot access this route." });
+      }
+    }
+
     const updatedEncounter = await prisma.encounter.update({where: {id},
       data: {
         customer_id,
@@ -119,6 +166,23 @@ router.delete('/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
 
   try {
+    const encounter = await prisma.encounter.findUnique({where: {id}});
+    if (!encounter) {
+      return res.status(404).json({ error: 'Encounter not found' });
+    }
+
+    const customer = await prisma.customer.findFirst({ where: { id: encounter.customer_id } });
+    if (!customer) {
+      return res.status(404).json({ error: 'Customer not found' });
+    }
+
+    const employee = (req as any).middlewareUser;
+    if (employee?.work === 'Coach') {
+      if (customer?.coach_id !== employee.id) {
+        return res.status(403).json({ message: "Access denied. Coaches cannot access this route." });
+      }
+    }
+
     await prisma.encounter.delete({where: {id}});
     res.status(204).send();
   } catch (error) {

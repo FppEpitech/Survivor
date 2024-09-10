@@ -37,7 +37,7 @@ router.get('/:id', async (req: Request, res: Response) => {
   }
 });
 
-router.get('/:id/payments_history', async (req: Request, res: Response) => {
+router.get('/:id/payments_history', restrictCoach, async (req: Request, res: Response) => {
   const customerId = parseInt(req.params.id);
 
   if (isNaN(customerId)) {
@@ -48,13 +48,6 @@ router.get('/:id/payments_history', async (req: Request, res: Response) => {
     const customer = await prisma.customer.findUnique({
       where: { id: customerId },
     });
-
-    const employee = (req as any).middlewareUser;
-    if (employee?.work === 'Coach') {
-      if (customer?.coach_id !== employee.id) {
-        return res.status(403).json({ message: "Access denied. Coaches cannot access this route." });
-      }
-    }
 
     if (!customer) {
       return res.status(404).json({ error: 'Customer not found' });
