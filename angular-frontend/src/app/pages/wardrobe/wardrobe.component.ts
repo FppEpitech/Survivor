@@ -5,6 +5,7 @@ import { Clothe, ClothesService } from 'src/app/service/clothes/clothes.service'
 import { Clothes, Customer, CustomersService } from 'src/app/service/customers/customers.service';
 import { EmployeesService } from 'src/app/service/employees/employees.service';
 import { environment } from '../../../environments/environment';
+import { AuthService } from 'src/app/service/auth/auth.service';
 
 @Component({
   selector: 'app-wardrobe',
@@ -52,14 +53,14 @@ export class WardrobeComponent {
 
   backupImageUrl = 'assets/placeholder-128.png';
 
-  constructor(private customerService : CustomersService, private employeeService : EmployeesService, private clotheService : ClothesService) { }
+  constructor(private customerService : CustomersService, private employeeService : EmployeesService, private clotheService : ClothesService, private authService : AuthService) { }
 
     async ngOnInit() {
         this.employee = await this.employeeService.getMe();
         if (this.employee === undefined) {
             return;
         } else {
-            if (this.isWorkCoach(this.employee.work)) {
+            if (this.authService.isCoach(this.employee)) {
                 this.customers = await this.employeeService.getCustomers(this.employee.id);
             } else {
                 this.customers = await this.customerService.getCustomers();
