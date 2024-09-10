@@ -12,6 +12,7 @@ export class AuthService {
     private apiUrl = environment.apiUrl;
     authLogged = false;
     private employee?: Employee;
+  private _transloco: any;
 
     constructor(private http: HttpClient, private router : Router, private employeesService: EmployeesService) { }
 

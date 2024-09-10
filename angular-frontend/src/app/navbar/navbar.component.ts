@@ -24,7 +24,7 @@ export class NavbarComponent {
 
   langChangeSelect(lang : string) {
     this._transloco.setActiveLang(lang)
-    console.log("lang", lang)
+    localStorage.setItem('lang', lang)
   }
 
   private onResize(): void {
