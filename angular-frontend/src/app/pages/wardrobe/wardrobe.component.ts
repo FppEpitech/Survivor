@@ -71,7 +71,6 @@ export class WardrobeComponent {
 
     updateCustomer(customer: Customer): void {
         this.customerSelected = true;
-        console.log("Customer selected: ", customer);
         this.customer = customer;
         this.getClothes();
     }
@@ -133,8 +132,6 @@ export class WardrobeComponent {
   }
 
   swipeItem(nextElement: boolean, itemList: Clothe[], index: {index: number}, url: { url?: string }): void {
-    console.log('swipeItem', nextElement, itemList, index, url);
-    console.log(index.index == 0);
     if (nextElement) {
       index.index = (index.index == itemList.length - 1) ? 0 : index.index + 1;
     } else {
