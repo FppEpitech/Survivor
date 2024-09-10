@@ -42,29 +42,27 @@
 </div>
 
 <div class="columns mb-6">
-    <div>
-        <div class="column is-5">
-            <table class="table is-fullwidth">
-                <thead>
-                    <tr class="is-selected is-warning">
-                    <th>Date</th>
-                    <th>Amount</th>
-                    <th>Comment</th>
-                    </tr>
-                </thead>
+    <div *ngIf="this._auth.isManager()" class="column is-5">
+        <table class="table is-fullwidth">
+            <thead>
+                <tr class="is-selected is-warning">
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Comment</th>
+                </tr>
+            </thead>
 
-                <tbody>
-                    <tr *ngFor="let payment of this.payments">
-                    <td>{{ payment.date }}</td>
-                    <td>{{ payment.amount }}</td>
-                    <td>{{ payment.comment }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <tbody>
+                <tr *ngFor="let payment of this.payments">
+                <td>{{ payment.date }}</td>
+                <td>{{ payment.amount }}</td>
+                <td>{{ payment.comment }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <div class="column is-1"></div>
+    <div *ngIf="this._auth.isManager()" class="column is-1"></div>
     <div class="column is-5">
 
         <table class="table is-fullwidth">

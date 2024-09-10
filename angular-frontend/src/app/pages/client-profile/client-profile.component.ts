@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { Customer, CustomersService } from 'src/app/service/customers/customers.service';
 import { Employee, EmployeesService } from 'src/app/service/employees/employees.service';
 import { environment } from '../../../environments/environment';
+import { AuthService } from 'src/app/service/auth/auth.service';
 
 @Component({
   selector: 'app-client-profile',
@@ -29,6 +30,7 @@ export class ClientProfileComponent {
         private paymentHistoryService: PaymentHistoryService,
         private encountersService: EncountersService,
         private customerService: CustomersService,
+        public _auth: AuthService
     ) {}
 
     async ngOnInit() {
@@ -43,7 +45,8 @@ export class ClientProfileComponent {
     async onRadioChange(newCustomer: Customer) {
         this.customer = newCustomer;
         this.customerImageUrl = this.apiUrl + this.customer.image_url;
-        this.payments = await this.paymentHistoryService.getPaymentsCustomer(this.customer.id);
+        if (this._auth.isManager())
+            this.payments = await this.paymentHistoryService.getPaymentsCustomer(this.customer.id);
         this.encounters = await this.encountersService.getCustomerEncounters(this.customer.id);
     }
 
