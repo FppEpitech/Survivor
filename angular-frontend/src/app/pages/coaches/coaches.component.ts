@@ -62,4 +62,8 @@ export class CoachesComponent {
     goToSignIn() {
         this.router.navigate(["/register-employee"])
     }
+
+    goToDelete() {
+        this.router.navigate(["/delete-employee"])
+    }
 }
