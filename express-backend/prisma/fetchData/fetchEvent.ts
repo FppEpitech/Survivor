@@ -20,8 +20,8 @@ async function fetchEventsById(id: number, access_token: string) {
         });
 
         if (!EventResponse.ok) {
-        if (EventResponse.status === 404)
-        throw new Error(`Failed to fetch event with ID ${id}. Status: ${EventResponse.status}`);
+            if (EventResponse.status === 404)
+                throw new Error(`Failed to fetch event with ID ${id}. Status: ${EventResponse.status}`);
         }
 
         const event = await EventResponse.json();
