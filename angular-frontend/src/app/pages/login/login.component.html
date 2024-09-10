@@ -1,6 +1,11 @@
 <div class="is-flex is-justify-content-center is-align-items-center container-login">
     <div class="has-text-centered m-4">
         <p class="title is-1 mb-5">Welcome</p>
+
+        <div *ngIf="wrongPassword">
+            <p class="subtitle is-4 has-text-danger mb-3">Wrong login or password !</p>
+        </div>
+
         <form>
             <input class="input is-large mb-2" type="text" [(ngModel)]="this.Email" id="email" name="email" placeholder="Email" required>
 
