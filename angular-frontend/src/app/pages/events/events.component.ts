@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
 import { Event, EventsService } from 'src/app/service/events/events.service';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import { CalendarOptions } from '@fullcalendar/core';
 
 @Component({
   selector: 'app-events',
@@ -12,20 +14,29 @@ export class EventsComponent {
   private map?: L.Map;
 
   events: Event[] = [];
-
+  eventsToDisplay: any[] = [];
   constructor(private eventService : EventsService) {}
-
+  calendarOptions: CalendarOptions = {
+    plugins: [dayGridPlugin],
+    initialView: 'dayGridMonth',
+    height: 500,
+    hiddenDays: [ 7 ],
+    events: this.eventsToDisplay,
+    };
     ngOnInit(): void {
         this.initMap();
 
         this.eventService.getEvents().subscribe(events => {
-        console.log(events);
         this.events = events;
         for (const event of events) {
+          this.addEvent(event.name, event.date);
+
             L.marker([parseFloat(event.location_x), parseFloat(event.location_y)]).addTo(this.map!)
             .bindPopup(event.name)
             .openPopup();
-        }
+          }
+
+
         });
     }
 
@@ -37,4 +48,8 @@ export class EventsComponent {
     }).addTo(this.map);
   }
 
+  addEvent(title :  string, date : string) {
+    console.log(date);
+    this.eventsToDisplay.push({title: title, date: new Date(date)});
+  }
 }

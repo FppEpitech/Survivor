@@ -1,17 +1,26 @@
-<div class="column is-11">
-    <p class="title is-1">{{ "navEvents" | transloco }}</p>
-    <hr>
+<div class="col-12">
+  <p class="display-1">{{ "navEvents" | transloco }}</p>
 </div>
 
-<div class="container ml-0 columns mt-4">
-    <div class="column">
-        <div id="map" style="height: 90vh; width: 100%;"></div>
-    </div>
-    <div class="column fixed-grid">
-        <div class="grid">
-            <div *ngFor="let event of events">
-                <div class="card">
-                    <div class="card-content">
+<div class="row">
+  <div class="col-10"></div>
+  <button class="btn btn-primary col-1 mb-4" style="border-radius: none">+ Add event</button>
+  <div class="col-1"></div>
+</div>
+
+<div class="card"  style="background-color: white;">
+  <div class="card-body">
+    <full-calendar #fullCalendar [options]="calendarOptions" [deepChangeDetection]="true">
+    </full-calendar>
+  </div>
+</div>
+
+<div class="container row">
+  <div class="col">
+      <div id="map" style="height: 90vh; width: 100%;"></div>
+  </div>
+</div>
+<!--
                         <p class="title">{{ event.name }}</p>
                         <p>{{ event.location_name }}</p>
                         <p>{{ "maxParticipantsTxt" | transloco }} : {{ event.max_participants }}</p>
@@ -21,4 +30,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

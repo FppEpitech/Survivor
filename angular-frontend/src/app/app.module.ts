@@ -27,6 +27,7 @@ import { BadRequestComponent } from './pages/bad-request/bad-request.component';
 import { TranslocoRootModule } from './transloco-root.module';
 import { DeleteEmployeeComponent } from './pages/delete-employee/delete-employee.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     TranslocoRootModule,
     NgbModule,
+    FullCalendarModule,
   ],
   providers: [
     {
