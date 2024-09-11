@@ -19,11 +19,28 @@ router.get('/me', async (req: Request, res: Response) => {
 router.get('/', restrictCoach, async (req: Request, res: Response) => {
   try {
     const employees = await prisma.employee.findMany();
-    res.status(200).json(employees);
+
+    const employeesWithCustomerCount = await Promise.all(
+      employees.map(async (employee) => {
+        if (employee.work === 'Coach') {
+          const customerCount = await prisma.customer.count({
+            where: { coach_id: employee.id },
+          });
+          return {
+            ...employee,
+            customerCount,
+          };
+        }
+        return employee;
+      })
+    );
+
+    res.status(200).json(employeesWithCustomerCount);
   } catch (error) {
-    res.status(500).json({error: 'Error retrieving employees'});
+    res.status(500).json({ error: 'Error retrieving employees' });
   }
 });
+
 
 router.get('/:id', restrictCoach, async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);

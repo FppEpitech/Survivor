@@ -13,6 +13,16 @@ router.get('/', restrictCoach, async (req: Request, res: Response) => {
     }
 });
 
+router.get('/total', restrictCoach, async (req: Request, res: Response) => {
+  try {
+      const paymentHistorys = await prisma.paymentHistory.findMany();
+      const totalAmount = paymentHistorys.reduce((total, payment) => total + payment.amount, 0);
+      res.status(200).json({ totalAmount });
+  } catch (error) {
+      res.status(500).json({ error: 'Error retrieving paymentHistorys' });
+  }
+});
+
 router.get('/:id', restrictCoach, async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
 

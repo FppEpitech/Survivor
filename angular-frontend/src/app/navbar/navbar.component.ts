@@ -13,7 +13,6 @@ import { environment } from 'src/environments/environment';
 })
 export class NavbarComponent {
   public width = window.innerWidth
-  displayNav = false
   langValue = this._transloco.getActiveLang()
   lang = ['en', 'fr', 'zh', 'es']
   idx = this.lang.findIndex(language => language === this.langValue);
@@ -24,10 +23,6 @@ export class NavbarComponent {
 
   constructor(public _auth : AuthService, private router : Router, public _transloco : TranslocoService, private employeesService: EmployeesService) {
     window.addEventListener('resize', this.onResize.bind(this));
-
-    this.router.events.subscribe(() => {
-      this.displayNav = false;
-    });
   }
 
   langChangeSelect(lang : string) {
@@ -46,9 +41,5 @@ export class NavbarComponent {
 
   private onResize(): void {
     this.width = window.innerWidth;
-  }
-
-  public toggleNav() {
-    this.displayNav = !this.displayNav
   }
 }
