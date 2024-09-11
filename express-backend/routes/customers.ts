@@ -94,7 +94,6 @@ router.get('/:id/payments_history/total', restrictCoach, async (req: Request, re
       });
 
       const totalAmount = payments.reduce((total, payment) => total + payment.amount, 0);
-
       res.status(200).json({ totalAmount });
   } catch (error) {
       console.error('Error retrieving payment history:', error);

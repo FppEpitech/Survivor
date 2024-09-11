@@ -17,7 +17,7 @@ import themesRouter from './routes/themes';
 require('dotenv').config();
 
 const app = express();
-const port = process.env.BACK_PORT || 3000;
+const port = process.env.BACK_PORT || 3001;
 
 let fetchAndStoreCronJob: ScheduledTask | null = null;
 
