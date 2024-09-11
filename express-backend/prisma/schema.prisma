@@ -33,6 +33,7 @@ model Customer {
   description       String
   astrological_sign String
   coach_id          Int
+  coach_favorite    Boolean @default(false)
   image_url         String?
   clothes           Json
   payment_ids       Int[]
