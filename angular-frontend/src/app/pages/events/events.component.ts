@@ -1,3 +1,4 @@
+import { backgroundColorNames } from './../../../../node_modules/@isaacs/cliui/node_modules/ansi-styles/index.d';
 import { TranslocoService } from '@ngneat/transloco';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
@@ -9,6 +10,8 @@ import en from '@fullcalendar/core/locales/en-gb';
 import fr from '@fullcalendar/core/locales/fr';
 import es from '@fullcalendar/core/locales/es';
 import zh from '@fullcalendar/core/locales/zh-cn';
+import listPlugin from '@fullcalendar/list';
+import timeGridPlugin from '@fullcalendar/timegrid'
 
 @Component({
   selector: 'app-events',
@@ -27,7 +30,7 @@ export class EventsComponent {
 
 
   calendarOptions: CalendarOptions = {
-    plugins: [dayGridPlugin, interactionPlugin],
+    plugins: [dayGridPlugin, interactionPlugin, listPlugin, timeGridPlugin],
     initialView: 'dayGridMonth',
     height: 500,
     hiddenDays: [7],
@@ -38,7 +41,7 @@ export class EventsComponent {
       alert(description);
     },
     headerToolbar: {
-      left: 'title, prev,next',
+      left: 'prev,next,title',
       center: '',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
     },
@@ -78,6 +81,6 @@ export class EventsComponent {
 
   addEvent(title :  string, date : string, desc : string) {
     console.log(date);
-    this.eventsToDisplay.push({title: title, date: new Date(date), description: desc});
+    this.eventsToDisplay.push({title: title, date: new Date(date), description: desc, backgroundColor:"green"});
   }
 }

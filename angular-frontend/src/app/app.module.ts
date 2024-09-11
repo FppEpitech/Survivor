@@ -25,7 +25,6 @@ import { EventsService } from './service/events/events.service';
 import { Events } from 'leaflet';
 import { BadRequestComponent } from './pages/bad-request/bad-request.component';
 import { TranslocoRootModule } from './transloco-root.module';
-import { DeleteEmployeeComponent } from './pages/delete-employee/delete-employee.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FullCalendarModule } from '@fullcalendar/angular';
 
@@ -43,7 +42,6 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     RegisterEmployeeComponent,
     EventsComponent,
     BadRequestComponent,
-    DeleteEmployeeComponent
   ],
   imports: [
     AppRoutingModule,
