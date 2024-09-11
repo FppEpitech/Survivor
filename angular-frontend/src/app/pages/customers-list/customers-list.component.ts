@@ -59,7 +59,7 @@ export class CustomersListComponent {
     }
 
     goToCustomerCreation() {
-        // this.router.navigate(["/create-customer"]);
+        this.router.navigate(["/register-customer"]);
     }
 
     changeAction(action: string) {

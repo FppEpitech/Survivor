@@ -17,6 +17,19 @@ export interface Customer {
   coach_favorite: boolean;
 }
 
+export interface CustomerCreation {
+    name: string;
+    surname: string;
+    birth_date: string;
+    email: string;
+    gender: string;
+    description: string;
+    astrological_sign: string;
+    coach_id: number;
+    clothes: string;
+    image_url: string;
+  }
+
 export interface Clothes {
   id: number;
   type: string;
@@ -56,7 +69,7 @@ export class CustomersService {
     }
 
     // Create a new Customer
-    async createCustomer(customer: Customer): Promise<Customer | undefined> {
+    async createCustomer(customer: CustomerCreation): Promise<Customer | undefined> {
         try {
             this.customer = await firstValueFrom(this.http.post<Customer>(`${this.apiUrl}/`, customer, {headers: new HttpHeaders({'Content-Type': 'application/json'})}));
         } catch (error) {

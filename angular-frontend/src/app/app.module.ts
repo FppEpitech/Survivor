@@ -28,6 +28,7 @@ import { TranslocoRootModule } from './transloco-root.module';
 import { DeleteEmployeeComponent } from './pages/delete-employee/delete-employee.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomersListComponent } from './pages/customers-list/customers-list.component';
+import { RegisterCustomerComponent } from './pages/register-customer/register-customer.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { CustomersListComponent } from './pages/customers-list/customers-list.co
     LoginComponent,
     SecurePipe,
     RegisterEmployeeComponent,
+    RegisterCustomerComponent,
     EventsComponent,
     BadRequestComponent,
     DeleteEmployeeComponent
