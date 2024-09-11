@@ -54,6 +54,13 @@ export class ClientProfileComponent implements OnInit {
         });
     }
 
+    switchFavoriteCoach() {
+        if (this.customer == undefined)
+            return;
+        this.customer.coach_favorite = !this.customer.coach_favorite;
+        this.customerService.updateCustomer(this.customer.id, this.customer);
+    }
+
     onImageError(event: any) {
         event.target.src = this.backupImageUrl;
     }
