@@ -69,5 +69,6 @@
   "surnamePlaceholder": "Apellido",
   "datePlaceholder": "Fecha",
   "workddescriptionPlaceholder": "Descripción del trabajo",
-  "totalLabelGraph": "Total"
+  "totalLabelGraph": "Total",
+  "navTipsHeader": "Consejos para Entrenadores"
 }
