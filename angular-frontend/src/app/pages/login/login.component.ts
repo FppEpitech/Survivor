@@ -1,3 +1,4 @@
+import { TranslocoService } from '@ngneat/transloco';
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/service/auth/auth.service';
 
@@ -11,7 +12,7 @@ export class LoginComponent {
     Password = '';
     wrongPassword = false;
 
-    constructor (private authService: AuthService) {}
+    constructor (private authService: AuthService, public _tloco: TranslocoService) {}
 
     loginClick () {
         this.authService.login(this.Email, this.Password);

@@ -1,5 +1,5 @@
 <div class="column is-11">
-    <p class="title is-1">Tips</p>
+    <p class="title is-1">{{ "navTips" | transloco }}</p>
     <hr>
 </div>
 
@@ -15,6 +15,6 @@
   </div>
 </section>
 
-<ng-template #noTips>
-  Loading tips...
+<ng-template class="container" #noTips>
+  <h1>{{ "loadTips" | transloco }}</h1>
 </ng-template>

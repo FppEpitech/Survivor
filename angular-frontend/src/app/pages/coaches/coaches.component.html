@@ -1,17 +1,17 @@
 <div class="column is-11">
-    <p class="title is-1">Coach</p>
+    <p class="title is-1">{{ "navCoaches" | transloco }}</p>
     <hr>
 </div>
 
 <div class="columns">
     <div class="column m-3 is-4">
-        <button class="button is-success" (click)="goToSignIn()">Create Employee</button>
+        <button class="button is-success" (click)="goToSignIn()">{{ "createEmployee" | transloco}}</button>
     </div>
     <div class="column m-3 is-4">
         <button class="button is-danger" (click)="goToDelete()">Delete Employee</button>
     </div>
     <div class="column m-3">
-        <button class="button is-warning" (click)="saveChanges()" [class.is-static]="!this.changesOccured" [class.is-loading]="this.isLoading">Save</button>
+        <button class="button is-warning" (click)="saveChanges()" [class.is-static]="!this.changesOccured" [class.is-loading]="this.isLoading">{{ "save" | transloco }}</button>
     </div>
 </div>
 
@@ -19,10 +19,10 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Birth Date</th>
-            <th>Customers</th>
-            <th>Last log</th>
+            <th>{{ "name" | transloco }}</th>
+            <th>{{ "birthdateTh" | transloco }}</th>
+            <th>{{ "customersTh" | transloco }}</th>
+            <th>{{ "lconnectionTh" | transloco }}</th>
         </tr>
     </thead>
 
@@ -34,7 +34,7 @@
             <td><div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
                     <button class="button is-warning is-small">
-                        <span>Edit list...</span>
+                        <span>{{ "editList" | transloco }}</span>
                     </button>
                 </div>
                 <div class="dropdown-menu" role="menu">

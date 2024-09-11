@@ -1,3 +1,5 @@
+import { TranslocoService } from '@ngneat/transloco';
+import { TranslocoRootModule } from './../../transloco-root.module';
 import { EventsService } from './../../service/events/events.service';
 import { TipsService } from './../../service/tips/tips.service';
 import { PaymentHistory, PaymentHistoryService } from './../../service/paymentHistory/payment-history.service';
@@ -13,7 +15,7 @@ import { AuthService } from 'src/app/service/auth/auth.service';
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.scss'],
-  imports : [NgxChartsModule],
+  imports : [NgxChartsModule, TranslocoRootModule],
   standalone: true
 })
 export class StatisticsPageComponent {
@@ -48,7 +50,8 @@ export class StatisticsPageComponent {
         private paymentHistoryService: PaymentHistoryService,
         private tipsService: TipsService,
         private eventsService: EventsService,
-        public _auth: AuthService
+        public _auth: AuthService,
+        public _tloco : TranslocoService
     ) { }
 
     async ngOnInit() {

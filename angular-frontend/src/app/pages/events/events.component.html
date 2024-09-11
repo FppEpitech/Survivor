@@ -1,5 +1,5 @@
 <div class="column is-11">
-    <p class="title is-1">Events</p>
+    <p class="title is-1">{{ "navEvents" | transloco }}</p>
     <hr>
 </div>
 
@@ -14,8 +14,8 @@
                     <div class="card-content">
                         <p class="title">{{ event.name }}</p>
                         <p>{{ event.location_name }}</p>
-                        <p>Max Participant : {{ event.max_participants }}</p>
-                        <p>Date : {{ event.date }}</p>
+                        <p>{{ "maxParticipantsTxt" | transloco }} : {{ event.max_participants }}</p>
+                        <p>{{ "dateTxt" | transloco }} : {{ event.date }}</p>
                     </div>
                 </div>
             </div>

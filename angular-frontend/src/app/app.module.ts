@@ -1,10 +1,11 @@
+import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {  NavbarComponent } from './navbar/navbar.component';
-import {  ClientProfileComponent } from './pages/client-profile/client-profile.component';
+import { ClientProfileComponent } from './pages/client-profile/client-profile.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './service/token-interceptor/token-interceptor.service';
@@ -22,6 +23,7 @@ import { RegisterEmployeeComponent } from './pages/register-employee/register-em
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsService } from './service/events/events.service';
 import { Events } from 'leaflet';
+import { TranslocoRootModule } from './transloco-root.module';
 import { DeleteEmployeeComponent } from './pages/delete-employee/delete-employee.component';
 
 @NgModule({
@@ -44,7 +46,8 @@ import { DeleteEmployeeComponent } from './pages/delete-employee/delete-employee
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TranslocoRootModule
   ],
   providers: [
     {
