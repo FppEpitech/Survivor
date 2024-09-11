@@ -105,7 +105,7 @@
                             <img *ngIf="payment.payment_method == 'Bank Transfer'" src="assets/wire-transfer.jpg" class="image-card-payment">
                             <span *ngIf="payment.payment_method != 'PayPal' && payment.payment_method != 'Credit Card' && payment.payment_method != 'Bank Transfer'">{{ payment.payment_method }}</span>
                         </td>
-                        <td class="fw-bold text-primary-emphasis">{{ payment.amount }}</td>
+                        <td class="fw-bold text-primary-emphasis">{{ payment.amount }} $</td>
                         <td class="text-secondary">{{ payment.comment }}</td>
                     </tr>
                 </tbody>
