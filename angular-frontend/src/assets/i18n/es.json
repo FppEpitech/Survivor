@@ -70,5 +70,6 @@
   "datePlaceholder": "Fecha",
   "workddescriptionPlaceholder": "Descripción del trabajo",
   "totalLabelGraph": "Total",
-  "navTipsHeader": "Consejos para Entrenadores"
+  "navTipsHeader": "Consejos para Entrenadores",
+  "addEvBtn": "+ Agregar evento"
 }

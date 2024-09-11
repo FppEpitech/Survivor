@@ -1,22 +1,20 @@
-<div class="col-12">
-  <p class="display-1">{{ "navEvents" | transloco }}</p>
-</div>
+<p class="display-6"  style="margin: 14px; font-weight: bold;">{{ "navEvents" | transloco }}</p>
 
 <div class="row">
   <div class="col-10"></div>
-  <button class="btn btn-primary col-1 mb-4" style="border-radius: none">+ Add event</button>
+  <button class="btn btn-primary col-lg-1 mb-4 col-sm-12" style="border-radius: none">{{ "addEvBtn" | transloco }}</button>
   <div class="col-1"></div>
 </div>
 
-<!-- <div class="card"  style="background-color: white;">
-  <div class="card-body"> -->
+<div class="card m-4"  style="background-color: white;">
+  <div class="card-body">
     <full-calendar #fullCalendar [options]="calendarOptions" [deepChangeDetection]="true">
     </full-calendar>
-  <!-- </div>
-</div> -->
-
-<div class="container row">
-  <div class="col">
-      <div id="map" style="height: 90vh; width: 100vw;" class="mt-4"></div>
   </div>
+</div>
+
+<div class="card mt-4 mb-4 m-4">
+  <div class="card-body">
+      <div id="map" style="height: 90vh; width: 90vw; margin: 0 auto" class="mt-4"></div>
+    </div>
 </div>
