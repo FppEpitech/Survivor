@@ -18,7 +18,6 @@ import { BadRequestComponent } from './pages/bad-request/bad-request.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [LoggedGuard]},
-    { path: '**', component: BadRequestComponent},
     { path: 'login', component: LoginComponent},
     { path: 'client-profile', component: ClientProfileComponent, canActivate: [LoggedGuard] },
     { path: 'coaches', component: CoachesComponent, canActivate: [LoggedGuard, ManagerGuard] },
@@ -28,7 +27,8 @@ const routes: Routes = [
     { path: 'tips', component: TipsComponent, canActivate: [LoggedGuard] },
     { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] },
     { path: 'register-employee', component: RegisterEmployeeComponent, canActivate: [LoggedGuard, ManagerGuard] },
-    { path: 'events', component: EventsComponent, canActivate: [LoggedGuard] }
+    { path: 'events', component: EventsComponent, canActivate: [LoggedGuard] },
+    { path: '**', component: BadRequestComponent}
 ];
 
 @NgModule({
