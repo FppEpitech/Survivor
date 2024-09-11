@@ -92,6 +92,11 @@ router.get('/:id/image', async (req: Request, res: Response) => {
   }
 });
 
+interface Clothe {
+  id: number;
+  type: string;
+}
+
 router.get('/:id/clothes', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
 
@@ -105,14 +110,43 @@ router.get('/:id/clothes', async (req: Request, res: Response) => {
     });
 
     if (customer) {
-      const employee = (req as any).middlewareUser;
-      if (employee?.work === 'Coach') {
-        if (customer?.coach_id !== employee.id) {
-          return res.status(403).json({ message: "Access denied. Coaches cannot access this route." });
+        const employee = (req as any).middlewareUser;
+        if (employee?.work === 'Coach') {
+            if (customer?.coach_id !== employee.id) {
+                return res.status(403).json({ message: "Access denied. Coaches cannot access this route." });
+            }
         }
-      }
-      console.log('Customer clothes:', customer.clothes);
-      res.status(200).json(customer.clothes);
+
+        let clothes: any[] = [];
+
+        if (customer.clothes) {
+          try {
+            const clothesJsonArray = customer.clothes as unknown as { id: number, type: string }[];
+
+            const results = await Promise.all(clothesJsonArray.map(async (clothe) => {
+              const clothURL = await prisma.clothe.findUnique({ where: { id: clothe.id } });
+
+              if (clothURL) {
+                return {
+                  type: clothe.type,
+                  url: clothURL.type
+                };
+              } else {
+                return {
+                  type: clothe.type,
+                  url: 'Not found'
+                };
+              }
+            }));
+
+            clothes = results;
+          } catch (error) {
+            console.error('Error converting clothes data:', error);
+            return res.status(500).json({ error: 'Error processing clothes data' });
+          }
+        }
+        console.log(clothes);
+        res.status(200).json(clothes);
     } else {
       res.status(404).json({ error: 'Customer not found' });
     }
@@ -121,6 +155,7 @@ router.get('/:id/clothes', async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Error retrieving customer' });
   }
 });
+
 
 router.post('/', restrictCoach, async (req: Request, res: Response) => {
   const {
