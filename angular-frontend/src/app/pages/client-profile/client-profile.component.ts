@@ -1,28 +1,27 @@
 import { TranslocoService } from '@ngneat/transloco';
 import { Encounter, EncountersService } from './../../service/encounters/encounters.service';
 import { PaymentHistory, PaymentHistoryService } from './../../service/paymentHistory/payment-history.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Customer, CustomersService } from 'src/app/service/customers/customers.service';
 import { Employee, EmployeesService } from 'src/app/service/employees/employees.service';
 import { environment } from '../../../environments/environment';
 import { AuthService } from 'src/app/service/auth/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-client-profile',
   templateUrl: './client-profile.component.html',
   styleUrls: ['./client-profile.component.scss']
 })
-export class ClientProfileComponent {
+export class ClientProfileComponent implements OnInit {
 
     coach?: Employee;
-    customers : Customer[] = [];
-    customer?: Customer;
+    customer?: Customer
 
     customerImageUrl?: string;
 
     payments: PaymentHistory[] = [];
     encounters: Encounter[] = [];
-    isCoach : boolean = false;
     backupImageUrl = 'assets/placeholder-128.png';
     apiUrl = environment.apiUrl + '/';
 
@@ -31,28 +30,45 @@ export class ClientProfileComponent {
         private paymentHistoryService: PaymentHistoryService,
         private encountersService: EncountersService,
         private customerService: CustomersService,
+        private route: ActivatedRoute,
         public _auth: AuthService,
-        public _tloco : TranslocoService
+        public _tloco : TranslocoService,
     ) {}
 
     async ngOnInit() {
-        this.coach = await this.employeesService.getMe();
-        if (this.coach?.work === 'Coach') {
-            this.customers = await this.employeesService.getCustomers(this.coach?.id);
-        } else {
-            this.customers = await this.customerService.getCustomers();
-        }
+        this.route.paramMap.subscribe(async params => {
+            const id = params.get('id');
+            if (id === null)
+                return;
+            let customerId = +id;
+            this.customerService.getCustomer(customerId).then(async customer => {
+                if (customer === undefined)
+                    return;
+                this.customer = customer;
+                this.customerImageUrl = this.apiUrl + customer.image_url;
+                this.payments = await this.paymentHistoryService.getPaymentsCustomer(this.customer.id);
+                this.encounters = await this.encountersService.getCustomerEncounters(this.customer.id);
+                this.coach = await this.employeesService.getEmployee(this.customer.coach_id);
+            });
+        });
     }
 
-    async onRadioChange(newCustomer: Customer) {
-        this.customer = newCustomer;
-        this.customerImageUrl = this.apiUrl + this.customer.image_url;
-        if (this._auth.isManager())
-            this.payments = await this.paymentHistoryService.getPaymentsCustomer(this.customer.id);
-        this.encounters = await this.encountersService.getCustomerEncounters(this.customer.id);
+    switchFavoriteCoach() {
+        if (this.customer == undefined)
+            return;
+        this.customer.coach_favorite = !this.customer.coach_favorite;
+        this.customerService.updateCustomer(this.customer.id, this.customer);
     }
 
     onImageError(event: any) {
         event.target.src = this.backupImageUrl;
+    }
+
+    getNumberSuccessEncounters() {
+        return this.encounters.filter(encounter => encounter.rating > 3).length;
+    }
+
+    getNumberFailedEncounters() {
+        return this.encounters.filter(encounter => encounter.rating <= 3).length;
     }
 }
