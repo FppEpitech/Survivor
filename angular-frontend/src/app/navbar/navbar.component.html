@@ -1,5 +1,3 @@
-    <!-- <li><i><a class="underline" style="color:black" (click)="this._auth.logout()">{{ "navLogout" | transloco }}</a></i></li> -->
-
 <div *ngIf="this.width <= 1023" class="nav-dropdown-button">
   <button class="button is-warning close-nav" *ngIf="!this.displayNav" (click)="this.toggleNav()">\/</button>
 </div>
@@ -17,35 +15,35 @@
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/home" routerLinkActive="active">Dashboard</a>
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">{{ "navHome" | transloco }}</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/coaches" routerLinkActive="active">Coaches</a>
+            <a class="nav-link" routerLink="/coaches" routerLinkActive="active">{{ "navCoaches" | transloco }}</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/client-profile" routerLinkActive="active">Customers</a>
+            <a class="nav-link" routerLink="/client-profile" routerLinkActive="active">{{ "navCustomers" | transloco }}</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/statistics" routerLinkActive="active">Statistics</a>
+            <a class="nav-link" routerLink="/statistics" routerLinkActive="active">{{ "navStatistics" | transloco }}</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/tips" routerLinkActive="active">Tips</a>
+            <a class="nav-link" routerLink="/tips" routerLinkActive="active">{{ "navTips" | transloco }}</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/events" routerLinkActive="active">Events</a>
+            <a class="nav-link" routerLink="/events" routerLinkActive="active">{{ "navEvents" | transloco }}</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/wardrobe" routerLinkActive="active">Wardrobe</a>
+            <a class="nav-link" routerLink="/wardrobe" routerLinkActive="active">{{ "navWardrobe" | transloco }}</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/astrological-compatibility" routerLinkActive="active">Compatibility</a>
+            <a class="nav-link" routerLink="/astrological-compatibility" routerLinkActive="active">{{ "navAstro" | transloco }}</a>
         </li>
 
         </ul>
