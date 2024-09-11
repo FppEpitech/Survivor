@@ -206,6 +206,7 @@ router.put('/:id', restrictCoach, async (req: Request, res: Response) => {
     description,
     astrological_sign = "Unknown",
     coach_id,
+    coach_favorite,
     image_url
   } = req.body;
 
@@ -221,6 +222,7 @@ router.put('/:id', restrictCoach, async (req: Request, res: Response) => {
         description,
         astrological_sign,
         coach_id,
+        coach_favorite,
         image_url
       },
     });
