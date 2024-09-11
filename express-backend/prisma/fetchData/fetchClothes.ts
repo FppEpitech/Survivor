@@ -2,19 +2,14 @@ import {PrismaClient} from '@prisma/client';
 import {v4 as uuidv4} from 'uuid';
 
 const prisma = new PrismaClient();
+const BATCH_SIZE = 10;
 
-async function fetchClothes(access_token: string) {
-    console.log('Fetching clothes...');
+async function fetchClothesById(id: number, access_token: string) {
     const MAX_RETRIES = 3;
 
     try {
-        let id = 1;
-        let moreClothes = true;
-
-        while (moreClothes) {
-            let retries = 0;
-            let success = false;
-
+        let retries = 0;
+        let success = false;
             while (retries < MAX_RETRIES && !success) {
                 try {
                     console.log(`Fetching clothes with ID ${id}...`);
@@ -50,8 +45,6 @@ async function fetchClothes(access_token: string) {
                                 },
                             });
                             console.log(`Image ${id} saved as assets/${savedImage.uuid}`);
-                        } else if (clothesResponse.status === 404) {
-                            moreClothes = false;
                         } else {
                             throw new Error(`Failed to fetch clothes with ID ${id}. Status: ${clothesResponse.status}`);
                         }
@@ -69,13 +62,34 @@ async function fetchClothes(access_token: string) {
                     }
                 }
             }
-            console.log(`Finished fetching clothes with ID ${id}.`);
-            id++;
-        }
     } catch (error) {
         console.error('Error fetching and storing data:', error);
     }
 }
 
+async function fetchClothes(access_token: string) {
+    try {
+        console.log('Fetching clothes...');
+        let id = 1;
+        let moreEncounters = true;
+
+        while (moreEncounters) {
+            const tasks = [];
+            for (let i = 0; i < BATCH_SIZE; i++) {
+                tasks.push(fetchClothesById(id + i, access_token));
+            }
+
+            const results = await Promise.all(tasks);
+
+            if (results.some(result => result === null)) {
+                moreEncounters = false;
+            }
+
+            id += BATCH_SIZE;
+        }
+    } catch (error) {
+        console.error('Error fetching and storing data:', error);
+    }
+  }
 
 export default fetchClothes;
