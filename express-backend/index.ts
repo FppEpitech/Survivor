@@ -1,4 +1,6 @@
 import express, { Request, Response } from 'express';
+import cron, { ScheduledTask } from 'node-cron';
+import { exec } from 'child_process';
 import path from 'path';
 import tipsRouter from './routes/tips';
 import loginRouter from './routes/login';
@@ -16,6 +18,8 @@ require('dotenv').config();
 
 const app = express();
 const port = process.env.BACK_PORT || 3001;
+
+let fetchAndStoreCronJob: ScheduledTask | null = null;
 
 if (process.env.FROM_DOCKER == "true") {
     app.use('/', express.static(path.join(__dirname, '../../angular-frontend/dist/angular-frontend')));
@@ -48,9 +52,39 @@ apiRouter.use('/themes', themesRouter);
 
 app.use('/api', apiRouter);
 
-
-
+fetchAndStoreCronJob = cron.schedule('0 */2 * * *', () => {
+    console.log('Running fetchAndStoreData script...');
+    exec('ts-node ./prisma/fetchData/fetchAndStoreData.ts', (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error executing script: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.error(`Error output: ${stderr}`);
+            return;
+        }
+        console.log(`Script output: ${stdout}`);
+    });
+});
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
+});
+
+process.on('SIGINT', () => {
+    console.log('Received SIGINT. Shutting down...');
+    if (fetchAndStoreCronJob) {
+        fetchAndStoreCronJob.stop();
+        console.log('Cron job stopped.');
+    }
+    process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+    console.log('Received SIGTERM. Shutting down...');
+    if (fetchAndStoreCronJob) {
+        fetchAndStoreCronJob.stop();
+        console.log('Cron job stopped.');
+    }
+    process.exit(0);
 });
