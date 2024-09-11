@@ -1,0 +1,108 @@
+<div class="d-flex justify-content-between align-items-center m-4">
+    <div>
+        <h2 class="fw-bold">Customers List</h2>
+        <h6>You have total {{ this.customers.length }} customers.</h6>
+    </div>
+
+    <div>
+        <button class="btn btn-outline-secondary me-2" (click)="exportCustomersAsJSON()">
+            <i class="bi bi-cloud-download"></i> Export
+        </button>
+        <button *ngIf="this._auth.isManager()" class="btn btn-primary" (click)="goToCustomerCreation()">
+            <i class="bi bi-plus-lg"></i>
+        </button>
+    </div>
+</div>
+
+<div class="card m-4">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-12 col-lg-9">
+                <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center mb-3 mb-md-0">
+                    <div *ngIf="this._auth.isManager()" class="dropdown me-md-2 mb-2 mb-md-0">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ this.action }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" (click)="changeAction('Bulk Action')">Bulk Action</a></li>
+                            <li><a class="dropdown-item" (click)="changeAction('Simple Action')">Simple action</a></li>
+                        </ul>
+                    </div>
+                    <button *ngIf="this._auth.isManager()" class="btn btn-outline-secondary w-md-auto mb-2 mb-md-0" (click)="apply()">Apply</button>
+                    <button class="btn btn-light w-100 w-md-auto" *ngIf="this.action === 'Bulk Action' && this._auth.isManager()" (click)="deleteManyCustomers()">
+                        <i class="bi bi-trash text-danger"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-3 d-flex flex-column flex-md-row align-items-start align-items-md-center">
+                <div class="d-flex align-items-center w-100 mb-2 mb-md-0">
+                    <input type="text" class="form-control me-2" placeholder="Search" [(ngModel)]="this.search">
+                    <button class="btn btn-light" (click)="searchBar()">
+                        <i class="bi bi-search mx-2 text-secondary"></i>
+                    </button>
+                </div>
+                <div class="d-flex align-items-center w-md-auto">
+                    <span class="vertical-bar"></span>
+                    <button class="btn btn-light w-100 w-md-auto" (click)="filterFavorite()">
+                        <i class="bi bi-filter mx-2 text-secondary"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-secondary">Coach</th>
+                    <th scope="col" class="text-secondary">Email</th>
+                    <th scope="col" class="text-secondary">Birth Date</th>
+                    <th *ngIf="this._auth.isManager()" scope="col" class="text-secondary">Payment Methods</th>
+                    <th scope="col" class="text-secondary text-center align-middle">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of this.customers">
+                    <td>
+                        <button *ngIf="this.action === 'Bulk Action' && this.customerCheck[customer.id] === undefined" class="btn" (click)="checkCustomer(true, customer)">
+                            <i class="bi bi-app"></i>
+                        </button>
+                        <button *ngIf="this.action === 'Bulk Action' && this.customerCheck[customer.id] !== undefined" class="btn" (click)="checkCustomer(false, customer)">
+                            <i class="bi bi-check2-square"></i>
+                        </button>
+                        <i class="bi bi-person-circle fs-4 m-4"></i>
+                        {{ customer.name }} {{ customer.surname }}
+                    </td>
+                    <td>{{ customer.email }}</td>
+                    <td>{{ customer.birth_date }}</td>
+                    <td></td>
+                    <!-- <td *ngIf="this._auth.isManager()" ><img *ngIf="this.payments[customer.id][0].payment_method == 'PayPal'" src="assets/paypal-card.jpg" class="image-card-payment">
+                        <img *ngIf="this.payments[customer.id][0].payment_method == 'Credit Card'" src="assets/cb-card.jpg" class="image-card-payment">
+                        <img *ngIf="this.payments[customer.id][0].payment_method == 'Bank Transfer'" src="assets/wire-transfer.jpg" class="image-card-payment">
+                        <span *ngIf="this.payments[customer.id][0].payment_method != 'PayPal' && this.payments[customer.id][0].payment_method != 'Credit Card' && this.payments[customer.id][0].payment_method != 'Bank Transfer'">{{ this.payments[customer.id][0].payment_method }}</span>
+                    </td> -->
+                    <td class="text-center align-middle">
+                        <div class="dropup me-2">
+                            <button class="btn btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li *ngIf="this.customersToDelete[customer.id] === undefined && this._auth.isManager()"><a class="dropdown-item" (click)="deleteButton(customer)">
+                                    <i class="bi bi-trash text-danger"></i> delete
+                                </a></li>
+                                <li *ngIf="this.customersToDelete[customer.id] !== undefined && this._auth.isManager()"><a class="dropdown-item" (click)="restoreButton(customer)">
+                                    <i class="bi bi-arrow-repeat text-success"></i> restore
+                                </a></li>
+                                <li><a class="dropdown-item" (click)="goToCustomerPage(customer)">
+                                    <i class="bi bi-eye text-success"></i> see
+                                </a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

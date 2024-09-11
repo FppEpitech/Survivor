@@ -27,6 +27,7 @@ import { BadRequestComponent } from './pages/bad-request/bad-request.component';
 import { TranslocoRootModule } from './transloco-root.module';
 import { DeleteEmployeeComponent } from './pages/delete-employee/delete-employee.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CustomersListComponent } from './pages/customers-list/customers-list.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NavbarComponent,
     WardrobeComponent,
     CoachesComponent,
+    CustomersListComponent,
     TipsComponent,
     AstrologicalCompatibilityComponent,
     LoginComponent,
