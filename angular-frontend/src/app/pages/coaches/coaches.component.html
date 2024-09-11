@@ -4,11 +4,14 @@
 </div>
 
 <div class="columns">
-    <div class="column m-3 is-8">
+    <div class="column m-3 is-4">
         <button class="button is-success" (click)="goToSignIn()">{{ "createEmployee" | transloco}}</button>
     </div>
+    <div class="column m-3 is-4">
+        <button class="button is-danger" (click)="goToDelete()">Delete Employee</button>
+    </div>
     <div class="column m-3">
-        <button class="button is-danger" (click)="saveChanges()" [class.is-static]="!this.changesOccured" [class.is-loading]="this.isLoading">{{ "save" | transloco }}</button>
+        <button class="button is-warning" (click)="saveChanges()" [class.is-static]="!this.changesOccured" [class.is-loading]="this.isLoading">{{ "save" | transloco }}</button>
     </div>
 </div>
 
