@@ -22,6 +22,7 @@ import { RegisterEmployeeComponent } from './pages/register-employee/register-em
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsService } from './service/events/events.service';
 import { Events } from 'leaflet';
+import { BadRequestComponent } from './pages/bad-request/bad-request.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { Events } from 'leaflet';
     LoginComponent,
     SecurePipe,
     RegisterEmployeeComponent,
-    EventsComponent
+    EventsComponent,
+    BadRequestComponent
   ],
   imports: [
     AppRoutingModule,

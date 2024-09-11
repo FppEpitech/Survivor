@@ -13,10 +13,12 @@ import { CoachesComponent } from './pages/coaches/coaches.component';
 import { RegisterEmployeeComponent } from './pages/register-employee/register-employee.component';
 import { EventsComponent } from './pages/events/events.component';
 import { ManagerGuard } from './guards/manager.guard';
+import { BadRequestComponent } from './pages/bad-request/bad-request.component';
 
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [LoggedGuard]},
+    { path: '**', component: BadRequestComponent},
     { path: 'login', component: LoginComponent},
     { path: 'client-profile', component: ClientProfileComponent, canActivate: [LoggedGuard] },
     { path: 'coaches', component: CoachesComponent, canActivate: [LoggedGuard, ManagerGuard] },
