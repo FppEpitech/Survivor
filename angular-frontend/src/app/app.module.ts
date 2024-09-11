@@ -1,3 +1,4 @@
+import { AddEventComponent } from './pages/add-event/add-event/add-event.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -42,6 +43,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     RegisterEmployeeComponent,
     EventsComponent,
     BadRequestComponent,
+    AddEventComponent
   ],
   imports: [
     AppRoutingModule,

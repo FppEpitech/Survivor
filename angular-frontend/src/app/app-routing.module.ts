@@ -1,3 +1,4 @@
+import { AddEventComponent } from './pages/add-event/add-event/add-event.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -28,6 +29,7 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] },
     { path: 'register-employee', component: RegisterEmployeeComponent, canActivate: [LoggedGuard, ManagerGuard] },
     { path: 'events', component: EventsComponent, canActivate: [LoggedGuard] },
+    { path: 'add-event', component: AddEventComponent, canActivate: [LoggedGuard, ManagerGuard] },
     { path: '**', component: BadRequestComponent}
 ];
 

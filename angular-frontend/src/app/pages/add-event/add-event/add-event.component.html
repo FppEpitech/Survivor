@@ -1,1 +1,50 @@
-<p>add-event works!</p>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">{{ 'addEventHeader' | transloco }}</h2>
+  <p style="color: red;">{{ this.errMsg }}</p>
+  <form>
+    <div class="form-group mb-3">
+      <label for="eventName">{{ 'eventNameLabel' | transloco }}</label>
+      <input type="text" class="form-control" id="eventName" [(ngModel)]="eventName" name="eventName" placeholder="{{ _tloco.translate('eventNamePlaceholder') }}" required>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="eventDate">{{ 'eventDateLabel' | transloco }}</label>
+      <input type="date" class="form-control" id="eventDate" [(ngModel)]="eventDate" name="eventDate" required>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="maxParticipants">{{ 'maxParticipantsLabel' | transloco }}</label>
+      <input type="number" class="form-control" id="maxParticipants" [(ngModel)]="maxParticipants" name="maxParticipants" placeholder="{{ _tloco.translate('maxParticipantsPlaceholder') }}" required>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-3">
+        <label for="locationX">{{ 'locationXLabel' | transloco }}</label>
+        <input type="text" class="form-control" id="locationX" [(ngModel)]="locationX" name="locationX" placeholder="{{ _tloco.translate('locationXPlaceholder') }}" required>
+      </div>
+      <div class="form-group col-md-6 mb-3">
+        <label for="locationY">{{ 'locationYLabel' | transloco }}</label>
+        <input type="text" class="form-control" id="locationY" [(ngModel)]="locationY" name="locationY" placeholder="{{ _tloco.translate('locationYPlaceholder') }}" required>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="eventType">{{ 'eventTypeLabel' | transloco }}</label>
+      <input type="text" class="form-control" id="eventType" [(ngModel)]="eventType" name="eventType" placeholder="{{ _tloco.translate('eventTypePlaceholder') }}" required>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="employeeId">{{ 'employeeIdLabel' | transloco }}</label>
+      <input type="number" class="form-control" id="employeeId" [(ngModel)]="employeeId" name="employeeId" placeholder="{{ _tloco.translate('employeeIdPlaceholder') }}" required>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="locationName">{{ 'locationNameLabel' | transloco }}</label>
+      <input type="text" class="form-control" id="locationName" [(ngModel)]="locationName" name="locationName" placeholder="{{ _tloco.translate('locationNamePlaceholder') }}" required>
+    </div>
+
+    <div class="text-center">
+      <button type="button" class="btn btn-primary" (click)="createEvent()">{{ 'createEventButton' | transloco }}</button>
+    </div>
+  </form>
+</div>
