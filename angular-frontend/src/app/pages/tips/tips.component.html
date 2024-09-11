@@ -1,20 +1,22 @@
-<div class="column is-11">
-    <p class="title is-1">{{ "navTips" | transloco }}</p>
-    <hr>
+<div class="row">
+  <div class="col-12">
+    <h1 class="display-4" style="margin: 10px;">{{ "navTipsHeader" | transloco }}</h1>
+  </div>
 </div>
 
-<section class="container" *ngIf="tips.length != 0; else noTips">
-    <div class="columns is-multiline is-centered mt-5 mb-6">
-    <div *ngFor="let tip of tips" class="column is-one-fifth-desktop is-full-mobile">
-      <div class="card tips-card is-flex is-justify-content-center is-align-items-center">
-        <p class="has-text-centered is-size-5">
-          <strong>{{tip.title}} : </strong>{{tip.tip}}
-        </p>
-      </div>
-    </div>
-  </div>
+<section *ngIf="tips.length != 0; else noTips" style="width: 90vw; margin: 0 auto; display: block;">
+  <ngb-accordion>
+    <ngb-panel *ngFor="let tip of tips; let i = index">
+      <ng-template ngbPanelTitle>
+        <strong>{{ tip.title }}</strong>
+      </ng-template>
+      <ng-template ngbPanelContent>
+        {{ tip.tip }}
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
 </section>
 
-<ng-template class="container" #noTips>
-  <h1>{{ "loadTips" | transloco }}</h1>
+<ng-template #noTips>
+    <h1>{{ "loadTips" | transloco }}</h1>
 </ng-template>

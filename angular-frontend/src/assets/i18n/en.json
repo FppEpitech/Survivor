@@ -69,5 +69,6 @@
   "surnamePlaceholder": "Surname",
   "datePlaceholder": "Date",
   "workddescriptionPlaceholder": "Work description",
-  "totalLabelGraph": "Total"
+  "totalLabelGraph": "Total",
+  "navTipsHeader": "Tips for Coaches"
 }
