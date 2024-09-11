@@ -73,7 +73,7 @@ export class CustomersListComponent {
         this.changesOccured = false;
         for (let key in this.customersToDelete) {
             let customer = this.customersToDelete[key];
-            this.customersService.deleteCustomer(customer.id);
+            await this.customersService.deleteCustomer(customer.id);
         }
         if (this.employee?.work === 'Coach') {
             this.customers = await this.employeesService.getCustomers(this.employee?.id);
