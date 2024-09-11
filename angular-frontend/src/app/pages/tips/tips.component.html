@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-12">
-    <h1 class="display-4" style="margin: 10px;">{{ "navTipsHeader" | transloco }}</h1>
+    <h1 class="display-4" style="margin: 17px;"><strong>{{ "navTipsHeader" | transloco }}</strong></h1>
   </div>
 </div>
 
-<section *ngIf="tips.length != 0; else noTips" style="width: 90vw; margin: 0 auto; display: block;">
+<section *ngIf="tips.length != 0; else noTips" style="width: 95vw; margin: 0 auto; display: block;">
   <ngb-accordion>
     <ngb-panel *ngFor="let tip of tips; let i = index">
       <ng-template ngbPanelTitle>
