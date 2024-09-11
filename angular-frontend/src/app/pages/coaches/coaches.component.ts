@@ -14,8 +14,9 @@ export class CoachesComponent {
     isLoading = false;
     search = "";
     searchCustomer = "";
-    action = "Bulk Action"
+    action = "Simple Action"
     customerPageChoice = false;
+    displayFavorites = false;
 
     employees: Employee[] = [];
     allEmployees: Employee[] = [];
@@ -26,6 +27,7 @@ export class CoachesComponent {
     customerToSave: { [id: number] : Customer; } = {};
     customerToRemove: { [id: number] : Customer; } = {};
     employeeToDelete: { [id: number] : Employee; } = {};
+    employeeCheck: { [id: number] : Employee; } = {};
 
     oldId: { [id: number] : number; } = {};
 
@@ -79,6 +81,23 @@ export class CoachesComponent {
 
     changeAction(action: string) {
         this.action = action;
+        this.employeeCheck = {};
+    }
+
+    checkEmployee(ischeck: boolean, employee: Employee) {
+        if (ischeck) {
+            this.employeeCheck[employee.id] = employee;
+        } else {
+            delete this.employeeCheck[employee.id];
+        }
+    }
+
+    deleteManyEmployees() {
+        this.changesOccured = true;
+        for (let key in this.employeeCheck) {
+            let employee = this.employeeCheck[key];
+            this.employeeToDelete[employee.id] = employee;
+        }
     }
 
     deleteButton(employee: Employee) {
@@ -157,5 +176,21 @@ export class CoachesComponent {
             this.customerToRemove[customer.id] = customer;
             this.changesOccuredCustomer = true;
         }
+    }
+
+    filterFavorite() {
+        this.displayFavorites = true;
+        this.employees.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    exportEmployeesAsJSON() {
+        const dataStr = JSON.stringify(this.employees, null, 2); // Format with 2 spaces for readability
+        const blob = new Blob([dataStr], { type: 'application/json' });
+        const link = document.createElement('a');
+
+        link.href = window.URL.createObjectURL(blob);
+        link.download = 'employees.json';
+        link.click();
+        window.URL.revokeObjectURL(link.href);
     }
 }
