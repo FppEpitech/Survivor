@@ -86,7 +86,7 @@
                     </tbody>
                 </table>
             </div>
-            <h5 class="fw-bold mb-3 mt-5 text-primary-emphasis">Payments history</h5>
+            <h5 *ngIf="this._auth.isManager()" class="fw-bold mb-3 mt-5 text-primary-emphasis">Payments history</h5>
             <div *ngIf="this._auth.isManager() && this.customer !== undefined" class="card shadow-none p-4 pb-0">
                 <table class="table is-fullwidth border-light-subtle">
                     <thead>
