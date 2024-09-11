@@ -1,3 +1,4 @@
+import { TranslocoService } from '@ngneat/transloco';
 import { Encounter, EncountersService } from './../../service/encounters/encounters.service';
 import { PaymentHistory, PaymentHistoryService } from './../../service/paymentHistory/payment-history.service';
 import { Component } from '@angular/core';
@@ -30,7 +31,8 @@ export class ClientProfileComponent {
         private paymentHistoryService: PaymentHistoryService,
         private encountersService: EncountersService,
         private customerService: CustomersService,
-        public _auth: AuthService
+        public _auth: AuthService,
+        public _tloco : TranslocoService
     ) {}
 
     async ngOnInit() {

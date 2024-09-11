@@ -1,5 +1,5 @@
 <div class="column is-11">
-    <p class="title is-1">Customers</p>
+    <p class="title is-1">{{ "navCustomers" | transloco }}</p>
     <hr>
 </div>
 
@@ -10,8 +10,8 @@
             <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
                     <button class="button is-warning is-large">
-                        <span *ngIf="customer != null">Customer  {{ ' - ' + customer.name + ' ' + customer.surname }}</span>
-                        <span *ngIf="customer == null">Select a customer</span>
+                        <span *ngIf="customer != null">{{ "customerTxt" | transloco }}  {{ ' - ' + customer.name + ' ' + customer.surname }}</span>
+                        <span *ngIf="customer == null">{{ "selectCustomerLabel" | transloco }}</span>
                     </button>
                 </div>
                 <div class="dropdown-menu" role="menu">
@@ -33,7 +33,7 @@
         <div class="column">
             <div class="card-image">
                 <figure class="image is-200x200 is-inline-block">
-                    <img [src]="customerImageUrl ?? 'assets/placeholder-128.png' | secure | async" alt="User Photo"
+                    <img [src]="customerImageUrl ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('userPhotoAlt')"
                     (error)="onImageError($event)">
                 </figure>
             </div>
@@ -46,9 +46,9 @@
         <table class="table is-fullwidth">
             <thead>
                 <tr class="is-selected is-warning">
-                    <th>Date</th>
-                    <th>Amount</th>
-                    <th>Comment</th>
+                    <th>{{ "dateTh" | transloco }}</th>
+                    <th>{{ "amountTh" | transloco }}</th>
+                    <th>{{ "commentTh" | transloco }}</th>
                 </tr>
             </thead>
 
@@ -68,10 +68,10 @@
         <table class="table is-fullwidth">
             <thead>
                 <tr class="is-selected is-warning">
-                    <th>Date</th>
-                    <th>Rating</th>
-                    <th>Report</th>
-                    <th>Source</th>
+                    <th>{{ "dateTh" | transloco }}</th>
+                    <th>{{ "ratingTh" | transloco }}</th>
+                    <th>{{ "reportTh" | transloco }}</th>
+                    <th>{{ "sourceTh" | transloco }}</th>
                 </tr>
             </thead>
 
@@ -87,6 +87,6 @@
     </div>
 </div>
 
-<ng-template #noClients>
-  Loading customers...
+<ng-template class="container" #noClients>
+  <h1>{{ "loadCustomers" | transloco }}</h1>
 </ng-template>

@@ -1,5 +1,5 @@
 <div class="column is-11">
-    <p class="title is-1">Statistics</p>
+    <p class="title is-1">{{ "navStatistics" | transloco }}</p>
     <hr>
 </div>
 
@@ -17,12 +17,12 @@
                 [cardColor]="cardColor"
                 [scheme]="colorScheme"
                 [results]="[
-                    { name: 'Total sales (€)', value: this.paymentAccount[0] || 0},
-                    { name: 'Customer(s)', value: this.nbCustomers[0].length || 0},
-                    { name: 'Employee(s)', value: this.nbEmployees[0].length || 0},
-                    { name: 'Coach(es)', value: this.nbCoaches[0].length || 0},
-                    { name: 'Event(s)', value: this.nbEvents[0].length || 0},
-                    { name: 'Tip(s)', value: this.nbTips[0].length || 0},
+                    { name: this._tloco.translate('totalsalesStatTxt'), value: this.paymentAccount[0] || 0},
+                    { name: this._tloco.translate('customersStatTxt'), value: this.nbCustomers[0].length || 0},
+                    { name: this._tloco.translate('employeesStatTxt'), value: this.nbEmployees[0].length || 0},
+                    { name: this._tloco.translate('coachesStatTxt'), value: this.nbCoaches[0].length || 0},
+                    { name: this._tloco.translate('eventsStatTxt'), value: this.nbEvents[0].length || 0},
+                    { name: this._tloco.translate('tipsStatTxt'), value: this.nbTips[0].length || 0},
                 ]">
             </ngx-charts-number-card>
         </div>
@@ -37,8 +37,8 @@
                 [xAxis]="true"
                 [yAxis]="true"
                 [results]="[
-                    { name: 'Customers', value: this.nbCustomers[0].length},
-                    { name: 'Encounters', value: this.nbEncounters[0].length},
+                    { name: this._tloco.translate('customersTxt'), value: this.nbCustomers[0].length},
+                    { name: this._tloco.translate('encountersTxt'), value: this.nbEncounters[0].length},
                 ]">
             </ngx-charts-bar-horizontal>
         </div>
@@ -56,23 +56,24 @@
                 <p class="title">{{coaches?.name}} {{coaches?.surname}} </p>
             </div>
         </div>
-        <ngx-charts-bar-horizontal *ngIf="customerResults[coaches.id] !== undefined && encounterResults[coaches.id] !== undefined"
+        <!-- <ngx-charts-bar-horizontal *ngIf="customerResults[coaches.id] !== undefined && encounterResults[coaches.id] !== undefined"
             [view]="[containerRef3.offsetWidth - 20, 100]"
             [scheme]="'flame'"
             [xAxis]="true"
             [yAxis]="true"
             [results]="[
-                { name: 'customers', value: customerResults[coaches.id] || 0 },
-                { name: 'meetings', value: encounterResults[coaches.id] || 0 }
+                { name: this._tloco.translate('customersTxt'), value: customerResults[coaches.id] || 0 },
+                { name: this._tloco.translate('meetingsTxt'), value: encounterResults[coaches.id] || 0 }
             ]">
-        </ngx-charts-bar-horizontal>
+        </ngx-charts-bar-horizontal> -->
         <ngx-charts-advanced-pie-chart *ngIf="genderResults[coaches.id] !== undefined"
             [view]="[containerRef3.offsetWidth, 200]"
             [scheme]="'forest'"
+            [label]="this._tloco.translate('totalLabelGraph')"
             [results]="[
-                { name: 'Male', value: genderResults[coaches.id][0] || 0 },
-                { name: 'Female', value: genderResults[coaches.id][1] || 0 },
-                { name: 'Other', value: genderResults[coaches.id][2] || 0 }
+                { name: this._tloco.translate('maleTxt'), value: genderResults[coaches.id][0] || 0 },
+                { name: this._tloco.translate('femaleTxt'), value: genderResults[coaches.id][1] || 0 },
+                { name: this._tloco.translate('otherTxt'), value: genderResults[coaches.id][2] || 0 }
             ]">
         </ngx-charts-advanced-pie-chart>
     </div>

@@ -1,3 +1,4 @@
+import { TranslocoService } from '@ngneat/transloco';
 import { Employee } from './../../service/employees/employees.service';
 import { Component } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
@@ -53,7 +54,7 @@ export class WardrobeComponent {
 
   backupImageUrl = 'assets/placeholder-128.png';
 
-  constructor(private customerService : CustomersService, private employeeService : EmployeesService, private clotheService : ClothesService, private authService : AuthService) { }
+  constructor(private customerService : CustomersService, private employeeService : EmployeesService, private clotheService : ClothesService, private authService : AuthService, public _tloco : TranslocoService) { }
 
     async ngOnInit() {
         this.employee = await this.employeeService.getMe();
