@@ -25,6 +25,7 @@ import { EventsService } from './service/events/events.service';
 import { Events } from 'leaflet';
 import { TranslocoRootModule } from './transloco-root.module';
 import { DeleteEmployeeComponent } from './pages/delete-employee/delete-employee.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { DeleteEmployeeComponent } from './pages/delete-employee/delete-employee
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    TranslocoRootModule
+    TranslocoRootModule,
+    NgbModule,
   ],
   providers: [
     {
