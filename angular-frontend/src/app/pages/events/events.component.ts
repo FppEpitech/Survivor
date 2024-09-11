@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/service/auth/auth.service';
   import { TranslocoService } from '@ngneat/transloco';
   import { Component } from '@angular/core';
   import * as L from 'leaflet';
@@ -46,7 +47,7 @@
       firstDay: 0
     };
 
-    constructor(private eventService : EventsService, private _tloco: TranslocoService) {
+    constructor(private eventService : EventsService, private _tloco: TranslocoService, public _auth: AuthService) {
       this._tloco.langChanges$.subscribe(lang => {
         this.clang = lang;
         this.clang_locale = this.clang == 'en' ? en : this.clang == 'fr' ? fr : this.clang == 'es' ? es : zh;
@@ -84,6 +85,6 @@
 
     addEvent(title :  string, date : string, desc : string) {
       console.log(date);
-      this.eventsToDisplay.push({title: title, date: new Date(date), description: desc, backgroundColor:"green"});
+      this.eventsToDisplay.push({title: title, date: new Date(date), description: desc, backgroundColor:"green", color: "green"});
     }
   }

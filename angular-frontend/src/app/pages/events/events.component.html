@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-10"></div>
-  <button class="btn btn-primary col-lg-1 mb-4 col-sm-12" style="border-radius: none" routerLink="/add-event">{{ "addEvBtn" | transloco }}</button>
+  <button class="btn btn-primary col-lg-1 mb-4 col-sm-12" style="border-radius: none" routerLink="/add-event" *ngIf="this._auth.isManager()">{{ "addEvBtn" | transloco }}</button>
   <div class="col-1"></div>
 </div>
 
