@@ -25,6 +25,7 @@
     "@fullcalendar/angular": "^6.1.15",
     "@fullcalendar/core": "^6.1.15",
     "@fullcalendar/daygrid": "^6.1.15",
+    "@fullcalendar/interaction": "^6.1.15",
     "@ng-bootstrap/ng-bootstrap": "^14.2.0",
     "@ngneat/transloco": "^4.3.0",
     "@popperjs/core": "^2.11.8",
