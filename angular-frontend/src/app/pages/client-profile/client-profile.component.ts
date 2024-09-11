@@ -45,8 +45,7 @@ export class ClientProfileComponent implements OnInit {
                 if (customer === undefined)
                     return;
                 this.customer = customer;
-                this.customerImageUrl = this.apiUrl + customer!.image_url;
-                console.log(this.customerImageUrl);
+                this.customerImageUrl = this.apiUrl + customer.image_url;
                 this.payments = await this.paymentHistoryService.getPaymentsCustomer(this.customer.id);
                 this.encounters = await this.encountersService.getCustomerEncounters(this.customer.id);
                 this.coach = await this.employeesService.getEmployee(this.customer.coach_id);
