@@ -13,6 +13,7 @@ import { CoachesComponent } from './pages/coaches/coaches.component';
 import { RegisterEmployeeComponent } from './pages/register-employee/register-employee.component';
 import { EventsComponent } from './pages/events/events.component';
 import { ManagerGuard } from './guards/manager.guard';
+import { BadRequestComponent } from './pages/bad-request/bad-request.component';
 import { DeleteEmployeeComponent } from './pages/delete-employee/delete-employee.component';
 
 
@@ -28,7 +29,8 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] },
     { path: 'register-employee', component: RegisterEmployeeComponent, canActivate: [LoggedGuard, ManagerGuard] },
     { path: 'events', component: EventsComponent, canActivate: [LoggedGuard] },
-    { path: 'delete-employee', component: DeleteEmployeeComponent, canActivate: [LoggedGuard, ManagerGuard] }
+    { path: 'delete-employee', component: DeleteEmployeeComponent, canActivate: [LoggedGuard, ManagerGuard] },
+    { path: '**', component: BadRequestComponent}
 ];
 
 @NgModule({

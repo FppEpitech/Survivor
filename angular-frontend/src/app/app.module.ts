@@ -23,6 +23,7 @@ import { RegisterEmployeeComponent } from './pages/register-employee/register-em
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsService } from './service/events/events.service';
 import { Events } from 'leaflet';
+import { BadRequestComponent } from './pages/bad-request/bad-request.component';
 import { TranslocoRootModule } from './transloco-root.module';
 import { DeleteEmployeeComponent } from './pages/delete-employee/delete-employee.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -40,6 +41,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SecurePipe,
     RegisterEmployeeComponent,
     EventsComponent,
+    BadRequestComponent,
     DeleteEmployeeComponent
   ],
   imports: [
