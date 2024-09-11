@@ -21,8 +21,8 @@ import { CustomersListComponent } from './pages/customers-list/customers-list.co
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [LoggedGuard]},
     { path: 'login', component: LoginComponent},
-    { path: 'client-profile', component: ClientProfileComponent, canActivate: [LoggedGuard] },
     { path: 'customers-list', component: CustomersListComponent, canActivate: [LoggedGuard] },
+    { path: 'client-profile/:id', component: ClientProfileComponent, canActivate: [LoggedGuard] },
     { path: 'coaches', component: CoachesComponent, canActivate: [LoggedGuard, ManagerGuard] },
     { path: 'astrological-compatibility', component: AstrologicalCompatibilityComponent, canActivate: [LoggedGuard]},
     { path: 'statistics', component: StatisticsPageComponent, canActivate: [LoggedGuard] },
