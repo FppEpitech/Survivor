@@ -53,7 +53,12 @@ export class WardrobeComponent {
 
   backupImageUrl = 'assets/placeholder-128.png';
 
-  constructor(private customerService : CustomersService, private employeeService : EmployeesService, private clotheService : ClothesService, private authService : AuthService) { }
+  theme = localStorage.getItem('theme');
+
+  constructor(private customerService : CustomersService, private employeeService : EmployeesService, private clotheService : ClothesService, private authService : AuthService) {
+    if (this.theme)
+        document.documentElement.setAttribute('data-theme', this.theme);
+  }
 
     async ngOnInit() {
         this.employee = await this.employeeService.getMe();

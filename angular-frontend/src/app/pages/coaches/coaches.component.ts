@@ -17,10 +17,15 @@ export class CoachesComponent {
 
     customerToSave: { [id: number] : Customer; } = {};
 
+    theme = localStorage.getItem('theme');
+
     constructor (
         private employeesService: EmployeesService,
         private customersService: CustomersService,
-        private router: Router) {}
+        private router: Router) {
+            if (this.theme)
+                document.documentElement.setAttribute('data-theme', this.theme);
+        }
 
     async ngOnInit() {
         this.employees = (await this.employeesService.getEmployees()).filter(employee => employee.work === 'Coach');

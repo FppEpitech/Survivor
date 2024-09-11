@@ -1,0 +1,62 @@
+:root[data-theme='forest'] {
+    --primary-color: #2C5F2D;     
+    --link-color: #88B04B;
+    --info-color: #A4C3A2;
+    --success-color: #6B8E23;
+    --warning-color: #D9BF77;
+    --danger-color: #8B4513;
+    --background-color: #F1EDE1;
+    --text-color: #2F4F4F;
+}
+
+.select select {
+    background-color: var(--warning-color);
+  }
+
+input {
+    background-color: var(--danger-color);
+}
+
+.button {
+    color: var(--primary-color);
+}
+
+.is-primary {
+    color: var(--primary-color);
+}
+
+.is-success {
+    background-color: var(--danger-color);
+}
+
+.is-danger {
+    background-color: var(--warning-color);
+}
+
+.is-warning {
+    background-color: var(--info-color);
+}
+
+html {
+    background-color: var(--background-color);
+}
+
+.card {
+    background-color: var(--info-color);
+}
+
+tr {
+    background-color: var(--link-color);
+}
+
+.table thead th {
+    background-color: var(--info-color);
+}
+
+p {
+    color: var(--primary-color);
+}
+
+table {
+    background-color: var(--primary-color);
+}

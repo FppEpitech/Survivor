@@ -1,0 +1,62 @@
+:root[data-theme='flame'] {
+    --primary-color: #FF4500;
+    --link-color: #FFA500;
+    --info-color: #FFD700;
+    --success-color: #FF6347;
+    --warning-color: #FF8C00;
+    --danger-color: #B22222;
+    --background-color: #2C1A1A;
+    --text-color: #F5F5F5;
+  }
+
+.select select {
+    background-color: var(--warning-color);
+}
+
+input {
+    background-color: var(--danger-color);
+}
+
+.button {
+    color: var(--primary-color);
+}
+
+.is-primary {
+    color: var(--primary-color);
+}
+
+.is-success {
+    background-color: var(--danger-color);
+}
+
+.is-danger {
+    background-color: var(--warning-color);
+}
+
+.is-warning {
+    background-color: var(--info-color);
+}
+
+html {
+    background-color: var(--background-color);
+}
+
+.card {
+    background-color: var(--info-color);
+}
+
+tr {
+    background-color: var(--link-color);
+}
+
+.table thead th {
+    background-color: var(--info-color);
+}
+
+p {
+    color: var(--primary-color);
+}
+
+table {
+    background-color: var(--primary-color);
+}

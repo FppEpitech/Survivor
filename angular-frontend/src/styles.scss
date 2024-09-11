@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bulma/bulma.scss";
 
+@import "./app/styles/forest-theme.scss";
+@import "./app/styles/gray-theme.scss";
+@import "./app/styles/flame-theme.scss";
+@import "./app/styles/cold-theme.scss";
+@import "./app/styles/light-theme.scss";
+
 html, body {
   max-width: 100%;
   overflow-x: hidden;

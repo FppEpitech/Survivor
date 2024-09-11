@@ -13,6 +13,7 @@ import { CoachesComponent } from './pages/coaches/coaches.component';
 import { RegisterEmployeeComponent } from './pages/register-employee/register-employee.component';
 import { EventsComponent } from './pages/events/events.component';
 import { ManagerGuard } from './guards/manager.guard';
+import { ThemeComponent } from './pages/theme/theme/theme.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,8 @@ const routes: Routes = [
     { path: 'tips', component: TipsComponent, canActivate: [LoggedGuard] },
     { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] },
     { path: 'register-employee', component: RegisterEmployeeComponent, canActivate: [LoggedGuard, ManagerGuard] },
-    { path: 'events', component: EventsComponent, canActivate: [LoggedGuard] }
+    { path: 'events', component: EventsComponent, canActivate: [LoggedGuard] },
+    { path: 'theme', component: ThemeComponent, canActivate: [LoggedGuard] }
 ];
 
 @NgModule({

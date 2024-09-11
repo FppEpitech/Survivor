@@ -1,0 +1,62 @@
+:root[data-theme='light'] {
+    --primary-color: #ffffff;       /* Pure white - primary color for backgrounds, buttons, and highlights */
+    --link-color: #ffffff;          /* Bright blue - for links and hover effects */
+    --info-color: #ffffff;          /* Light sky blue - for informational elements */
+    --success-color: #ffffff;       /* Light green - for success messages or accents */
+    --warning-color: #ffffff;       /* Soft orange - for warnings */
+    --danger-color: #ffffff;        /* Light red - for danger or error messages */
+    --background-color: #F5F5F5;    /* Light gray - background color to give a soft, clean look */
+    --text-color: #2E2E2E;          /* Dark gray - text color for readability against the light background */
+}
+
+.select select {
+    background-color: var(--warning-color);
+}
+
+input {
+    background-color: var(--danger-color);
+}
+
+.button {
+    color: var(--text-color);
+}
+
+.is-primary {
+    color: var(--primary-color);
+}
+
+.is-success {
+    background-color: var(--danger-color);
+}
+
+.is-danger {
+    background-color: var(--warning-color);
+}
+
+.is-warning {
+    background-color: var(--info-color);
+}
+
+html {
+    background-color: var(--background-color);
+}
+
+.card {
+    background-color: var(--info-color);
+}
+
+tr {
+    background-color: var(--link-color);
+}
+
+.table thead th {
+    background-color: var(--info-color);
+}
+
+p {
+    color: var(--text-color);
+}
+
+table {
+    background-color: var(--primary-color);
+}

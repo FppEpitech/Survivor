@@ -25,13 +25,18 @@ export class ClientProfileComponent {
     backupImageUrl = 'assets/placeholder-128.png';
     apiUrl = environment.apiUrl + '/';
 
+    theme = localStorage.getItem('theme');
+
     constructor (
         private employeesService: EmployeesService,
         private paymentHistoryService: PaymentHistoryService,
         private encountersService: EncountersService,
         private customerService: CustomersService,
         public _auth: AuthService
-    ) {}
+    ) {
+        if (this.theme)
+            document.documentElement.setAttribute('data-theme', this.theme);
+    }
 
     async ngOnInit() {
         this.coach = await this.employeesService.getMe();

@@ -13,7 +13,12 @@ export class EventsComponent {
 
   events: Event[] = [];
 
-  constructor(private eventService : EventsService) {}
+  theme = localStorage.getItem('theme');
+
+  constructor(private eventService : EventsService) {
+    if (this.theme)
+        document.documentElement.setAttribute('data-theme', this.theme);
+  }
 
     ngOnInit(): void {
         this.initMap();

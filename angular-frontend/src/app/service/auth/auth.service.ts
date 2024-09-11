@@ -23,6 +23,7 @@ export class AuthService {
                 if (data.token) {
                     localStorage.setItem("token", data.token);
                     localStorage.setItem("token_date", Date.now().toString())
+                    localStorage.setItem('theme', 'light');
                     this.setManager();
                     this.router.navigate(["/"]);
                 } else {
@@ -35,6 +36,7 @@ export class AuthService {
 
     logout() {
         localStorage.removeItem("token");
+        localStorage.removeItem("token_date");
         localStorage.removeItem("Manager");
         this.router.navigate(["/login"]);
         this.authLogged = false;

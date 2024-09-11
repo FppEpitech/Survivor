@@ -1,0 +1,63 @@
+:root[data-theme='cold'] {
+    --primary-color: #00BFFF;
+    --link-color: #5F9EA0;
+    --info-color: #B0E0E6;
+    --success-color: #4682B4;
+    --warning-color: #87CEFA;
+    --danger-color: #1C6EA4;
+    --background-color: #E0F7FA;
+    --text-color: #2F4F4F;
+}
+
+
+.select select {
+    background-color: var(--warning-color);
+}
+
+input {
+    background-color: var(--danger-color);
+}
+
+.button {
+    color: var(--primary-color);
+}
+
+.is-primary {
+    color: var(--primary-color);
+}
+
+.is-success {
+    background-color: var(--danger-color);
+}
+
+.is-danger {
+    background-color: var(--warning-color);
+}
+
+.is-warning {
+    background-color: var(--info-color);
+}
+
+html {
+    background-color: var(--background-color);
+}
+
+.card {
+    background-color: var(--info-color);
+}
+
+tr {
+    background-color: var(--link-color);
+}
+
+.table thead th {
+    background-color: var(--info-color);
+}
+
+p {
+    color: var(--primary-color);
+}
+
+table {
+    background-color: var(--primary-color);
+}

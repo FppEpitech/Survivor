@@ -10,7 +10,12 @@ export class TipsComponent {
 
   tips: Tip[] = [];
 
-  constructor(private tipsService: TipsService) {}
+  theme = localStorage.getItem('theme');
+
+  constructor(private tipsService: TipsService) {
+    if (this.theme)
+        document.documentElement.setAttribute('data-theme', this.theme);
+  }
 
   ngOnInit(): void {
     this.tipsService.getTips().subscribe(

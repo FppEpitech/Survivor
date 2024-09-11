@@ -41,6 +41,8 @@ export class StatisticsPageComponent {
     nbEncounters: any = {};
     nbEvents: any = {};
 
+    theme = localStorage.getItem('theme');
+
     constructor(
         private employeesService : EmployeesService,
         private encountersService: EncountersService,
@@ -49,7 +51,10 @@ export class StatisticsPageComponent {
         private tipsService: TipsService,
         private eventsService: EventsService,
         public _auth: AuthService
-    ) { }
+    ) {
+        if (this.theme)
+            document.documentElement.setAttribute('data-theme', this.theme);
+    }
 
     async ngOnInit() {
         if (this._auth.isManager()) {

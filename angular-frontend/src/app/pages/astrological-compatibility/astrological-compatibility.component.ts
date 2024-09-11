@@ -25,8 +25,12 @@ export class AstrologicalCompatibilityComponent {
     apiUrl = environment.apiUrl;
 
     backupImageUrl = 'assets/placeholder-128.png';
+    theme = localStorage.getItem('theme');
 
-    constructor (private employeesService: EmployeesService, private compatibilityService: CompatibilityService, private customerService : CustomersService) {}
+    constructor (private employeesService: EmployeesService, private compatibilityService: CompatibilityService, private customerService : CustomersService) {
+        if (this.theme)
+            document.documentElement.setAttribute('data-theme', this.theme);
+    }
 
     async ngOnInit() {
         this.coach = await this.employeesService.getMe();

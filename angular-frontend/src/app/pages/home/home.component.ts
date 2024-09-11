@@ -26,13 +26,18 @@ export class HomeComponent {
     nbEncounters: any = {};
     genders = [0,0,0];
 
+    theme = localStorage.getItem('theme');
+
     constructor(
         public _auth: AuthService,
         private paymentHistoryService: PaymentHistoryService,
         private customersService: CustomersService,
         private employeesService: EmployeesService,
         private encountersService: EncountersService
-    ) {}
+    ) {
+        if (this.theme)
+            document.documentElement.setAttribute('data-theme', this.theme);
+    }
 
     async ngOnInit() {
         if (this._auth.isManager()) {
