@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,26 +13,37 @@ export class AuthService {
     private apiUrl = environment.apiUrl;
     authLogged = false;
     private employee?: Employee;
-  private _transloco: any;
+    private _transloco: any;
+    private token?: any;
+    private myToken?: string;
 
     constructor(private http: HttpClient, private router : Router, private employeesService: EmployeesService) { }
 
-    login(email: string, password: string): void {
+    async tryLog(email: string, password: string): Promise<string | undefined> {
+        try {
+            this.token = await firstValueFrom(this.http.post(`${this.apiUrl}/login`, {email, password}));
+            return this.token.token;
+        } catch (error) {
+            console.error("Failed to login", error);
+            this.token = undefined;
+            return undefined;
+        }
+    }
+
+    async login(email: string, password: string): Promise<boolean> {
         if (email == '' || password == '')
-            return;
-        this.http.post(`${this.apiUrl}/login`, {email, password}).subscribe(
-            (data : any) => {
-                if (data.token) {
-                    localStorage.setItem("token", data.token);
-                    localStorage.setItem("token_date", Date.now().toString())
-                    this.setManager();
-                    this.router.navigate(["/"]);
-                } else {
-                    console.error('Error empty access token');
-                }
-            },
-            (error) => {console.error('Error wrong login');}
-        );
+            return false;
+        this.myToken = await this.tryLog(email, password);
+        if (this.myToken) {
+            localStorage.setItem("token", this.myToken);
+            localStorage.setItem("token_date", Date.now().toString());
+            this.setManager();
+            this.router.navigate(["/"]);
+            return true;
+        } else {
+            console.error('Error empty access token');
+            return false;
+        }
     }
 
     logout() {
