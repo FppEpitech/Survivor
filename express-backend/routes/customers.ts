@@ -68,6 +68,40 @@ router.get('/:id/payments_history', restrictCoach, async (req: Request, res: Res
   }
 });
 
+
+router.get('/:id/payments_history/total', restrictCoach, async (req: Request, res: Response) => {
+  const customerId = parseInt(req.params.id);
+
+  if (isNaN(customerId)) {
+      return res.status(400).json({ error: 'Invalid customer ID' });
+  }
+
+  try {
+      const customer = await prisma.customer.findUnique({
+          where: { id: customerId },
+      });
+
+      if (!customer) {
+          return res.status(404).json({ error: 'Customer not found' });
+      }
+
+      const payments = await prisma.paymentHistory.findMany({
+          where: {
+              id: {
+                  in: customer.payment_ids,
+              },
+          },
+      });
+
+      const totalAmount = payments.reduce((total, payment) => total + payment.amount, 0);
+      res.status(200).json({ totalAmount });
+  } catch (error) {
+      console.error('Error retrieving payment history:', error);
+      res.status(500).json({ error: 'Error retrieving payment history' });
+  }
+});
+
+
 router.get('/:id/image', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
 
