@@ -14,6 +14,7 @@ export interface Customer {
   astrological_sign: string;
   coach_id: number;
   image_url: string;
+  coach_favorite: boolean;
 }
 
 export interface Clothes {
