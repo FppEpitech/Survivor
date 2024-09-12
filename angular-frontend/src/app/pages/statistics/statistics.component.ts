@@ -10,6 +10,7 @@ import { Employee, EmployeesService } from 'src/app/service/employees/employees.
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { Customer } from 'src/app/service/customers/customers.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
+import { co } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-statistics',
@@ -26,7 +27,9 @@ export class StatisticsPageComponent {
     employeesCustomers:Customer[] = [];
     encounters: Encounter[] = [];
     payments:PaymentHistory[] = [];
+
     me?: Employee;
+    coache?: Employee;
 
     customerResults : any = {};
     encounterResults : any = {};
@@ -85,7 +88,7 @@ export class StatisticsPageComponent {
 
         if (this._auth.isManager()) {
             this.employees = await this.employeesService.getEmployees();
-            this.coaches = this.employees.filter(employee => employee.work === 'Coach');
+            this.coaches = this.employees.filter(employee => employee.work == 'Coach');
         } else {
             this.me = await this.employeesService.getMe();
             if (this.me !== undefined) {
@@ -95,20 +98,27 @@ export class StatisticsPageComponent {
         }
         this.nbEmployees[0] = this.employees;
         this.nbCoaches[0] = this.coaches;
+        this.coaches = this.coaches.filter(coach => coach.customerCount != undefined && coach.customerCount > 0);
 
-        for (let employee of this.employees) {
-            this.genderResults[employee.id] = [0, 0, 0];
-            this.employeesCustomers = await this.employeesService.getCustomers(employee.id);
-            this.customerResults[employee.id] = this.employeesCustomers.length;
+
+        for (let coach of this.coaches) {
+            if (coach.customerCount == undefined || coach.customerCount == 0) {
+                this.coaches.splice(this.coaches.indexOf(coach), 1);
+                continue;
+            }
+            this.employeesCustomers = await this.employeesService.getCustomers(coach.id);
+            this.genderResults[coach.id] = [0, 0, 0];
+            this.customerResults[coach.id] = this.employeesCustomers.length;
             for (let customer of this.employeesCustomers) {
                 this.encounters = await this.encountersService.getCustomerEncounters(customer.id);
-                if (this.encounterResults[employee.id])
-                    this.encounterResults[employee.id] += this.encounters.length;
+                if (this.encounterResults[coach.id])
+                    this.encounterResults[coach.id] += this.encounters.length;
                 else
-                    this.encounterResults[employee.id] = this.encounters.length;
-                this.updateGender(customer.gender, employee.id);
+                    this.encounterResults[coach.id] = this.encounters.length;
+                this.updateGender(customer.gender, coach.id);
             }
         }
+        this.coache = this.coaches.at(0);
     }
 
     initTips() {
@@ -140,5 +150,9 @@ export class StatisticsPageComponent {
             this.genderResults[id][1] += 1;
         else
         this.genderResults[id][2] += 1;
+    }
+
+    chooseCoach(coach: Employee) {
+        this.coache = coach;
     }
 }
