@@ -1,9 +1,132 @@
+<div class="d-flex justify-content-between align-items-center m-4">
+    <div>
+        <h2 class="fw-bold">Dashboard</h2>
+        <h6>Welcome!</h6>
+    </div>
 
-<div class="column is-11">
-    <p class="big-title is-uppercase has-text-weight-bold has-text-centered mt-3">SOUL CONNECTION</p>
-    <p class="title is-uppercase has-text-centered">{{ 'navHome' | transloco }}</p>
-    <hr>
+    <div>
+        <button class="btn btn-outline-secondary me-2">
+            <i class="bi bi-calendar-week"></i> Last 30 days
+        </button>
+        <button class="btn btn-primary">
+            <i class="bi bi-journal-bookmark"></i> Reports
+        </button>
+    </div>
 </div>
+
+<div class="row g-4 text-center m-4">
+    <div class="col-sm-6 col-md-7">
+        <div class="card">
+            <div class="d-flex justify-content-between align-items-center m-4">
+                <div>
+                    <h5 class="fw-bold">Customers Overview</h5>
+                    <h6>When customers have joined in the time.</h6>
+                </div>
+
+                <div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-light btn-outline-secondary">7 D</button>
+                        <button type="button" class="btn btn-light btn-outline-secondary">1 M</button>
+                        <button type="button" class="btn btn-light btn-outline-secondary">3 M</button>
+                      </div>
+                </div>
+            </div>
+            <div class="row g-4 text-center m-4">
+                <div class="col-sm-6 col-md-2">
+                    <h6>Customers</h6>
+                    <h4>{{ this.customers.length }}</h4>
+                </div>
+                <div class="col-sm-6 col-md-2">
+                    <h6>Doing meetings</h6>
+                    <h4>{{ this.doingMeetings }}%</h4>
+                </div>
+                <div class="col-sm-6 col-md-2">
+                    <h6>Customers by coach</h6>
+                    <h4>{{ this.customersPerCoach }}</h4>
+                </div>
+            </div>
+            <div #containerRef1 class="is-flex is-justify-content-center">
+                <ngx-charts-bar-vertical
+                [view]="[containerRef1.offsetWidth, 300]"
+                [scheme]="'aqua'"
+                [results]="[]">
+                </ngx-charts-bar-vertical>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-5">
+        <div class="card">
+            <div class="d-flex justify-content-between align-items-center m-4">
+                <div>
+                    <h5 class="fw-bold">Events</h5>
+                    <h6>Our events and their status.</h6>
+                </div>
+            </div>
+            <div class="row g-4 text-center m-4">
+                <div class="col-sm-6 col-md-2">
+                    <h6>Monthly</h6>
+                    <h4>{{ this.eventMonthly }}</h4>
+                </div>
+                <div class="col-sm-6 col-md-2">
+                    <h6>Weekly</h6>
+                    <h4>{{ this.eventWeekly }}</h4>
+                </div>
+                <div class="col-sm-6 col-md-2">
+                    <h6>Daily (Avg)</h6>
+                    <h4>{{ this.eventDaily }}</h4>
+                </div>
+            </div>
+            <div #containerRef2 class="is-flex is-justify-content-center">
+                <ngx-charts-bar-vertical
+                [view]="[containerRef2.offsetWidth, 300]"
+                [scheme]="'aqua'"
+                [results]="[]">
+                </ngx-charts-bar-vertical>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="row g-4 text-center m-4">
+    <div class="col-sm-6 col-md-7">
+        <div class="card">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="fw-bold">Customers by Country</h5>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-light btn-outline-secondary">30 Days</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-5">
+        <div class="card">
+            <div class="d-flex justify-content-between align-items-center m-4">
+                <div>
+                    <h5 class="fw-bold">Meeting top sources</h5>
+                </div>
+
+                <div>
+                    <button type="button" class="btn btn-light btn-outline-secondary">30 Days</button>
+                </div>
+            </div>
+            <div #containerRef3 class="is-flex is-justify-content-center m-4">
+                <ngx-charts-advanced-pie-chart
+                    [view]="[containerRef3.offsetWidth, 300]"
+                    [scheme]="'aqua'"
+                    [results]="[]">
+                </ngx-charts-advanced-pie-chart>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--
 <div *ngIf="this._auth.isManager()" class="columns is-multiline">
     <div class="column is-3">
         <div #containerRef1 class="card is-flex is-justify-content-center">
@@ -106,4 +229,4 @@
         </tbody>
 
     </table>
-</div>
+</div> -->
