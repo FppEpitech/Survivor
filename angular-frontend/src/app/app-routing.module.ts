@@ -1,3 +1,4 @@
+import { AddEventComponent } from './pages/add-event/add-event/add-event.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -14,7 +15,6 @@ import { RegisterEmployeeComponent } from './pages/register-employee/register-em
 import { EventsComponent } from './pages/events/events.component';
 import { ManagerGuard } from './guards/manager.guard';
 import { BadRequestComponent } from './pages/bad-request/bad-request.component';
-import { DeleteEmployeeComponent } from './pages/delete-employee/delete-employee.component';
 import { CustomersListComponent } from './pages/customers-list/customers-list.component';
 import { RegisterCustomerComponent } from './pages/register-customer/register-customer.component';
 
@@ -33,7 +33,7 @@ const routes: Routes = [
     { path: 'register-employee', component: RegisterEmployeeComponent, canActivate: [LoggedGuard, ManagerGuard] },
     { path: 'register-customer', component: RegisterCustomerComponent, canActivate: [LoggedGuard, ManagerGuard] },
     { path: 'events', component: EventsComponent, canActivate: [LoggedGuard] },
-    { path: 'delete-employee', component: DeleteEmployeeComponent, canActivate: [LoggedGuard, ManagerGuard] },
+    { path: 'add-event', component: AddEventComponent, canActivate: [LoggedGuard, ManagerGuard] },
     { path: '**', component: BadRequestComponent}
 ];
 

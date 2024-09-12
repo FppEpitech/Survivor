@@ -16,6 +16,17 @@ export interface Event {
   location_name: string;
 }
 
+export interface EventCreation {
+  name: string;
+  date: string;
+  max_participants: number;
+  location_x: string;
+  location_y: string;
+  type: string;
+  employee_id: number;
+  location_name: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -35,7 +46,7 @@ export class EventsService {
   }
 
   // Create a new Event
-  createEvent(event: Event): Observable<Event> {
+  createEvent(event: EventCreation): Observable<Event> {
     return this.http.post<Event>(this.apiUrl, event);
   }
 

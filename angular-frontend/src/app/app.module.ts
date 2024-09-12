@@ -1,3 +1,4 @@
+import { AddEventComponent } from './pages/add-event/add-event/add-event.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -25,8 +26,8 @@ import { EventsService } from './service/events/events.service';
 import { Events } from 'leaflet';
 import { BadRequestComponent } from './pages/bad-request/bad-request.component';
 import { TranslocoRootModule } from './transloco-root.module';
-import { DeleteEmployeeComponent } from './pages/delete-employee/delete-employee.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FullCalendarModule } from '@fullcalendar/angular';
 import { CustomersListComponent } from './pages/customers-list/customers-list.component';
 import { RegisterCustomerComponent } from './pages/register-customer/register-customer.component';
 
@@ -46,7 +47,7 @@ import { RegisterCustomerComponent } from './pages/register-customer/register-cu
     RegisterCustomerComponent,
     EventsComponent,
     BadRequestComponent,
-    DeleteEmployeeComponent
+    AddEventComponent
   ],
   imports: [
     AppRoutingModule,
@@ -56,6 +57,7 @@ import { RegisterCustomerComponent } from './pages/register-customer/register-cu
     BrowserAnimationsModule,
     TranslocoRootModule,
     NgbModule,
+    FullCalendarModule,
   ],
   providers: [
     {
