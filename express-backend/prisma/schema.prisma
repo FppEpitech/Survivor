@@ -37,6 +37,8 @@ model Customer {
   image_url         String?
   clothes           Json
   payment_ids       Int[]
+  phone_number      String
+  address           String
 }
 
 model Employee {

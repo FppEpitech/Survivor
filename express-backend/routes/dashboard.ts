@@ -1,5 +1,6 @@
 import express, {Request, Response} from 'express';
 import {PrismaClient} from '@prisma/client';
+import { eachDayOfInterval, format } from 'date-fns';
 
 const router = express.Router();
 import prisma from '../prismaClient'
@@ -197,6 +198,8 @@ router.get('/events-by-day/:period', async (req: Request, res: Response) => {
                 return res.status(400).json({ error: 'Invalid period. Use 7, 1, or 3.' });
         }
 
+        const datesInRange = eachDayOfInterval({ start: startDate, end: new Date() });
+
         const eventsByDay = await prisma.event.groupBy({
             by: ['date'],
             where: {
@@ -212,16 +215,25 @@ router.get('/events-by-day/:period', async (req: Request, res: Response) => {
             },
         });
 
-        const formattedResponse = eventsByDay.map(day => ({
-            date: day.date,
-            count: day._count.date,
-        }));
+        const eventsMap = eventsByDay.reduce((acc, day) => {
+            acc[day.date] = day._count.date;
+            return acc;
+        }, {} as { [key: string]: number });
+
+        const formattedResponse = datesInRange.map(date => {
+            const dateString = format(date, 'yyyy-MM-dd');
+            return {
+                date: dateString,
+                count: eventsMap[dateString] || 0,
+            };
+        });
 
         res.status(200).json(formattedResponse);
     } catch (error) {
         res.status(500).json({ error: 'Error retrieving events by day' });
     }
 });
+
 
 
 export default router;
