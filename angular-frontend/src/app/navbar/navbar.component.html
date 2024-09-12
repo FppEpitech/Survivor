@@ -67,3 +67,19 @@
       </div>
     </div>
   </nav>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Brand</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <!-- Other nav items -->
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <select class="form-control" (change)="setTheme($event)">
+          <option value="light">Light Theme</option>
+          <option value="dark">Dark Theme</option>
+          <option value="random">Random Theme</option>
+        </select>
+      </form>
+    </div>
+  </nav>
