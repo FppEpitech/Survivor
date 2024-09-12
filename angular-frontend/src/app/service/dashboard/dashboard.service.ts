@@ -10,12 +10,19 @@ export interface DashboardCustomerStats {
     averageCustomersPerCoach: number;
 }
 
+export interface DashboardEventStats {
+    totalEventsLastMonth: number;
+    totalEventsLastWeek: number;
+    averageEventsPerDay: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
     private apiUrl = `${environment.apiUrl}/dashboard`;
     private customerStats?: DashboardCustomerStats;
+    private eventStats?: DashboardEventStats;
 
     constructor(private http: HttpClient) { }
 
@@ -27,5 +34,15 @@ export class DashboardService {
             this.customerStats = undefined;
         }
         return this.customerStats;
+    }
+
+    async getEventStats(): Promise<DashboardEventStats | undefined> {;
+        try {
+            this.eventStats = await firstValueFrom(this.http.get<DashboardEventStats>(`${this.apiUrl}/event-stats`));
+        } catch (error) {
+            console.error("Failed to load event Stats", error);
+            this.eventStats = undefined;
+        }
+        return this.eventStats;
     }
 }

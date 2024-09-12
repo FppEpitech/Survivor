@@ -1,4 +1,4 @@
-import { DashboardCustomerStats, DashboardService } from './../../service/dashboard/dashboard.service';
+import { DashboardCustomerStats, DashboardEventStats, DashboardService } from './../../service/dashboard/dashboard.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { TranslocoRootModule } from './../../transloco-root.module';
 import { EncountersService } from './../../service/encounters/encounters.service';
@@ -17,6 +17,7 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 export class HomeComponent {
 
     customerStats?: DashboardCustomerStats;
+    eventStats?: DashboardEventStats;
 
     eventMonthly = 0;
     eventWeekly = 0;
@@ -35,6 +36,7 @@ export class HomeComponent {
 
     async ngOnInit() {
         this.getCustomerStats();
+        this.getEventStats();
     }
 
     changeTimeRange(index: number) {
@@ -52,6 +54,13 @@ export class HomeComponent {
         this.customerStats = await this.dashboardService.getCustomerStats(this.timeRangePeriod[this.timeRangeCustomerIdx]);
         if (this.customerStats && this.customerStats.averageCustomersPerCoach !== undefined) {
             this.customerStats.averageCustomersPerCoach = parseFloat(this.customerStats.averageCustomersPerCoach.toFixed(2));
+        }
+    }
+
+    async getEventStats() {
+        this.eventStats = await this.dashboardService.getEventStats();
+        if (this.eventStats && this.eventStats.averageEventsPerDay !== undefined) {
+            this.eventStats.averageEventsPerDay = parseFloat(this.eventStats.averageEventsPerDay.toFixed(2));
         }
     }
 }

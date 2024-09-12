@@ -5,7 +5,8 @@
     </div>
 
     <div>
-        <button class="btn btn-light btn-outline-secondary m-4" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-light btn-outline-secondary m-4" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
             <i class="bi bi-calendar-week"></i> {{ this.timeRangeValues[this.timeRangeIdx] }}
         </button>
         <ul class="dropdown-menu">
@@ -30,10 +31,13 @@
 
                 <div>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-light btn-outline-secondary" (click)="changeTimeRangeCustomer(0)">7 D</button>
-                        <button type="button" class="btn btn-light btn-outline-secondary" (click)="changeTimeRangeCustomer(1)">1 M</button>
-                        <button type="button" class="btn btn-light btn-outline-secondary" (click)="changeTimeRangeCustomer(2)">3 M</button>
-                      </div>
+                        <button type="button" class="btn btn-light btn-outline-secondary"
+                            (click)="changeTimeRangeCustomer(0)">7 D</button>
+                        <button type="button" class="btn btn-light btn-outline-secondary"
+                            (click)="changeTimeRangeCustomer(1)">1 M</button>
+                        <button type="button" class="btn btn-light btn-outline-secondary"
+                            (click)="changeTimeRangeCustomer(2)">3 M</button>
+                    </div>
                 </div>
             </div>
             <div class="row g-4 text-center m-4">
@@ -52,12 +56,15 @@
             </div>
             <div #containerRef1 class="is-flex is-justify-content-center">
                 <ngx-charts-bar-horizontal
-                [view]="[containerRef1.offsetWidth, 300]"
-                [scheme]="'aqua'"
-                [results]="[
-                    { name: 'customers', value: this.customerStats?.totalCustomers },
-                    { name: 'Doing meetings', value: this.customerStats?.percentageWithEncounter},
-                    { name: 'Customers by coach', value: this.customerStats?.averageCustomersPerCoach}
+                *ngIf="this.customerStats !== undefined &&
+                        this.customerStats.averageCustomersPerCoach !== null &&
+                        this.customerStats.percentageWithEncounter !== null &&
+                        this.customerStats.totalCustomers !== null"
+                    [view]="[containerRef1.offsetWidth, 300]"
+                    [scheme]="'aqua'" [results]="[
+                    { name: 'customers', value: this.customerStats.totalCustomers || 0 },
+                    { name: 'Doing meetings', value: this.customerStats.percentageWithEncounter || 0},
+                    { name: 'Customers by coach', value: this.customerStats.averageCustomersPerCoach || 0}
                 ]">
                 </ngx-charts-bar-horizontal>
             </div>
@@ -74,15 +81,15 @@
             <div class="row g-4 text-center m-4">
                 <div class="col-sm-6 col-md-2">
                     <h6>Monthly</h6>
-                    <h4>{{ this.eventMonthly }}</h4>
+                    <h4>{{ this.eventStats?.totalEventsLastMonth }}</h4>
                 </div>
                 <div class="col-sm-6 col-md-2">
                     <h6>Weekly</h6>
-                    <h4>{{ this.eventWeekly }}</h4>
+                    <h4>{{ this.eventStats?.totalEventsLastWeek }}</h4>
                 </div>
                 <div class="col-sm-6 col-md-2">
                     <h6>Daily (Avg)</h6>
-                    <h4>{{ this.eventDaily }}</h4>
+                    <h4>{{ this.eventStats?.averageEventsPerDay }}</h4>
                 </div>
             </div>
             <div #containerRef2 class="is-flex is-justify-content-center">
@@ -94,10 +101,10 @@
             </div>
         </div>
     </div>
-  </div>
+</div>
 
 
-  <div class="row g-4 text-center m-4">
+<div class="row g-4 text-center m-4">
     <div class="col-sm-6 col-md-7">
         <div class="card">
             <div class="d-flex justify-content-between align-items-center">
@@ -122,9 +129,7 @@
                 </div>
             </div>
             <div #containerRef3 class="is-flex is-justify-content-center m-4">
-                <ngx-charts-advanced-pie-chart
-                    [view]="[containerRef3.offsetWidth, 300]"
-                    [scheme]="'aqua'"
+                <ngx-charts-advanced-pie-chart [view]="[containerRef3.offsetWidth, 300]" [scheme]="'aqua'"
                     [results]="[]">
                 </ngx-charts-advanced-pie-chart>
             </div>
