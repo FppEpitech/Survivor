@@ -16,6 +16,7 @@ import { EventsComponent } from './pages/events/events.component';
 import { ManagerGuard } from './guards/manager.guard';
 import { BadRequestComponent } from './pages/bad-request/bad-request.component';
 import { CustomersListComponent } from './pages/customers-list/customers-list.component';
+import { RegisterCustomerComponent } from './pages/register-customer/register-customer.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
     { path: 'tips', component: TipsComponent, canActivate: [LoggedGuard] },
     { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] },
     { path: 'register-employee', component: RegisterEmployeeComponent, canActivate: [LoggedGuard, ManagerGuard] },
+    { path: 'register-customer', component: RegisterCustomerComponent, canActivate: [LoggedGuard, ManagerGuard] },
     { path: 'events', component: EventsComponent, canActivate: [LoggedGuard] },
     { path: 'add-event', component: AddEventComponent, canActivate: [LoggedGuard, ManagerGuard] },
     { path: '**', component: BadRequestComponent}

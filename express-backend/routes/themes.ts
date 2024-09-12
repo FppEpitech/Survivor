@@ -5,7 +5,7 @@ import restrictCoach from '../middlewares/isManager';
 const router = express.Router();
 
 router.get('/:id', async (req: Request, res: Response) => {
-    const id = parseInt(req.params.id);
+    const id = (req as any).middlewareId
 
     if (isNaN(id)) {
         return res.status(400).json({ error: 'Invalid ID' });
@@ -32,7 +32,8 @@ router.get('/:id', async (req: Request, res: Response) => {
 });
 
 router.post('/', async (req: Request, res: Response) => {
-    const { theme, coach_id } = req.body;
+    const { theme } = req.body;
+    const coach_id = (req as any).middlewareId;
 
     if (!theme || !coach_id) {
         return res.status(400).json({ error: 'Theme and coach_id are required' });
