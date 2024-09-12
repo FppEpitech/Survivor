@@ -1,3 +1,4 @@
+import { ThemeService } from './../service/theme/theme.service';
 import { Employee, EmployeesService } from './../service/employees/employees.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { Component } from '@angular/core';
@@ -21,8 +22,9 @@ export class NavbarComponent {
   customerRightImageUrl?: string;
   apiUrl = environment.apiUrl;
 
-  constructor(public _auth : AuthService, private router : Router, public _transloco : TranslocoService, private employeesService: EmployeesService) {
+  constructor(public _auth : AuthService, public _theme: ThemeService, private router : Router, public _transloco : TranslocoService, private employeesService: EmployeesService) {
     window.addEventListener('resize', this.onResize.bind(this));
+    this._theme.setTheme("light");
   }
 
   langChangeSelect(lang : string) {
@@ -42,26 +44,4 @@ export class NavbarComponent {
   private onResize(): void {
     this.width = window.innerWidth;
   }
-  setTheme(ev: any) {
-    const body = document.body;
-    body.classList.remove('bg-dark', 'text-light');
-    if (ev.target.value === 'dark') {
-      body.classList.add('bg-dark', 'text-light');
-    } else if (ev.target.value === 'random') {
-      this.setRandomTheme();
-    }
-    localStorage.setItem('theme', ev.target.value);
-  }
-
-  private loadTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    this.setTheme(savedTheme);
-  }
-
-  private setRandomTheme() {
-    const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-    document.documentElement.style.setProperty('--background-color', randomColor);
-    // Additional random color styles can be set here
-  }
-
 }
