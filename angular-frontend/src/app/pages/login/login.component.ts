@@ -14,10 +14,9 @@ export class LoginComponent {
 
     constructor (private authService: AuthService, public _tloco: TranslocoService) {}
 
-    loginClick () {
-        this.authService.login(this.Email, this.Password);
-        if (this.authService.isLogged() == false)
-          this.wrongPassword = true;
+    async loginClick () {
+        if (await this.authService.login(this.Email, this.Password) === false)
+            this.wrongPassword = true;
         this.Password = '';
     }
 }
