@@ -2,7 +2,7 @@
   <h2 class="m-4"> {{ "navWardrobe" | transloco }} </h2>
 </div>
 
-<section class="section card p-3 m-4 mt-6" *ngIf="this.customers.length != 0; else noClients">
+<section class="section card p-4 m-4 mt-6" *ngIf="this.customers.length != 0; else noClients">
     <div class="has-text-centered d-flex justify-content-between">
       <div class="dropdown">
         <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -22,102 +22,104 @@
         </button>
       </div>
     </div>
-    <div class="p-3">
-      <div class="d-flex justify-content-center align-items-center">
-          <div>
-            <img class="img rounded" [src]="hat_cap_url.url ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('hatAlt')"
-              (error)="onImageError($event)">
+    <div class="d-xxl-flex justify-content-evenly">
+      <div class="clothe-container p-1 pt-3">
+        <div class="d-flex justify-content-center align-items-center">
+            <div>
+              <img class="img rounded" [src]="hat_cap_url.url ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('hatAlt')"
+                (error)="onImageError($event)">
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(false, hats_caps, index_hats_caps, hat_cap_url)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left m-auto" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                </svg>
+            </button>
           </div>
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(true, hats_caps, index_hats_caps, hat_cap_url)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right m-auto" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                </svg>
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="d-flex justify-content-center">
-        <div class="p-3">
-          <button class="btn btn-light" (click)="swipeItem(false, hats_caps, index_hats_caps, hat_cap_url)">
+
+      <div class="clothe-container p-1 pt-3">
+        <div class="d-flex justify-content-center align-items-center">
+          <div>
+              <img class="img rounded" [src]="top_url.url ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('topAlt')"
+                (error)="onImageError($event)">
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(false, tops, index_tops, top_url)">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left m-auto" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
               </svg>
-          </button>
-        </div>
-        <div class="p-3">
-          <button class="btn btn-light" (click)="swipeItem(true, hats_caps, index_hats_caps, hat_cap_url)">
+            </button>
+          </div>
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(true, tops, index_tops, top_url)">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right m-auto" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
               </svg>
-          </button>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="p-3">
-      <div class="d-flex justify-content-center align-items-center">
-        <div>
-            <img class="img rounded" [src]="top_url.url ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('topAlt')"
-              (error)="onImageError($event)">
+      <div class="clothe-container p-1 pt-3">
+        <div class="d-flex justify-content-center align-items-center">
+          <div>
+              <img class="img rounded" [src]="bottom_url.url ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('bottomAlt')"
+                (error)="onImageError($event)">
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(false, bottoms, index_bottoms, bottom_url)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left m-auto" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+              </svg>
+            </button>
+          </div>
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(true, bottoms, index_bottoms, bottom_url)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right m-auto" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-      <div class="d-flex justify-content-center">
-        <div class="p-3">
-          <button class="btn btn-light" (click)="swipeItem(false, tops, index_tops, top_url)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left m-auto" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-            </svg>
-          </button>
-        </div>
-        <div class="p-3">
-          <button class="btn btn-light" (click)="swipeItem(true, tops, index_tops, top_url)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right m-auto" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
 
-    <div class="p-3">
-      <div class="d-flex justify-content-center align-items-center">
-        <div>
-            <img class="img rounded" [src]="bottom_url.url ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('bottomAlt')"
-              (error)="onImageError($event)">
+      <div class="clothe-container p-1 pt-3">
+        <div class="d-flex justify-content-center align-items-center">
+          <div>
+              <img class="img rounded" [src]="shoes_url.url ?? 'assets/placeholder-128.png'  | secure | async" [alt]="this._tloco.translate('shoesAlt')"
+                (error)="onImageError($event)">
+          </div>
         </div>
-      </div>
-      <div class="d-flex justify-content-center">
-        <div class="p-3">
-          <button class="btn btn-light" (click)="swipeItem(false, bottoms, index_bottoms, bottom_url)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left m-auto" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-            </svg>
-          </button>
-        </div>
-        <div class="p-3">
-          <button class="btn btn-light" (click)="swipeItem(true, bottoms, index_bottoms, bottom_url)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right m-auto" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="p-3">
-      <div class="d-flex justify-content-center align-items-center">
-        <div>
-            <img class="img rounded" [src]="shoes_url.url ?? 'assets/placeholder-128.png'  | secure | async" [alt]="this._tloco.translate('shoesAlt')"
-              (error)="onImageError($event)">
-        </div>
-      </div>
-      <div class="d-flex justify-content-center">
-        <div class="p-3">
-          <button class="btn btn-light" (click)="swipeItem(false, shoes_list, index_shoes, shoes_url)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left m-auto" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-            </svg>
-          </button>
-        </div>
-        <div class="p-3">
-          <button class="btn btn-light" (click)="swipeItem(true, shoes_list, index_shoes, shoes_url)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right m-auto" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
-            </svg>
-          </button>
+        <div class="d-flex justify-content-center">
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(false, shoes_list, index_shoes, shoes_url)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left m-auto" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+              </svg>
+            </button>
+          </div>
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(true, shoes_list, index_shoes, shoes_url)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right m-auto" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
