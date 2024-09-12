@@ -2,15 +2,10 @@ import { PrismaClient } from '@prisma/client';
 import { v4 as uuidv4 } from 'uuid';
 
 const prisma = new PrismaClient();
+const BATCH_SIZE = 10;
 
-async function fetchCustomers(access_token: string) {
+async function fetchCustomersById(id: number, access_token: string) {
     try {
-
-        let id = 1;
-        let moreCustomers = true;
-
-        while (moreCustomers) {
-
             const existingCustomer = await prisma.customer.findFirst({
                 where: { old_id: id },
             });
@@ -83,6 +78,8 @@ async function fetchCustomers(access_token: string) {
                                 image_url: imageUrl,
                                 payment_ids: [],
                                 clothes: customersClothe,
+                                phone_number: customer.phone_number,
+                                address: customer.address,
                             },
                         });
 
@@ -91,20 +88,39 @@ async function fetchCustomers(access_token: string) {
                         throw new Error(`Invalid format for clothes data for customer ID ${id}`);
                     }
 
-                } else if (CustomersResponse.status === 404) {
-                    moreCustomers = false;
                 } else {
                     throw new Error(`Failed to fetch customer with ID ${id}. Status: ${CustomersResponse.status}`);
                 }
             } else {
                 console.log(`Customer with id ${id} already exists.`);
             }
-
-            id++;
-        }
     } catch (error) {
         console.error('Error fetching and storing data:', error);
     }
 }
+
+async function fetchCustomers(access_token: string) {
+    try {
+      let id = 1;
+      let moreCustomers = true;
+
+      while (moreCustomers) {
+        const tasks = [];
+        for (let i = 0; i < BATCH_SIZE; i++) {
+          tasks.push(fetchCustomersById(id + i, access_token));
+        }
+
+        const results = await Promise.all(tasks);
+
+        if (results.some(result => result === null)) {
+          moreCustomers = false;
+        }
+
+        id += BATCH_SIZE;
+      }
+    } catch (error) {
+      console.error('Error fetching and storing data:', error);
+    }
+  }
 
 export default fetchCustomers;
