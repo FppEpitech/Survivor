@@ -77,13 +77,11 @@ export class StatisticsPageComponent {
                 else
                     this.paymentAccount[0] = payment.amount;
             }
-            console.log(this.paymentAccount[0]);
         }
     }
 
     async initCustomers() {
         this.nbCustomers[0] = await this.customersService.getCustomers();
-        console.log(this.nbCustomers[0]);
     }
 
     async initEmployees() {
@@ -100,20 +98,14 @@ export class StatisticsPageComponent {
         }
         this.nbEmployees[0] = this.employees;
         this.nbCoaches[0] = this.coaches;
-
         this.coaches = this.coaches.filter(coach => coach.customerCount != undefined && coach.customerCount > 0);
 
-        console.log(this.nbEmployees[0]);
-        console.log(this.nbCoaches[0]);
 
         for (let coach of this.coaches) {
-            console.log(coach);
             if (coach.customerCount == undefined || coach.customerCount == 0) {
-                console.log("Removing employee with no customers", coach);
                 this.coaches.splice(this.coaches.indexOf(coach), 1);
                 continue;
             }
-            console.log("Employee with customers", coach);
             this.employeesCustomers = await this.employeesService.getCustomers(coach.id);
             this.genderResults[coach.id] = [0, 0, 0];
             this.customerResults[coach.id] = this.employeesCustomers.length;
@@ -126,14 +118,13 @@ export class StatisticsPageComponent {
                 this.updateGender(customer.gender, coach.id);
             }
         }
-        console.log(this.coaches);
+        this.coache = this.coaches.at(0);
     }
 
     initTips() {
         this.tipsService.getTips().subscribe(
             (data) => {
                 this.nbTips[0] = data;
-                console.log(this.nbTips[0]);
             },
             (error) => {console.error("Failed to load Tips list", error);}
         );
@@ -147,7 +138,6 @@ export class StatisticsPageComponent {
         this.eventsService.getEvents().subscribe(
             (data) => {
                 this.nbEvents[0] = data;
-                console.log(this.nbEvents[0]);
             },
             (error) => {console.error("Failed to load Events list", error);}
         );

@@ -6,9 +6,10 @@
 
 <div *ngIf="this._auth.isManager()">
     <div class="column is-6">
+</div>
 
 <div *ngIf="this._auth.isManager()" class="row text-center m-4">
-    <div class="col-sm-6 col-md-7">
+    <div class="col-12 col-lg-7">
         <div #containerRef class="card d-flex justify-content-center">
             <ngx-charts-number-card
                 *ngIf="this.nbEmployees[0] !== undefined &&
@@ -31,7 +32,7 @@
             </ngx-charts-number-card>
         </div>
     </div>
-    <div class="col-6 col-md-5">
+    <div class="col-12 col-lg-5 mt-lg-0 mt-3">
         <div #containerRef2 class="card justify-content-center">
             <ngx-charts-bar-horizontal
                 *ngIf="this.nbCustomers[0] !== undefined &&
@@ -58,13 +59,13 @@
     </ul>
 </div>
 
-<div #containerRef3 *ngIf="coache != undefined && customerResults[coache.id] != 0 && customerResults[coache.id] != undefined" class="card m-5">
+<div #containerRef3 *ngIf="coache != undefined && customerResults[coache.id] != undefined && customerResults[coache.id] != 0" class="card m-5">
     <div class="p-3 text-centered is-hoverable">
         <div class="mt-4 mb-2 has-text-black">
             <h4 class="title">{{coache?.name}} {{coache?.surname}} </h4>
         </div>
     </div>
-    <ngx-charts-bar-horizontal *ngIf="customerResults[coache.id] !== undefined && encounterResults[coache.id] !== undefined"
+    <ngx-charts-bar-horizontal *ngIf="customerResults[coache.id] != undefined && encounterResults[coache.id] !== undefined"
         [view]="[containerRef3.offsetWidth, 100]"
         [scheme]="'flame'"
         [xAxis]="true"
