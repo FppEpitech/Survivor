@@ -12,22 +12,6 @@
           <input class="form-control" type="date" [(ngModel)]="this.date" id="date" name="date" [placeholder]="this._tloco.translate('datePlaceholder')" required>
         </div>
         <div class="mb-3">
-            <select class="form-select" id="astrological-sign" name="astrological-sign" [(ngModel)]="this.astrological_sign" required>
-                <option value="" disabled selected>astrological-sign</option>
-                <option value="Aries">Aries</option>
-                <option value="Taurus">Taurus</option>
-                <option value="Cancer">Cancer</option>
-                <option value="Leo">Leo</option>
-                <option value="Virgo">Virgo</option>
-                <option value="Libra">Libra</option>
-                <option value="Scorpio">Scorpio</option>
-                <option value="Sagittarius">Sagittarius</option>
-                <option value="Capricorn">Capricorn</option>
-                <option value="Aquarius">Aquarius</option>
-                <option value="Pisces">Pisces</option>
-            </select>
-        </div>
-        <div class="mb-3">
             <select class="form-select" id="gender" name="gender" [(ngModel)]="this.gender" required>
                 <option value="" disabled selected>{{ "genderOption" | transloco }}</option>
                 <option value="male">{{ "maleOption" | transloco }}</option>
