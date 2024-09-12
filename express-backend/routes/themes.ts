@@ -4,12 +4,8 @@ import restrictCoach from '../middlewares/isManager';
 
 const router = express.Router();
 
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('/', async (req: Request, res: Response) => {
     const id = (req as any).middlewareId
-
-    if (isNaN(id)) {
-        return res.status(400).json({ error: 'Invalid ID' });
-    }
 
     try {
         const themeDashboard = await prisma.themeDashboard.findUnique({ where: { coach_id: id } });
