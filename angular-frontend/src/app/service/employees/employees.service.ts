@@ -14,6 +14,7 @@ export interface Employee {
   work: string;
   last_login: string;
   image_url: string;
+  customerCount?: number;
 }
 
 export interface EmployeeCreation {

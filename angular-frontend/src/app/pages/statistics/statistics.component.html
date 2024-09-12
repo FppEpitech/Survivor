@@ -4,12 +4,12 @@
     </div>
 </div>
 
-<!-- <div *ngIf="this._auth.isManager()" class="columns is-multiline">
-    <div class="column is-6"> -->
+<div *ngIf="this._auth.isManager()">
+    <div class="column is-6">
 
-<div *ngIf="this._auth.isManager()" class="row g-4 text-center m-4">
+<div *ngIf="this._auth.isManager()" class="row text-center m-4">
     <div class="col-sm-6 col-md-7">
-        <div #containerRef class="card is-flex is-justify-content-center">
+        <div #containerRef class="card d-flex justify-content-center">
             <ngx-charts-number-card
                 *ngIf="this.nbEmployees[0] !== undefined &&
                 this.paymentAccount[0] !== undefined &&
@@ -21,18 +21,18 @@
                 [cardColor]="cardColor"
                 [scheme]="colorScheme"
                 [results]="[
-                    { name: this._tloco.translate('totalsalesStatTxt'), value: this.paymentAccount[0] || 0},
-                    { name: this._tloco.translate('customersStatTxt'), value: this.nbCustomers[0].length || 0},
-                    { name: this._tloco.translate('employeesStatTxt'), value: this.nbEmployees[0].length || 0},
-                    { name: this._tloco.translate('coachesStatTxt'), value: this.nbCoaches[0].length || 0},
-                    { name: this._tloco.translate('eventsStatTxt'), value: this.nbEvents[0].length || 0},
-                    { name: this._tloco.translate('tipsStatTxt'), value: this.nbTips[0].length || 0},
+                    { name: this._tloco.translate('totalsalesStatTxt'), value: this.paymentAccount[0]},
+                    { name: this._tloco.translate('customersStatTxt'), value: this.nbCustomers[0].length},
+                    { name: this._tloco.translate('employeesStatTxt'), value: this.nbEmployees[0].length},
+                    { name: this._tloco.translate('coachesStatTxt'), value: this.nbCoaches[0].length},
+                    { name: this._tloco.translate('eventsStatTxt'), value: this.nbEvents[0].length},
+                    { name: this._tloco.translate('tipsStatTxt'), value: this.nbTips[0].length},
                 ]">
             </ngx-charts-number-card>
         </div>
     </div>
     <div class="col-6 col-md-5">
-        <div #containerRef2 class="card is-justify-content-center">
+        <div #containerRef2 class="card justify-content-center">
             <ngx-charts-bar-horizontal
                 *ngIf="this.nbCustomers[0] !== undefined &&
                 this.nbEncounters[0] !== undefined"
@@ -49,7 +49,7 @@
     </div>
 </div>
 
-<div *ngIf="this._auth.isManager()" class="me-md-2 mb-2 mb-md-0 m-5">
+<div *ngIf="this._auth.isManager()" class="me-md-2 mb-2 mb-md-0 m-5 p-2">
     <button class="btn btn-outline-secondary dropdown-toggle w-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Coaches
     </button>
@@ -58,36 +58,30 @@
     </ul>
 </div>
 
-<!-- <div class="columns is-multiline">
-    <div #containerRef3 *ngFor="let coaches of coaches" class="column is-5 m-4 card cell-width">
-        <div class="is-outlined p-3 has-text-centered is-hoverable">
-            <div>
-                <figure>
-                </figure>
-            </div>
-            <div class="container mt-4 mb-2 has-text-black">
-                <p class="title">{{coaches?.name}} {{coaches?.surname}} </p>
-            </div>
+<div #containerRef3 *ngIf="coache != undefined && customerResults[coache.id] != 0 && customerResults[coache.id] != undefined" class="card m-5">
+    <div class="p-3 text-centered is-hoverable">
+        <div class="mt-4 mb-2 has-text-black">
+            <h4 class="title">{{coache?.name}} {{coache?.surname}} </h4>
         </div>
-        <ngx-charts-bar-horizontal *ngIf="customerResults[coaches.id] !== undefined && encounterResults[coaches.id] !== undefined"
-            [view]="[containerRef3.offsetWidth - 20, 100]"
-            [scheme]="'flame'"
-            [xAxis]="true"
-            [yAxis]="true"
-            [results]="[
-                { name: this._tloco.translate('customersTxt'), value: customerResults[coaches.id] || 0 },
-                { name: this._tloco.translate('meetingsTxt'), value: encounterResults[coaches.id] || 0 }
-            ]">
-        </ngx-charts-bar-horizontal>
-        <ngx-charts-advanced-pie-chart *ngIf="genderResults[coaches.id] !== undefined"
-            [view]="[containerRef3.offsetWidth, 200]"
-            [scheme]="'forest'"
-            [label]="this._tloco.translate('totalLabelGraph')"
-            [results]="[
-                { name: this._tloco.translate('maleTxt'), value: genderResults[coaches.id][0] || 0 },
-                { name: this._tloco.translate('femaleTxt'), value: genderResults[coaches.id][1] || 0 },
-                { name: this._tloco.translate('otherTxt'), value: genderResults[coaches.id][2] || 0 }
-            ]">
-        </ngx-charts-advanced-pie-chart>
     </div>
-</div> -->
+    <ngx-charts-bar-horizontal *ngIf="customerResults[coache.id] !== undefined && encounterResults[coache.id] !== undefined"
+        [view]="[containerRef3.offsetWidth, 100]"
+        [scheme]="'flame'"
+        [xAxis]="true"
+        [yAxis]="true"
+        [results]="[
+            { name: this._tloco.translate('customersTxt'), value: customerResults[coache.id] || 0 },
+            { name: this._tloco.translate('meetingsTxt'), value: encounterResults[coache.id] || 0 }
+        ]">
+    </ngx-charts-bar-horizontal>
+    <ngx-charts-advanced-pie-chart *ngIf="genderResults[coache.id] !== undefined"
+        [view]="[containerRef3.offsetWidth, 200]"
+        [scheme]="'forest'"
+        [label]="this._tloco.translate('totalLabelGraph')"
+        [results]="[
+            { name: this._tloco.translate('maleTxt'), value: genderResults[coache.id][0] || 0 },
+            { name: this._tloco.translate('femaleTxt'), value: genderResults[coache.id][1] || 0 },
+            { name: this._tloco.translate('otherTxt'), value: genderResults[coache.id][2] || 0 }
+        ]">
+    </ngx-charts-advanced-pie-chart>
+</div>
