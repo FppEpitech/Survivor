@@ -1,3 +1,4 @@
+import { TranslocoService } from '@ngneat/transloco';
 import { Customer, CustomersService } from 'src/app/service/customers/customers.service';
 import { Component } from '@angular/core';
 import { Employee, EmployeesService } from 'src/app/service/employees/employees.service';
@@ -14,7 +15,7 @@ export class CoachesComponent {
     isLoading = false;
     search = "";
     searchCustomer = "";
-    action = "Simple Action"
+    action = 'Simple action'
     customerPageChoice = false;
     displayFavorites = false;
 
@@ -34,6 +35,7 @@ export class CoachesComponent {
     constructor (
         private employeesService: EmployeesService,
         private customersService: CustomersService,
+        public _tloco: TranslocoService,
         private router: Router) {}
 
     async ngOnInit() {
@@ -41,6 +43,10 @@ export class CoachesComponent {
         this.allEmployees = this.employees;
         this.customers = await this.customersService.getCustomers();
         this.allCustomers = this.customers;
+        this.action = this._tloco.translate('simpleActionBtn')
+        this._tloco.langChanges$.subscribe(() => {
+            this.action = this._tloco.translate('simpleActionBtn')
+        });
     }
 
     async apply() {

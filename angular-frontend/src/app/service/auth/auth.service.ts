@@ -49,6 +49,7 @@ export class AuthService {
     logout() {
         localStorage.removeItem("token");
         localStorage.removeItem("Manager");
+        localStorage.removeItem("token_date");
         this.router.navigate(["/login"]);
         this.authLogged = false;
     }
