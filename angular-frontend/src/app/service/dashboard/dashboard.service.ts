@@ -16,6 +16,11 @@ export interface DashboardEventStats {
     averageEventsPerDay: number;
 }
 
+export interface DashboardEncounterStats {
+    source: string;
+    count: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,6 +28,7 @@ export class DashboardService {
     private apiUrl = `${environment.apiUrl}/dashboard`;
     private customerStats?: DashboardCustomerStats;
     private eventStats?: DashboardEventStats;
+    private encounterStats: DashboardEncounterStats[] = [];
 
     constructor(private http: HttpClient) { }
 
@@ -44,5 +50,15 @@ export class DashboardService {
             this.eventStats = undefined;
         }
         return this.eventStats;
+    }
+
+    async getEncounterStats(period:number): Promise<DashboardEncounterStats[]> {
+        try {
+            this.encounterStats = await firstValueFrom(this.http.get<DashboardEncounterStats[]>(`${this.apiUrl}/encounter-sources/${period}`));
+        } catch (error) {
+            console.error("Failed to load encounter stats", error);
+            this.encounterStats = [];
+        }
+        return this.encounterStats;
     }
 }

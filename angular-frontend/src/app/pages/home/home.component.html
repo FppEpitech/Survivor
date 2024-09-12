@@ -96,7 +96,7 @@
                 <ngx-charts-bar-vertical
                 [view]="[containerRef2.offsetWidth, 300]"
                 [scheme]="'aqua'"
-                [results]="[]">
+                [results]="this.EncounterPieChart">
                 </ngx-charts-bar-vertical>
             </div>
         </div>
@@ -129,118 +129,13 @@
                 </div>
             </div>
             <div #containerRef3 class="is-flex is-justify-content-center m-4">
-                <ngx-charts-advanced-pie-chart [view]="[containerRef3.offsetWidth, 300]" [scheme]="'aqua'"
-                    [results]="[]">
+                <ngx-charts-advanced-pie-chart
+                    *ngIf="EncounterPieChart.length > 0"
+                    [view]="[containerRef3.offsetWidth, 300]"
+                    [scheme]="'aqua'"
+                    [results]="this.EncounterPieChart">
                 </ngx-charts-advanced-pie-chart>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-<!--
-<div *ngIf="this._auth.isManager()" class="columns is-multiline">
-    <div class="column is-3">
-        <div #containerRef1 class="card is-flex is-justify-content-center">
-            <ngx-charts-number-card
-                *ngIf="this.paymentAccount[0] !== undefined"
-                [view]="[containerRef1.offsetWidth, 300]"
-                [cardColor]="'#fff4de'"
-                [scheme]="'flame'"
-                [results]="[
-                    { name: this._tloco.translate('totalSalesText'), value: this.paymentAccount[0] }
-                ]">
-            </ngx-charts-number-card>
-        </div>
-    </div>
-    <div class="column is-5">
-        <div #containerRef2 class="card is-flex is-justify-content-center">
-            <ngx-charts-bar-vertical
-                *ngIf="this.nbCustomers[0] !== undefined"
-                [view]="[containerRef2.offsetWidth, 300]"
-                [scheme]="'flame'"
-                [xAxis]="true"
-                [yAxis]="true"
-                [results]="[
-                    { name: this._tloco.translate('customersTxt'), value: this.nbCustomers[0].length },
-                    { name: this._tloco.translate('maleTxt'), value: this.genders[0]},
-                    { name: this._tloco.translate('femaleTxt'), value: this.genders[1] },
-                    { name: this._tloco.translate('otherTxt'), value: this.genders[2] },
-                ]">
-            </ngx-charts-bar-vertical>
-        </div>
-    </div>
-    <div class="column is-3">
-        <div #containerRef3 class="card is-flex is-justify-content-center">
-            <ngx-charts-number-card
-                *ngIf="this.nbEmployees[0] !== undefined && this.nbEncounters[0] !== undefined"
-                [view]="[containerRef3.offsetWidth, 300]"
-                [scheme]="'flame'"
-                [cardColor]="'#fff4de'"
-                [results]="[
-                { name: this._tloco.translate('coachsTxt'), value: this.nbEmployees[0].length },
-                { name: this._tloco.translate('meetingsTxt'), value: this.nbEncounters[0].length},
-            ]">
-            </ngx-charts-number-card>
-        </div>
-    </div>
-</div>
-
-
-<div *ngIf="!this._auth.isManager()" class="columns is-multiline">
-    <div class="column is-3">
-        <div #containerRef1 class="card is-flex is-justify-content-center">
-            <ngx-charts-number-card
-            *ngIf="this.nbCustomers[0] !== undefined && this.nbEncounters[0] !== undefined"
-                [view]="[containerRef1.offsetWidth, 300]"
-                [cardColor]="'#fff4de'"
-                [scheme]="'flame'"
-                [results]="[
-                    { name: this._tloco.translate('customersTxt'), value: this.nbCustomers[0].length },
-                    { name: this._tloco.translate('meetingsTxt'), value: this.nbEncounters[0] },
-                ]">
-            </ngx-charts-number-card>
-        </div>
-    </div>
-    <div class="column is-8">
-        <div #containerRef2 class="card is-flex is-justify-content-center">
-            <ngx-charts-pie-grid
-                [view]="[containerRef2.offsetWidth, 300]"
-                [scheme]="'flame'"
-                [results]="[
-                { name: this._tloco.translate('maleTxt'), value: this.genders[0]},
-                { name: this._tloco.translate('femaleTxt'), value: this.genders[1] },
-                { name: this._tloco.translate('otherTxt'), value: this.genders[2] }
-            ]">
-            </ngx-charts-pie-grid>
-        </div>
-    </div>
-</div>
-
-<div class="column is-11">
-    <p class="subtitle has-text-weight-bold mt-3">{{ "navCustomers" | transloco }}</p>
-    <hr>
-</div>
-
-<div class="card cell-width mb-5">
-    <table class="table is-fullwidth">
-        <thead>
-            <tr class="is-selected is-warning">
-                <th>#</th>
-                <th>{{ "nameTh" | transloco }}</th>
-                <th>{{ "birthdateTh" | transloco }}</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr *ngFor="let customer of this.customers; let i = index">
-                <td>{{ i + 1 }}</td>
-                <td>{{ customer.name }} {{ customer.surname }}</td>
-                <td>{{ customer.birth_date }}</td>
-            </tr>
-        </tbody>
-
-    </table>
-</div> -->

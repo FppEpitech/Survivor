@@ -1,10 +1,15 @@
-import { DashboardCustomerStats, DashboardEventStats, DashboardService } from './../../service/dashboard/dashboard.service';
+import { DashboardCustomerStats, DashboardEncounterStats, DashboardEventStats, DashboardService } from './../../service/dashboard/dashboard.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { TranslocoRootModule } from './../../transloco-root.module';
 import { EncountersService } from './../../service/encounters/encounters.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/service/auth/auth.service';
+
+type PieChart = {
+    name: string;
+    value: number;
+};
 
 @Component({
   selector: 'app-home',
@@ -18,15 +23,14 @@ export class HomeComponent {
 
     customerStats?: DashboardCustomerStats;
     eventStats?: DashboardEventStats;
-
-    eventMonthly = 0;
-    eventWeekly = 0;
-    eventDaily = 0;
+    encounterStats: DashboardEncounterStats[] = [];
 
     timeRangeValues = ["Last 7 days", "Last 30 days", "Last 3 Month"];
     timeRangePeriod = [7, 1, 3];
     timeRangeIdx = 1;
     timeRangeCustomerIdx = 1;
+
+    EncounterPieChart: Array<{ name: string; value: number }> = [];
 
     constructor(
         public _auth: AuthService,
@@ -37,12 +41,14 @@ export class HomeComponent {
     async ngOnInit() {
         this.getCustomerStats();
         this.getEventStats();
+        this.getEncounterPieChartData();
     }
 
     changeTimeRange(index: number) {
         this.timeRangeIdx = index;
         this.timeRangeCustomerIdx = index;
         this.getCustomerStats();
+        this.getEncounterPieChartData();
     }
 
     changeTimeRangeCustomer(index: number) {
@@ -61,6 +67,21 @@ export class HomeComponent {
         this.eventStats = await this.dashboardService.getEventStats();
         if (this.eventStats && this.eventStats.averageEventsPerDay !== undefined) {
             this.eventStats.averageEventsPerDay = parseFloat(this.eventStats.averageEventsPerDay.toFixed(2));
+        }
+    }
+
+    async getEncounterStats() {
+        this.encounterStats = await this.dashboardService.getEncounterStats(this.timeRangePeriod[this.timeRangeCustomerIdx]);
+    }
+
+    async getEncounterPieChartData() {
+        await this.getEncounterStats();
+
+        this.EncounterPieChart = [];
+        for (let source of this.encounterStats) {
+            if (source && source.source && source.count) {
+                this.EncounterPieChart.push({ name: source.source, value: source.count });
+            }
         }
     }
 }
