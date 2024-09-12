@@ -5,13 +5,37 @@ import restrictCoach from '../middlewares/isManager';
 const router = express.Router();
 
 router.get('/', restrictCoach, async (req: Request, res: Response) => {
-  try {
-    const customers = await prisma.customer.findMany();
-    res.status(200).json(customers);
-  } catch (error) {
-    res.status(500).json({error: 'Error retrieving customers'});
-  }
+    try {
+        const customers = await prisma.customer.findMany();
+
+        const customersWithPaymentMethod = await Promise.all(customers.map(async customer => {
+          if (customer.payment_ids.length > 0) {
+              const firstPaymentId = customer.payment_ids[0];
+
+              const payment = await prisma.paymentHistory.findUnique({
+                where: { id: firstPaymentId },
+                select: { payment_method: true }
+              });
+
+              return {
+                ...customer,
+                first_payment_method: payment?.payment_method || null
+              };
+          } else {
+              return {
+                ...customer,
+                first_payment_method: null
+              };
+          }
+        }));
+
+        res.status(200).json(customersWithPaymentMethod);
+    } catch (error) {
+        res.status(500).json({ error: 'Error retrieving customers' });
+    }
 });
+
+
 
 router.get('/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
