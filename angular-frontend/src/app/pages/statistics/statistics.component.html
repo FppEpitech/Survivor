@@ -4,10 +4,6 @@
     </div>
 </div>
 
-<div *ngIf="this._auth.isManager()">
-    <div class="column is-6">
-</div>
-
 <div *ngIf="this._auth.isManager()" class="row text-center m-4">
     <div class="col-12 col-lg-7">
         <div #containerRef class="card d-flex justify-content-center">
@@ -59,7 +55,7 @@
     </ul>
 </div>
 
-<div #containerRef3 *ngIf="coache != undefined && customerResults[coache.id] != undefined && customerResults[coache.id] != 0" class="card m-5">
+<div #containerRef3 *ngIf="this.coache != undefined && customerResults[this.coache.id] != undefined" class="card m-5">
     <div class="p-3 text-centered is-hoverable">
         <div class="mt-4 mb-2 has-text-black">
             <h4 class="title">{{coache?.name}} {{coache?.surname}} </h4>
