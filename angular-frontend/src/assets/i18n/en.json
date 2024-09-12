@@ -117,5 +117,17 @@
   "viewBtn": "See",
   "paymentmethodsTxt": "Payment Methods",
   "shortDescriptionPlaceholder": "Short description",
-  "customerCreationHeader": "Customer creation"
+  "customerCreationHeader": "Customer creation",
+
+  "customerDetailsHeader" : "Customer Details",
+  "recentMeetingsHeader": "Recent Meetings",
+  "paymentsHistoryHeader": "Payments history",
+  "totalEncountersP": "Total Encounters",
+  "positivesP" : "Positives",
+  "inProgressP" : "In Progress",
+  "userIdCategory" : "User ID:",
+  "userEmailCategory" : "Email:",
+  "userDescriptionCategory": "Description:",
+  "coachCategory": "Coach:",
+  "shortDetailsHeader" : "short details"
 }

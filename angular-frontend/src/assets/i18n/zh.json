@@ -117,5 +117,16 @@
   "viewBtn": "查看",
   "paymentmethodsTxt": "支付方式",
   "shortDescriptionPlaceholder": "简短描述",
-  "customerCreationHeader": "客户创建"
+  "customerCreationHeader": "客户创建",
+  "customerDetailsHeader": "客户详情",
+  "recentMeetingsHeader": "近期会议",
+  "paymentsHistoryHeader": "支付历史",
+  "totalEncountersP": "总遇见次数",
+  "positivesP": "积极的",
+  "inProgressP": "进行中",
+  "userIdCategory": "用户 ID:",
+  "userEmailCategory": "电子邮件:",
+  "userDescriptionCategory": "描述:",
+  "coachCategory": "教练:",
+  "shortDetailsHeader": "简短详情"
 }

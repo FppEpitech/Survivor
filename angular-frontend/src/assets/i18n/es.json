@@ -117,5 +117,16 @@
   "viewBtn": "Ver",
   "paymentmethodsTxt": "Métodos de Pago",
   "shortDescriptionPlaceholder": "Descripción corta",
-  "customerCreationHeader": "Creación de cliente"
+  "customerCreationHeader": "Creación de cliente",
+  "customerDetailsHeader": "Detalles del cliente",
+  "recentMeetingsHeader": "Reuniones recientes",
+  "paymentsHistoryHeader": "Historial de pagos",
+  "totalEncountersP": "Encuentros totales",
+  "positivesP": "Positivos",
+  "inProgressP": "En progreso",
+  "userIdCategory": "ID de usuario:",
+  "userEmailCategory": "Correo electrónico:",
+  "userDescriptionCategory": "Descripción:",
+  "coachCategory": "Entrenador:",
+  "shortDetailsHeader": "Detalles breves"
 }
