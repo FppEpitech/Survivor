@@ -58,7 +58,7 @@
 <div #containerRef3 *ngIf="this.coache != undefined && customerResults[this.coache.id] != undefined" class="card m-5">
     <div class="p-3 text-centered is-hoverable">
         <div class="mt-4 mb-2 has-text-black">
-            <h4 class="title">{{coache?.name}} {{coache?.surname}} </h4>
+            <h4 class="title">{{coache.name}} {{coache.surname}} </h4>
         </div>
     </div>
     <ngx-charts-bar-horizontal *ngIf="customerResults[coache.id] != undefined && encounterResults[coache.id] !== undefined"
