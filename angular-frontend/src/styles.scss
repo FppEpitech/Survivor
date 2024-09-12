@@ -5,3 +5,32 @@ html, body {
   overflow-x: hidden;
   background-color: #f4f6fb !important;
 }
+
+.bg-forest {
+  background-color: #0c4618 !important;
+}
+
+.forest-text-light {
+  color: #b8c5b4 !important;
+}
+
+.bg-sea {
+  background-color: #042147 !important;
+}
+
+.sea-text-light {
+  color: #84c8ff !important;
+}
+
+.bg-sea .card {
+  background-color: #164574 !important;
+}
+
+.bg-forest .card {
+  background-color: #2a8d3b !important;
+}
+
+.bg-dark .card {
+  background-color: #5f7488 !important;
+}
+

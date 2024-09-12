@@ -1,3 +1,4 @@
+import { ThemeService } from './../service/theme/theme.service';
 import { Employee, EmployeesService } from './../service/employees/employees.service';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { Component } from '@angular/core';
@@ -21,8 +22,9 @@ export class NavbarComponent {
   customerRightImageUrl?: string;
   apiUrl = environment.apiUrl;
 
-  constructor(public _auth : AuthService, private router : Router, public _transloco : TranslocoService, private employeesService: EmployeesService) {
+  constructor(public _auth : AuthService, public _theme: ThemeService, private router : Router, public _transloco : TranslocoService, private employeesService: EmployeesService) {
     window.addEventListener('resize', this.onResize.bind(this));
+    this._theme.setTheme("light");
   }
 
   langChangeSelect(lang : string) {

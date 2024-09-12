@@ -226,7 +226,9 @@ router.post('/', restrictCoach, async (req: Request, res: Response) => {
     astrological_sign,
     image_url,
     coach_id,
-    clothes
+    clothes,
+    phone_number,
+    address
   } = req.body;
 
   try {
@@ -243,6 +245,8 @@ router.post('/', restrictCoach, async (req: Request, res: Response) => {
         image_url,
         coach_id,
         clothes: JSON.stringify(clothes),
+        phone_number,
+        address,
       },
     });
 
@@ -265,7 +269,9 @@ router.put('/:id', restrictCoach, async (req: Request, res: Response) => {
     astrological_sign = "Unknown",
     coach_id,
     coach_favorite,
-    image_url
+    image_url,
+    phone_number,
+    address
   } = req.body;
 
   try {
@@ -281,7 +287,9 @@ router.put('/:id', restrictCoach, async (req: Request, res: Response) => {
         astrological_sign,
         coach_id,
         coach_favorite,
-        image_url
+        image_url,
+        phone_number,
+        address
       },
     });
     res.status(200).json(updatedCustomer);
