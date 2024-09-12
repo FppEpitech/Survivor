@@ -55,18 +55,13 @@
                 </div>
             </div>
             <div #containerRef1 class="is-flex is-justify-content-center">
-                <ngx-charts-bar-horizontal
-                *ngIf="this.customerStats !== undefined &&
-                        this.customerStats.averageCustomersPerCoach !== null &&
-                        this.customerStats.percentageWithEncounter !== null &&
-                        this.customerStats.totalCustomers !== null"
+                <ngx-charts-bar-vertical
+                    *ngIf="this.EncounterByDayPieChart.length > 0"
                     [view]="[containerRef1.offsetWidth, 300]"
-                    [scheme]="'aqua'" [results]="[
-                    { name: 'customers', value: this.customerStats.totalCustomers || 0 },
-                    { name: 'Doing meetings', value: this.customerStats.percentageWithEncounter || 0},
-                    { name: 'Customers by coach', value: this.customerStats.averageCustomersPerCoach || 0}
-                ]">
-                </ngx-charts-bar-horizontal>
+                    [xAxis]="true"
+                    [yAxis]="true"
+                    [scheme]="'aqua'" [results]="this.EncounterByDayPieChart">
+                </ngx-charts-bar-vertical>
             </div>
         </div>
     </div>
@@ -94,9 +89,10 @@
             </div>
             <div #containerRef2 class="is-flex is-justify-content-center">
                 <ngx-charts-bar-vertical
+                *ngIf="this.EventByDayPieChart.length > 0"
                 [view]="[containerRef2.offsetWidth, 300]"
                 [scheme]="'aqua'"
-                [results]="this.EncounterPieChart">
+                [results]="this.EventByDayPieChart">
                 </ngx-charts-bar-vertical>
             </div>
         </div>
@@ -105,18 +101,6 @@
 
 
 <div class="row g-4 text-center m-4">
-    <div class="col-sm-6 col-md-7">
-        <div class="card">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h5 class="fw-bold">Customers by Country</h5>
-                </div>
-                <div>
-                    <button type="button" class="btn btn-light btn-outline-secondary">30 Days</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="col-6 col-md-5">
         <div class="card">
             <div class="d-flex justify-content-between align-items-center m-4">
@@ -130,7 +114,7 @@
             </div>
             <div #containerRef3 class="is-flex is-justify-content-center m-4">
                 <ngx-charts-advanced-pie-chart
-                    *ngIf="EncounterPieChart.length > 0"
+                    *ngIf="this.EncounterPieChart.length > 0"
                     [view]="[containerRef3.offsetWidth, 300]"
                     [scheme]="'aqua'"
                     [results]="this.EncounterPieChart">

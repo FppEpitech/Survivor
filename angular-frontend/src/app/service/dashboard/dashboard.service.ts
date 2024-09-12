@@ -21,6 +21,21 @@ export interface DashboardEncounterStats {
     count: number;
 }
 
+export interface DashboardEncounterByDay {
+    date: string;
+    count: number;
+}
+
+export interface DashboardEncounterByDay {
+    date: string;
+    count: number;
+}
+
+export interface DashboardEventByDay {
+    date: string;
+    count: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,6 +44,8 @@ export class DashboardService {
     private customerStats?: DashboardCustomerStats;
     private eventStats?: DashboardEventStats;
     private encounterStats: DashboardEncounterStats[] = [];
+    private encounterByDay: DashboardEncounterByDay[] = [];
+    private eventByDay: DashboardEventByDay[] = [];
 
     constructor(private http: HttpClient) { }
 
@@ -60,5 +77,25 @@ export class DashboardService {
             this.encounterStats = [];
         }
         return this.encounterStats;
+    }
+
+    async getEncounterByDay(period:number): Promise<DashboardEncounterByDay[]> {
+        try {
+            this.encounterByDay = await firstValueFrom(this.http.get<DashboardEncounterByDay[]>(`${this.apiUrl}/encounters-by-day/${period}`));
+        } catch (error) {
+            console.error("Failed to load encounter by day", error);
+            this.encounterByDay = [];
+        }
+        return this.encounterByDay;
+    }
+
+    async getEventByDay(period:number): Promise<DashboardEventByDay[]> {
+        try {
+            this.eventByDay = await firstValueFrom(this.http.get<DashboardEventByDay[]>(`${this.apiUrl}/events-by-day/${period}`));
+        } catch (error) {
+            console.error("Failed to load event by day", error);
+            this.eventByDay = [];
+        }
+        return this.eventByDay;
     }
 }

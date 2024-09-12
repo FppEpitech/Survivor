@@ -1,4 +1,4 @@
-import { DashboardCustomerStats, DashboardEncounterStats, DashboardEventStats, DashboardService } from './../../service/dashboard/dashboard.service';
+import { DashboardCustomerStats, DashboardEncounterByDay, DashboardEncounterStats, DashboardEventByDay, DashboardEventStats, DashboardService } from './../../service/dashboard/dashboard.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { TranslocoRootModule } from './../../transloco-root.module';
 import { EncountersService } from './../../service/encounters/encounters.service';
@@ -24,6 +24,8 @@ export class HomeComponent {
     customerStats?: DashboardCustomerStats;
     eventStats?: DashboardEventStats;
     encounterStats: DashboardEncounterStats[] = [];
+    eventsByDay: DashboardEventByDay[] = [];
+    encountersByDay: DashboardEncounterByDay[] = [];
 
     timeRangeValues = ["Last 7 days", "Last 30 days", "Last 3 Month"];
     timeRangePeriod = [7, 1, 3];
@@ -31,6 +33,8 @@ export class HomeComponent {
     timeRangeCustomerIdx = 1;
 
     EncounterPieChart: Array<{ name: string; value: number }> = [];
+    EventByDayPieChart: Array<{ name: string; value: number }> = [];
+    EncounterByDayPieChart: Array<{ name: string; value: number }> = [];
 
     constructor(
         public _auth: AuthService,
@@ -42,6 +46,8 @@ export class HomeComponent {
         this.getCustomerStats();
         this.getEventStats();
         this.getEncounterPieChartData();
+        this.getEventByDayPieChartData();
+        this.getEncounterByDayPieChartData();
     }
 
     changeTimeRange(index: number) {
@@ -49,11 +55,14 @@ export class HomeComponent {
         this.timeRangeCustomerIdx = index;
         this.getCustomerStats();
         this.getEncounterPieChartData();
+        this.getEventByDayPieChartData();
+        this.getEncounterByDayPieChartData();
     }
 
     changeTimeRangeCustomer(index: number) {
         this.timeRangeCustomerIdx = index;
         this.getCustomerStats();
+        this.getEncounterByDayPieChartData();
     }
 
     async getCustomerStats() {
@@ -81,6 +90,36 @@ export class HomeComponent {
         for (let source of this.encounterStats) {
             if (source && source.source && source.count) {
                 this.EncounterPieChart.push({ name: source.source, value: source.count });
+            }
+        }
+    }
+
+    async getEventByDay() {
+        this.eventsByDay = await this.dashboardService.getEventByDay(this.timeRangePeriod[this.timeRangeCustomerIdx]);
+    }
+
+    async getEventByDayPieChartData() {
+        await this.getEventByDay();
+
+        this.EventByDayPieChart = [];
+        for (let event of this.eventsByDay) {
+            if (event && event.count && event.date) {
+                this.EventByDayPieChart.push({ name: event.date, value: event.count });
+            }
+        }
+    }
+
+    async getEncounterByDay() {
+        this.encountersByDay = await this.dashboardService.getEncounterByDay(this.timeRangePeriod[this.timeRangeCustomerIdx]);
+    }
+
+    async getEncounterByDayPieChartData() {
+        await this.getEncounterByDay();
+
+        this.EncounterByDayPieChart = [];
+        for (let encounter of this.encountersByDay) {
+            if (encounter && encounter.count && encounter.date) {
+                this.EncounterByDayPieChart.push({ name: encounter.date, value: encounter.count });
             }
         }
     }
