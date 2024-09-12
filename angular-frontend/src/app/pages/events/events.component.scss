@@ -1,4 +1,15 @@
-body, .columns {
-    margin: 0;
-    padding: 0;
+::ng-deep .fc .fc-daygrid-day-number,
+::ng-deep .fc .fc-event-title,
+::ng-deep .fc .fc-daygrid-day-top {
+    color: white !important;
 }
+
+::ng-deep .fc-col-header-cell-cushion {
+  color: black !important;
+}
+
+::ng-deep .fc .fc-event-title {
+  background-color: green !important;
+  border-radius: 5px;
+}
+
