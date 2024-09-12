@@ -1,42 +1,36 @@
-<div class="column is-11">
-    <p class="title is-1">{{ "navAstro" | transloco }}</p>
-    <hr>
+<div>
+  <h2 class="m-4"> {{ "navAstro" | transloco }} </h2>
 </div>
 
-<div class="container" *ngIf="this.customers.length != 0; else noClients">
-  <div class="has-text-centered">
-    <p class="content title is-1">{{ this.compatibilityPercentage }}%</p>
-    <div class="column column-center">
-      <button class="button is-danger button-compute" (click)="computeCompatibility()">{{ "computeBtn" | transloco }}</button>
+<div class="card m-4 p-3" *ngIf="this.customers.length != 0; else noClients">
+  <div class="text-center">
+    <h1 class="fw-bold">{{ this.compatibilityPercentage }}%</h1>
+    <div>
+      <button class="btn btn-primary" (click)="computeCompatibility()">{{ "computeBtn" | transloco }}</button>
     </div>
   </div>
 
-  <div class="columns is-centered m-6">
-    <div class="column column-center">
-      <div class="card m-4">
-        <div class="card-content has-text-centered">
-          <p class="title is-4">{{ this.customerLeft?.name || this._tloco.translate('customerTxt') + " 1"}} {{ this.customerLeft?.surname }}</p>
-          <p class="title is-5 m-4">{{ this.customerLeft?.astrological_sign || this._tloco.translate('signTxt')}}</p>
-          <div class="card-image">
-            <figure class="image is-256x256 is-inline-block">
-              <img [src]="customerLeftImageUrl ?? 'assets/placeholder-128.png'  | secure | async" [alt]="this._tloco.translate('userPhotoAlt')"
+  <div>
+    <div class="column-center">
+      <div class="card m-4 p-3">
+        <div class="text-center">
+          <h4>{{ this.customerLeft?.name || this._tloco.translate('customerTxt') + " 1"}} {{ this.customerLeft?.surname }}</h4>
+          <h5 class="m-4">{{ this.customerLeft?.astrological_sign || this._tloco.translate('signTxt')}}</h5>
+          <div>
+              <img class="rounded-circle m-4" [src]="customerLeftImageUrl ?? 'assets/placeholder-128.png'  | secure | async" [alt]="this._tloco.translate('userPhotoAlt')"
                 (error)="onImageError($event)">
-            </figure>
           </div>
-          <div class="dropdown is-hoverable">
-            <div class="dropdown-trigger">
-              <button class="button is-warning">
-                <span>{{ "findBtn" | transloco }}</span>
-              </button>
-            </div>
-            <div class="dropdown-menu" role="menu">
-              <div class="dropdown-content p-3" *ngFor="let customer of customers">
-                <label class="radio">
-                  <input type="radio" name="customer1" (click)="onRadioChange(customer, true)" />
-                  {{ customer.name }} {{ customer.surname }}
-                </label>
-              </div>
-            </div>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" data-bs-toogle="dropdown" aria-expanded="false">
+              <span>{{ "findBtn" | transloco }}</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li *ngFor="let customer_ of this.customers" class="dropdown-item">
+                  <button class="btn" (click)="onRadioChange(customer_, true)">
+                    {{ customer_.name }} {{ customer_.surname }}
+                  </button>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -75,5 +69,5 @@
 </div>
 
 <ng-template class="container" #noClients>
-  <h1>{{ "loadCustomers" | transloco }}</h1>
+  <h4 class="m-4">{{ "loadCustomers" | transloco }}</h4>
 </ng-template>

@@ -5,7 +5,7 @@
 <section class="section card p-4 m-4 mt-6" *ngIf="this.customers.length != 0; else noClients">
     <div class="has-text-centered d-flex justify-content-between">
       <div class="dropdown">
-        <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <span>{{ customer?.name }} {{ customer?.surname ?? this._tloco.translate('selectCustomerLabel') }}</span>
         </button>
         <ul class="dropdown-menu">

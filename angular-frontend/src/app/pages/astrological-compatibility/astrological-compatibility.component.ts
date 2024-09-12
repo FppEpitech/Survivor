@@ -36,6 +36,7 @@ export class AstrologicalCompatibilityComponent {
                 this.customers = await this.employeesService.getCustomers(this.coach?.id);
             else
                 this.customers = await this.customerService.getCustomers();
+            console.log(this.customers);
         }
     }
 
