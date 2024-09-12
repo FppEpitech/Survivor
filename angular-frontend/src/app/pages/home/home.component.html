@@ -5,9 +5,14 @@
     </div>
 
     <div>
-        <button class="btn btn-outline-secondary me-2">
-            <i class="bi bi-calendar-week"></i> Last 30 days
+        <button class="btn btn-light btn-outline-secondary m-4" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-calendar-week"></i> {{ this.timeRangeValues[this.timeRangeIdx] }}
         </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" (click)="changeTimeRange(0)"> {{ this.timeRangeValues[0] }}</a></li>
+            <li><a class="dropdown-item" (click)="changeTimeRange(1)"> {{ this.timeRangeValues[1] }}</a></li>
+            <li><a class="dropdown-item" (click)="changeTimeRange(2)"> {{ this.timeRangeValues[2] }}</a></li>
+        </ul>
         <button class="btn btn-primary">
             <i class="bi bi-journal-bookmark"></i> Reports
         </button>
@@ -25,32 +30,36 @@
 
                 <div>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-light btn-outline-secondary">7 D</button>
-                        <button type="button" class="btn btn-light btn-outline-secondary">1 M</button>
-                        <button type="button" class="btn btn-light btn-outline-secondary">3 M</button>
+                        <button type="button" class="btn btn-light btn-outline-secondary" (click)="changeTimeRangeCustomer(0)">7 D</button>
+                        <button type="button" class="btn btn-light btn-outline-secondary" (click)="changeTimeRangeCustomer(1)">1 M</button>
+                        <button type="button" class="btn btn-light btn-outline-secondary" (click)="changeTimeRangeCustomer(2)">3 M</button>
                       </div>
                 </div>
             </div>
             <div class="row g-4 text-center m-4">
                 <div class="col-sm-6 col-md-2">
-                    <h6>Customers</h6>
-                    <h4>{{ this.customers.length }}</h4>
+                    <h6 class="fw-bold">Customers</h6>
+                    <h4>{{ this.customerStats?.totalCustomers }}</h4>
                 </div>
                 <div class="col-sm-6 col-md-2">
-                    <h6>Doing meetings</h6>
-                    <h4>{{ this.doingMeetings }}%</h4>
+                    <h6 class="fw-bold">Doing meetings</h6>
+                    <h4>{{ this.customerStats?.percentageWithEncounter }}%</h4>
                 </div>
-                <div class="col-sm-6 col-md-2">
-                    <h6>Customers by coach</h6>
-                    <h4>{{ this.customersPerCoach }}</h4>
+                <div class="col-sm-6 col-md-3">
+                    <h6 class="fw-bold">Customers by coach</h6>
+                    <h4>{{ this.customerStats?.averageCustomersPerCoach }}</h4>
                 </div>
             </div>
             <div #containerRef1 class="is-flex is-justify-content-center">
-                <ngx-charts-bar-vertical
+                <ngx-charts-bar-horizontal
                 [view]="[containerRef1.offsetWidth, 300]"
                 [scheme]="'aqua'"
-                [results]="[]">
-                </ngx-charts-bar-vertical>
+                [results]="[
+                    { name: 'customers', value: this.customerStats?.totalCustomers },
+                    { name: 'Doing meetings', value: this.customerStats?.percentageWithEncounter},
+                    { name: 'Customers by coach', value: this.customerStats?.averageCustomersPerCoach}
+                ]">
+                </ngx-charts-bar-horizontal>
             </div>
         </div>
     </div>
