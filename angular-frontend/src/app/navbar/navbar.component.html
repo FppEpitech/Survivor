@@ -56,7 +56,7 @@
                 <img *ngIf="this.lang[this.idx] === 'zh'" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/640px-Flag_of_the_People%27s_Republic_of_China.svg.png" alt="CH Flag" width="24" (click)="changeLanguage()">
                 <img *ngIf="this.lang[this.idx] === 'es'" src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg" alt="ES Flag" width="24" (click)="changeLanguage()">
             </a>
-            <a class="me-3">
+            <a class="me-3" *ngIf="this._auth.isManager()">
               <i class="bi bi-book-fill fs-4" [ngStyle]="{'color': this._theme.getIconColor()}" (click)="this._theme.toggleTheme()" ></i>
             </a>
             <a class="me-3">

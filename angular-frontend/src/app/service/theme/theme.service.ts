@@ -1,3 +1,5 @@
+import { environment } from './../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -47,7 +49,16 @@ export class ThemeService {
       body.classList.add('bg-forest', 'forest-text-light');
       this.theme = "forest";
     }
+    this.http.post(environment.apiUrl + "/themes/", {theme : theme}).subscribe(data => {
+      console.log(data);
+    })
   }
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+    this.http.get(environment.apiUrl + "/themes/").subscribe((data: any) => {
+      this.setTheme(data.theme)
+    }, (err) => {
+      console.log(err);
+    });
+  }
 }
