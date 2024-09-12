@@ -175,5 +175,53 @@ router.get('/encounters-by-day/:period', async (req: Request, res: Response) => 
     }
 });
 
+router.get('/events-by-day/:period', async (req: Request, res: Response) => {
+    try {
+        const period = parseInt(req.params.period);
+
+        let startDate: Date;
+
+        switch (period) {
+            case 7:
+                startDate = new Date();
+                startDate.setDate(startDate.getDate() - 7);
+                break;
+            case 1:
+                startDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+                break;
+            case 3:
+                startDate = new Date();
+                startDate.setMonth(startDate.getMonth() - 3);
+                break;
+            default:
+                return res.status(400).json({ error: 'Invalid period. Use 7, 1, or 3.' });
+        }
+
+        const eventsByDay = await prisma.event.groupBy({
+            by: ['date'],
+            where: {
+                date: {
+                    gte: startDate.toISOString().slice(0, 10),
+                },
+            },
+            _count: {
+                date: true,
+            },
+            orderBy: {
+                date: 'asc',
+            },
+        });
+
+        const formattedResponse = eventsByDay.map(day => ({
+            date: day.date,
+            count: day._count.date,
+        }));
+
+        res.status(200).json(formattedResponse);
+    } catch (error) {
+        res.status(500).json({ error: 'Error retrieving events by day' });
+    }
+});
+
 
 export default router;
