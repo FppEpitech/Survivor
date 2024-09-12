@@ -1,7 +1,7 @@
 <div class="d-flex flex-wrap justify-content-between align-items-center m-4">
     <div>
-        <h2 class="fw-bold">Dashboard</h2>
-        <h6>Welcome!</h6>
+        <h2 class="fw-bold">{{ "navHome" | transloco }}</h2>
+        <h6>{{ "welcomeMsg" | transloco}}!</h6>
     </div>
 
     <div class="mt-3 mt-md-0">
@@ -15,7 +15,7 @@
             <li><a class="dropdown-item" (click)="changeTimeRange(2)"> {{ this.timeRangeValues[2] }}</a></li>
         </ul>
         <button class="btn btn-primary">
-            <i class="bi bi-journal-bookmark"></i> Reports
+            <i class="bi bi-journal-bookmark"></i> {{ "reportsI" | transloco }}
         </button>
     </div>
 </div>
@@ -25,8 +25,8 @@
         <div class="card">
             <div class="d-flex flex-wrap justify-content-between align-items-center m-4">
                 <div>
-                    <h5 class="fw-bold">Customers Overview</h5>
-                    <h6>When customers have joined in the time.</h6>
+                    <h5 class="fw-bold">{{ "customersOverviewHeader" | transloco }}</h5>
+                    <h6>{{ "timeCustomerMsg" | transloco }}</h6>
                 </div>
 
                 <div class="mt-3 mt-md-0">
@@ -42,15 +42,15 @@
             </div>
             <div class="row g-4 text-center m-4">
                 <div class="col-6 col-md-4">
-                    <h6 class="fw-bold">Customers</h6>
+                    <h6 class="fw-bold">{{ "customersTh" | transloco }}</h6>
                     <h4>{{ this.customerStats?.totalCustomers }}</h4>
                 </div>
                 <div class="col-6 col-md-4">
-                    <h6 class="fw-bold">Doing meetings</h6>
+                    <h6 class="fw-bold">{{ "dMeetingsMsg" | transloco }}</h6>
                     <h4>{{ this.customerStats?.percentageWithEncounter }}%</h4>
                 </div>
                 <div class="col-12 col-md-4">
-                    <h6 class="fw-bold">Customers by coach</h6>
+                    <h6 class="fw-bold">{{ "customersByCoach" | transloco }}</h6>
                     <h4>{{ this.customerStats?.averageCustomersPerCoach }}</h4>
                 </div>
             </div>
@@ -70,21 +70,21 @@
         <div class="card">
             <div class="d-flex justify-content-between align-items-center m-4">
                 <div>
-                    <h5 class="fw-bold">Events</h5>
-                    <h6>Our events and their status.</h6>
+                    <h5 class="fw-bold">{{ "navEvents" | transloco }}</h5>
+                    <h6>{{ "evMsgStatus" | transloco }}</h6>
                 </div>
             </div>
             <div class="row g-4 text-center m-4">
                 <div class="col-6 col-md-4">
-                    <h6>Monthly</h6>
+                    <h6>{{ "mthly" | transloco }}</h6>
                     <h4>{{ this.eventStats?.totalEventsLastMonth }}</h4>
                 </div>
                 <div class="col-6 col-md-4">
-                    <h6>Weekly</h6>
+                    <h6>{{ "wkly" | transloco }}</h6>
                     <h4>{{ this.eventStats?.totalEventsLastWeek }}</h4>
                 </div>
                 <div class="col-6 col-md-4">
-                    <h6>Daily (Avg)</h6>
+                    <h6>{{ "dAvg" | transloco }}</h6>
                     <h4>{{ this.eventStats?.averageEventsPerDay }}</h4>
                 </div>
             </div>
@@ -107,11 +107,11 @@
         <div class="card">
             <div class="d-flex justify-content-between align-items-center m-4">
                 <div>
-                    <h5 class="fw-bold">Meeting top sources</h5>
+                    <h5 class="fw-bold">{{ "meetingsMsg" | transloco }}</h5>
                 </div>
 
                 <div>
-                    <button type="button" class="btn btn-light btn-outline-secondary">30 Days</button>
+                    <button type="button" class="btn btn-light btn-outline-secondary">{{ "30d" | transloco }}</button>
                 </div>
             </div>
             <div #containerRef3 class="d-flex justify-content-center m-4">

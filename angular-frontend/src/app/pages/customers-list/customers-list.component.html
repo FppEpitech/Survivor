@@ -1,12 +1,12 @@
 <div class="d-flex justify-content-between align-items-center m-4">
     <div>
-        <h2 class="fw-bold">Customers List</h2>
-        <h6>You have total {{ this.customers.length }} customers.</h6>
+        <h2 class="fw-bold">{{ "customersListBtn" | transloco }}</h2>
+        <h6>{{ "totalTxt" | transloco }} {{ this.customers.length }} {{ "customersPointTxt" | transloco}}</h6>
     </div>
 
     <div>
         <button class="btn btn-outline-secondary me-2" (click)="exportCustomersAsJSON()">
-            <i class="bi bi-cloud-download"></i> Export
+            <i class="bi bi-cloud-download"></i> {{ "exportBtnTxt" | transloco }}
         </button>
         <button *ngIf="this._auth.isManager()" class="btn btn-primary" (click)="goToCustomerCreation()">
             <i class="bi bi-plus-lg"></i>
@@ -24,12 +24,12 @@
                             {{ this.action }}
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" (click)="changeAction('Bulk Action')">Bulk Action</a></li>
-                            <li><a class="dropdown-item" (click)="changeAction('Simple Action')">Simple action</a></li>
+                            <li><a class="dropdown-item" (click)="changeAction(this._tloco.translate('bulkActionBtn'))">{{ "bulkActionBtn" | transloco }}</a></li>
+                            <li><a class="dropdown-item" (click)="changeAction(this._tloco.translate('simpleActionBtn'))">{{ "simpleActionBtn" | transloco }}</a></li>
                         </ul>
                     </div>
-                    <button *ngIf="this._auth.isManager()" class="btn btn-outline-secondary w-md-auto mb-2 mb-md-0" (click)="apply()">Apply</button>
-                    <button class="btn btn-light w-100 w-md-auto" *ngIf="this.action === 'Bulk Action' && this._auth.isManager()" (click)="deleteManyCustomers()">
+                    <button *ngIf="this._auth.isManager()" class="btn btn-outline-secondary w-md-auto mb-2 mb-md-0" (click)="apply()">{{ "applyBtnTxt" | transloco }}</button>
+                    <button class="btn btn-light w-100 w-md-auto" *ngIf="this.action === this._tloco.translate('bulkActionBtn') && this._auth.isManager()" (click)="deleteManyCustomers()">
                         <i class="bi bi-trash text-danger"></i>
                     </button>
                 </div>
@@ -37,7 +37,7 @@
 
             <div class="col-12 col-lg-3 d-flex flex-column flex-md-row align-items-start align-items-md-center">
                 <div class="d-flex align-items-center w-100 mb-2 mb-md-0">
-                    <input type="text" class="form-control me-2" placeholder="Search" [(ngModel)]="this.search">
+                    <input type="text" class="form-control me-2" [placeholder]="this._tloco.translate('searchPlaceholder')" [(ngModel)]="this.search">
                     <button class="btn btn-light" (click)="searchBar()">
                         <i class="bi bi-search mx-2 text-secondary"></i>
                     </button>
@@ -56,20 +56,20 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col" class="text-secondary">Coach</th>
-                    <th scope="col" class="text-secondary">Email</th>
-                    <th scope="col" class="text-secondary">Birth Date</th>
-                    <th *ngIf="this._auth.isManager()" scope="col" class="text-secondary">Payment Methods</th>
-                    <th scope="col" class="text-secondary">Actions</th>
+                    <th scope="col" class="text-secondary">{{ "coachTh" | transloco}}</th>
+                    <th scope="col" class="text-secondary">{{ "emailTh" | transloco}}</th>
+                    <th scope="col" class="text-secondary">{{ "birthdateTh" | transloco}}</th>
+                    <th *ngIf="this._auth.isManager()" scope="col" class="text-secondary">{{ "paymentmethodsTxt" | transloco }}</th>
+                    <th scope="col" class="text-secondary text-center align-middle">{{ "actionsTh" | transloco}}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let customer of this.customers">
                     <td>
-                        <button *ngIf="this.action === 'Bulk Action' && this.customerCheck[customer.id] === undefined" class="btn" (click)="checkCustomer(true, customer)">
+                        <button *ngIf="this.action === this._tloco.translate('bulkActionBtn') && this.customerCheck[customer.id] === undefined" class="btn" (click)="checkCustomer(true, customer)">
                             <i class="bi bi-app"></i>
                         </button>
-                        <button *ngIf="this.action === 'Bulk Action' && this.customerCheck[customer.id] !== undefined" class="btn" (click)="checkCustomer(false, customer)">
+                        <button *ngIf="this.action === this._tloco.translate('bulkActionBtn') && this.customerCheck[customer.id] !== undefined" class="btn" (click)="checkCustomer(false, customer)">
                             <i class="bi bi-check2-square"></i>
                         </button>
                         <i class="bi bi-person-circle fs-4 m-4"></i>
@@ -90,13 +90,13 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li *ngIf="this.customersToDelete[customer.id] === undefined && this._auth.isManager()"><a class="dropdown-item" (click)="deleteButton(customer)">
-                                    <i class="bi bi-trash text-danger"></i> delete
+                                    <i class="bi bi-trash text-danger"></i> {{ "deleteTxt" | transloco }}
                                 </a></li>
                                 <li *ngIf="this.customersToDelete[customer.id] !== undefined && this._auth.isManager()"><a class="dropdown-item" (click)="restoreButton(customer)">
-                                    <i class="bi bi-arrow-repeat text-success"></i> restore
+                                    <i class="bi bi-arrow-repeat text-success"></i> {{ "restoreBtn" | transloco }}
                                 </a></li>
                                 <li><a class="dropdown-item" (click)="goToCustomerPage(customer)">
-                                    <i class="bi bi-eye text-success"></i> see
+                                    <i class="bi bi-eye text-success"></i> {{ "viewBtn" | transloco }}
                                 </a></li>
                             </ul>
                         </div>

@@ -1,3 +1,4 @@
+import { TranslocoService } from '@ngneat/transloco';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth/auth.service';
@@ -29,7 +30,8 @@ export class CustomersListComponent {
         private employeesService: EmployeesService,
         private customersService: CustomersService,
         public _auth: AuthService,
-        private router: Router) {}
+        private router: Router,
+        public _tloco : TranslocoService) {}
 
     async ngOnInit() {
         this.employee = await this.employeesService.getMe();
@@ -39,6 +41,10 @@ export class CustomersListComponent {
             this.customers = await this.customersService.getCustomers();
         }
         this.allCustomers = this.customers;
+        this.action = this._tloco.translate('simpleActionBtn')
+        this._tloco.langChanges$.subscribe(() => {
+            this.action = this._tloco.translate('simpleActionBtn')
+        });
     }
 
     exportCustomersAsJSON() {

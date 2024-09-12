@@ -1,146 +1,145 @@
 <div class="d-flex justify-content-between align-items-center m-4">
-    <div>
-        <h2 class="fw-bold">Coaches List</h2>
-        <h6>You have total {{ this.employees.length }} coaches.</h6>
-    </div>
+  <div>
+      <h2 class="fw-bold">{{ 'coachesListTitle' | transloco }}</h2>
+      <h6>{{ 'totalTxt' | transloco }} {{ this.employees.length }} {{ 'coachesTxt' | transloco }}.</h6>
+  </div>
 
-    <div>
-        <button class="btn btn-outline-secondary me-2" (click)="exportEmployeesAsJSON()">
-            <i class="bi bi-cloud-download"></i> Export
-        </button>
-        <button class="btn btn-primary" (click)="goToSignIn()">
-            <i class="bi bi-plus-lg"></i>
-        </button>
-    </div>
+  <div>
+      <button class="btn btn-outline-secondary me-2" (click)="exportEmployeesAsJSON()">
+          <i class="bi bi-cloud-download"></i> {{ 'exportBtnTxt' | transloco }}
+      </button>
+      <button class="btn btn-primary" (click)="goToSignIn()">
+          <i class="bi bi-plus-lg"></i>
+      </button>
+  </div>
 </div>
 
 <div *ngIf="!this.customerPageChoice" class="card m-4">
-    <div class="card-header">
-        <div class="row">
-            <div class="col-12 col-lg-9">
-                <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center mb-3 mb-md-0">
-                    <div class="dropdown me-md-2 mb-2 mb-md-0">
-                        <button class="btn btn-outline-secondary dropdown-toggle w-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ this.action }}
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" (click)="changeAction('Bulk Action')">Bulk Action</a></li>
-                            <li><a class="dropdown-item" (click)="changeAction('Simple Action')">Simple action</a></li>
-                        </ul>
-                    </div>
-                    <button class="btn btn-outline-secondary w-md-auto mb-2 mb-md-0" (click)="apply()">Apply</button>
-                    <button class="btn btn-light w-100 w-md-auto" *ngIf="this.action === 'Bulk Action'" (click)="deleteManyEmployees()">
-                        <i class="bi bi-trash text-danger"></i>
-                    </button>
-                </div>
-            </div>
+  <div class="card-header">
+      <div class="row">
+          <div class="col-12 col-lg-9">
+              <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center mb-3 mb-md-0">
+                  <div class="dropdown me-md-2 mb-2 mb-md-0">
+                      <button class="btn btn-outline-secondary dropdown-toggle w-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          {{ this.action }}
+                      </button>
+                      <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" (click)="changeAction(this._tloco.translate('bulkActionBtn'))">{{ 'bulkActionTxt' | transloco }}</a></li>
+                          <li><a class="dropdown-item" (click)="changeAction(this._tloco.translate('simpleActionBtn'))">{{ 'simpleActionTxt' | transloco }}</a></li>
+                      </ul>
+                  </div>
+                  <button class="btn btn-outline-secondary w-md-auto mb-2 mb-md-0" (click)="apply()">{{ 'applyBtnTxt' | transloco }}</button>
+                  <button class="btn btn-light w-100 w-md-auto" *ngIf="this.action === this._tloco.translate('bulkActionBtn')" (click)="deleteManyEmployees()">
+                      <i class="bi bi-trash text-danger"></i>
+                  </button>
+              </div>
+          </div>
 
-            <div class="col-12 col-lg-3 d-flex flex-column flex-md-row align-items-start align-items-md-center">
-                <div class="d-flex align-items-center w-100 mb-2 mb-md-0">
-                    <input type="text" class="form-control me-2" placeholder="Search" [(ngModel)]="this.search">
-                    <button class="btn btn-light" (click)="searchBar()">
-                        <i class="bi bi-search mx-2 text-secondary"></i>
-                    </button>
-                </div>
-                <div class="d-flex align-items-center w-md-auto">
-                    <span class="vertical-bar"></span>
-                    <button class="btn btn-light w-100 w-md-auto" (click)="filterFavorite()">
-                        <i class="bi bi-filter mx-2 text-secondary"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+          <div class="col-12 col-lg-3 d-flex flex-column flex-md-row align-items-start align-items-md-center">
+              <div class="d-flex align-items-center w-100 mb-2 mb-md-0">
+                  <input type="text" class="form-control me-2" placeholder="{{ 'searchPlaceholder' | transloco }}" [(ngModel)]="this.search">
+                  <button class="btn btn-light" (click)="searchBar()">
+                      <i class="bi bi-search mx-2 text-secondary"></i>
+                  </button>
+              </div>
+              <div class="d-flex align-items-center w-md-auto">
+                  <span class="vertical-bar"></span>
+                  <button class="btn btn-light w-100 w-md-auto" (click)="filterFavorite()">
+                      <i class="bi bi-filter mx-2 text-secondary"></i>
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
 
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col" class="text-secondary">Coach</th>
-                    <th scope="col" class="text-secondary">Email</th>
-                    <th scope="col" class="text-secondary">Birth Date</th>
-                    <th scope="col" class="text-secondary">Customers</th>
-                    <th scope="col" class="text-secondary text-center align-middle">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let coach of this.employees">
-                    <td>
-                        <button *ngIf="this.action === 'Bulk Action' && this.employeeCheck[coach.id] === undefined" class="btn" (click)="checkEmployee(true, coach)">
-                            <i class="bi bi-app"></i>
-                        </button>
-                        <button *ngIf="this.action === 'Bulk Action' && this.employeeCheck[coach.id] !== undefined" class="btn" (click)="checkEmployee(false, coach)">
-                            <i class="bi bi-check2-square"></i>
-                        </button>
-                        <i class="bi bi-person-circle fs-4 m-4"></i>
-                        {{ coach.name }} {{ coach.surname }}
-                    </td>
-                    <td>{{ coach.email }}</td>
-                    <td>{{ coach.birth_date }}</td>
-                    <td>{{ coach.customerCount }}</td>
-                    <td class="text-center align-middle">
-                        <div class="dropdown me-2">
-                            <button class="btn btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-three-dots"></i>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li *ngIf="this.employeeToDelete[coach.id] === undefined"><a class="dropdown-item" (click)="deleteButton(coach)">
-                                    <i class="bi bi-trash text-danger"></i> delete
-                                </a></li>
-                                <li *ngIf="this.employeeToDelete[coach.id] !== undefined"><a class="dropdown-item" (click)="restoreButton(coach)">
-                                    <i class="bi bi-arrow-repeat text-success"></i> restore
-                                </a></li>
-                                <li><a class="dropdown-item" (click)="openCustomerPageChoice(coach)">
-                                    <i class="bi bi-plus-lg"></i> add customer
-                                </a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="table-responsive">
+      <table class="table">
+          <thead>
+              <tr>
+                  <th scope="col" class="text-secondary">{{ 'coachTh' | transloco }}</th>
+                  <th scope="col" class="text-secondary">{{ 'emailTh' | transloco }}</th>
+                  <th scope="col" class="text-secondary">{{ 'birthdateTh' | transloco }}</th>
+                  <th scope="col" class="text-secondary">{{ 'customersTh' | transloco }}</th>
+                  <th scope="col" class="text-secondary text-center align-middle">{{ 'actionsTh' | transloco }}</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let coach of this.employees">
+                  <td>
+                      <button *ngIf="this.action === this._tloco.translate('bulkActionBtn') && this.employeeCheck[coach.id] === undefined" class="btn" (click)="checkEmployee(true, coach)">
+                          <i class="bi bi-app"></i>
+                      </button>
+                      <button *ngIf="this.action === this._tloco.translate('bulkActionBtn') && this.employeeCheck[coach.id] !== undefined" class="btn" (click)="checkEmployee(false, coach)">
+                          <i class="bi bi-check2-square"></i>
+                      </button>
+                      <i class="bi bi-person-circle fs-4 m-4"></i>
+                      {{ coach.name }} {{ coach.surname }}
+                  </td>
+                  <td>{{ coach.email }}</td>
+                  <td>{{ coach.birth_date }}</td>
+                  <td>1</td>
+                  <td class="text-center align-middle">
+                      <div class="dropup me-2">
+                          <button class="btn btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <i class="bi bi-three-dots"></i>
+                          </button>
+                          <ul class="dropdown-menu">
+                              <li *ngIf="this.employeeToDelete[coach.id] === undefined"><a class="dropdown-item" (click)="deleteButton(coach)">
+                                  <i class="bi bi-trash text-danger"></i> {{ 'deleteTxt' | transloco }}
+                              </a></li>
+                              <li *ngIf="this.employeeToDelete[coach.id] !== undefined"><a class="dropdown-item" (click)="restoreButton(coach)">
+                                  <i class="bi bi-arrow-repeat text-success"></i> {{ 'restoreTxt' | transloco }}
+                              </a></li>
+                              <li><a class="dropdown-item" (click)="openCustomerPageChoice(coach)">
+                                  <i class="bi bi-plus-lg"></i> {{ 'addCustomerTxt' | transloco }}
+                              </a></li>
+                          </ul>
+                      </div>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
 </div>
 
-
 <div *ngIf="this.customerPageChoice" class="card m-4">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <div class="d-flex align-items-center m-3">
-            <button class="btn btn-outline-secondary m-1" (click)="backEmployeePage()">Back</button>
-            <button class="btn btn-outline-secondary m-1" (click)="addCustomers()" [class.disabled]="!this.changesOccuredCustomer">Add</button>
-        </div>
+  <div class="card-header d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center m-3">
+          <button class="btn btn-outline-secondary m-1" (click)="backEmployeePage()">{{ 'backBtnTxt' | transloco }}</button>
+          <button class="btn btn-outline-secondary m-1" (click)="addCustomers()" [class.disabled]="!this.changesOccuredCustomer">{{ 'addBtnTxt' | transloco }}</button>
+      </div>
 
-        <div class="d-flex align-items-center">
-            <input type="text" class="form-control me-2" placeholder="Search" [(ngModel)]="this.searchCustomer">
-            <button class="btn btn-light" (click)="searchBarCustomer()"><i class="bi bi-search mx-2 text-secondary"></i></button>
-        </div>
-    </div>
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col" class="text-secondary">Name</th>
-                <th scope="col" class="text-secondary">Email</th>
-                <th scope="col" class="text-secondary text-center align-middle">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let customer of this.customers">
-                    <td>
-                        <i class="bi bi-person-circle fs-4 m-4"></i>
-                        {{ customer.name }} {{ customer.surname }}
-                    </td>
-                    <td>{{ customer.email }}</td>
-                    <td class="text-center align-middle">
-                        <button *ngIf="customer.coach_id !== this.coachToAddCustomers?.id" class="btn btn-primary" (click)="addCustomerToCoachButton(customer)">
-                            <i class="bi bi-plus-lg"></i>
-                        </button>
-                        <button *ngIf="customer.coach_id === this.coachToAddCustomers?.id" class="btn btn-danger" (click)="removeCustomerToCoachButton(customer)">
-                            <i class="bi bi-x-circle"></i>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+      <div class="d-flex align-items-center">
+          <input type="text" class="form-control me-2" placeholder="{{ 'searchPlaceholder' | transloco }}" [(ngModel)]="this.searchCustomer">
+          <button class="btn btn-light" (click)="searchBarCustomer()"><i class="bi bi-search mx-2 text-secondary"></i></button>
+      </div>
+  </div>
+  <div class="table-responsive">
+      <table class="table">
+          <thead>
+          <tr>
+              <th scope="col" class="text-secondary">{{ 'nameTh' | transloco }}</th>
+              <th scope="col" class="text-secondary">{{ 'emailTh' | transloco }}</th>
+              <th scope="col" class="text-secondary text-center align-middle">{{ 'actionsTh' | transloco }}</th>
+          </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let customer of this.customers">
+                  <td>
+                      <i class="bi bi-person-circle fs-4 m-4"></i>
+                      {{ customer.name }} {{ customer.surname }}
+                  </td>
+                  <td>{{ customer.email }}</td>
+                  <td class="text-center align-middle">
+                      <button *ngIf="customer.coach_id !== this.coachToAddCustomers?.id" class="btn btn-primary" (click)="addCustomerToCoachButton(customer)">
+                          <i class="bi bi-plus-lg"></i>
+                      </button>
+                      <button *ngIf="customer.coach_id === this.coachToAddCustomers?.id" class="btn btn-danger" (click)="removeCustomerToCoachButton(customer)">
+                          <i class="bi bi-x-circle"></i>
+                      </button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
 </div>

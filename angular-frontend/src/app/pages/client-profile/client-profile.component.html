@@ -1,5 +1,5 @@
 <div class="column is-11">
-    <h2 class="m-4 fw-bold">Customer Details</h2>
+    <h2 class="m-4 fw-bold">{{ "customerDetailsHeader" | transloco }}</h2>
 </div>
 
 <div class="row gap-4 mx-4 mb-4">
@@ -29,35 +29,35 @@
             <div class="row">
                 <div class="text-center p-3 col">
                     <h4 class="fw-bold text-primary-emphasis"> {{ encounters.length }} </h4>
-                    <p class="text-secondary">Total Encounters</p>
+                    <p class="text-secondary">{{ "totalEncountersP" | transloco }}</p>
                 </div>
                 <div class="text-center p-3 col">
                     <h4 class="fw-bold text-primary-emphasis"> {{ getNumberSuccessEncounters() }} </h4>
-                    <p class="text-secondary">Positives</p>
+                    <p class="text-secondary">{{ "positivesP" | transloco }}</p>
                 </div>
                 <div class="text-center p-3 col">
                     <h4 class="fw-bold text-primary-emphasis"> {{ getNumberFailedEncounters() }} </h4>
-                    <p class="text-secondary">In Progress</p>
+                    <p class="text-secondary">{{ "inProgressP" | transloco }}</p>
                 </div>
             </div>
             <hr>
             <div class="p-3 text-secondary">
-                <h6 class="text-uppercase font-monospace fw-semibold text-secondary">short details</h6>
-                <p class="text-secondary mb-0">User ID:</p>
+                <h6 class="text-uppercase font-monospace fw-semibold text-secondary">{{ "shortDetailsHeader" | transloco }}</h6>
+                <p class="text-secondary mb-0">{{ "userIdCategory" | transloco }}</p>
                 <p class="text-primary-emphasis">{{ customer.id }}</p>
-                <p class="text-secondary mb-0">Email:</p>
+                <p class="text-secondary mb-0">{{ "userEmailCategory" | transloco }}</p>
                 <p class="text-primary-emphasis">{{ customer.email }}</p>
-                <p class="text-secondary mb-0">Description:</p>
+                <p class="text-secondary mb-0">{{ "userDescriptionCategory" | transloco }}</p>
                 <p class="text-primary-emphasis"> {{ customer.description }}</p>
-                <p class="text-secondary mb-0">Coach:</p>
+                <p class="text-secondary mb-0">{{ "coachCategory" | transloco }}</p>
                 <p *ngIf="coach != undefined" class="text-primary-emphasis">{{ coach.name }} {{coach.surname}}</p>
-                <p *ngIf="coach == undefined" class="text-primary-emphasis">Coach id : {{ customer.coach_id }} </p>
+                <p *ngIf="coach == undefined" class="text-primary-emphasis">Coach id : {{ customer.coach_id == -1 ? 'X' : customer.coach_id }} </p>
             </div>
         </div>
     </div>
     <div class="col">
         <div class="card shadow-none p-5">
-            <h5 class="fw-bold mb-3 text-primary-emphasis">Recent Meetings</h5>
+            <h5 class="fw-bold mb-3 text-primary-emphasis">{{ "recentMeetingsHeader" | transloco }}</h5>
             <div *ngIf="this._auth.isManager() && this.customer !== undefined"></div>
             <div *ngIf="this.customer !== undefined" class="card shadow-none p-4 pb-0">
                 <table class="table is-fullwidth border-light-subtle">
@@ -86,13 +86,13 @@
                     </tbody>
                 </table>
             </div>
-            <h5 *ngIf="this._auth.isManager()" class="fw-bold mb-3 mt-5 text-primary-emphasis">Payments history</h5>
+            <h5 *ngIf="this._auth.isManager()" class="fw-bold mb-3 mt-5 text-primary-emphasis">{{ "paymentsHistoryHeader" | transloco }}</h5>
             <div *ngIf="this._auth.isManager() && this.customer !== undefined" class="card shadow-none p-4 pb-0">
                 <table class="table is-fullwidth border-light-subtle">
                     <thead>
                         <tr>
                             <th scope="col" class="text-secondary">{{ "dateTh" | transloco }}</th>
-                            <th scope="col" class="text-secondary">Payment method</th>
+                            <th scope="col" class="text-secondary">{{ "paymentmethodsTxt" | transloco }}</th>
                             <th scope="col" class="text-secondary">{{ "amountTh" | transloco }}</th>
                             <th scope="col" class="text-secondary">{{ "commentTh" | transloco }}</th>
                         </tr>
