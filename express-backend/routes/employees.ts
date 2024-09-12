@@ -7,14 +7,33 @@ import restrictCoach from '../middlewares/isManager';
 const router = express.Router();
 
 router.get('/me', async (req: Request, res: Response) => {
-    try {
-      let me = await prisma.employee.findUnique({where: {id: (req as any).middlewareId}});
-      if (!me) throw new Error("Failed getting employee's informations");
-      res.status(200).json(me);
-    } catch (error) {
-      res.status(500).json({error: 'Error deleting employee'});
+  try {
+    const me = await prisma.employee.findUnique({
+      where: { id: (req as any).middlewareId },
+    });
+
+    if (!me) {
+      throw new Error("Failed getting employee's information");
     }
-})
+
+    if (me.work === 'Coach') {
+      const customerCount = await prisma.customer.count({
+        where: { coach_id: me.id },
+      });
+      const employeeWithCustomerCount = { ...me, customerCount } as any;
+
+      return res.status(200).json(employeeWithCustomerCount);
+    }
+
+    res.status(200).json(me);
+  } catch (error) {
+    res.status(500).json({ error: 'Error retrieving employee' });
+  }
+});
+
+
+
+
 
 router.get('/', restrictCoach, async (req: Request, res: Response) => {
   try {
