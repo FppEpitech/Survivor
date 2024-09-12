@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ThemeService {
-  theme: 'light' | 'dark' | 'forest' = 'light';
+  theme: 'light' | 'dark' | 'forest' | "sea" = 'light';
 
   getIconColor(): string {
     switch (this.theme) {
@@ -15,7 +15,9 @@ export class ThemeService {
       case 'dark':
         return 'green';
       case 'forest':
-        return 'lightgray';
+        return 'blue';
+      case 'sea':
+        return 'lightgray'
       default:
         return 'black';
     }
@@ -30,6 +32,9 @@ export class ThemeService {
         this.theme = 'forest';
         break;
       case 'forest':
+        this.theme = 'sea';
+        break;
+      case 'sea':
         this.theme = 'light';
         break;
     }
@@ -41,6 +46,7 @@ export class ThemeService {
     const body = document.body;
     body.classList.remove('bg-dark', 'text-light');
     body.classList.remove('bg-forest', 'forest-text-light');
+    body.classList.remove('bg-sea', 'sea-text-light');
     if (theme == "dark") {
       this.theme = "dark"
       body.classList.add('bg-dark', 'text-light');
@@ -48,6 +54,10 @@ export class ThemeService {
     if (theme == "forest") {
       body.classList.add('bg-forest', 'forest-text-light');
       this.theme = "forest";
+    }
+    if (theme == "sea") {
+      body.classList.add('bg-sea', 'sea-text-light');
+      this.theme = "sea";
     }
     this.http.post(environment.apiUrl + "/themes/", {theme : theme}).subscribe(data => {
       console.log(data);
