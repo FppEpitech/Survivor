@@ -62,7 +62,7 @@ export class StatisticsPageComponent {
             await this.initEncounters();
             await this.initCustomers();
         }
-        await this.initEmployees();
+        // await this.initEmployees();
     }
 
     async initPayments() {
@@ -81,35 +81,35 @@ export class StatisticsPageComponent {
         this.nbCustomers[0] = await this.customersService.getCustomers();
     }
 
-    async initEmployees() {
+    // async initEmployees() {
 
-        if (this._auth.isManager()) {
-            this.employees = await this.employeesService.getEmployees();
-            this.coaches = this.employees.filter(employee => employee.work === 'Coach');
-        } else {
-            this.me = await this.employeesService.getMe();
-            if (this.me !== undefined) {
-                this.employees = [this.me];
-                this.coaches = [this.me];
-            }
-        }
-        this.nbEmployees[0] = this.employees;
-        this.nbCoaches[0] = this.coaches;
+    //     if (this._auth.isManager()) {
+    //         this.employees = await this.employeesService.getEmployees();
+    //         this.coaches = this.employees.filter(employee => employee.work === 'Coach');
+    //     } else {
+    //         this.me = await this.employeesService.getMe();
+    //         if (this.me !== undefined) {
+    //             this.employees = [this.me];
+    //             this.coaches = [this.me];
+    //         }
+    //     }
+    //     this.nbEmployees[0] = this.employees;
+    //     this.nbCoaches[0] = this.coaches;
 
-        for (let employee of this.employees) {
-            this.genderResults[employee.id] = [0, 0, 0];
-            this.employeesCustomers = await this.employeesService.getCustomers(employee.id);
-            this.customerResults[employee.id] = this.employeesCustomers.length;
-            for (let customer of this.employeesCustomers) {
-                this.encounters = await this.encountersService.getCustomerEncounters(customer.id);
-                if (this.encounterResults[employee.id])
-                    this.encounterResults[employee.id] += this.encounters.length;
-                else
-                    this.encounterResults[employee.id] = this.encounters.length;
-                this.updateGender(customer.gender, employee.id);
-            }
-        }
-    }
+    //     for (let employee of this.employees) {
+    //         this.genderResults[employee.id] = [0, 0, 0];
+    //         this.employeesCustomers = await this.employeesService.getCustomers(employee.id);
+    //         this.customerResults[employee.id] = this.employeesCustomers.length;
+    //         for (let customer of this.employeesCustomers) {
+    //             this.encounters = await this.encountersService.getCustomerEncounters(customer.id);
+    //             if (this.encounterResults[employee.id])
+    //                 this.encounterResults[employee.id] += this.encounters.length;
+    //             else
+    //                 this.encounterResults[employee.id] = this.encounters.length;
+    //             this.updateGender(customer.gender, employee.id);
+    //         }
+    //     }
+    // }
 
     initTips() {
         this.tipsService.getTips().subscribe(
@@ -140,5 +140,9 @@ export class StatisticsPageComponent {
             this.genderResults[id][1] += 1;
         else
         this.genderResults[id][2] += 1;
+    }
+
+    chooseCoach(coach: Employee) {
+
     }
 }

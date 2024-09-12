@@ -1,10 +1,14 @@
-<div class="column is-11">
-    <p class="title is-1">{{ "navStatistics" | transloco }}</p>
-    <hr>
+<div class="d-flex justify-content-between align-items-center m-4">
+    <div>
+        <h2 class="fw-bold">{{ "navStatistics" | transloco }}</h2>
+    </div>
 </div>
 
-<div *ngIf="this._auth.isManager()" class="columns is-multiline">
-    <div class="column is-6">
+<!-- <div *ngIf="this._auth.isManager()" class="columns is-multiline">
+    <div class="column is-6"> -->
+
+<div *ngIf="this._auth.isManager()" class="row g-4 text-center m-4">
+    <div class="col-sm-6 col-md-7">
         <div #containerRef class="card is-flex is-justify-content-center">
             <ngx-charts-number-card
                 *ngIf="this.nbEmployees[0] !== undefined &&
@@ -27,7 +31,7 @@
             </ngx-charts-number-card>
         </div>
     </div>
-    <div class="column is-5">
+    <div class="col-6 col-md-5">
         <div #containerRef2 class="card is-justify-content-center">
             <ngx-charts-bar-horizontal
                 *ngIf="this.nbCustomers[0] !== undefined &&
@@ -45,7 +49,16 @@
     </div>
 </div>
 
-<div class="columns is-multiline">
+<div *ngIf="this._auth.isManager()" class="me-md-2 mb-2 mb-md-0 m-5">
+    <button class="btn btn-outline-secondary dropdown-toggle w-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Coaches
+    </button>
+    <ul class="dropdown-menu">
+        <li *ngFor="let coaches of coaches"><a class="dropdown-item" (click)="chooseCoach(coaches)">{{ coaches.name }} {{ coaches.surname }}</a></li>
+    </ul>
+</div>
+
+<!-- <div class="columns is-multiline">
     <div #containerRef3 *ngFor="let coaches of coaches" class="column is-5 m-4 card cell-width">
         <div class="is-outlined p-3 has-text-centered is-hoverable">
             <div>
@@ -56,7 +69,7 @@
                 <p class="title">{{coaches?.name}} {{coaches?.surname}} </p>
             </div>
         </div>
-        <!-- <ngx-charts-bar-horizontal *ngIf="customerResults[coaches.id] !== undefined && encounterResults[coaches.id] !== undefined"
+        <ngx-charts-bar-horizontal *ngIf="customerResults[coaches.id] !== undefined && encounterResults[coaches.id] !== undefined"
             [view]="[containerRef3.offsetWidth - 20, 100]"
             [scheme]="'flame'"
             [xAxis]="true"
@@ -65,7 +78,7 @@
                 { name: this._tloco.translate('customersTxt'), value: customerResults[coaches.id] || 0 },
                 { name: this._tloco.translate('meetingsTxt'), value: encounterResults[coaches.id] || 0 }
             ]">
-        </ngx-charts-bar-horizontal> -->
+        </ngx-charts-bar-horizontal>
         <ngx-charts-advanced-pie-chart *ngIf="genderResults[coaches.id] !== undefined"
             [view]="[containerRef3.offsetWidth, 200]"
             [scheme]="'forest'"
@@ -77,4 +90,4 @@
             ]">
         </ngx-charts-advanced-pie-chart>
     </div>
-</div>
+</div> -->
