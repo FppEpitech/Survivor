@@ -103,7 +103,7 @@ export class HomeComponent {
 
         this.EventByDayPieChart = [];
         for (let event of this.eventsByDay) {
-            if (event && event.count && event.date) {
+            if (event) {
                 this.EventByDayPieChart.push({ name: event.date, value: event.count });
             }
         }
