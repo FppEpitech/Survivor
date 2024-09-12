@@ -14,12 +14,12 @@
             <a class="nav-link" routerLink="/home" routerLinkActive="active">{{ "navHome" | transloco }}</a>
           </li>
 
-          <li class="nav-item">
+          <li *ngIf="this._auth.isManager()" class="nav-item">
             <a class="nav-link" routerLink="/coaches" routerLinkActive="active">{{ "navCoaches" | transloco }}</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="/client-profile" routerLinkActive="active">{{ "navCustomers" | transloco }}</a>
+            <a class="nav-link" routerLink="/customers-list" routerLinkActive="active">{{ "navCustomers" | transloco }}</a>
           </li>
 
           <li class="nav-item">

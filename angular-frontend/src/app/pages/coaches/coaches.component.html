@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between align-items-center m-4">
     <div>
-        <h2>Coaches List</h2>
+        <h2 class="fw-bold">Coaches List</h2>
         <h6>You have total {{ this.employees.length }} coaches.</h6>
     </div>
 
@@ -17,9 +17,7 @@
 <div *ngIf="!this.customerPageChoice" class="card m-4">
     <div class="card-header">
         <div class="row">
-            <!-- Section pour les actions (Bulk Action, Apply, etc.) -->
             <div class="col-12 col-lg-9">
-                <!-- Conteneur flex pour les boutons avec comportement responsive -->
                 <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center mb-3 mb-md-0">
                     <div class="dropdown me-md-2 mb-2 mb-md-0">
                         <button class="btn btn-outline-secondary dropdown-toggle w-auto" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,7 +35,6 @@
                 </div>
             </div>
 
-            <!-- Section pour la barre de recherche et les filtres -->
             <div class="col-12 col-lg-3 d-flex flex-column flex-md-row align-items-start align-items-md-center">
                 <div class="d-flex align-items-center w-100 mb-2 mb-md-0">
                     <input type="text" class="form-control me-2" placeholder="Search" [(ngModel)]="this.search">

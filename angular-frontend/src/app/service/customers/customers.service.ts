@@ -15,7 +15,6 @@ export interface Customer {
   coach_id: number;
   coach_favorite: boolean;
   image_url: string;
-  coach_favorite: boolean;
 }
 
 export interface Clothes {

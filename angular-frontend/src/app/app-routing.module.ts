@@ -1,3 +1,4 @@
+import { AddEventComponent } from './pages/add-event/add-event/add-event.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -14,12 +15,13 @@ import { RegisterEmployeeComponent } from './pages/register-employee/register-em
 import { EventsComponent } from './pages/events/events.component';
 import { ManagerGuard } from './guards/manager.guard';
 import { BadRequestComponent } from './pages/bad-request/bad-request.component';
-import { DeleteEmployeeComponent } from './pages/delete-employee/delete-employee.component';
+import { CustomersListComponent } from './pages/customers-list/customers-list.component';
 
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [LoggedGuard]},
     { path: 'login', component: LoginComponent},
+    { path: 'customers-list', component: CustomersListComponent, canActivate: [LoggedGuard] },
     { path: 'client-profile/:id', component: ClientProfileComponent, canActivate: [LoggedGuard] },
     { path: 'coaches', component: CoachesComponent, canActivate: [LoggedGuard, ManagerGuard] },
     { path: 'astrological-compatibility', component: AstrologicalCompatibilityComponent, canActivate: [LoggedGuard]},
@@ -29,7 +31,7 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [LoggedGuard] },
     { path: 'register-employee', component: RegisterEmployeeComponent, canActivate: [LoggedGuard, ManagerGuard] },
     { path: 'events', component: EventsComponent, canActivate: [LoggedGuard] },
-    { path: 'delete-employee', component: DeleteEmployeeComponent, canActivate: [LoggedGuard, ManagerGuard] },
+    { path: 'add-event', component: AddEventComponent, canActivate: [LoggedGuard, ManagerGuard] },
     { path: '**', component: BadRequestComponent}
 ];
 

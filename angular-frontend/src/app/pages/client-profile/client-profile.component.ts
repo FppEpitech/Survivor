@@ -46,9 +46,13 @@ export class ClientProfileComponent implements OnInit {
                     return;
                 this.customer = customer;
                 this.customerImageUrl = this.apiUrl + customer.image_url;
-                this.payments = await this.paymentHistoryService.getPaymentsCustomer(this.customer.id);
+                if (this._auth.isManager()) {
+                    this.payments = await this.paymentHistoryService.getPaymentsCustomer(this.customer.id);
+                    this.coach = await this.employeesService.getEmployee(this.customer.coach_id);
+                } else {
+                    this.coach = await this.employeesService.getMe();
+                }
                 this.encounters = await this.encountersService.getCustomerEncounters(this.customer.id);
-                this.coach = await this.employeesService.getEmployee(this.customer.coach_id);
             });
         });
     }
