@@ -28,6 +28,7 @@ import { BadRequestComponent } from './pages/bad-request/bad-request.component';
 import { TranslocoRootModule } from './transloco-root.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { CustomersListComponent } from './pages/customers-list/customers-list.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     NavbarComponent,
     WardrobeComponent,
     CoachesComponent,
+    CustomersListComponent,
     TipsComponent,
     AstrologicalCompatibilityComponent,
     LoginComponent,

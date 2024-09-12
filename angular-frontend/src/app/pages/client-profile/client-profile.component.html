@@ -16,7 +16,7 @@
                         <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
                     </svg>
                 </a>
-                <button (click)="switchFavoriteCoach()">
+                <button (click)="switchFavoriteCoach()" class="btn btn-light">
                     <svg *ngIf="!this.customer.coach_favorite" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="secondary" class="bi bi-bookmark" viewBox="0 0 16 16">
                         <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
                     </svg>
@@ -86,7 +86,7 @@
                     </tbody>
                 </table>
             </div>
-            <h5 class="fw-bold mb-3 mt-5 text-primary-emphasis">Payments history</h5>
+            <h5 *ngIf="this._auth.isManager()" class="fw-bold mb-3 mt-5 text-primary-emphasis">Payments history</h5>
             <div *ngIf="this._auth.isManager() && this.customer !== undefined" class="card shadow-none p-4 pb-0">
                 <table class="table is-fullwidth border-light-subtle">
                     <thead>
@@ -97,7 +97,7 @@
                             <th scope="col" class="text-secondary">{{ "commentTh" | transloco }}</th>
                         </tr>
                     </thead>
-    
+
                     <tbody>
                         <tr *ngFor="let payment of this.payments">
                             <td class="text-primary fw-bold">{{ payment.date }}</td>

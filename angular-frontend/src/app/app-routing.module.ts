@@ -15,11 +15,13 @@ import { RegisterEmployeeComponent } from './pages/register-employee/register-em
 import { EventsComponent } from './pages/events/events.component';
 import { ManagerGuard } from './guards/manager.guard';
 import { BadRequestComponent } from './pages/bad-request/bad-request.component';
+import { CustomersListComponent } from './pages/customers-list/customers-list.component';
 
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [LoggedGuard]},
     { path: 'login', component: LoginComponent},
+    { path: 'customers-list', component: CustomersListComponent, canActivate: [LoggedGuard] },
     { path: 'client-profile/:id', component: ClientProfileComponent, canActivate: [LoggedGuard] },
     { path: 'coaches', component: CoachesComponent, canActivate: [LoggedGuard, ManagerGuard] },
     { path: 'astrological-compatibility', component: AstrologicalCompatibilityComponent, canActivate: [LoggedGuard]},
