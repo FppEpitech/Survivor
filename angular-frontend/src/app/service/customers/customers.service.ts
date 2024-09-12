@@ -18,8 +18,8 @@ export interface Customer {
 }
 
 export interface Clothes {
-  id: number;
   type: string;
+  url: string;
 }
 
 @Injectable({
