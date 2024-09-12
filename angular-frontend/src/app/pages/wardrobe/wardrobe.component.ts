@@ -77,11 +77,11 @@ export class WardrobeComponent {
 
     async getClothes() {
         this.clothes = await this.customerService.getCustomerClothes(this.customer!.id);
-        if (this.clothes !== undefined) {
-            this.hat_cap_id = this.clothes.filter((clothe) => clothe.type === 'hat/cap').map((clothe) => clothe.id);
-            this.top_id = this.clothes.filter((clothe) => clothe.type === 'top').map((clothe) => clothe.id);
-            this.bottom_id = this.clothes.filter((clothe) => clothe.type === 'bottom').map((clothe) => clothe.id);
-            this.shoes_id = this.clothes.filter((clothe) => clothe.type === 'shoes').map((clothe) => clothe.id);
+        if (this.clothes != undefined) {
+            this.hat_cap_id = this.clothes.filter((clothe) => clothe.type == 'hat/cap').map((clothe) => clothe.id);
+            this.top_id = this.clothes.filter((clothe) => clothe.type == 'top').map((clothe) => clothe.id);
+            this.bottom_id = this.clothes.filter((clothe) => clothe.type == 'bottom').map((clothe) => clothe.id);
+            this.shoes_id = this.clothes.filter((clothe) => clothe.type == 'shoes').map((clothe) => clothe.id);
 
             this.getAllClothes().then(() => {
                 this.hat_cap = this.hats_caps.at(this.index_hats_caps.index);
@@ -89,10 +89,10 @@ export class WardrobeComponent {
                 this.bottom = this.bottoms.at(this.index_bottoms.index);
                 this.shoes = this.shoes_list.at(this.index_shoes.index);
 
-                this.hat_cap_url.url = this.hat_cap?.type ? this.apiUrl + this.hat_cap.type! : '';
-                this.top_url.url = this.top?.type ? this.apiUrl + this.top.type! : '';
-                this.bottom_url.url = this.bottom?.type ? this.apiUrl + this.bottom.type! : '';
-                this.shoes_url.url = this.shoes?.type ? this.apiUrl + this.shoes.type! : '';
+                this.hat_cap_url.url = this.hat_cap?.type ? this.apiUrl + this.hat_cap.type : '';
+                this.top_url.url = this.top?.type ? this.apiUrl + this.top.type : '';
+                this.bottom_url.url = this.bottom?.type ? this.apiUrl + this.bottom.type : '';
+                this.shoes_url.url = this.shoes?.type ? this.apiUrl + this.shoes.type : '';
             });
         }
     }
