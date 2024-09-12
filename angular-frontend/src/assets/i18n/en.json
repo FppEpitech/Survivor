@@ -95,7 +95,7 @@
   "dayTxtEv": "Day",
   "listTxtEv": "List",
   "coachesListTitle": "Coaches List",
-  "totalCoachesTxt": "You have total",
+  "totalTxt": "You have total",
   "coachesTxt": "coaches",
   "exportBtnTxt": "Export",
   "bulkActionTxt": "Bulk Action",
@@ -111,5 +111,9 @@
   "backBtnTxt": "Back",
   "addBtnTxt": "Add",
   "bulkActionBtn": "Bulk Action",
-  "simpleActionBtn": "Simple Action"
+  "simpleActionBtn": "Simple Action",
+  "customersListBtn": "Customers List",
+  "customersPointTxt": "customers.",
+  "viewBtn": "See",
+  "paymentmethodsTxt": "Payment Methods"
 }

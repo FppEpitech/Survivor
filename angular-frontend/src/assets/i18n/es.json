@@ -95,7 +95,7 @@
   "dayTxtEv": "Día",
   "listTxtEv": "Lista",
   "coachesListTitle": "Lista de Entrenadores",
-  "totalCoachesTxt": "Tienes un total de",
+  "totalTxt": "Tienes un total de",
   "coachesTxt": "entrenadores",
   "exportBtnTxt": "Exportar",
   "bulkActionTxt": "Acción en grupo",
@@ -111,5 +111,9 @@
   "backBtnTxt": "Atrás",
   "addBtnTxt": "Agregar",
   "bulkActionBtn": "Acción masiva",
-  "simpleActionBtn": "Acción simple"
+  "simpleActionBtn": "Acción simple",
+  "customersListBtn": "Lista de Clientes",
+  "customersPointTxt": "clientes.",
+  "viewBtn": "Ver",
+  "paymentmethodsTxt": "Métodos de Pago"
 }

@@ -95,7 +95,7 @@
   "dayTxtEv": "日",
   "listTxtEv": "列表",
   "coachesListTitle": "教练列表",
-  "totalCoachesTxt": "您总共有",
+  "totalTxt": "您总共有",
   "coachesTxt": "教练",
   "exportBtnTxt": "导出",
   "bulkActionTxt": "批量操作",
@@ -111,5 +111,9 @@
   "backBtnTxt": "返回",
   "addBtnTxt": "添加",
   "bulkActionBtn": "批量操作",
-  "simpleActionBtn": "简单操作"
+  "simpleActionBtn": "简单操作",
+  "customersListBtn": "客户列表",
+  "customersPointTxt": "客户。",
+  "viewBtn": "查看",
+  "paymentmethodsTxt": "支付方式"
 }
