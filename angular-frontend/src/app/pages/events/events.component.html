@@ -1,24 +1,20 @@
-<div class="column is-11">
-    <p class="title is-1">{{ "navEvents" | transloco }}</p>
-    <hr>
+<p class="display-6"  style="margin: 14px; font-weight: bold;">{{ "navEvents" | transloco }}</p>
+
+<div class="row">
+  <div class="col-10"></div>
+  <button class="btn btn-primary col-lg-1 mb-4 col-sm-12" style="border-radius: none" routerLink="/add-event" *ngIf="this._auth.isManager()">{{ "addEvBtn" | transloco }}</button>
+  <div class="col-1"></div>
 </div>
 
-<div class="container ml-0 columns mt-4">
-    <div class="column">
-        <div id="map" style="height: 90vh; width: 100%;"></div>
-    </div>
-    <div class="column fixed-grid">
-        <div class="grid">
-            <div *ngFor="let event of events">
-                <div class="card">
-                    <div class="card-content">
-                        <p class="title">{{ event.name }}</p>
-                        <p>{{ event.location_name }}</p>
-                        <p>{{ "maxParticipantsTxt" | transloco }} : {{ event.max_participants }}</p>
-                        <p>{{ "dateTxt" | transloco }} : {{ event.date }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="card m-4"  style="background-color: white;">
+  <div class="card-body">
+    <full-calendar #fullCalendar [options]="calendarOptions" [deepChangeDetection]="true">
+    </full-calendar>
+  </div>
+</div>
+
+<div class="card mt-4 mb-4 m-4">
+  <div class="card-body">
+      <div id="map" style="height: 90vh; width: 90vw; margin: 0 auto" class="mt-4"></div>
     </div>
 </div>

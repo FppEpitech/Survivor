@@ -1,17 +1,17 @@
-<div class="is-flex is-justify-content-center is-align-items-center container-login">
-    <div class="has-text-centered m-4">
-        <p class="title is-1 mb-5">{{ "welcomeMsg" | transloco }}</p>
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="container text-center p-4 rounded bg-light">
+        <h1 class="display-4 mb-4">{{ "welcomeMsg" | transloco }}</h1>
 
         <div *ngIf="wrongPassword">
             <p class="subtitle is-4 has-text-danger mb-3">{{ "loginErr" | transloco }}</p>
         </div>
 
         <form>
-            <input class="input is-large mb-2" type="text" [(ngModel)]="this.Email" id="email" name="email" [placeholder]="this._tloco.translate('emailPlaceholder')" required>
+            <input class="mt-2 form-control" type="text" [(ngModel)]="this.Email" id="email" name="email" [placeholder]="this._tloco.translate('emailPlaceholder')" required>
 
-            <input class="input is-large mt-2" type="password" [(ngModel)]="this.Password" id="password" name="password" [placeholder]="this._tloco.translate('passwordPlaceholder')" required>
+            <input class="mt-2 form-control" type="password" [(ngModel)]="this.Password" id="password" name="password" [placeholder]="this._tloco.translate('passwordPlaceholder')" required>
 
-            <button (click)="this.loginClick()" class="button is-large m-4 is-warning">{{ "loginBtn" | transloco }}</button>
+            <button (click)="this.loginClick()" class="btn btn-primary mt-3">{{ "loginBtn" | transloco }}</button>
         </form>
     </div>
 </div>

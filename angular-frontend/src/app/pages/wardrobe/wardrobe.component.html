@@ -1,173 +1,130 @@
-<div class="column is-11">
-  <p class="title is-1">{{ "navWardrobe" | transloco }}</p>
-  <hr>
+<div>
+  <h2 class="m-4"> {{ "navWardrobe" | transloco }} </h2>
 </div>
 
-<section class="section" *ngIf="this.customers.length != 0; else noClients">
-<div class="container has-text-centered">
-  <div class="dropdown is-hoverable">
-    <div class="dropdown-trigger">
-      <button class="button is-warning margin-bottom-10">
-          <span>{{ customer?.name }} {{ customer?.surname ?? this._tloco.translate('selectCustomerLabel') }}</span>
-      </button>
-  </div>
-    <div class="dropdown-menu has-text-left" id="dropdown-menu3" role="menu">
-      <div class="dropdown-content is-flex is-flex-direction-column is-align-items-center">
-        <div class="dropdown-item">
-          <label *ngFor="let customer_ of this.customers">
-            <button class="button" (click)="updateCustomer(customer_)">
-              {{ customer_.name }} {{ customer_.surname }}
+<section class="section card p-4 m-4 mt-6" *ngIf="this.customers.length != 0; else noClients">
+    <div class="has-text-centered d-flex justify-content-between">
+      <div class="dropdown">
+        <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <span>{{ customer?.name }} {{ customer?.surname ?? this._tloco.translate('selectCustomerLabel') }}</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li *ngFor="let customer_ of this.customers" class="dropdown-item">
+              <button class="btn" (click)="updateCustomer(customer_)">
+                {{ customer_.name }} {{ customer_.surname }}
+              </button>
+          </li>
+        </ul>
+      </div>
+      <div class="has-text-centered mb-2">
+        <button type="button" class="btn btn-light" (click)="randomOutfit()">
+          <span>{{ "randomOutfitTxt" | transloco }}</span>
+        </button>
+      </div>
+    </div>
+    <div class="d-xxl-flex justify-content-evenly">
+      <div class="clothe-container p-1 pt-3">
+        <div class="d-flex justify-content-center align-items-center">
+            <div>
+              <img class="img rounded" [src]="hat_cap_url.url ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('hatAlt')"
+                (error)="onImageError($event)">
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(false, hats_caps_urls, index_hats_caps, hat_cap_url)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left m-auto" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                </svg>
             </button>
-          </label>
+          </div>
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(true, hats_caps_urls, index_hats_caps, hat_cap_url)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right m-auto" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="clothe-container p-1 pt-3">
+        <div class="d-flex justify-content-center align-items-center">
+          <div>
+              <img class="img rounded" [src]="top_url.url ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('topAlt')"
+                (error)="onImageError($event)">
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(false, tops_urls, index_tops, top_url)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left m-auto" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+              </svg>
+            </button>
+          </div>
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(true, tops_urls, index_tops, top_url)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right m-auto" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="clothe-container p-1 pt-3">
+        <div class="d-flex justify-content-center align-items-center">
+          <div>
+              <img class="img rounded" [src]="bottom_url.url ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('bottomAlt')"
+                (error)="onImageError($event)">
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(false, bottoms_urls, index_bottoms, bottom_url)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left m-auto" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+              </svg>
+            </button>
+          </div>
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(true, bottoms_urls, index_bottoms, bottom_url)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right m-auto" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="clothe-container p-1 pt-3">
+        <div class="d-flex justify-content-center align-items-center">
+          <div>
+              <img class="img rounded" [src]="shoes_url.url ?? 'assets/placeholder-128.png'  | secure | async" [alt]="this._tloco.translate('shoesAlt')"
+                (error)="onImageError($event)">
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(false, shoes_urls, index_shoes, shoes_url)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left m-auto" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+              </svg>
+            </button>
+          </div>
+          <div class="p-3">
+            <button class="btn btn-light" (click)="swipeItem(true, shoes_urls, index_shoes, shoes_url)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right m-auto" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container has-text-centered mb-2">
-    <button class="button is-primary is-centered is-vcentered" (click)="randomOutfit()">
-      <span>{{ "randomOutfitTxt" | transloco }}</span>
-    </button>
-  </div>
-</div>
-
-<div class="is-flex mt-6 is-justify-content-center columns is-multiline">
-
-<div class="column p-3 is-3">
-  <div class="is-flex is-justify-content-center is-align-items-center">
-    <div class="is-narrow">
-      <figure class="image is-185x185">
-        <img [src]="hat_cap_url.url ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('hatAlt')"
-          (error)="onImageError($event)">
-      </figure>
-    </div>
-  </div>
-  <div class="is-flex is-justify-content-center">
-    <div class="is-narrow p-3">
-      <button class="button is-light" (click)="swipeItem(false, hats_caps, index_hats_caps, hat_cap_url)">
-        <span class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path
-                d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-            </svg>
-        </span>
-      </button>
-    </div>
-    <div class="is-narrow p-3">
-      <button class="button is-light" (click)="swipeItem(true, hats_caps, index_hats_caps, hat_cap_url)">
-        <span class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path
-                d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
-            </svg>
-        </span>
-      </button>
-    </div>
-  </div>
-</div>
-
-<div class="column p-3 is-3">
-  <div class="is-flex is-justify-content-center is-align-items-center">
-    <div class="is-narrow">
-      <figure class="image is-185x185">
-        <img [src]="top_url.url ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('topAlt')"
-          (error)="onImageError($event)">
-      </figure>
-    </div>
-  </div>
-  <div class="is-flex is-justify-content-center">
-    <div class="is-narrow p-3">
-      <button class="button is-light" (click)="swipeItem(false, tops, index_tops, top_url)">
-        <span class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path
-                d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-            </svg>
-        </span>
-      </button>
-    </div>
-    <div class="is-narrow p-3">
-      <button class="button is-light" (click)="swipeItem(true, tops, index_tops, top_url)">
-        <span class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path
-                d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
-            </svg>
-        </span>
-      </button>
-    </div>
-  </div>
-</div>
-
-<div class="column p-3 is-3">
-  <div class="is-flex is-justify-content-center is-align-items-center">
-    <div class="is-narrow">
-      <figure class="image is-185x185">
-        <img [src]="bottom_url.url ?? 'assets/placeholder-128.png' | secure | async" [alt]="this._tloco.translate('bottomAlt')"
-          (error)="onImageError($event)">
-      </figure>
-    </div>
-  </div>
-  <div class="is-flex is-justify-content-center">
-    <div class="is-narrow p-3">
-      <button class="button is-light" (click)="swipeItem(false, bottoms, index_bottoms, bottom_url)">
-        <span class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path
-                d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-            </svg>
-        </span>
-      </button>
-    </div>
-    <div class="is-narrow p-3">
-      <button class="button is-light" (click)="swipeItem(true, bottoms, index_bottoms, bottom_url)">
-        <span class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path
-                d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
-            </svg>
-        </span>
-      </button>
-    </div>
-  </div>
-</div>
-
-<div class="column p-3 is-3">
-  <div class="is-flex is-justify-content-center is-align-items-center">
-    <div class="is-narrow">
-      <figure class="image is-185x185">
-        <img [src]="shoes_url.url ?? 'assets/placeholder-128.png'  | secure | async" [alt]="this._tloco.translate('shoesAlt')"
-          (error)="onImageError($event)">
-      </figure>
-    </div>
-  </div>
-  <div class="is-flex is-justify-content-center">
-    <div class="is-narrow p-3">
-      <button class="button is-light" (click)="swipeItem(false, shoes_list, index_shoes, shoes_url)">
-        <span class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path
-                d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
-            </svg>
-        </span>
-      </button>
-    </div>
-    <div class="is-narrow p-3">
-      <button class="button is-light" (click)="swipeItem(true, shoes_list, index_shoes, shoes_url)">
-        <span class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path
-                d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
-            </svg>
-        </span>
-      </button>
-    </div>
-  </div>
-</div>
-
-</div>
-
 </section>
 
-<ng-template class="container" #noClients>
-<h1>{{ "loadCustomers" | transloco }}</h1>
+<ng-template #noClients>
+<h4 class="m-4">{{ "loadCustomers" | transloco }}</h4>
 </ng-template>

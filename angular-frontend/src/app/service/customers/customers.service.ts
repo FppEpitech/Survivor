@@ -13,13 +13,13 @@ export interface Customer {
   description: string;
   astrological_sign: string;
   coach_id: number;
-  image_url: string;
   coach_favorite: boolean;
+  image_url: string;
 }
 
 export interface Clothes {
-  id: number;
   type: string;
+  url: string;
 }
 
 @Injectable({
