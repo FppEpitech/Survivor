@@ -115,5 +115,7 @@
   "customersListBtn": "Lista de Clientes",
   "customersPointTxt": "clientes.",
   "viewBtn": "Ver",
-  "paymentmethodsTxt": "Métodos de Pago"
+  "paymentmethodsTxt": "Métodos de Pago",
+  "shortDescriptionPlaceholder": "Descripción corta",
+  "customerCreationHeader": "Creación de cliente"
 }

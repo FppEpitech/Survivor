@@ -115,5 +115,7 @@
   "customersListBtn": "Customers List",
   "customersPointTxt": "customers.",
   "viewBtn": "See",
-  "paymentmethodsTxt": "Payment Methods"
+  "paymentmethodsTxt": "Payment Methods",
+  "shortDescriptionPlaceholder": "Short description",
+  "customerCreationHeader": "Customer creation"
 }

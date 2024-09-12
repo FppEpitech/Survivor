@@ -14,6 +14,7 @@ import authenticateToken from './middlewares/isLoggedIn';
 import compatibilityRouter from './routes/compatibility';
 import assetsRouter from './routes/assets';
 import themesRouter from './routes/themes';
+import dashboardRouter from './routes/dashboard';
 require('dotenv').config();
 
 const app = express();
@@ -49,6 +50,7 @@ apiRouter.use('/clothes', clothesRouter);
 apiRouter.use('/paymenthistory', PaymentHistoryRouter);
 apiRouter.use('/compatibility', compatibilityRouter);
 apiRouter.use('/themes', themesRouter);
+apiRouter.use('/dashboard', dashboardRouter);
 
 app.use('/api', apiRouter);
 

@@ -115,5 +115,7 @@
   "customersListBtn": "客户列表",
   "customersPointTxt": "客户。",
   "viewBtn": "查看",
-  "paymentmethodsTxt": "支付方式"
+  "paymentmethodsTxt": "支付方式",
+  "shortDescriptionPlaceholder": "简短描述",
+  "customerCreationHeader": "客户创建"
 }

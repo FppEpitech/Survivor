@@ -29,7 +29,6 @@ export class CustomersListComponent {
     constructor (
         private employeesService: EmployeesService,
         private customersService: CustomersService,
-        private paymentService: PaymentHistoryService,
         public _auth: AuthService,
         private router: Router,
         public _tloco : TranslocoService) {}
@@ -42,11 +41,6 @@ export class CustomersListComponent {
             this.customers = await this.customersService.getCustomers();
         }
         this.allCustomers = this.customers;
-        // if (this._auth.isManager()) {
-        //     for (let customer of this.customers) {
-        //         this.payments[customer.id] = await this.paymentService.getPaymentsCustomer(customer.id);
-        //     }
-        // }
         this.action = this._tloco.translate('simpleActionBtn')
         this._tloco.langChanges$.subscribe(() => {
             this.action = this._tloco.translate('simpleActionBtn')
@@ -54,7 +48,7 @@ export class CustomersListComponent {
     }
 
     exportCustomersAsJSON() {
-        const dataStr = JSON.stringify(this.customers, null, 2); // Format with 2 spaces for readability
+        const dataStr = JSON.stringify(this.customers, null, 2);
         const blob = new Blob([dataStr], { type: 'application/json' });
         const link = document.createElement('a');
 
@@ -65,7 +59,7 @@ export class CustomersListComponent {
     }
 
     goToCustomerCreation() {
-        // this.router.navigate(["/create-customer"]);
+        this.router.navigate(["/register-customer"]);
     }
 
     changeAction(action: string) {
@@ -79,7 +73,7 @@ export class CustomersListComponent {
         this.changesOccured = false;
         for (let key in this.customersToDelete) {
             let customer = this.customersToDelete[key];
-            this.customersService.deleteCustomer(customer.id);
+            await this.customersService.deleteCustomer(customer.id);
         }
         if (this.employee?.work === 'Coach') {
             this.customers = await this.employeesService.getCustomers(this.employee?.id);

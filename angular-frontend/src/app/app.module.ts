@@ -29,6 +29,7 @@ import { TranslocoRootModule } from './transloco-root.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CustomersListComponent } from './pages/customers-list/customers-list.component';
+import { RegisterCustomerComponent } from './pages/register-customer/register-customer.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { CustomersListComponent } from './pages/customers-list/customers-list.co
     LoginComponent,
     SecurePipe,
     RegisterEmployeeComponent,
+    RegisterCustomerComponent,
     EventsComponent,
     BadRequestComponent,
     AddEventComponent
