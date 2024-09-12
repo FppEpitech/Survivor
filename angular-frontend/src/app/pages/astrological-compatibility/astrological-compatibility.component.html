@@ -1,79 +1,70 @@
-<div class="column is-11">
-    <p class="title is-1">{{ "navAstro" | transloco }}</p>
-    <hr>
-</div>
+<div class="container">
+  <h2 class="my-4">{{ "navAstro" | transloco }}</h2>
 
-<div class="container" *ngIf="this.customers.length != 0; else noClients">
-  <div class="has-text-centered">
-    <p class="content title is-1">{{ this.compatibilityPercentage }}%</p>
-    <div class="column column-center">
-      <button class="button is-danger button-compute" (click)="computeCompatibility()">{{ "computeBtn" | transloco }}</button>
+  <div class="card my-4 p-3" *ngIf="customers.length != 0; else noClients">
+    <div class="text-center">
+      <h1 class="fw-bold">{{ compatibilityPercentage }}%</h1>
+      <div class="my-3">
+        <button class="btn btn-primary" (click)="computeCompatibility()">{{ "computeBtn" | transloco }}</button>
+      </div>
     </div>
-  </div>
 
-  <div class="columns is-centered m-6">
-    <div class="column column-center">
-      <div class="card m-4">
-        <div class="card-content has-text-centered">
-          <p class="title is-4">{{ this.customerLeft?.name || this._tloco.translate('customerTxt') + " 1"}} {{ this.customerLeft?.surname }}</p>
-          <p class="title is-5 m-4">{{ this.customerLeft?.astrological_sign || this._tloco.translate('signTxt')}}</p>
-          <div class="card-image">
-            <figure class="image is-256x256 is-inline-block">
-              <img [src]="customerLeftImageUrl ?? 'assets/placeholder-128.png'  | secure | async" [alt]="this._tloco.translate('userPhotoAlt')"
-                (error)="onImageError($event)">
-            </figure>
-          </div>
-          <div class="dropdown is-hoverable">
-            <div class="dropdown-trigger">
-              <button class="button is-warning">
-                <span>{{ "findBtn" | transloco }}</span>
-              </button>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card my-4">
+          <div class="card-body text-center">
+            <h4 class="card-title">{{ customerLeft?.name || 'Customer 1' }} {{ customerLeft?.surname }}</h4>
+            <h5 class="card-subtitle mb-3">{{ customerLeft?.astrological_sign || 'Sign' }}</h5>
+            <div class="mb-3">
+              <img [src]="customerLeftImageUrl ?? 'assets/placeholder-128.png' | secure | async" [alt]=" 'User Photo' "
+                (error)="onImageError($event)" class="img-fluid rounded-circle">
             </div>
-            <div class="dropdown-menu" role="menu">
-              <div class="dropdown-content p-3" *ngFor="let customer of customers">
-                <label class="radio">
-                  <input type="radio" name="customer1" (click)="onRadioChange(customer, true)" />
-                  {{ customer.name }} {{ customer.surname }}
-                </label>
-              </div>
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ "findBtn" | transloco }}
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li *ngFor="let customer_ of customers" class="dropdown-item">
+                  <label class="form-check-label">
+                    <input type="radio" name="customer1" (click)="onRadioChange(customer_, true)" class="form-check-input" />
+                    {{ customer_.name }} {{ customer_.surname }}
+                  </label>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="column column-center">
-      <div class="card m-4">
-        <div class="card-content has-text-centered">
-          <p class="title is-4">{{ this.customerRight?.name || this._tloco.translate('customerTxt') + " 2"}} {{ this.customerRight?.surname }}</p>
-            <p class="title is-5 m-4">{{ this.customerRight?.astrological_sign || this._tloco.translate('signTxt')}}</p>
-          <div class="card-image">
-            <figure class="image is-256x256 is-inline-block">
-              <img [src]="customerRightImageUrl ?? 'assets/placeholder-128.png'  | secure | async" [alt]="this._tloco.translate('userPhotoAlt')"
-                (error)="onImageError($event)">
-            </figure>
-          </div>
-          <div class="dropdown is-hoverable">
-            <div class="dropdown-trigger">
-              <button class="button is-warning">
-                <span>{{ "findBtn" | transloco }}</span>
-              </button>
+      <div class="col-md-6">
+        <div class="card my-4">
+          <div class="card-body text-center">
+            <h4 class="card-title">{{ customerRight?.name || 'Customer 2' }} {{ customerRight?.surname }}</h4>
+            <h5 class="card-subtitle mb-3">{{ customerRight?.astrological_sign || 'Sign' }}</h5>
+            <div class="mb-3">
+              <img [src]="customerRightImageUrl ?? 'assets/placeholder-128.png' | secure | async" [alt]=" 'User Photo' "
+                (error)="onImageError($event)" class="img-fluid rounded-circle">
             </div>
-            <div class="dropdown-menu" role="menu">
-              <div class="dropdown-content p-3" *ngFor="let customer of customers">
-                <label class="radio">
-                  <input type="radio" name="customer2" (click)="onRadioChange(customer, false)" />
-                  {{ customer.name }} {{ customer.surname }}
-                </label>
-              </div>
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ "findBtn" | transloco }}
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                <li *ngFor="let customer of customers" class="dropdown-item">
+                  <label class="form-check-label">
+                    <input type="radio" name="customer2" (click)="onRadioChange(customer, false)" class="form-check-input" />
+                    {{ customer.name }} {{ customer.surname }}
+                  </label>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<ng-template class="container" #noClients>
-  <h1>{{ "loadCustomers" | transloco }}</h1>
-</ng-template>
+  <ng-template #noClients>
+    <h4 class="my-4">{{ "loadCustomers" | transloco }}</h4>
+  </ng-template>
+</div>
