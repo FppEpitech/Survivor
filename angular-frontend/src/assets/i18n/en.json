@@ -93,5 +93,7 @@
   "monthTxtEv": "Month",
   "weekTxtEv": "Week",
   "dayTxtEv": "Day",
-  "listTxtEv": "List"
+  "listTxtEv": "List",
+  "customerCreationHeader": "Customer creation",
+  "shortDescriptionPlaceholder": "Short description..."
 }

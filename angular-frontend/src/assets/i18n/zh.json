@@ -93,5 +93,7 @@
   "monthTxtEv": "月",
   "weekTxtEv": "周",
   "dayTxtEv": "日",
-  "listTxtEv": "列表"
+  "listTxtEv": "列表",
+  "customerCreationHeader": "客户创建",
+  "shortDescriptionPlaceholder": "简短描述..."
 }

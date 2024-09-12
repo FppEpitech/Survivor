@@ -93,5 +93,7 @@
   "monthTxtEv": "Mes",
   "weekTxtEv": "Semana",
   "dayTxtEv": "Día",
-  "listTxtEv": "Lista"
+  "listTxtEv": "Lista",
+  "customerCreationHeader": "Creación de cliente",
+  "shortDescriptionPlaceholder": "Descripción corta..."
 }
