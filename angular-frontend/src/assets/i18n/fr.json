@@ -128,5 +128,16 @@
   "userEmailCategory": "Email:",
   "userDescriptionCategory": "Description:",
   "coachCategory": "Coach:",
-  "shortDetailsHeader": "Détails courts"
+  "shortDetailsHeader": "Détails courts",
+  "reportsI": "Rapports",
+  "customersOverviewHeader": "Aperçu des Clients",
+  "timeCustomerMsg": "Quand les clients ont rejoint au fil du temps.",
+  "meetingsMsg": "Principales sources de réunions",
+  "30d": "30 Jours",
+  "dMeetingsMsg": "Réunions en cours",
+  "customersByCoach": "Clients par coach",
+  "evMsgStatus": "Nos événements et leur statut.",
+  "mthly": "Mensuel",
+  "wkly": "Hebdomadaire",
+  "dAvg": "Quotidien (moyenne)"
 }

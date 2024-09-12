@@ -128,5 +128,16 @@
   "userEmailCategory": "电子邮件:",
   "userDescriptionCategory": "描述:",
   "coachCategory": "教练:",
-  "shortDetailsHeader": "简短详情"
+  "shortDetailsHeader": "简短详情",
+  "reportsI": "报告",
+  "customersOverviewHeader": "客户概览",
+  "timeCustomerMsg": "客户在时间中的加入情况。",
+  "meetingsMsg": "会议主要来源",
+  "30d": "30 天",
+  "dMeetingsMsg": "进行中的会议",
+  "customersByCoach": "教练下的客户",
+  "evMsgStatus": "我们的事件及其状态。",
+  "mthly": "每月",
+  "wkly": "每周",
+  "dAvg": "每日（平均）"
 }

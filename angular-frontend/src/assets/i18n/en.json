@@ -128,5 +128,16 @@
   "userEmailCategory" : "Email:",
   "userDescriptionCategory": "Description:",
   "coachCategory": "Coach:",
-  "shortDetailsHeader" : "short details"
+  "shortDetailsHeader" : "short details",
+  "reportsI": "Reports",
+  "customersOverviewHeader": "Customers Overview",
+  "timeCustomerMsg" : "When customers have joined in the time.",
+  "meetingsMsg" : "Meeting top sources",
+  "30d" : "30 Days",
+  "dMeetingsMsg" : "Doing meetings",
+  "customersByCoach" : "Customers by coach",
+  "evMsgStatus" : "Our events and their status.",
+  "mthly": "Monthly",
+  "wkly" : "Weekly",
+  "dAvg" : "Daily (avg)"
 }
