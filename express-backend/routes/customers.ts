@@ -6,12 +6,40 @@ const router = express.Router();
 
 router.get('/', restrictCoach, async (req: Request, res: Response) => {
   try {
+    // Récupère tous les clients
     const customers = await prisma.customer.findMany();
-    res.status(200).json(customers);
+
+    // Pour chaque client, récupérer le premier ID de la liste payment_ids et la méthode de paiement correspondante
+    const customersWithPaymentMethod = await Promise.all(customers.map(async customer => {
+      if (customer.payment_ids.length > 0) {
+        const firstPaymentId = customer.payment_ids[0];
+
+        // Récupère le payment associé à l'ID
+        const payment = await prisma.paymentHistory.findUnique({
+          where: { id: firstPaymentId },
+          select: { payment_method: true }
+        });
+
+        return {
+          ...customer,
+          first_payment_method: payment?.payment_method || null // Joindre la méthode de paiement
+        };
+      } else {
+        return {
+          ...customer,
+          first_payment_method: null
+        };
+      }
+    }));
+
+    // Retourne la réponse avec les données modifiées
+    res.status(200).json(customersWithPaymentMethod);
   } catch (error) {
-    res.status(500).json({error: 'Error retrieving customers'});
+    res.status(500).json({ error: 'Error retrieving customers' });
   }
 });
+
+
 
 router.get('/:id', async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
