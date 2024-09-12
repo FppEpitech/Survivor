@@ -15,6 +15,7 @@ export interface Customer {
   coach_id: number;
   coach_favorite: boolean;
   image_url: string;
+  first_payment_method: string;
 }
 
 export interface CustomerCreation {

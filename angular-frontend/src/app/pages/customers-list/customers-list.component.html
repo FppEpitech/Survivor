@@ -60,7 +60,7 @@
                     <th scope="col" class="text-secondary">Email</th>
                     <th scope="col" class="text-secondary">Birth Date</th>
                     <th *ngIf="this._auth.isManager()" scope="col" class="text-secondary">Payment Methods</th>
-                    <th scope="col" class="text-secondary text-center align-middle">Actions</th>
+                    <th scope="col" class="text-secondary">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -77,12 +77,12 @@
                     </td>
                     <td>{{ customer.email }}</td>
                     <td>{{ customer.birth_date }}</td>
-                    <td></td>
-                    <!-- <td *ngIf="this._auth.isManager()" ><img *ngIf="this.payments[customer.id][0].payment_method == 'PayPal'" src="assets/paypal-card.jpg" class="image-card-payment">
-                        <img *ngIf="this.payments[customer.id][0].payment_method == 'Credit Card'" src="assets/cb-card.jpg" class="image-card-payment">
-                        <img *ngIf="this.payments[customer.id][0].payment_method == 'Bank Transfer'" src="assets/wire-transfer.jpg" class="image-card-payment">
-                        <span *ngIf="this.payments[customer.id][0].payment_method != 'PayPal' && this.payments[customer.id][0].payment_method != 'Credit Card' && this.payments[customer.id][0].payment_method != 'Bank Transfer'">{{ this.payments[customer.id][0].payment_method }}</span>
-                    </td> -->
+                    <td class="text-center align-middle" *ngIf="this._auth.isManager()">
+                        <img *ngIf="customer.first_payment_method == 'PayPal'" src="assets/paypal-card.jpg" class="image-card-payment mx-auto d-block">
+                        <img *ngIf="customer.first_payment_method == 'Credit Card'" src="assets/cb-card.jpg" class="image-card-payment mx-auto d-block">
+                        <img *ngIf="customer.first_payment_method == 'Bank Transfer'" src="assets/wire-transfer.jpg" class="image-card-payment mx-auto d-block">
+                        <span *ngIf="customer.first_payment_method != 'PayPal' && customer.first_payment_method != 'Credit Card' && customer.first_payment_method != 'Bank Transfer'">{{ customer.first_payment_method }}</span>
+                    </td>
                     <td class="text-center align-middle">
                         <div class="dropdown me-2">
                             <button class="btn btn-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -105,4 +105,3 @@
             </tbody>
         </table>
     </div>
-</div>
